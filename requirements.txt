@@ -1,0 +1,42 @@
+# Core dependencies for translation pipeline
+
+# Data processing
+pandas
+numpy
+
+
+# CLI and output formatting
+rich
+tqdm
+
+
+# LLM APIs
+openai
+anthropic
+google-generativeai
+
+# Translation services
+translators
+easynmt
+
+# Google Cloud / Auth
+google-cloud-translate
+google-auth
+
+
+# NLP and text processing
+beautifulsoup4
+transformers
+requests
+arabic-reshaper
+python-bidi
+
+# Utilities
+Wikipedia-API
+ollama
+pydantic
+python-dotenv
+apikey>=0.2.4
+
+# Optional: for development/testing
+pytest

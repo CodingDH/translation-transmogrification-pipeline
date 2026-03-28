@@ -1,30 +1,35 @@
 #!/usr/bin/env python3
 """
-evaluate_confidence.py
-======================
-Run frequency-based agreement scoring across all primary translation service outputs in the pipeline CSVs. Produces a scored CSV for each term/variant
-combination and a summary report.
+evaluate_confidence_within_variant.py
+======================================
+Level 0 evaluation: Frequency-based agreement scoring across translation services
+WITHIN each prompt variant.
 
-This is first step of the evaluation chain — no LLMs as judges involved. It explores:
+For each prompt variant separately, measure how much primary translation services
+(Google Translate, EasyNMT, Lingvanex, Wikipedia) agree on the same translation.
 
-  - Which term/language combinations have high primary service agreement?
-  - What is the confidence distribution across languages?
+This explores:
+  - Within a single variant, which term/language combos have high service agreement?
+  - How consistent are independent translation engines for each prompt variant?
   - Which rows are strong auto-approve candidates vs. need human review?
 
-Adapts the FrequencyConfidenceCalculator approach from Kraus et al. (2025, WOKIE) — but preserves the full candidate distribution rather than collapsing
-to a single winner, so disagreements or outliers are logged as research data.
+Compare with: evaluate_confidence_across_variants.py (which measures if different
+prompts produce the same translations).
 
-Output files are written to data_directory/metadata_files/translated_terms/
-{term_slug}/evaluation/, with these key files:
+Adapts the FrequencyConfidenceCalculator approach from Kraus et al. (2025, WOKIE)
+— but preserves the full candidate distribution, so disagreements are logged as
+research data.
 
-  - `confidence_scores.csv`: one row per language, all scores
-  - `confidence_summary.csv`: aggregate stats per variant
+Output files are written to data_directory/metadata_files/evaluation/:
+  - `confidence_scores.csv`: all rows with confidence scores
+  - `confidence_summary.csv`: aggregate stats per term/variant
   - `low_confidence.csv`: rows below threshold (potential hallucinations)
 
 Usage:
-    python evaluate_confidence.py
-    python evaluate_confidence.py --term "Computational Humanities"
-    python evaluate_confidence.py --threshold 0.6 --output-dir /path/to/out
+    python evaluate_confidence_within_variant.py
+    python evaluate_confidence_within_variant.py --term "Computational Humanities"
+    python evaluate_confidence_within_variant.py --variants comparative minimal
+    python evaluate_confidence_within_variant.py --threshold 0.6 --output-dir /path/to/out
 """
 
 import argparse
@@ -70,37 +75,57 @@ DEFAULT_THRESHOLD = 0.6  # From Kraus et al. (2025): optimal balance of quality 
 
 # ── Difference categorization ──────────────────────────────────────────────────
 
-def categorize_difference(str1: str, str2: str) -> str:
+def categorize_difference(str1: str, str2: str, directionality: str = 'ltr') -> str:
 	"""
 	Categorize why two strings differ.
 
+	Parameters
+	----------
+	str1, str2 : str
+		The strings to compare
+	directionality : str
+		'ltr' (Latin, Cyrillic, etc. - may have case)
+		'rtl' (Arabic, Hebrew, etc. - typically no case)
+
 	Returns one of:
-	  - 'capitalization': same text, different case (e.g., "Humanidades" vs "humanidades")
-	  - 'whitespace': same text ignoring whitespace (e.g., "Humanidades " vs "Humanidades")
-	  - 'both': differs in both capitalization and whitespace
+	  - 'capitalization': same text, different case (only checked for LTR scripts)
+	  - 'whitespace': same text ignoring whitespace
+	  - 'both': differs in both capitalization and whitespace (only for LTR)
 	  - 'content': actual content difference
 	"""
 	if str1 == str2:
 		return 'identical'
 
-	# Check capitalization only
-	if str1.lower() == str2.lower():
-		return 'capitalization'
+	# Only check capitalization for LTR scripts (which typically have case)
+	# RTL scripts (Arabic, Hebrew, etc.) don't have capitalization
+	if directionality == 'ltr':
+		if str1.lower() == str2.lower():
+			return 'capitalization'
 
 	# Check whitespace only
 	if str1.strip().lower() == str2.strip().lower():
 		if str1.strip() == str2.strip():
 			return 'whitespace'
-		else:
+		elif directionality == 'ltr':
 			return 'both'  # both capitalization and whitespace
+		else:
+			return 'whitespace'  # RTL: only whitespace, no capitalization
 
 	# Different content
 	return 'content'
 
 
-def analyze_differences(service_values: Dict[str, Optional[str]]) -> Dict[str, str]:
+def analyze_differences(service_values: Dict[str, Optional[str]], directionality: str = 'ltr') -> Dict[str, str]:
 	"""
 	Analyze all pairwise differences in service outputs for a single row.
+
+	Parameters
+	----------
+	service_values : dict
+		{service_name: translation_string}
+	directionality : str
+		'ltr' or 'rtl' - used to determine if case-checking is relevant
+
 	Returns dict of differences found.
 	"""
 	actual_values = {k: v for k, v in service_values.items() if v is not None}
@@ -114,7 +139,7 @@ def analyze_differences(service_values: Dict[str, Optional[str]]) -> Dict[str, s
 	for i, (svc1, val1) in enumerate(service_list):
 		for svc2, val2 in service_list[i+1:]:
 			if val1 != val2:
-				diff_type = categorize_difference(val1, val2)
+				diff_type = categorize_difference(val1, val2, directionality)
 				key = f'{svc1}_vs_{svc2}'
 				differences[key] = diff_type
 
@@ -183,8 +208,9 @@ def score_row_confidence(
     # Candidate distribution: {term: count} sorted by frequency
     dist = {k: v for k, v in sorted(counts.items(), key=lambda x: -x[1])}
 
-    # Analyze what's causing differences
-    differences = analyze_differences(service_values)
+    # Analyze what's causing differences (using language directionality if available)
+    directionality = row.get('directionality', 'ltr') or 'ltr'
+    differences = analyze_differences(service_values, directionality)
 
     return {
         'best_candidate': best_candidate,

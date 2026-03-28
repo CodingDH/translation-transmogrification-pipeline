@@ -32,17 +32,7 @@ from rich.console import Console
 from tqdm import tqdm
 from openai import OpenAI, OpenAIError
 from anthropic import Anthropic, APIError
-try:
-	from google import genai as google_genai
-	from google.genai import types as google_genai_types
-	GEMINI_AVAILABLE = True
-except ImportError:
-	GEMINI_AVAILABLE = False
-try:
-	import translators as ts_lib
-	LINGVANEX_AVAILABLE = True
-except ImportError:
-	LINGVANEX_AVAILABLE = False
+from google import genai as google_genai
 import wikipediaapi
 import ollama
 from pydantic import BaseModel, Field, ValidationError
@@ -75,12 +65,11 @@ claude_client = Anthropic(api_key=claude_api_key)
 # Load Gemini credentials (optional — only used if CODING_DH_GEMINI_KEY is set)
 gemini_client = None
 GEMINI_MODEL = "gemini-2.0-flash"
-if GEMINI_AVAILABLE:
-	try:
-		gemini_api_key = apikey.load("CODING_DH_GEMINI_KEY")
-		gemini_client = google_genai.Client(api_key=gemini_api_key)
-	except Exception:
-		pass  # Gemini is optional; pipeline runs without it
+try:
+	gemini_api_key = apikey.load("CODING_DH_GEMINI_KEY")
+	gemini_client = google_genai.Client(api_key=gemini_api_key)
+except Exception:
+	pass  # Gemini is optional; pipeline runs without it
 
 console = Console()
 
@@ -822,7 +811,7 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			translate_file_name="lingvanex_translations.csv",
 			translation_columns=['lingvanex_translated_term'],
 			final_df=final_df,
-			translation_function=lambda row: get_lingvanex_translation(row, lingvanex_error_file, console, LINGVANEX_AVAILABLE),
+			translation_function=lambda row: get_lingvanex_translation(row, lingvanex_error_file, console),
 			service_name="Lingvanex",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,
@@ -916,7 +905,7 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			translate_file_name="gemini_translations.csv",
 			translation_columns=['gemini_translated_term', 'gemini_translation_rationale', 'gemini_model', 'gemini_created'],
 			final_df=final_df,
-			translation_function=lambda row: get_gemini_translation(row, gemini_error_file, console, gemini_client, GEMINI_AVAILABLE, GEMINI_MODEL, current_prompt_variant, current_term_contexts, get_prompt, parse_translation_response, log_error_to_file),
+			translation_function=lambda row: get_gemini_translation(row, gemini_error_file, console, gemini_client, GEMINI_MODEL, current_prompt_variant, current_term_contexts, get_prompt, parse_translation_response, log_error_to_file),
 			service_name="Gemini",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,

@@ -17,29 +17,93 @@ import ollama
 from pydantic import ValidationError
 
 from data_processing import parse_translation_response, is_enmt_model_available
-from data_generation_scripts.utils import log_error_to_file
-from data_generation_scripts.translation_prompts import get_prompt
+from scripts.utils import log_error_to_file
+from scripts.translation_prompts import get_prompt
+import google.genai.types as google_genai_types
+import translators as ts_lib
 
 # Constants
 MAX_CONSECUTIVE_TIMEOUTS = 3
 
-# These imports will be conditional based on availability
-try:
-	from google import genai as google_genai
-	import google.genai.types as google_genai_types
-except ImportError:
-	google_genai = None
-	google_genai_types = None
 
-try:
-	import translators as ts_lib
-except ImportError:
-	ts_lib = None
+# ── Wikipedia Availability Checker ────────────────────────────────────────────────────
+# Note: Wikipedia is different from other services — it checks for page existence rather than performing translations. Grouped separately.
 
+def check_if_wikipedia_page_exists(term_source: str, error_file_path: str, console: Console) -> dict:
+	"""
+	Check if a Wikipedia page exists for a given term. We use Wikipedia as a source of ground truth translations where available, and also to test the ability of LLMs to match Wikipedia's translations.
+
+	Parameters
+	----------
+	term_source : str
+		The term to check for in Wikipedia.
+	error_file_path : str
+		A path to the error file for logging errors
+	console : Console
+		Rich console for printing output
+
+	Returns
+	-------
+	dict
+		A dictionary with translations of the term.
+	"""
+	# Currently hardcoding for english wikipedia
+	wiki_wiki = wikipediaapi.Wikipedia(
+		language='en',
+		user_agent='MyProject/1.0 (https://example.org/myproject/; myemail@example.org)'
+	)
+	# Fetch the Wikipedia page
+	term_source = term_source.lower()
+	page = wiki_wiki.page(term_source)
+
+	if not page.exists():
+		console.print(f"Page '{term_source}' does not exist in English Wikipedia.", style="bold red")
+		# Log structured error
+		additional_data = {
+			'term_source': term_source,
+			'language_code': 'en',
+			'wikipedia_translated_term': None
+		}
+		log_error_to_file(
+			error_file_path=error_file_path,
+			additional_data=additional_data,
+			status_code=404,
+			error_url=f"wikipediaapi.Wikipedia.page({term_source})"
+		)
+		return {}
+
+	console.print(f"Page '{term_source}' exists in English Wikipedia.", style="bold green")
+	# Get available translations in other languages
+	translations = page.langlinks
+	console.print(f"Has this number of {len(translations)} translated pages", style="bold green")
+	keep_page = console.input("Do you want to keep this page? (y/n): ")
+	if keep_page == 'n':
+		console.print(f"Page '{term_source}' will not be kept.", style="bold red")
+		# Log structured error
+		additional_data = {
+			'term_source': term_source,
+			'language_code': 'en',
+			'wikipedia_translated_term': None
+		}
+		log_error_to_file(
+			error_file_path=error_file_path,
+			additional_data=additional_data,
+			status_code=404,
+			error_url=f"wikipediaapi.Wikipedia.page({term_source})"
+		)
+		return {}
+	else:
+		translation_dict = {lang: translations[lang].title for lang in translations}
+		translation_dict['en'] = term_source
+		return translation_dict
+
+
+# ── Direct Translation Services ──────────────────────────────────────────────────
+# Services that directly translate terms without using prompts. It remains unclear if these services are using LLMs under the hood, but they are important baselines for evaluating the added value of prompt-based LLM translations. They also provide additional context for the comparative prompt variant.
 
 def get_gt_translation(row: pd.Series, error_file_path: str, console: Console, translate_client) -> pd.Series:
 	"""
-	Function to get translations of terms
+	Function to get translations of terms from Google Translate API. This function requires you to have an api key for Google Cloud Translation API and to set up the client accordingly. 
 
 	Parameters
 	----------
@@ -100,7 +164,7 @@ def get_gt_translation(row: pd.Series, error_file_path: str, console: Console, t
 
 def get_enmt_translation(row: pd.Series, error_file_path: str, console: Console, model) -> pd.Series:
 	"""
-	Function to get translations of terms using EasyNMT
+	Function to get translations of terms using EasyNMT. Checks if a model is available for the target language before attempting translation.
 
 	Parameters
 	----------
@@ -164,10 +228,73 @@ def get_enmt_translation(row: pd.Series, error_file_path: str, console: Console,
 
 	return row
 
-def get_openai_translation(row: pd.Series, error_file_path: str, console: Console, client: OpenAI,
-							current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
+def get_lingvanex_translation(row: pd.Series, error_file_path: str, console: Console) -> pd.Series:
 	"""
-	Function to get translations of terms using the OpenAI API.
+	Translate a grouped row of terms using Lingvanex (via the translators library).
+
+	Lingvanex ranked first among primary translation services in Kraus et al. (2025), outperforming Google Translate on most DH thesaurus metrics while being free. It is a grouped engine like GT and EasyNMT — one API call per language covering all terms.
+
+	Parameters
+	----------
+	row : pd.Series
+		Must have term_source (list of terms) and language_code.
+	error_file_path : str
+		A path to the error file for logging errors
+	console : Console
+		Rich console for printing output
+
+	Returns
+	-------
+	pd.Series
+		Row with lingvanex_translated_term set to list of (term, translation) tuples.
+	"""
+	# Lingvanex uses slightly different codes for some languages
+	_LINGVANEX_LANG_MAP = {'zh': 'zh-Hans', 'sr': 'sr-Cyrl'}
+
+	time.sleep(1)
+	try:
+		dh_terms = row.term_source
+		target_language = row.language_code
+		lingvanex_code = _LINGVANEX_LANG_MAP.get(target_language, target_language)
+		console.print(f"Translating {dh_terms} to {target_language} (Lingvanex)", style="bold green")
+
+		translated_terms = []
+		for term in dh_terms:
+			try:
+				result = ts_lib.translate_text(
+					query_text=term,
+					translator='lingvanex',
+					to_language=lingvanex_code,
+					from_language='en',
+				)
+				translated_terms.append(result)
+			except Exception as term_err:
+				console.print(f"⚠ Lingvanex failed for '{term}' → {target_language}: {term_err}", style="bold yellow")
+				translated_terms.append(None)
+
+		row['lingvanex_translated_term'] = list(zip(dh_terms, translated_terms))
+
+	except Exception as e:
+		console.print(f"✗ Lingvanex error for {row.term_source} → {row.language_code}: {e}", style="bold red")
+		dh_terms = row.term_source
+		target_language = row.language_code
+		row['lingvanex_translated_term'] = list(zip(dh_terms, [None] * len(dh_terms)))
+		log_error_to_file(
+			error_file_path=error_file_path,
+			additional_data={'term_source': dh_terms, 'language_code': target_language, 'lingvanex_translated_term': None},
+			status_code=500,
+			error_url=f"translators.translate_text(lingvanex, {row.language_code})",
+		)
+
+	return row
+
+
+# ── LLM Translation Services ─────────────────────────────────────────────────────
+# Services that use prompts and Large Language Models to perform translations
+
+def get_openai_translation(row: pd.Series, error_file_path: str, console: Console, client: OpenAI, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
+	"""
+	Function to get translations of terms using the OpenAI API. This function requires you to have an API key for OpenAI and to set up the client accordingly. It also uses the prompt variants defined in translation_prompts.py to test different strategies for improving translation quality.
 
 	Parameters
 	----------
@@ -194,10 +321,6 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 		term_source = row.term_source
 		language_name = row.language_name
 		language_code = row.language_code
-		gt_translated_term = row.gt_translated_term if 'gt_translated_term' in row else None
-		enmt_translated_term = row.enmt_translated_term if 'enmt_translated_term' in row else None
-		ollama_translated_term = row.ollama_translated_term if 'ollama_translated_term' in row else None
-		wikipedia_translated_term = row.wikipedia_translated_term if 'wikipedia_translated_term' in row else None
 
 		console.print(f"Translating {term_source} to {language_name} using OpenAI API", style="bold green")
 
@@ -205,11 +328,11 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 		existing_translations = None
 		if current_prompt_variant == 'comparative':
 			existing_translations = {
-				'gt': gt_translated_term if pd.notna(gt_translated_term) else None,
-				'enmt': enmt_translated_term if pd.notna(enmt_translated_term) else None,
-				'lingvanex': row.lingvanex_translated_term if 'lingvanex_translated_term' in row and pd.notna(row.lingvanex_translated_term) else None,
-				'ollama': ollama_translated_term if pd.notna(ollama_translated_term) else None,
-				'wikipedia': wikipedia_translated_term if pd.notna(wikipedia_translated_term) else None,
+				'gt': row.get('gt_translated_term'),
+				'enmt': row.get('enmt_translated_term'),
+				'lingvanex': row.get('lingvanex_translated_term'),
+				'ollama': row.get('ollama_translated_term'),
+				'wikipedia': row.get('wikipedia_translated_term'),
 			}
 
 		user_content = get_prompt(
@@ -315,10 +438,9 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 
 	return row
 
-def get_claude_translation(row: pd.Series, error_file_path: str, console: Console, claude_client: Anthropic,
-							current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
+def get_claude_translation(row: pd.Series, error_file_path: str, console: Console, claude_client: Anthropic, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
 	"""
-	Function to get translations of terms using the Claude API.
+	Function to get translations of terms using the Claude API. This function requires you to have an API key for Anthropic and to set up the client accordingly. It also uses the prompt variants defined in translation_prompts.py to test different strategies for improving translation quality.
 
 	Parameters
 	----------
@@ -345,11 +467,6 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 		term_source = row.term_source
 		language_name = row.language_name
 		language_code = row.language_code
-		gt_translated_term = row.gt_translated_term if 'gt_translated_term' in row else None
-		enmt_translated_term = row.enmt_translated_term if 'enmt_translated_term' in row else None
-		openai_translated_term = row.openai_translated_term if 'openai_translated_term' in row else None
-		ollama_translated_term = row.ollama_translated_term if 'ollama_translated_term' in row else None
-		wikipedia_translated_term = row.wikipedia_translated_term if 'wikipedia_translated_term' in row else None
 
 		console.print(f"Translating {term_source} to {language_name} using Claude API", style="bold green")
 
@@ -357,12 +474,12 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 		existing_translations = None
 		if current_prompt_variant == 'comparative':
 			existing_translations = {
-				'gt': gt_translated_term if pd.notna(gt_translated_term) else None,
-				'enmt': enmt_translated_term if pd.notna(enmt_translated_term) else None,
-				'lingvanex': row.lingvanex_translated_term if 'lingvanex_translated_term' in row and pd.notna(row.lingvanex_translated_term) else None,
-				'openai': openai_translated_term if pd.notna(openai_translated_term) else None,
-				'ollama': ollama_translated_term if pd.notna(ollama_translated_term) else None,
-				'wikipedia': wikipedia_translated_term if pd.notna(wikipedia_translated_term) else None,
+				'gt': row.get('gt_translated_term'),
+				'enmt': row.get('enmt_translated_term'),
+				'lingvanex': row.get('lingvanex_translated_term'),
+				'openai': row.get('openai_translated_term'),
+				'ollama': row.get('ollama_translated_term'),
+				'wikipedia': row.get('wikipedia_translated_term'),
 			}
 
 		user_content = get_prompt(
@@ -461,11 +578,9 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 
 	return row
 
-def get_gemini_translation(row: pd.Series, error_file_path: str, console: Console, gemini_client,
-							GEMINI_AVAILABLE: bool, GEMINI_MODEL: str, current_prompt_variant: str,
-							current_term_contexts: dict) -> pd.Series:
+def get_gemini_translation(row: pd.Series, error_file_path: str, console: Console, gemini_client, GEMINI_MODEL: str, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
 	"""
-	Translate a single row using the Google Gemini API (gemini-2.0-flash by default).
+	Translate a single row using the Google Gemini API (gemini-2.0-flash by default). This function requires you to have an API key for Google Cloud and to set up the Gemini client accordingly. It also uses the prompt variants defined in translation_prompts.py to test different strategies for improving translation quality.
 
 	Gemini 2.0 Flash was the top-ranked LLM in Kraus et al. (2025) for DH thesaurus
 	translation, outperforming GPT-4o and Claude 3.5 Sonnet on quality while being
@@ -481,8 +596,6 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 		Rich console for printing output
 	gemini_client
 		Gemini client object
-	GEMINI_AVAILABLE : bool
-		Whether Gemini is available
 	GEMINI_MODEL : str
 		The Gemini model name to use
 	current_prompt_variant : str
@@ -495,34 +608,24 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 	pd.Series
 		Row with gemini_* columns populated.
 	"""
-	if not GEMINI_AVAILABLE or gemini_client is None:
-		console.print("⚠ Gemini not available — skipping row", style="bold yellow")
-		row['gemini_translated_term'] = None
-		return row
-
 	time.sleep(1)
 	try:
 		term_source = row.term_source
 		language_name = row.language_name
 		language_code = row.language_code
-		gt_translated_term = row.gt_translated_term if 'gt_translated_term' in row else None
-		enmt_translated_term = row.enmt_translated_term if 'enmt_translated_term' in row else None
-		openai_translated_term = row.openai_translated_term if 'openai_translated_term' in row else None
-		ollama_translated_term = row.ollama_translated_term if 'ollama_translated_term' in row else None
-		wikipedia_translated_term = row.wikipedia_translated_term if 'wikipedia_translated_term' in row else None
 
 		console.print(f"Translating {term_source} to {language_name} using Gemini API ({GEMINI_MODEL})", style="bold green")
 
 		existing_translations = None
 		if current_prompt_variant == 'comparative':
 			existing_translations = {
-				'gt': gt_translated_term if pd.notna(gt_translated_term) else None,
-				'enmt': enmt_translated_term if pd.notna(enmt_translated_term) else None,
-				'lingvanex': row.lingvanex_translated_term if 'lingvanex_translated_term' in row and pd.notna(row.lingvanex_translated_term) else None,
-				'openai': openai_translated_term if pd.notna(openai_translated_term) else None,
-				'claude': row.claude_translated_term if 'claude_translated_term' in row and pd.notna(row.claude_translated_term) else None,
-				'ollama': ollama_translated_term if pd.notna(ollama_translated_term) else None,
-				'wikipedia': wikipedia_translated_term if pd.notna(wikipedia_translated_term) else None,
+				'gt': row.get('gt_translated_term'),
+				'enmt': row.get('enmt_translated_term'),
+				'lingvanex': row.get('lingvanex_translated_term'),
+				'openai': row.get('openai_translated_term'),
+				'claude': row.get('claude_translated_term'),
+				'ollama': row.get('ollama_translated_term'),
+				'wikipedia': row.get('wikipedia_translated_term'),
 			}
 
 		user_content = get_prompt(
@@ -577,84 +680,9 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 	return row
 
 
-def get_lingvanex_translation(row: pd.Series, error_file_path: str, console: Console,
-							  LINGVANEX_AVAILABLE: bool) -> pd.Series:
+def get_ollama_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict, ollama_model: str = 'llama3.1', request_delay: float = 2.0, request_timeout: int = 120, consecutive_timeouts: int = 0) -> Tuple[pd.Series, int]:
 	"""
-	Translate a grouped row of terms using Lingvanex (via the translators library).
-
-	Lingvanex ranked first among primary translation services in Kraus et al. (2025),
-	outperforming Google Translate on most DH thesaurus metrics while being free.
-	It is a grouped engine like GT and EasyNMT — one API call per language covering
-	all terms.
-
-	Parameters
-	----------
-	row : pd.Series
-		Must have term_source (list of terms) and language_code.
-	error_file_path : str
-		A path to the error file for logging errors
-	console : Console
-		Rich console for printing output
-	LINGVANEX_AVAILABLE : bool
-		Whether the translators library is available
-
-	Returns
-	-------
-	pd.Series
-		Row with lingvanex_translated_term set to list of (term, translation) tuples.
-	"""
-	if not LINGVANEX_AVAILABLE:
-		console.print("⚠ translators library not available — skipping Lingvanex", style="bold yellow")
-		dh_terms = row.term_source
-		row['lingvanex_translated_term'] = list(zip(dh_terms, [None] * len(dh_terms)))
-		return row
-
-	# Lingvanex uses slightly different codes for some languages
-	_LINGVANEX_LANG_MAP = {'zh': 'zh-Hans', 'sr': 'sr-Cyrl'}
-
-	time.sleep(1)
-	try:
-		dh_terms = row.term_source
-		target_language = row.language_code
-		lingvanex_code = _LINGVANEX_LANG_MAP.get(target_language, target_language)
-		console.print(f"Translating {dh_terms} to {target_language} (Lingvanex)", style="bold green")
-
-		translated_terms = []
-		for term in dh_terms:
-			try:
-				result = ts_lib.translate_text(
-					query_text=term,
-					translator='lingvanex',
-					to_language=lingvanex_code,
-					from_language='en',
-				)
-				translated_terms.append(result)
-			except Exception as term_err:
-				console.print(f"⚠ Lingvanex failed for '{term}' → {target_language}: {term_err}", style="bold yellow")
-				translated_terms.append(None)
-
-		row['lingvanex_translated_term'] = list(zip(dh_terms, translated_terms))
-
-	except Exception as e:
-		console.print(f"✗ Lingvanex error for {row.term_source} → {row.language_code}: {e}", style="bold red")
-		dh_terms = row.term_source
-		target_language = row.language_code
-		row['lingvanex_translated_term'] = list(zip(dh_terms, [None] * len(dh_terms)))
-		log_error_to_file(
-			error_file_path=error_file_path,
-			additional_data={'term_source': dh_terms, 'language_code': target_language, 'lingvanex_translated_term': None},
-			status_code=500,
-			error_url=f"translators.translate_text(lingvanex, {row.language_code})",
-		)
-
-	return row
-
-
-def get_ollama_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str,
-							current_term_contexts: dict, ollama_model: str = 'llama3.1', request_delay: float = 2.0,
-							request_timeout: int = 120, consecutive_timeouts: int = 0) -> Tuple[pd.Series, int]:
-	"""
-	Function to get translations of terms using a local Ollama model with throttling.
+	Function to get translations of terms using a local Ollama model with throttling. This function assumes you have Ollama set up locally with the specified model and that the Ollama server is running. It also uses the prompt variants defined in translation_prompts.py to test different strategies for improving translation quality.
 
 	Parameters
 	----------
@@ -689,11 +717,6 @@ def get_ollama_translation(row: pd.Series, error_file_path: str, console: Consol
 		term_source = row.term_source
 		language_name = row.language_name
 		language_code = row.language_code
-		gt_translated_term = row.gt_translated_term if 'gt_translated_term' in row else None
-		enmt_translated_term = row.enmt_translated_term if 'enmt_translated_term' in row else None  # Fixed typo: was 'emnt_translated_term'
-		openai_translated_term = row.openai_translated_term if 'openai_translated_term' in row else None
-		wikipedia_translated_term = row.wikipedia_translated_term if 'wikipedia_translated_term' in row else None
-		first_ollama_translated_term = row.first_ollama_translated_term if 'first_ollama_translated_term' in row else None
 
 		console.print(f"Translating {term_source} to {language_name} using {ollama_model} (Ollama)", style="bold green")
 
@@ -701,14 +724,14 @@ def get_ollama_translation(row: pd.Series, error_file_path: str, console: Consol
 		existing_translations = None
 		if current_prompt_variant == 'comparative':
 			existing_translations = {
-				'gt': gt_translated_term if pd.notna(gt_translated_term) else None,
-				'enmt': enmt_translated_term if pd.notna(enmt_translated_term) else None,
-				'lingvanex': row.lingvanex_translated_term if 'lingvanex_translated_term' in row and pd.notna(row.lingvanex_translated_term) else None,
-				'openai': openai_translated_term if pd.notna(openai_translated_term) else None,
-				'claude': row.claude_translated_term if 'claude_translated_term' in row and pd.notna(row.claude_translated_term) else None,
-				'gemini': row.gemini_translated_term if 'gemini_translated_term' in row and pd.notna(row.gemini_translated_term) else None,
-				'ollama': first_ollama_translated_term if pd.notna(first_ollama_translated_term) else None,
-				'wikipedia': wikipedia_translated_term if pd.notna(wikipedia_translated_term) else None,
+				'gt': row.get('gt_translated_term'),
+				'enmt': row.get('enmt_translated_term'),
+				'lingvanex': row.get('lingvanex_translated_term'),
+				'openai': row.get('openai_translated_term'),
+				'claude': row.get('claude_translated_term'),
+				'gemini': row.get('gemini_translated_term'),
+				'ollama': row.get('first_ollama_translated_term'),
+				'wikipedia': row.get('wikipedia_translated_term'),
 			}
 
 		user_content = get_prompt(
@@ -842,72 +865,3 @@ def get_ollama_translation(row: pd.Series, error_file_path: str, console: Consol
 		)
 
 	return row, consecutive_timeouts
-
-def check_if_wikipedia_page_exists(term_source: str, error_file_path: str, console: Console) -> dict:
-	"""
-	Check if a Wikipedia page exists for a given term.
-
-	Parameters
-	----------
-	term_source : str
-		The term to check for in Wikipedia.
-	error_file_path : str
-		A path to the error file for logging errors
-	console : Console
-		Rich console for printing output
-
-	Returns
-	-------
-	dict
-		A dictionary with translations of the term.
-	"""
-	# Currently hardcoding for english wikipedia
-	wiki_wiki = wikipediaapi.Wikipedia(
-		language='en',
-		user_agent='MyProject/1.0 (https://example.org/myproject/; myemail@example.org)'
-	)
-	# Fetch the Wikipedia page
-	term_source = term_source.lower()
-	page = wiki_wiki.page(term_source)
-
-	if not page.exists():
-		console.print(f"Page '{term_source}' does not exist in English Wikipedia.", style="bold red")
-		# Log structured error
-		additional_data = {
-			'term_source': term_source,
-			'language_code': 'en',
-			'wikipedia_translated_term': None
-		}
-		log_error_to_file(
-			error_file_path=error_file_path,
-			additional_data=additional_data,
-			status_code=404,
-			error_url=f"wikipediaapi.Wikipedia.page({term_source})"
-		)
-		return {}
-
-	console.print(f"Page '{term_source}' exists in English Wikipedia.", style="bold green")
-	# Get available translations in other languages
-	translations = page.langlinks
-	console.print(f"Has this number of {len(translations)} translated pages", style="bold green")
-	keep_page = console.input("Do you want to keep this page? (y/n): ")
-	if keep_page == 'n':
-		console.print(f"Page '{term_source}' will not be kept.", style="bold red")
-		# Log structured error
-		additional_data = {
-			'term_source': term_source,
-			'language_code': 'en',
-			'wikipedia_translated_term': None
-		}
-		log_error_to_file(
-			error_file_path=error_file_path,
-			additional_data=additional_data,
-			status_code=404,
-			error_url=f"wikipediaapi.Wikipedia.page({term_source})"
-		)
-		return {}
-	else:
-		translation_dict = {lang: translations[lang].title for lang in translations}
-		translation_dict['en'] = term_source
-		return translation_dict
-

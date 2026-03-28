@@ -41,12 +41,20 @@ def get_comparative_prompt(term_source: str, language_name: str, language_code: 
 		suggestions = []
 		if existing_translations.get('gt'):
 			suggestions.append(f"Google Translate: '{existing_translations['gt']}'")
+		if existing_translations.get('lingvanex'):
+			suggestions.append(f"Lingvanex: '{existing_translations['lingvanex']}'")
+		if existing_translations.get('enmt'):
+			suggestions.append(f"EasyNMT: '{existing_translations['enmt']}'")
+		if existing_translations.get('wikipedia'):
+			suggestions.append(f"Wikipedia: '{existing_translations['wikipedia']}'")
 		if existing_translations.get('openai'):
 			suggestions.append(f"OpenAI: '{existing_translations['openai']}'")
 		if existing_translations.get('claude'):
 			suggestions.append(f"Claude: '{existing_translations['claude']}'")
-		if existing_translations.get('enmt'):
-			suggestions.append(f"EasyNMT: '{existing_translations['enmt']}'")
+		if existing_translations.get('gemini'):
+			suggestions.append(f"Gemini: '{existing_translations['gemini']}'")
+		if existing_translations.get('ollama'):
+			suggestions.append(f"Ollama: '{existing_translations['ollama']}'")
 
 		if suggestions:
 			prompt += f"Consider these existing suggestions: {', '.join(suggestions)}. "
@@ -153,8 +161,7 @@ PROMPT_DESCRIPTIONS = {
 }
 
 
-def get_prompt(variant: str, term_source: str, language_name: str, language_code: str,
-			   existing_translations: dict = None, context: str = None) -> str:
+def get_prompt(variant: str, term_source: str, language_name: str, language_code: str, existing_translations: dict = None, context: str = None) -> str:
 	"""
 	Get a prompt for the specified variant.
 

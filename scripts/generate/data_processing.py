@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 from transformers import AutoTokenizer
 from pydantic import BaseModel, Field, ValidationError
 
-from data_generation_scripts.utils import read_csv_file
+from scripts.utils import read_csv_file
 
 # Pydantic model for parsing translation responses
 class TranslationResponse(BaseModel):
