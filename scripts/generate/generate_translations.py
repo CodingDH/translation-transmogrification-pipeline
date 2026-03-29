@@ -1,80 +1,23 @@
 # Standard library imports
 import codecs
-import html
 import json
 import os
-import time
 import warnings
 from typing import List, Tuple, Callable, Optional
 import ast
 import inspect
-import re
-import operator
-from functools import reduce
 import shutil
 import datetime
 
-
-import threading
-# Local application/library specific imports
-import apikey
 # Related third-party imports
 import pandas as pd
-import requests
-import arabic_reshaper
-from bidi.algorithm import get_display
-from bs4 import BeautifulSoup
-from google.cloud import translate_v2 as translate
-from google.oauth2 import service_account
-from easynmt import EasyNMT
-from transformers import AutoTokenizer
-from rich.console import Console
 from tqdm import tqdm
-from openai import OpenAI, OpenAIError
-from anthropic import Anthropic, APIError
-from google import genai as google_genai
-import wikipediaapi
-import ollama
-from pydantic import BaseModel, Field, ValidationError
+
 import sys
 sys.path.append("..")
-from data_generation_scripts.utils import get_data_directory_path, read_csv_file, log_error_to_file, clean_write_error_file
-from data_generation_scripts.translation_prompts import get_prompt, PROMPT_VARIANTS, PROMPT_DESCRIPTIONS
+from scripts.utils import get_data_directory_path, read_csv_file, log_error_to_file, clean_write_error_file
+from translation_prompts import get_prompt
 warnings.filterwarnings('ignore')
-# Load Google Cloud credentials. You can get your own credentials by following the instructions here: https://cloud.google.com/translate/docs/setup and saving them with apikey.save("GOOGLE_TRANSLATE_CREDENTIALS", "path/to/your/credentials.json")
-google_translate_key_path = apikey.load("GOOGLE_TRANSLATE_CREDENTIALS")
-credentials = service_account.Credentials.from_service_account_file(
-	google_translate_key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
-)
-
-translate_client = translate.Client(credentials=credentials)
-
-openai_key_path = apikey.load("CODING_DH_OPENAI_KEY")
-openai_project_id = apikey.load("CODING_DH_OPENAI_PROJECT_ID")
-openai_organization_id = apikey.load("CODING_DH_OPENAI_ORGANIZATION_ID")
-client = OpenAI(
-	api_key=openai_key_path,
-	project=openai_project_id,
-	organization=openai_organization_id
-)
-
-# Load Claude API credentials
-claude_api_key = apikey.load("CODING_DH_CLAUDE_KEY")
-claude_client = Anthropic(api_key=claude_api_key)
-
-# Load Gemini credentials (optional — only used if CODING_DH_GEMINI_KEY is set)
-gemini_client = None
-GEMINI_MODEL = "gemini-2.0-flash"
-try:
-	gemini_api_key = apikey.load("CODING_DH_GEMINI_KEY")
-	gemini_client = google_genai.Client(api_key=gemini_api_key)
-except Exception:
-	pass  # Gemini is optional; pipeline runs without it
-
-console = Console()
-
-# Initialize the EasyNMT model once
-model = EasyNMT('opus-mt')
 
 # Global variable to store current prompt variant (used by translation functions)
 current_prompt_variant = 'comparative'
@@ -88,17 +31,18 @@ MAX_CONSECUTIVE_TIMEOUTS = 5  # Stop after 5 consecutive timeouts
 
 
 # Import from new modules
-from generate.data_processing import (
+from data_processing import (
     TranslationResponse, parse_translation_response, check_detect_language,
     extract_dictionaries_from_string, extract_ollama_translated_term,
     get_directionality, is_enmt_model_available
 )
-from generate.translation_services import (
+from translation_services import (
     get_gt_translation, get_enmt_translation, get_openai_translation,
     get_claude_translation, get_gemini_translation, get_lingvanex_translation,
-    get_ollama_translation, check_if_wikipedia_page_exists
+    get_ollama_translation, check_if_wikipedia_page_exists,
+    console
 )
-from generate.verification import (
+from verification import (
     verify_directionality, verify_terms, run_html_verification
 )
 
@@ -761,7 +705,7 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			translate_file_name="gt_translations.csv",
 			translation_columns=['gt_translated_term'],
 			final_df=final_df,
-			translation_function=lambda row: get_gt_translation(row, gt_error_file, console, translate_client),
+			translation_function=lambda row: get_gt_translation(row, gt_error_file, console),
 			service_name="Google Cloud Translate",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,
@@ -786,7 +730,7 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			translate_file_name="enmt_translations.csv",
 			translation_columns=['enmt_translated_term'],
 			final_df=final_df,
-			translation_function=lambda row: get_enmt_translation(row, enmt_error_file, console, translate_client, model, lambda target_lang: is_enmt_model_available(target_lang, console)),
+			translation_function=lambda row: get_enmt_translation(row, enmt_error_file, console, lambda target_lang: is_enmt_model_available(target_lang, console)),
 			service_name="EasyNMT",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,
@@ -861,7 +805,7 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			'openai_model', 'openai_prompt_tokens', 'openai_total_tokens',
 			'openai_translation_rationale', 'openai_translation'],
 			final_df=final_df,
-			translation_function=lambda row: get_openai_translation(row, openai_error_file, console, client, current_prompt_variant, current_term_contexts, get_prompt, parse_translation_response, log_error_to_file),
+			translation_function=lambda row: get_openai_translation(row, openai_error_file, console, current_prompt_variant, current_term_contexts, get_prompt, parse_translation_response, log_error_to_file),
 			service_name="OpenAI",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,
@@ -884,7 +828,7 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			'claude_model', 'claude_input_tokens', 'claude_total_tokens',
 			'claude_translation_rationale', 'claude_translation'],
 			final_df=final_df,
-			translation_function=lambda row: get_claude_translation(row, claude_error_file, console, claude_client, current_prompt_variant, current_term_contexts, get_prompt, parse_translation_response, log_error_to_file),
+			translation_function=lambda row: get_claude_translation(row, claude_error_file, console, current_prompt_variant, current_term_contexts, get_prompt, parse_translation_response, log_error_to_file),
 			service_name="Claude",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,
@@ -905,7 +849,7 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			translate_file_name="gemini_translations.csv",
 			translation_columns=['gemini_translated_term', 'gemini_translation_rationale', 'gemini_model', 'gemini_created'],
 			final_df=final_df,
-			translation_function=lambda row: get_gemini_translation(row, gemini_error_file, console, gemini_client, GEMINI_MODEL, current_prompt_variant, current_term_contexts, get_prompt, parse_translation_response, log_error_to_file),
+			translation_function=lambda row: get_gemini_translation(row, gemini_error_file, console, current_prompt_variant, current_term_contexts, get_prompt, parse_translation_response, log_error_to_file),
 			service_name="Gemini",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,

@@ -15,15 +15,58 @@ import datetime
 import wikipediaapi
 import ollama
 from pydantic import ValidationError
+import apikey
+from easynmt import EasyNMT
+from google.cloud import translate_v2 as translate
+from google.oauth2 import service_account
+from google import genai as google_genai
 
 from data_processing import parse_translation_response, is_enmt_model_available
 from scripts.utils import log_error_to_file
-from scripts.translation_prompts import get_prompt
+from translation_prompts import get_prompt
 import google.genai.types as google_genai_types
 import translators as ts_lib
 
 # Constants
 MAX_CONSECUTIVE_TIMEOUTS = 3
+
+# ── Client Initialization ────────────────────────────────────────────────────────────────
+
+# Initialize console
+console = Console()
+
+# Load Google Cloud Translate credentials
+google_translate_key_path = apikey.load("GOOGLE_TRANSLATE_CREDENTIALS")
+credentials = service_account.Credentials.from_service_account_file(
+	google_translate_key_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
+)
+translate_client = translate.Client(credentials=credentials)
+
+# Load OpenAI credentials
+openai_key_path = apikey.load("CODING_DH_OPENAI_KEY")
+openai_project_id = apikey.load("CODING_DH_OPENAI_PROJECT_ID")
+openai_organization_id = apikey.load("CODING_DH_OPENAI_ORGANIZATION_ID")
+client = OpenAI(
+	api_key=openai_key_path,
+	project=openai_project_id,
+	organization=openai_organization_id
+)
+
+# Load Claude API credentials
+claude_api_key = apikey.load("CODING_DH_CLAUDE_KEY")
+claude_client = Anthropic(api_key=claude_api_key)
+
+# Load Gemini credentials (optional — only used if CODING_DH_GEMINI_KEY is set)
+gemini_client = None
+GEMINI_MODEL = "gemini-2.0-flash"
+try:
+	gemini_api_key = apikey.load("CODING_DH_GEMINI_KEY")
+	gemini_client = google_genai.Client(api_key=gemini_api_key)
+except Exception:
+	pass  # Gemini is optional; pipeline runs without it
+
+# Initialize the EasyNMT model once
+model = EasyNMT('opus-mt')
 
 
 # ── Wikipedia Availability Checker ────────────────────────────────────────────────────
@@ -101,9 +144,9 @@ def check_if_wikipedia_page_exists(term_source: str, error_file_path: str, conso
 # ── Direct Translation Services ──────────────────────────────────────────────────
 # Services that directly translate terms without using prompts. It remains unclear if these services are using LLMs under the hood, but they are important baselines for evaluating the added value of prompt-based LLM translations. They also provide additional context for the comparative prompt variant.
 
-def get_gt_translation(row: pd.Series, error_file_path: str, console: Console, translate_client) -> pd.Series:
+def get_gt_translation(row: pd.Series, error_file_path: str, console: Console) -> pd.Series:
 	"""
-	Function to get translations of terms from Google Translate API. This function requires you to have an api key for Google Cloud Translation API and to set up the client accordingly. 
+	Function to get translations of terms from Google Translate API. This function requires you to have an api key for Google Cloud Translation API and to set up the client accordingly.
 
 	Parameters
 	----------
@@ -113,8 +156,6 @@ def get_gt_translation(row: pd.Series, error_file_path: str, console: Console, t
 		A path to the error file for logging errors
 	console : Console
 		Rich console for printing output
-	translate_client
-		Google Translate client object
 
 	Returns
 	-------
@@ -162,7 +203,7 @@ def get_gt_translation(row: pd.Series, error_file_path: str, console: Console, t
 
 	return row
 
-def get_enmt_translation(row: pd.Series, error_file_path: str, console: Console, model) -> pd.Series:
+def get_enmt_translation(row: pd.Series, error_file_path: str, console: Console) -> pd.Series:
 	"""
 	Function to get translations of terms using EasyNMT. Checks if a model is available for the target language before attempting translation.
 
@@ -292,7 +333,7 @@ def get_lingvanex_translation(row: pd.Series, error_file_path: str, console: Con
 # ── LLM Translation Services ─────────────────────────────────────────────────────
 # Services that use prompts and Large Language Models to perform translations
 
-def get_openai_translation(row: pd.Series, error_file_path: str, console: Console, client: OpenAI, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
+def get_openai_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
 	"""
 	Function to get translations of terms using the OpenAI API. This function requires you to have an API key for OpenAI and to set up the client accordingly. It also uses the prompt variants defined in translation_prompts.py to test different strategies for improving translation quality.
 
@@ -438,7 +479,7 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 
 	return row
 
-def get_claude_translation(row: pd.Series, error_file_path: str, console: Console, claude_client: Anthropic, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
+def get_claude_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
 	"""
 	Function to get translations of terms using the Claude API. This function requires you to have an API key for Anthropic and to set up the client accordingly. It also uses the prompt variants defined in translation_prompts.py to test different strategies for improving translation quality.
 
@@ -578,7 +619,7 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 
 	return row
 
-def get_gemini_translation(row: pd.Series, error_file_path: str, console: Console, gemini_client, GEMINI_MODEL: str, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
+def get_gemini_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
 	"""
 	Translate a single row using the Google Gemini API (gemini-2.0-flash by default). This function requires you to have an API key for Google Cloud and to set up the Gemini client accordingly. It also uses the prompt variants defined in translation_prompts.py to test different strategies for improving translation quality.
 
