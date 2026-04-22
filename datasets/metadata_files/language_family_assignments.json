@@ -1,0 +1,4272 @@
+[
+  {
+    "language_code": "ast",
+    "language_name": "Asturian",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Asturian (Asturian-Leonese) is an Ibero-Romance language of the West Iberian group. ISO 639-5: roa (Romance languages) under ine (Indo-European)."
+  },
+  {
+    "language_code": "fo",
+    "language_name": "Faroese",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Faroese is a North Germanic language spoken in the Faroe Islands, closely related to Icelandic and Old Norse. ISO 639-5: gem (Germanic languages)."
+  },
+  {
+    "language_code": "li",
+    "language_name": "Limburgish",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Limburgish (Limburgan/Limburgs) is a Low Franconian Germanic language spoken in the Limburg region. Misclassified as Romance in earlier reference data; corrected here. ISO 639-5: gem (Germanic languages)."
+  },
+  {
+    "language_code": "mo",
+    "language_name": "Moldovan",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Moldovan is a Romanian dialect used in Moldova. The ISO 639-1 code 'mo' is deprecated in favour of 'ro', but the Wikimedia language code persists for the distinct Wikipedia. ISO 639-5: roa (Romance languages)."
+  },
+  {
+    "language_code": "rm",
+    "language_name": "Romansh",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Romansh (Rumantsch) is a Rhaeto-Romance language of the Swiss canton of Graubünden. ISO 639-5: roa (Romance languages)."
+  },
+  {
+    "language_code": "ae",
+    "language_name": "Avestan",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Avestan is an ancient Eastern Iranian language used in Zoroastrian Avesta scripture. No longer spoken natively; included for completeness. ISO 639-5: ira (Iranian languages)."
+  },
+  {
+    "language_code": "bh",
+    "language_name": "Bihari",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "ISO 639-1 code 'bh' is a collective code for Bihari languages (Bhojpuri, Maithili, Magahi), all Eastern Indo-Aryan languages of Bihar. ISO 639-5: inc (Indic languages)."
+  },
+  {
+    "language_code": "dv",
+    "language_name": "Dhivehi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Dhivehi (Maldivian/Divehi) is an Indo-Aryan language of the Maldives and Lakshadweep, most closely related to Sinhala. ISO 639-5: inc (Indic languages)."
+  },
+  {
+    "language_code": "ks",
+    "language_name": "Kashmiri",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Kashmiri is a Dardic language within the Indo-Aryan branch, spoken in the Kashmir Valley. ISO 639-5: inc (Indic languages)."
+  },
+  {
+    "language_code": "or",
+    "language_name": "Odia",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Odia (Oriya) is an Eastern Indo-Aryan language of Odisha state, one of the classical languages of India. ISO 639-5: inc (Indic languages)."
+  },
+  {
+    "language_code": "pi",
+    "language_name": "Pali",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Pali is a Middle Indo-Aryan liturgical language and the canonical scriptural language of Theravada Buddhism. No longer a spoken vernacular. ISO 639-5: inc (Indic languages)."
+  },
+  {
+    "language_code": "rmy",
+    "language_name": "Romani",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Romani is a Central Indo-Aryan language originating in the Indian subcontinent, spoken by Romani peoples across Europe and beyond. ISO 639-5: inc (Indic languages)."
+  },
+  {
+    "language_code": "sa",
+    "language_name": "Sanskrit",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Sanskrit is the classical Old Indo-Aryan language and liturgical language of Hinduism, Buddhism, and Jainism. Still used in scholarship and ritual. ISO 639-5: inc (Indic languages)."
+  },
+  {
+    "language_code": "sd",
+    "language_name": "Sindhi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Sindhi is a Northwestern Indo-Aryan language spoken primarily in Sindh (Pakistan) and parts of India. ISO 639-5: inc (Indic languages)."
+  },
+  {
+    "language_code": "ii",
+    "language_name": "Sichuan Yi",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Sichuan Yi (Nuosu) is a Tibeto-Burman language of the Loloish (Ngwi) branch, spoken in Sichuan and Yunnan. ISO 639-5: sit (Sino-Tibetan languages)."
+  },
+  {
+    "language_code": "new",
+    "language_name": "Newari",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Newari (Nepal Bhasa) is a Sino-Tibetan language of the Tibeto-Burman branch, spoken in the Kathmandu Valley by the Newar people. ISO 639-5: sit (Sino-Tibetan languages)."
+  },
+  {
+    "language_code": "za",
+    "language_name": "Zhuang",
+    "iso639_5": "tai",
+    "family_name": "Tai languages",
+    "rationale": "Zhuang (Standard Zhuang/Sawndip) is a Kra-Dai (Tai-Kadai) language of southern China, not Sino-Tibetan. Misclassified as Sino-Tibetan in earlier reference data; corrected here. ISO 639-5: tai (Tai languages)."
+  },
+  {
+    "language_code": "aa",
+    "language_name": "Afar",
+    "iso639_5": "cus",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Afar (Qafar af) is a Cushitic Afro-Asiatic language spoken in Djibouti, Ethiopia, and Eritrea. ISO 639-5: cus (Cushitic languages) under afa (Afro-Asiatic languages)."
+  },
+  {
+    "language_code": "hz",
+    "language_name": "Herero",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Herero (Otjiherero) is a Southern Bantu language of the Otjiherero-Himba group, spoken in Namibia and Botswana. ISO 639-5: bnt (Bantu languages) under nic (Niger-Kordofanian)."
+  },
+  {
+    "language_code": "ki",
+    "language_name": "Kikuyu",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kikuyu (Gĩkũyũ) is a Bantu language of the Central Kenya Bantu branch, the most widely spoken Bantu language in Kenya. ISO 639-5: bnt (Bantu languages)."
+  },
+  {
+    "language_code": "kj",
+    "language_name": "Kuanyama",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kuanyama (Oshikwanyama) is a dialect of Oshiwambo, a Southern Bantu language spoken in Namibia and Angola. ISO 639-5: bnt (Bantu languages)."
+  },
+  {
+    "language_code": "lu",
+    "language_name": "Luba-Katanga",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Luba-Katanga (Kiluba) is a Central Bantu language of the Benue-Congo branch, spoken in Katanga province of the DRC. ISO 639-5: bnt (Bantu languages)."
+  },
+  {
+    "language_code": "nd",
+    "language_name": "North Ndebele",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "North Ndebele (isiNdebele) is a Southern Bantu Nguni language of Zimbabwe, closely related to Zulu. ISO 639-5: bnt (Bantu languages)."
+  },
+  {
+    "language_code": "ng",
+    "language_name": "Ndonga",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Ndonga (Oshindonga) is a dialect of Oshiwambo, a Southern Bantu language spoken in Namibia. ISO 639-5: bnt (Bantu languages)."
+  },
+  {
+    "language_code": "nr",
+    "language_name": "South Ndebele",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "South Ndebele (isiNdebele yeSewula) is a Southern Bantu Nguni language of South Africa, distinct from North Ndebele. ISO 639-5: bnt (Bantu languages)."
+  },
+  {
+    "language_code": "wo",
+    "language_name": "Wolof",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Wolof is a Niger-Congo language of the Atlantic-Congo (Senegambian) branch, spoken primarily in Senegal, Gambia, and Mauritania. ISO 639-5: nic (Niger-Kordofanian languages)."
+  },
+  {
+    "language_code": "ho",
+    "language_name": "Hiri Motu",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "Hiri Motu is a simplified pidgin/creole based on Motu (an Austronesian language), used as an administrative lingua franca in Papua New Guinea. ISO 639-5: crp (Creoles and pidgins)."
+  },
+  {
+    "language_code": "crn",
+    "language_name": "Woods Cree",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Woods Cree (nêhiyawêwin) is a dialect of Cree, an Algonquian language of the Algic family spoken across northern Canada. ISO 639-5: alg (Algonquian languages) under nai (North American Indian languages)."
+  },
+  {
+    "language_code": "wal",
+    "language_name": "Wolaytta",
+    "iso639_5": "afa",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Wolaytta (Wolayta) is an Omotic language of Ethiopia. Omotic is traditionally classified as a branch of Afro-Asiatic, though some linguists treat it as a separate family. ISO 639-5: afa (Afro-Asiatic languages) used as the closest available approximation."
+  },
+  {
+    "language_code": "zg",
+    "language_name": "Unknown",
+    "iso639_5": null,
+    "family_name": "Unclassified",
+    "rationale": "Wikimedia code 'zg' does not correspond to a recognised ISO 639 individual language code. Affiliation unclear; marked Unclassified pending identification."
+  },
+  {
+    "language_code": "abq",
+    "language_name": "Abaza",
+    "iso639_5": "ccn",
+    "family_name": "Caucasian languages",
+    "rationale": "Northwest Caucasian language of Karachay-Cherkessia. ISO 639-5: ccn."
+  },
+  {
+    "language_code": "abr",
+    "language_name": "Abron",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kwa (Niger-Congo) language of Ghana/Côte d'Ivoire. ISO 639-5: nic."
+  },
+  {
+    "language_code": "ace",
+    "language_name": "Acehnese",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of northern Sumatra. ISO 639-5: map."
+  },
+  {
+    "language_code": "ach",
+    "language_name": "Acoli",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic (Luo) language of Uganda. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "ada",
+    "language_name": "Adangme",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kwa (Niger-Congo) language of Ghana. ISO 639-5: nic."
+  },
+  {
+    "language_code": "ady",
+    "language_name": "Adyghe",
+    "iso639_5": "ccn",
+    "family_name": "Caucasian languages",
+    "rationale": "Northwest Caucasian language of the Western Circassian group. ISO 639-5: ccn."
+  },
+  {
+    "language_code": "aeb",
+    "language_name": "Tunisian Arabic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Maghrebi Arabic variety of Tunisia. ISO 639-5: sem."
+  },
+  {
+    "language_code": "afh",
+    "language_name": "Afrihili",
+    "iso639_5": "art",
+    "family_name": "Artificial languages",
+    "rationale": "Constructed pan-African auxiliary language. ISO 639-5: art."
+  },
+  {
+    "language_code": "agq",
+    "language_name": "Aghem",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Grassfields Bantu language of Cameroon. ISO 639-5: nic."
+  },
+  {
+    "language_code": "aii",
+    "language_name": "Assyrian Neo-Aramaic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Semitic language of the Assyrian community. ISO 639-5: sem."
+  },
+  {
+    "language_code": "ain",
+    "language_name": "Ainu",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of Hokkaido, Japan. No ISO 639-5 code; Ainu has no established relatives."
+  },
+  {
+    "language_code": "akk",
+    "language_name": "Akkadian",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Extinct East Semitic language of ancient Mesopotamia. ISO 639-5: sem."
+  },
+  {
+    "language_code": "akz",
+    "language_name": "Alabama",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Muskogean language of Texas/Alabama. ISO 639-5: nai."
+  },
+  {
+    "language_code": "ale",
+    "language_name": "Aleut",
+    "iso639_5": "esx",
+    "family_name": "Eskimo-Aleut languages",
+    "rationale": "Eskimo-Aleut language of the Aleutian Islands. ISO 639-5: esx."
+  },
+  {
+    "language_code": "aln",
+    "language_name": "Gheg Albanian",
+    "iso639_5": "sqj",
+    "family_name": "Indo-European languages",
+    "rationale": "Northern Albanian dialect group. ISO 639-5: sqj (Albanian languages)."
+  },
+  {
+    "language_code": "alt",
+    "language_name": "Southern Altai",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Siberian Turkic language of the Altai Republic. ISO 639-5: trk."
+  },
+  {
+    "language_code": "amo",
+    "language_name": "Amo",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Plateau Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "ann",
+    "language_name": "Obolo",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Cross River Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "anp",
+    "language_name": "Angika",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Indo-Aryan language of Bihar and Jharkhand. ISO 639-5: inc."
+  },
+  {
+    "language_code": "aoz",
+    "language_name": "Uab Meto",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Austronesian language of West Timor. ISO 639-5: map."
+  },
+  {
+    "language_code": "apc",
+    "language_name": "Levantine Arabic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "North Levantine Arabic variety. ISO 639-5: sem."
+  },
+  {
+    "language_code": "arn",
+    "language_name": "Mapuche",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Language isolate of Chile/Argentina. ISO 639-5: sai."
+  },
+  {
+    "language_code": "aro",
+    "language_name": "Araona",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Tacanan language of Bolivia. ISO 639-5: sai."
+  },
+  {
+    "language_code": "arp",
+    "language_name": "Arapaho",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of the Great Plains. ISO 639-5: alg."
+  },
+  {
+    "language_code": "arq",
+    "language_name": "Algerian Arabic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Maghrebi Arabic variety of Algeria. ISO 639-5: sem."
+  },
+  {
+    "language_code": "ars",
+    "language_name": "Najdi Arabic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Central Arabian dialect. ISO 639-5: sem."
+  },
+  {
+    "language_code": "arw",
+    "language_name": "Arawak",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Arawakan language of Venezuela/Suriname. ISO 639-5: sai."
+  },
+  {
+    "language_code": "ary",
+    "language_name": "Moroccan Arabic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Maghrebi Arabic variety of Morocco. ISO 639-5: sem."
+  },
+  {
+    "language_code": "asa",
+    "language_name": "Asu",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "ase",
+    "language_name": "American Sign Language",
+    "iso639_5": "sgn",
+    "family_name": "Sign languages",
+    "rationale": "Visual-gestural language of the US and Anglophone Canada. ISO 639-5: sgn."
+  },
+  {
+    "language_code": "atj",
+    "language_name": "Atikamekw",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Quebec. ISO 639-5: alg."
+  },
+  {
+    "language_code": "avk",
+    "language_name": "Kotava",
+    "iso639_5": "art",
+    "family_name": "Artificial languages",
+    "rationale": "Constructed international auxiliary language. ISO 639-5: art."
+  },
+  {
+    "language_code": "bal",
+    "language_name": "Baluchi",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Northwestern Iranian language spoken in Balochistan. ISO 639-5: ira."
+  },
+  {
+    "language_code": "ban",
+    "language_name": "Balinese",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Bali. ISO 639-5: map."
+  },
+  {
+    "language_code": "bap",
+    "language_name": "Bantawa",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Kiranti Tibeto-Burman language of Nepal. ISO 639-5: sit."
+  },
+  {
+    "language_code": "bas",
+    "language_name": "Basaa",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "bax",
+    "language_name": "Bamun",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Grassfields Bantu language of Cameroon. ISO 639-5: nic."
+  },
+  {
+    "language_code": "bbc",
+    "language_name": "Batak Toba",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of North Sumatra. ISO 639-5: map."
+  },
+  {
+    "language_code": "bbj",
+    "language_name": "Ghomala",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Grassfields Bantu language of Cameroon. ISO 639-5: nic."
+  },
+  {
+    "language_code": "bci",
+    "language_name": "Baoulé",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kwa (Niger-Congo) language of Côte d'Ivoire. ISO 639-5: nic."
+  },
+  {
+    "language_code": "bej",
+    "language_name": "Beja",
+    "iso639_5": "cus",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Cushitic language of northeast Africa. ISO 639-5: cus."
+  },
+  {
+    "language_code": "bem",
+    "language_name": "Bemba",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Zambia. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "bew",
+    "language_name": "Betawi",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian creole/dialect of Jakarta. ISO 639-5: map."
+  },
+  {
+    "language_code": "bez",
+    "language_name": "Bena",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "bfd",
+    "language_name": "Bafut",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Grassfields Bantu language of Cameroon. ISO 639-5: nic."
+  },
+  {
+    "language_code": "bfq",
+    "language_name": "Badaga",
+    "iso639_5": "dra",
+    "family_name": "Dravidian languages",
+    "rationale": "Dravidian language of Tamil Nadu. ISO 639-5: dra."
+  },
+  {
+    "language_code": "bft",
+    "language_name": "Balti",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Baltistan (Ladakhi group). ISO 639-5: sit."
+  },
+  {
+    "language_code": "bfy",
+    "language_name": "Bagheli",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Hindi dialect of Madhya Pradesh and UP. ISO 639-5: inc."
+  },
+  {
+    "language_code": "bgc",
+    "language_name": "Haryanvi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Western Hindi dialect of Haryana. ISO 639-5: inc."
+  },
+  {
+    "language_code": "bgn",
+    "language_name": "Western Balochi",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Western dialect of Balochi, a Northwestern Iranian language. ISO 639-5: ira."
+  },
+  {
+    "language_code": "bgx",
+    "language_name": "Balkan Gagauz Turkish",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Oghuz Turkic language of the Balkans. ISO 639-5: trk."
+  },
+  {
+    "language_code": "bhb",
+    "language_name": "Bhili",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of western India. ISO 639-5: inc."
+  },
+  {
+    "language_code": "bhi",
+    "language_name": "Bhilali",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language closely related to Bhili. ISO 639-5: inc."
+  },
+  {
+    "language_code": "bik",
+    "language_name": "Bikol",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of the Bicol Region, Philippines. ISO 639-5: map."
+  },
+  {
+    "language_code": "bin",
+    "language_name": "Bini",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Edoid Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "bjj",
+    "language_name": "Kanauji",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Central Hindi belt. ISO 639-5: inc."
+  },
+  {
+    "language_code": "bjn",
+    "language_name": "Banjar",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of South Kalimantan. ISO 639-5: map."
+  },
+  {
+    "language_code": "bkm",
+    "language_name": "Kom",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Grassfields Bantu language of Cameroon. ISO 639-5: nic."
+  },
+  {
+    "language_code": "bku",
+    "language_name": "Buhid",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of Mindoro. ISO 639-5: map."
+  },
+  {
+    "language_code": "bla",
+    "language_name": "Siksiká",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian (Blackfoot) language of Canada. ISO 639-5: alg."
+  },
+  {
+    "language_code": "blo",
+    "language_name": "Anii",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kwa (Niger-Congo) language of Togo/Benin. ISO 639-5: nic."
+  },
+  {
+    "language_code": "blt",
+    "language_name": "Tai Dam",
+    "iso639_5": "tai",
+    "family_name": "Tai languages",
+    "rationale": "Tai-Kadai language spoken in Vietnam, Laos, and Yunnan. ISO 639-5: tai."
+  },
+  {
+    "language_code": "bmq",
+    "language_name": "Bomu",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Gur (Voltaic) Niger-Congo language of Mali/Burkina Faso. ISO 639-5: nic."
+  },
+  {
+    "language_code": "bqi",
+    "language_name": "Bakhtiari",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Southwest Iranian language of the Bakhtiari people. ISO 639-5: ira."
+  },
+  {
+    "language_code": "bqv",
+    "language_name": "Koro Wachi",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "bra",
+    "language_name": "Braj",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Western Hindi dialect historically significant in Braj Bhasha literature. ISO 639-5: inc."
+  },
+  {
+    "language_code": "brh",
+    "language_name": "Brahui",
+    "iso639_5": "dra",
+    "family_name": "Dravidian languages",
+    "rationale": "Northern Dravidian language of Balochistan. ISO 639-5: dra."
+  },
+  {
+    "language_code": "bss",
+    "language_name": "Akoose",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "bto",
+    "language_name": "Rinconada Bikol",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of the Bikol group. ISO 639-5: map."
+  },
+  {
+    "language_code": "btv",
+    "language_name": "Bateri",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Dardic Indo-Aryan language of Pakistan. ISO 639-5: ira (dardic branch)."
+  },
+  {
+    "language_code": "bua",
+    "language_name": "Buriat",
+    "iso639_5": "xgn",
+    "family_name": "Altaic languages",
+    "rationale": "Mongolic language of Siberia and Mongolia. ISO 639-5: xgn."
+  },
+  {
+    "language_code": "buc",
+    "language_name": "Bushi",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Mayotte. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "bum",
+    "language_name": "Bulu",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "bvb",
+    "language_name": "Bube",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Bioko Island, Equatorial Guinea. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "byn",
+    "language_name": "Blin",
+    "iso639_5": "cus",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Cushitic (Agaw) language of Eritrea. ISO 639-5: cus."
+  },
+  {
+    "language_code": "byv",
+    "language_name": "Medumba",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "bze",
+    "language_name": "Jenaama Bozo",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilo-Saharan language of Mali. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "bzx",
+    "language_name": "Kɛlɛngaxo Bozo",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilo-Saharan language of Mali. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "cad",
+    "language_name": "Caddo",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Caddoan language isolate of Texas/Oklahoma. ISO 639-5: nai."
+  },
+  {
+    "language_code": "car",
+    "language_name": "Carib",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Cariban language of South America. ISO 639-5: sai."
+  },
+  {
+    "language_code": "cay",
+    "language_name": "Cayuga",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Iroquoian language of the Six Nations. ISO 639-5: nai."
+  },
+  {
+    "language_code": "cch",
+    "language_name": "Atsam",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Plateau Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "ccp",
+    "language_name": "Chakma",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of the Chittagong Hill Tracts. ISO 639-5: sit."
+  },
+  {
+    "language_code": "cgg",
+    "language_name": "Chiga",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Uganda. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "chb",
+    "language_name": "Chibcha",
+    "iso639_5": "cai",
+    "family_name": "Central American Indian languages",
+    "rationale": "Extinct Chibchan language of Colombia. ISO 639-5: cai."
+  },
+  {
+    "language_code": "chg",
+    "language_name": "Chagatai",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Medieval Chagatai Turkic language. ISO 639-5: trk."
+  },
+  {
+    "language_code": "chk",
+    "language_name": "Chuukese",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Oceanic Austronesian language of Chuuk, Micronesia. ISO 639-5: map."
+  },
+  {
+    "language_code": "chm",
+    "language_name": "Mari",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finno-Ugric (Mari) language of Russia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "chn",
+    "language_name": "Chinook Jargon",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "Pidgin trade language of the Pacific Northwest. ISO 639-5: crp."
+  },
+  {
+    "language_code": "chp",
+    "language_name": "Chipewyan",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of the Northwest Territories. ISO 639-5: nai."
+  },
+  {
+    "language_code": "cic",
+    "language_name": "Chickasaw",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Muskogean language of Oklahoma. ISO 639-5: nai."
+  },
+  {
+    "language_code": "cja",
+    "language_name": "Western Cham",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Cambodia. ISO 639-5: map."
+  },
+  {
+    "language_code": "cjm",
+    "language_name": "Eastern Cham",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Vietnam. ISO 639-5: map."
+  },
+  {
+    "language_code": "cjs",
+    "language_name": "Shor",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Siberian Turkic language of the Kemerovo region. ISO 639-5: trk."
+  },
+  {
+    "language_code": "ckt",
+    "language_name": "Chukot",
+    "iso639_5": null,
+    "family_name": "Chukotko-Kamchatkan languages",
+    "rationale": "Chukotko-Kamchatkan language of Chukotka, Russia. No ISO 639-5 code."
+  },
+  {
+    "language_code": "clc",
+    "language_name": "Chilcotin",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of British Columbia. ISO 639-5: nai."
+  },
+  {
+    "language_code": "cnr",
+    "language_name": "Montenegrin",
+    "iso639_5": "sla",
+    "family_name": "Indo-European languages",
+    "rationale": "South Slavic language, a standardized variety of Serbo-Croatian. ISO 639-5: sla."
+  },
+  {
+    "language_code": "cop",
+    "language_name": "Coptic",
+    "iso639_5": "afa",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Afro-Asiatic language descended from Ancient Egyptian. ISO 639-5: afa."
+  },
+  {
+    "language_code": "cps",
+    "language_name": "Capiznon",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of Capiz province. ISO 639-5: map."
+  },
+  {
+    "language_code": "crg",
+    "language_name": "Michif",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Mixed Cree-French language of the Métis (crp also applicable). ISO 639-5: alg."
+  },
+  {
+    "language_code": "crh",
+    "language_name": "Crimean Tatar",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Oghuz Turkic language of Crimea. ISO 639-5: trk."
+  },
+  {
+    "language_code": "crj",
+    "language_name": "Southern East Cree",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian (Cree) language of Quebec. ISO 639-5: alg."
+  },
+  {
+    "language_code": "crk",
+    "language_name": "Plains Cree",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of the Canadian Plains. ISO 639-5: alg."
+  },
+  {
+    "language_code": "crl",
+    "language_name": "Northern East Cree",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Quebec. ISO 639-5: alg."
+  },
+  {
+    "language_code": "crm",
+    "language_name": "Moose Cree",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Ontario. ISO 639-5: alg."
+  },
+  {
+    "language_code": "crs",
+    "language_name": "Seselwa Creole French",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "French-based creole of Seychelles. ISO 639-5: crp."
+  },
+  {
+    "language_code": "csw",
+    "language_name": "Swampy Cree",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of the Hudson Bay Lowlands. ISO 639-5: alg."
+  },
+  {
+    "language_code": "ctd",
+    "language_name": "Tedim Chin",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman (Kuki-Chin) language of Myanmar/India. ISO 639-5: sit."
+  },
+  {
+    "language_code": "cwd",
+    "language_name": "Woods Cree",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Saskatchewan. ISO 639-5: alg."
+  },
+  {
+    "language_code": "dak",
+    "language_name": "Dakota",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Siouan language of the northern Great Plains. ISO 639-5: nai."
+  },
+  {
+    "language_code": "dar",
+    "language_name": "Dargwa",
+    "iso639_5": "ccn",
+    "family_name": "Caucasian languages",
+    "rationale": "Northeast Caucasian language of Dagestan. ISO 639-5: ccn."
+  },
+  {
+    "language_code": "dav",
+    "language_name": "Taita",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Kenya. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "dcc",
+    "language_name": "Deccan",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan (Hindustani) dialect of the Deccan Plateau. ISO 639-5: inc."
+  },
+  {
+    "language_code": "del",
+    "language_name": "Delaware",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of the Delaware people. ISO 639-5: alg."
+  },
+  {
+    "language_code": "den",
+    "language_name": "Slave",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of the Northwest Territories. ISO 639-5: nai."
+  },
+  {
+    "language_code": "dgr",
+    "language_name": "Dogrib",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of the Northwest Territories. ISO 639-5: nai."
+  },
+  {
+    "language_code": "din",
+    "language_name": "Dinka",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of South Sudan. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "dje",
+    "language_name": "Zarma",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Songhay Nilo-Saharan language of Niger. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "dng",
+    "language_name": "Dungan",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Sinitic (Mandarin-based) language of Central Asia. ISO 639-5: sit."
+  },
+  {
+    "language_code": "dnj",
+    "language_name": "Dan",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Côte d'Ivoire/Guinea. ISO 639-5: nic."
+  },
+  {
+    "language_code": "doi",
+    "language_name": "Dogri",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Jammu and Kashmir. ISO 639-5: inc."
+  },
+  {
+    "language_code": "dtm",
+    "language_name": "Tomo Kan Dogon",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Dogon language of Mali. Dogon placement varies; ssa used. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "dtp",
+    "language_name": "Central Dusun",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Austronesian language of Sabah, Malaysia. ISO 639-5: map."
+  },
+  {
+    "language_code": "dty",
+    "language_name": "Dotyali",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of western Nepal. ISO 639-5: inc."
+  },
+  {
+    "language_code": "dua",
+    "language_name": "Duala",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "dum",
+    "language_name": "Middle Dutch",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Historical West Germanic language ancestor of modern Dutch. ISO 639-5: gem."
+  },
+  {
+    "language_code": "dyo",
+    "language_name": "Jola-Fonyi",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Atlantic Niger-Congo language of Senegal. ISO 639-5: nic."
+  },
+  {
+    "language_code": "dyu",
+    "language_name": "Dyula",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Burkina Faso/Côte d'Ivoire. ISO 639-5: nic."
+  },
+  {
+    "language_code": "dzg",
+    "language_name": "Dazaga",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Saharan Nilo-Saharan language of the Tibesti region. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "ebu",
+    "language_name": "Embu",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Kenya. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "efi",
+    "language_name": "Efik",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Cross River Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "egl",
+    "language_name": "Emilian",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Gallo-Italic Romance language of Emilia-Romagna. ISO 639-5: roa."
+  },
+  {
+    "language_code": "egy",
+    "language_name": "Ancient Egyptian",
+    "iso639_5": "afa",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Afro-Asiatic language of ancient Egypt, unclassified within sub-branch. ISO 639-5: afa."
+  },
+  {
+    "language_code": "eka",
+    "language_name": "Ekajuk",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Cross River Niger-Congo language of Nigeria/Cameroon. ISO 639-5: nic."
+  },
+  {
+    "language_code": "eky",
+    "language_name": "Eastern Kayah",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman (Kayah) language of Myanmar. ISO 639-5: sit."
+  },
+  {
+    "language_code": "elx",
+    "language_name": "Elamite",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Ancient language of Elam; considered a language isolate or unclassified. No ISO 639-5 code."
+  },
+  {
+    "language_code": "enm",
+    "language_name": "Middle English",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Historical stage of English from c.1100–1500. ISO 639-5: gem."
+  },
+  {
+    "language_code": "esu",
+    "language_name": "Central Yupik",
+    "iso639_5": "esx",
+    "family_name": "Eskimo-Aleut languages",
+    "rationale": "Eskimo-Aleut language of western Alaska. ISO 639-5: esx."
+  },
+  {
+    "language_code": "ett",
+    "language_name": "Etruscan",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of ancient Italy. No ISO 639-5 code."
+  },
+  {
+    "language_code": "evn",
+    "language_name": "Evenki",
+    "iso639_5": "tut",
+    "family_name": "Altaic languages",
+    "rationale": "Tungusic language of Siberia. ISO 639-5: tut."
+  },
+  {
+    "language_code": "ewo",
+    "language_name": "Ewondo",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "fan",
+    "language_name": "Fang",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon/Gabon/Equatorial Guinea. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "fat",
+    "language_name": "Fanti",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Akan Kwa language of Ghana. ISO 639-5: nic."
+  },
+  {
+    "language_code": "ffm",
+    "language_name": "Maasina Fulfulde",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Atlantic Niger-Congo (Fula) language of Mali. ISO 639-5: nic."
+  },
+  {
+    "language_code": "fia",
+    "language_name": "Nobiin",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilo-Saharan language of Sudan/Egypt. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "fil",
+    "language_name": "Filipino",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Standardized register of Tagalog; Philippine language. ISO 639-5: map."
+  },
+  {
+    "language_code": "fit",
+    "language_name": "Tornedalen Finnish",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finnic Uralic language of northern Sweden. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "fon",
+    "language_name": "Fon",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Gbe Kwa language of Benin. ISO 639-5: nic."
+  },
+  {
+    "language_code": "frc",
+    "language_name": "Cajun French",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "French dialect of Louisiana Cajun communities. ISO 639-5: roa."
+  },
+  {
+    "language_code": "frm",
+    "language_name": "Middle French",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Historical stage of French (c.1340–1610). Reassigned below to roa."
+  },
+  {
+    "language_code": "fro",
+    "language_name": "Old French",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Historical stage of French (c.842–1340). Reassigned below to roa."
+  },
+  {
+    "language_code": "frr",
+    "language_name": "Northern Frisian",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "West Germanic language of the North Frisian Islands. ISO 639-5: gem."
+  },
+  {
+    "language_code": "frs",
+    "language_name": "Eastern Frisian",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Saterland Frisian, a West Germanic language. ISO 639-5: gem."
+  },
+  {
+    "language_code": "fud",
+    "language_name": "East Futuna",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Polynesian language of Wallis and Futuna. ISO 639-5: map."
+  },
+  {
+    "language_code": "fuq",
+    "language_name": "Central-Eastern Niger Fulfulde",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Atlantic Niger-Congo language of Niger. ISO 639-5: nic."
+  },
+  {
+    "language_code": "fuv",
+    "language_name": "Nigerian Fulfulde",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Atlantic Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "fvr",
+    "language_name": "Fur",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilo-Saharan language of Sudan/Chad. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "gaa",
+    "language_name": "Ga",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kwa Niger-Congo language of Ghana. ISO 639-5: nic."
+  },
+  {
+    "language_code": "gag",
+    "language_name": "Gagauz",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Oghuz Turkic language of Moldova/Bulgaria. ISO 639-5: trk."
+  },
+  {
+    "language_code": "gay",
+    "language_name": "Gayo",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Austronesian language of northern Sumatra. ISO 639-5: map."
+  },
+  {
+    "language_code": "gba",
+    "language_name": "Gbaya",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Ubangian Niger-Congo language of Central Africa. ISO 639-5: nic."
+  },
+  {
+    "language_code": "gbz",
+    "language_name": "Zoroastrian Dari",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Iranian language spoken by Zoroastrian communities; a variety of Modern Persian. ISO 639-5: ira."
+  },
+  {
+    "language_code": "gcr",
+    "language_name": "Guianese Creole French",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "French-based creole of French Guiana. ISO 639-5: crp."
+  },
+  {
+    "language_code": "gez",
+    "language_name": "Geez",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Semitic liturgical language of Ethiopia/Eritrea. ISO 639-5: sem."
+  },
+  {
+    "language_code": "gjk",
+    "language_name": "Kachhi Koli",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Gujarat/Sindh. ISO 639-5: inc."
+  },
+  {
+    "language_code": "gju",
+    "language_name": "Gujari",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language spoken by the Gujjar community. ISO 639-5: inc."
+  },
+  {
+    "language_code": "gld",
+    "language_name": "Nanai",
+    "iso639_5": "tut",
+    "family_name": "Altaic languages",
+    "rationale": "Tungusic language of the Russian Far East. ISO 639-5: tut."
+  },
+  {
+    "language_code": "gmh",
+    "language_name": "Middle High German",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Historical High German (c.1050–1350). ISO 639-5: gem."
+  },
+  {
+    "language_code": "goh",
+    "language_name": "Old High German",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Historical High German (c.750–1050). ISO 639-5: gem."
+  },
+  {
+    "language_code": "gom",
+    "language_name": "Goan Konkani",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Goa, a variety of Konkani. ISO 639-5: inc."
+  },
+  {
+    "language_code": "gon",
+    "language_name": "Gondi",
+    "iso639_5": "dra",
+    "family_name": "Dravidian languages",
+    "rationale": "Central Dravidian language of central India. ISO 639-5: dra."
+  },
+  {
+    "language_code": "gor",
+    "language_name": "Gorontalo",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Austronesian language of Sulawesi. ISO 639-5: map."
+  },
+  {
+    "language_code": "gos",
+    "language_name": "Gronings",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Low Saxon dialect of the Groningen province. ISO 639-5: gem."
+  },
+  {
+    "language_code": "grb",
+    "language_name": "Grebo",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kru Niger-Congo language of Liberia/Côte d'Ivoire. ISO 639-5: nic."
+  },
+  {
+    "language_code": "grc",
+    "language_name": "Ancient Greek",
+    "iso639_5": "grk",
+    "family_name": "Indo-European languages",
+    "rationale": "Ancient stage of the Greek language (classical period). ISO 639-5: grk."
+  },
+  {
+    "language_code": "grt",
+    "language_name": "Garo",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Meghalaya, India. ISO 639-5: sit."
+  },
+  {
+    "language_code": "gsw",
+    "language_name": "Swiss German",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Alemannic German dialects of Switzerland. ISO 639-5: gem."
+  },
+  {
+    "language_code": "gub",
+    "language_name": "Guajajára",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Tupian language of Maranhão, Brazil. ISO 639-5: sai."
+  },
+  {
+    "language_code": "guc",
+    "language_name": "Wayuu",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Arawakan language of Colombia/Venezuela. ISO 639-5: sai."
+  },
+  {
+    "language_code": "gur",
+    "language_name": "Frafra",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Gur (Moore-Grussi) Niger-Congo language of Ghana/Burkina Faso. ISO 639-5: nic."
+  },
+  {
+    "language_code": "guz",
+    "language_name": "Gusii",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of western Kenya. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "gvr",
+    "language_name": "Gurung",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Nepal. ISO 639-5: sit."
+  },
+  {
+    "language_code": "gwi",
+    "language_name": "Gwichʼin",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of the Yukon/Alaska. ISO 639-5: nai."
+  },
+  {
+    "language_code": "hai",
+    "language_name": "Haida",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of Haida Gwaii, Canada. No ISO 639-5 code."
+  },
+  {
+    "language_code": "hax",
+    "language_name": "Southern Haida",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of Haida Gwaii. Dialect of Haida; no ISO 639-5 code."
+  },
+  {
+    "language_code": "haz",
+    "language_name": "Hazaragi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan (Eastern Iranian-influenced) language of the Hazara. ISO 639-5: inc."
+  },
+  {
+    "language_code": "hdn",
+    "language_name": "Northern Haida",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of Haida Gwaii. Dialect of Haida; no ISO 639-5 code."
+  },
+  {
+    "language_code": "hif",
+    "language_name": "Fiji Hindi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language derived from Bhojpuri spoken in Fiji. ISO 639-5: inc."
+  },
+  {
+    "language_code": "hil",
+    "language_name": "Hiligaynon",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of the Western Visayas. ISO 639-5: map."
+  },
+  {
+    "language_code": "hit",
+    "language_name": "Hittite",
+    "iso639_5": "ine",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Anatolian Indo-European language of the Hittite Empire. ISO 639-5: ine."
+  },
+  {
+    "language_code": "hmd",
+    "language_name": "Large Flowery Miao",
+    "iso639_5": "hmx",
+    "family_name": "Hmong-Mien languages",
+    "rationale": "Hmong-Mien language of southwestern China. ISO 639-5: hmx."
+  },
+  {
+    "language_code": "hmn",
+    "language_name": "Hmong",
+    "iso639_5": "hmx",
+    "family_name": "Hmong-Mien languages",
+    "rationale": "Hmong-Mien language spoken across Southeast Asia and diaspora. ISO 639-5: hmx."
+  },
+  {
+    "language_code": "hnd",
+    "language_name": "Southern Hindko",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of northwestern Pakistan. ISO 639-5: inc."
+  },
+  {
+    "language_code": "hne",
+    "language_name": "Chhattisgarhi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Hindi dialect of Chhattisgarh. ISO 639-5: inc."
+  },
+  {
+    "language_code": "hnj",
+    "language_name": "Hmong Njua",
+    "iso639_5": "hmx",
+    "family_name": "Hmong-Mien languages",
+    "rationale": "Hmong-Mien language, also known as Blue Hmong. ISO 639-5: hmx."
+  },
+  {
+    "language_code": "hnn",
+    "language_name": "Hanunoo",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of Mindoro. ISO 639-5: map."
+  },
+  {
+    "language_code": "hno",
+    "language_name": "Northern Hindko",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Hazara division, Pakistan. ISO 639-5: inc."
+  },
+  {
+    "language_code": "hoc",
+    "language_name": "Ho",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Munda) language of eastern India. ISO 639-5: aav."
+  },
+  {
+    "language_code": "hoj",
+    "language_name": "Hadothi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Rajasthani Indo-Aryan dialect of Rajasthan. ISO 639-5: inc."
+  },
+  {
+    "language_code": "hop",
+    "language_name": "Hopi",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Uto-Aztecan language of the Hopi people. ISO 639-5: nai."
+  },
+  {
+    "language_code": "hsb",
+    "language_name": "Upper Sorbian",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "West Slavic language (reassigned below to sla)."
+  },
+  {
+    "language_code": "hsn",
+    "language_name": "Xiang Chinese",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Sinitic language of Hunan. ISO 639-5: sit."
+  },
+  {
+    "language_code": "hup",
+    "language_name": "Hupa",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of northwestern California. ISO 639-5: nai."
+  },
+  {
+    "language_code": "hur",
+    "language_name": "Halkomelem",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Salishan language of the Fraser Valley. ISO 639-5: nai."
+  },
+  {
+    "language_code": "iba",
+    "language_name": "Iban",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Sarawak/Kalimantan. ISO 639-5: map."
+  },
+  {
+    "language_code": "ibb",
+    "language_name": "Ibibio",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Cross River Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "ife",
+    "language_name": "Ifè",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Yoruboid Kwa language of Togo/Benin. ISO 639-5: nic."
+  },
+  {
+    "language_code": "ike",
+    "language_name": "Eastern Canadian Inuktitut",
+    "iso639_5": "esx",
+    "family_name": "Eskimo-Aleut languages",
+    "rationale": "Eskimo-Aleut language of eastern Canada. ISO 639-5: esx."
+  },
+  {
+    "language_code": "ikt",
+    "language_name": "Western Canadian Inuktitut",
+    "iso639_5": "esx",
+    "family_name": "Eskimo-Aleut languages",
+    "rationale": "Eskimo-Aleut language of western Canada. ISO 639-5: esx."
+  },
+  {
+    "language_code": "izh",
+    "language_name": "Ingrian",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finnic Uralic language of Ingria (Russia). ISO 639-5: fiu."
+  },
+  {
+    "language_code": "jam",
+    "language_name": "Jamaican Creole English",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "English-based creole of Jamaica. ISO 639-5: crp."
+  },
+  {
+    "language_code": "jgo",
+    "language_name": "Ngomba",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "jmc",
+    "language_name": "Machame",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "jml",
+    "language_name": "Jumli",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Jumla district, Nepal. ISO 639-5: inc."
+  },
+  {
+    "language_code": "jpr",
+    "language_name": "Judeo-Persian",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Variety of Persian written in Hebrew script by Iranian Jews. ISO 639-5: inc (Ira)."
+  },
+  {
+    "language_code": "jrb",
+    "language_name": "Judeo-Arabic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Varieties of Arabic used by Jewish communities. ISO 639-5: sem."
+  },
+  {
+    "language_code": "jut",
+    "language_name": "Jutish",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Low German dialect of Jutland. ISO 639-5: gem."
+  },
+  {
+    "language_code": "kaa",
+    "language_name": "Kara-Kalpak",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Kypchak Turkic language of Karakalpakstan. ISO 639-5: trk."
+  },
+  {
+    "language_code": "kac",
+    "language_name": "Kachin",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Myanmar/Yunnan. ISO 639-5: sit."
+  },
+  {
+    "language_code": "kaj",
+    "language_name": "Jju",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Plateau Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "kam",
+    "language_name": "Kamba",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Kenya. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "kao",
+    "language_name": "Xaasongaxango",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Senegal/Mali. ISO 639-5: nic."
+  },
+  {
+    "language_code": "kaw",
+    "language_name": "Kawi",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Old Javanese, an Austronesian literary language of Java. ISO 639-5: map."
+  },
+  {
+    "language_code": "kbd",
+    "language_name": "Kabardian",
+    "iso639_5": "ccn",
+    "family_name": "Caucasian languages",
+    "rationale": "Northwest Caucasian (East Circassian) language. ISO 639-5: ccn."
+  },
+  {
+    "language_code": "kbl",
+    "language_name": "Kanembu",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Saharan Nilo-Saharan language of Chad. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "kca",
+    "language_name": "Khanty",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Ob-Ugric Uralic language of Siberia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "kcg",
+    "language_name": "Tyap",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Plateau Niger-Congo language of Nigeria. ISO 639-5: nic."
+  },
+  {
+    "language_code": "kck",
+    "language_name": "Kalanga",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Zimbabwe/Botswana. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "kde",
+    "language_name": "Makonde",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania and Mozambique. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "kdt",
+    "language_name": "Kuy",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Mon-Khmer) language of Thailand. ISO 639-5: aav."
+  },
+  {
+    "language_code": "kea",
+    "language_name": "Kabuverdianu",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "Portuguese-based creole of Cape Verde. ISO 639-5: crp."
+  },
+  {
+    "language_code": "ken",
+    "language_name": "Kenyang",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "kfo",
+    "language_name": "Koro",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Côte d'Ivoire. ISO 639-5: nic."
+  },
+  {
+    "language_code": "kfr",
+    "language_name": "Kachhi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Balochistan/Sindh. ISO 639-5: inc."
+  },
+  {
+    "language_code": "kfy",
+    "language_name": "Kumaoni",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Pahari Indo-Aryan language of Uttarakhand. ISO 639-5: inc."
+  },
+  {
+    "language_code": "kge",
+    "language_name": "Komering",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Austronesian language of South Sumatra. ISO 639-5: map."
+  },
+  {
+    "language_code": "kgp",
+    "language_name": "Kaingang",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Macro-Jê language of southern Brazil. ISO 639-5: sai."
+  },
+  {
+    "language_code": "kha",
+    "language_name": "Khasi",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Khasi-Pnar) language of Meghalaya. ISO 639-5: aav."
+  },
+  {
+    "language_code": "khb",
+    "language_name": "Lü",
+    "iso639_5": "tai",
+    "family_name": "Tai languages",
+    "rationale": "Tai-Kadai language of southern Yunnan and neighboring countries. ISO 639-5: tai."
+  },
+  {
+    "language_code": "khn",
+    "language_name": "Khandesi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Khandesh region. ISO 639-5: inc."
+  },
+  {
+    "language_code": "kho",
+    "language_name": "Khotanese",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Middle Iranian language of ancient Khotan. ISO 639-5: ira."
+  },
+  {
+    "language_code": "khq",
+    "language_name": "Koyra Chiini",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Songhay Nilo-Saharan language of Mali. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "kht",
+    "language_name": "Khamti",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tai-Kadai language (tai) of Myanmar. ISO 639-5: tai."
+  },
+  {
+    "language_code": "kiu",
+    "language_name": "Kirmanjki",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Northwestern Iranian (Zaza-Gorani group) language of Turkey. ISO 639-5: ira."
+  },
+  {
+    "language_code": "kjg",
+    "language_name": "Khmu",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Khmuic) language of Laos and neighboring countries. ISO 639-5: aav."
+  },
+  {
+    "language_code": "kjh",
+    "language_name": "Khakas",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Siberian Turkic language of the Republic of Khakassia. ISO 639-5: trk."
+  },
+  {
+    "language_code": "kkj",
+    "language_name": "Kako",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "kln",
+    "language_name": "Kalenjin",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language cluster of Kenya. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "kmb",
+    "language_name": "Kimbundu",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Angola. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "koi",
+    "language_name": "Komi-Permyak",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Permic Uralic language of the Komi-Permyak area. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "kok",
+    "language_name": "Konkani",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Konkan coast. ISO 639-5: inc."
+  },
+  {
+    "language_code": "kos",
+    "language_name": "Kosraean",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Oceanic Austronesian language of Kosrae, Micronesia. ISO 639-5: map."
+  },
+  {
+    "language_code": "kpe",
+    "language_name": "Kpelle",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Guinea/Liberia. ISO 639-5: nic."
+  },
+  {
+    "language_code": "kpy",
+    "language_name": "Koryak",
+    "iso639_5": null,
+    "family_name": "Chukotko-Kamchatkan languages",
+    "rationale": "Chukotko-Kamchatkan language of Kamchatka, Russia. No ISO 639-5 code."
+  },
+  {
+    "language_code": "krc",
+    "language_name": "Karachay-Balkar",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Turkic language of the North Caucasus. ISO 639-5: trk."
+  },
+  {
+    "language_code": "kri",
+    "language_name": "Krio",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "English-based creole of Sierra Leone. ISO 639-5: crp."
+  },
+  {
+    "language_code": "krj",
+    "language_name": "Kinaray-a",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of Antique province. ISO 639-5: map."
+  },
+  {
+    "language_code": "krl",
+    "language_name": "Karelian",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finnic Uralic language of Karelia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "kru",
+    "language_name": "Kurukh",
+    "iso639_5": "dra",
+    "family_name": "Dravidian languages",
+    "rationale": "Northern Dravidian language of eastern India. ISO 639-5: dra."
+  },
+  {
+    "language_code": "ksb",
+    "language_name": "Shambala",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "ksf",
+    "language_name": "Bafia",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "kum",
+    "language_name": "Kumyk",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Kypchak Turkic language of Dagestan. ISO 639-5: trk."
+  },
+  {
+    "language_code": "kut",
+    "language_name": "Kutenai",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of the Kootenai people (BC/Idaho/Montana). No ISO 639-5 code."
+  },
+  {
+    "language_code": "kvr",
+    "language_name": "Kerinci",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Sumatra. ISO 639-5: map."
+  },
+  {
+    "language_code": "kvx",
+    "language_name": "Parkari Koli",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Sindh. ISO 639-5: inc."
+  },
+  {
+    "language_code": "kwk",
+    "language_name": "Kwakʼwala",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Wakashan language of British Columbia. ISO 639-5: nai."
+  },
+  {
+    "language_code": "kxm",
+    "language_name": "Northern Khmer",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Mon-Khmer) language of northeastern Thailand. ISO 639-5: aav."
+  },
+  {
+    "language_code": "kxp",
+    "language_name": "Wadiyara Koli",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Gujarat. ISO 639-5: inc."
+  },
+  {
+    "language_code": "kxv",
+    "language_name": "Kuvi",
+    "iso639_5": "dra",
+    "family_name": "Dravidian languages",
+    "rationale": "Central Dravidian language of Odisha. ISO 639-5: dra."
+  },
+  {
+    "language_code": "kyu",
+    "language_name": "Western Kayah",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman (Kayah) language of Myanmar. ISO 639-5: sit."
+  },
+  {
+    "language_code": "lab",
+    "language_name": "Linear A",
+    "iso639_5": null,
+    "family_name": "Undeciphered script",
+    "rationale": "Undeciphered writing system of Minoan Crete. No ISO 639-5 code."
+  },
+  {
+    "language_code": "lag",
+    "language_name": "Langi",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "lah",
+    "language_name": "Western Panjabi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Pakistan (Lahnda group). ISO 639-5: inc."
+  },
+  {
+    "language_code": "laj",
+    "language_name": "Lango (Uganda)",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of northern Uganda. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "lam",
+    "language_name": "Lamba",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Zambia. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "lan",
+    "language_name": "Lango",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of Uganda. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "lbe",
+    "language_name": "Lak",
+    "iso639_5": "ccn",
+    "family_name": "Caucasian languages",
+    "rationale": "Northeast Caucasian (Nakh-Dagestanian) language of Dagestan. ISO 639-5: ccn."
+  },
+  {
+    "language_code": "lbw",
+    "language_name": "Tolaki",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Austronesian language of Southeast Sulawesi. ISO 639-5: map."
+  },
+  {
+    "language_code": "lcp",
+    "language_name": "Western Lawa",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Palaungic) language of Thailand. ISO 639-5: aav."
+  },
+  {
+    "language_code": "lep",
+    "language_name": "Lepcha",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Sikkim. ISO 639-5: sit."
+  },
+  {
+    "language_code": "lez",
+    "language_name": "Lezghian",
+    "iso639_5": "ccn",
+    "family_name": "Caucasian languages",
+    "rationale": "Northeast Caucasian (Lezgic) language of Dagestan/Azerbaijan. ISO 639-5: ccn."
+  },
+  {
+    "language_code": "lfn",
+    "language_name": "Lingua Franca Nova",
+    "iso639_5": "art",
+    "family_name": "Artificial languages",
+    "rationale": "Constructed Romance-based auxiliary language. ISO 639-5: art."
+  },
+  {
+    "language_code": "lif",
+    "language_name": "Limbu",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman (Kiranti) language of the Himalayas. ISO 639-5: sit."
+  },
+  {
+    "language_code": "lil",
+    "language_name": "Lillooet",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Salishan language of British Columbia. ISO 639-5: nai."
+  },
+  {
+    "language_code": "lis",
+    "language_name": "Lisu",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman (Ngwi) language of southwestern China. ISO 639-5: sit."
+  },
+  {
+    "language_code": "liv",
+    "language_name": "Livonian",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finnic Uralic language of Latvia (nearly extinct). ISO 639-5: fiu."
+  },
+  {
+    "language_code": "ljp",
+    "language_name": "Lampung Api",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Lampung, Sumatra. ISO 639-5: map."
+  },
+  {
+    "language_code": "lki",
+    "language_name": "Laki",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Southern Kurdish dialect / Laki language of western Iran. ISO 639-5: ira."
+  },
+  {
+    "language_code": "lkt",
+    "language_name": "Lakota",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Siouan language of the Lakota people. ISO 639-5: nai."
+  },
+  {
+    "language_code": "lmn",
+    "language_name": "Lambadi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Banjara community. ISO 639-5: inc."
+  },
+  {
+    "language_code": "lol",
+    "language_name": "Mongo",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of the DRC. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "lou",
+    "language_name": "Louisiana Creole",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "French-based creole of Louisiana. ISO 639-5: crp."
+  },
+  {
+    "language_code": "loz",
+    "language_name": "Lozi",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Zambia. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "lrc",
+    "language_name": "Northern Luri",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Northwestern Iranian language spoken in Lurestan, Iran. ISO 639-5: ira."
+  },
+  {
+    "language_code": "lsm",
+    "language_name": "Saamia",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Kenya/Uganda. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "ltg",
+    "language_name": "Latgalian",
+    "iso639_5": "bat",
+    "family_name": "Indo-European languages",
+    "rationale": "Baltic Indo-European language of eastern Latvia. ISO 639-5: bat."
+  },
+  {
+    "language_code": "lua",
+    "language_name": "Luba-Lulua",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of the DRC. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "lui",
+    "language_name": "Luiseno",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Uto-Aztecan language of southern California. ISO 639-5: nai."
+  },
+  {
+    "language_code": "lun",
+    "language_name": "Lunda",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Zambia/DRC. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "luo",
+    "language_name": "Luo",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of Kenya/Tanzania. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "lus",
+    "language_name": "Mizo",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman (Kuki-Chin) language of Mizoram, India. ISO 639-5: sit."
+  },
+  {
+    "language_code": "lut",
+    "language_name": "Lushootseed",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Salishan language of the Puget Sound area. ISO 639-5: nai."
+  },
+  {
+    "language_code": "luy",
+    "language_name": "Luyia",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language cluster of Kenya. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "luz",
+    "language_name": "Southern Luri",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Southwestern Iranian language of the Luri dialect continuum. ISO 639-5: ira."
+  },
+  {
+    "language_code": "lwl",
+    "language_name": "Eastern Lawa",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Palaungic) language of Thailand. ISO 639-5: aav."
+  },
+  {
+    "language_code": "lzh",
+    "language_name": "Literary Chinese",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Classical written form of Chinese. ISO 639-5: sit."
+  },
+  {
+    "language_code": "mad",
+    "language_name": "Madurese",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Madura Island. ISO 639-5: map."
+  },
+  {
+    "language_code": "maf",
+    "language_name": "Mafa",
+    "iso639_5": "cdc",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Chadic Afro-Asiatic language of northern Cameroon/Nigeria. ISO 639-5: cdc."
+  },
+  {
+    "language_code": "mag",
+    "language_name": "Magahi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Indo-Aryan language of Bihar. ISO 639-5: inc."
+  },
+  {
+    "language_code": "mai",
+    "language_name": "Maithili",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Indo-Aryan language of Bihar and Nepal. ISO 639-5: inc."
+  },
+  {
+    "language_code": "mak",
+    "language_name": "Makasar",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of South Sulawesi. ISO 639-5: map."
+  },
+  {
+    "language_code": "mas",
+    "language_name": "Masai",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of Kenya/Tanzania. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "maz",
+    "language_name": "Central Mazahua",
+    "iso639_5": "cai",
+    "family_name": "Central American Indian languages",
+    "rationale": "Oto-Manguean language of Mexico. ISO 639-5: cai."
+  },
+  {
+    "language_code": "mde",
+    "language_name": "Maba",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Maban Nilo-Saharan language of Chad. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "mdf",
+    "language_name": "Moksha",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Mordvinic Uralic language of Russia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "mdh",
+    "language_name": "Maguindanaon",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of Mindanao. ISO 639-5: map."
+  },
+  {
+    "language_code": "mdr",
+    "language_name": "Mandar",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of West Sulawesi. ISO 639-5: map."
+  },
+  {
+    "language_code": "mdt",
+    "language_name": "Mbere",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "men",
+    "language_name": "Mende",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Sierra Leone. ISO 639-5: nic."
+  },
+  {
+    "language_code": "mer",
+    "language_name": "Meru",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Kenya. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "mfa",
+    "language_name": "Pattani Malay",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of southern Thailand. ISO 639-5: map."
+  },
+  {
+    "language_code": "mfe",
+    "language_name": "Morisyen",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "French-based creole of Mauritius. ISO 639-5: crp."
+  },
+  {
+    "language_code": "mga",
+    "language_name": "Middle Irish",
+    "iso639_5": "cel",
+    "family_name": "Indo-European languages",
+    "rationale": "Historical stage of the Irish language (900–1200 CE). ISO 639-5: cel."
+  },
+  {
+    "language_code": "mgh",
+    "language_name": "Makhuwa-Meetto",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Mozambique. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "mgo",
+    "language_name": "Metaʼ",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "mgp",
+    "language_name": "Eastern Magar",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Nepal. ISO 639-5: sit."
+  },
+  {
+    "language_code": "mgy",
+    "language_name": "Mbunga",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "mic",
+    "language_name": "Mikmaw",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of the Maritime provinces. ISO 639-5: alg."
+  },
+  {
+    "language_code": "mls",
+    "language_name": "Masalit",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Maban Nilo-Saharan language of Sudan/Chad. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "mnc",
+    "language_name": "Manchu",
+    "iso639_5": "tut",
+    "family_name": "Altaic languages",
+    "rationale": "Tungusic language of Manchuria. ISO 639-5: tut."
+  },
+  {
+    "language_code": "mni",
+    "language_name": "Manipuri",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Manipur, India. ISO 639-5: sit."
+  },
+  {
+    "language_code": "mns",
+    "language_name": "Mansi",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Ob-Ugric Uralic language of Siberia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "mnw",
+    "language_name": "Mon",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Mon-Khmer) language of Myanmar. ISO 639-5: aav."
+  },
+  {
+    "language_code": "moe",
+    "language_name": "Innu-aimun",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Quebec/Labrador. ISO 639-5: alg."
+  },
+  {
+    "language_code": "moh",
+    "language_name": "Mohawk",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Iroquoian language of the Six Nations. ISO 639-5: nai."
+  },
+  {
+    "language_code": "mos",
+    "language_name": "Mossi",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Gur (Oti-Volta) Niger-Congo language of Burkina Faso. ISO 639-5: nic."
+  },
+  {
+    "language_code": "mrd",
+    "language_name": "Western Magar",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Nepal. ISO 639-5: sit."
+  },
+  {
+    "language_code": "mrj",
+    "language_name": "Western Mari",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finno-Ugric (Mari) language of Russia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "mro",
+    "language_name": "Mru",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of the Chittagong Hill Tracts. ISO 639-5: sit."
+  },
+  {
+    "language_code": "mtr",
+    "language_name": "Mewari",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Rajasthani dialect of Mewar region. ISO 639-5: inc."
+  },
+  {
+    "language_code": "mua",
+    "language_name": "Mundang",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Central Sudanic Nilo-Saharan language of Chad/Cameroon. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "mvy",
+    "language_name": "Indus Kohistani",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Dardic Indo-Aryan language of Kohistan. ISO 639-5: inc."
+  },
+  {
+    "language_code": "mwk",
+    "language_name": "Kita Maninkakan",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Mali. ISO 639-5: nic."
+  },
+  {
+    "language_code": "mwr",
+    "language_name": "Marwari",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Rajasthani Indo-Aryan language of western Rajasthan. ISO 639-5: inc."
+  },
+  {
+    "language_code": "mwv",
+    "language_name": "Mentawai",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of the Mentawai Islands. ISO 639-5: map."
+  },
+  {
+    "language_code": "mxc",
+    "language_name": "Manyika",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Zimbabwe. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "mye",
+    "language_name": "Myene",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Gabon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "myv",
+    "language_name": "Erzya",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Mordvinic Uralic language of Russia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "myx",
+    "language_name": "Masaaba",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Uganda. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "myz",
+    "language_name": "Classical Mandaic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Eastern Aramaic Semitic language. ISO 639-5: sem."
+  },
+  {
+    "language_code": "naq",
+    "language_name": "Nama",
+    "iso639_5": "khi",
+    "family_name": "Khoisan languages",
+    "rationale": "Khoe-Kwadi Khoisan language of Namibia/South Africa. ISO 639-5: khi."
+  },
+  {
+    "language_code": "nch",
+    "language_name": "Central Huasteca Nahuatl",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Uto-Aztecan language of Mexico. ISO 639-5: nai."
+  },
+  {
+    "language_code": "ndc",
+    "language_name": "Ndau",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Zimbabwe/Mozambique. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "ngl",
+    "language_name": "Lomwe",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Mozambique/Malawi. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "nhe",
+    "language_name": "Eastern Huasteca Nahuatl",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Uto-Aztecan language of Mexico. ISO 639-5: nai."
+  },
+  {
+    "language_code": "nhw",
+    "language_name": "Western Huasteca Nahuatl",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Uto-Aztecan language of Mexico. ISO 639-5: nai."
+  },
+  {
+    "language_code": "nia",
+    "language_name": "Nias",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of North Sumatra. ISO 639-5: map."
+  },
+  {
+    "language_code": "nij",
+    "language_name": "Ngaju",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Central Kalimantan. ISO 639-5: map."
+  },
+  {
+    "language_code": "niu",
+    "language_name": "Niuean",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Polynesian language of Niue. ISO 639-5: map."
+  },
+  {
+    "language_code": "njo",
+    "language_name": "Ao Naga",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Nagaland, India. ISO 639-5: sit."
+  },
+  {
+    "language_code": "nmg",
+    "language_name": "Kwasio",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "nnh",
+    "language_name": "Ngiemboon",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "nod",
+    "language_name": "Northern Thai",
+    "iso639_5": "tai",
+    "family_name": "Tai languages",
+    "rationale": "Tai-Kadai language of northern Thailand (Kham Mueang). ISO 639-5: tai."
+  },
+  {
+    "language_code": "noe",
+    "language_name": "Nimadi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Madhya Pradesh/Rajasthan. ISO 639-5: inc."
+  },
+  {
+    "language_code": "nog",
+    "language_name": "Nogai",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Kypchak Turkic language of the North Caucasus steppe. ISO 639-5: trk."
+  },
+  {
+    "language_code": "non",
+    "language_name": "Old Norse",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "North Germanic language of the Viking Age. ISO 639-5: gem."
+  },
+  {
+    "language_code": "nov",
+    "language_name": "Novial",
+    "iso639_5": "art",
+    "family_name": "Artificial languages",
+    "rationale": "Constructed international auxiliary language by Otto Jespersen. ISO 639-5: art."
+  },
+  {
+    "language_code": "nqo",
+    "language_name": "NKo",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande language (N'Ko script). ISO 639-5: nic."
+  },
+  {
+    "language_code": "nsk",
+    "language_name": "Naskapi",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Quebec/Labrador. ISO 639-5: alg."
+  },
+  {
+    "language_code": "nus",
+    "language_name": "Nuer",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of South Sudan. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "nwc",
+    "language_name": "Classical Newari",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Classical form of Newari, a Tibeto-Burman language. ISO 639-5: sit."
+  },
+  {
+    "language_code": "nxq",
+    "language_name": "Naxi",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Yunnan. ISO 639-5: sit."
+  },
+  {
+    "language_code": "nym",
+    "language_name": "Nyamwezi",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "nyn",
+    "language_name": "Nyankole",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Uganda. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "nyo",
+    "language_name": "Nyoro",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Uganda. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "nzi",
+    "language_name": "Nzima",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Kwa Niger-Congo language of Ghana/Côte d'Ivoire. ISO 639-5: nic."
+  },
+  {
+    "language_code": "ojb",
+    "language_name": "Northwestern Ojibwa",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Manitoba/Ontario. ISO 639-5: alg."
+  },
+  {
+    "language_code": "ojc",
+    "language_name": "Central Ojibwa",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Ontario. ISO 639-5: alg."
+  },
+  {
+    "language_code": "ojg",
+    "language_name": "Eastern Ojibwa",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Ontario. ISO 639-5: alg."
+  },
+  {
+    "language_code": "ojs",
+    "language_name": "Oji-Cree",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Mixed Oji-Cree Algonquian language. ISO 639-5: alg."
+  },
+  {
+    "language_code": "ojw",
+    "language_name": "Western Ojibwa",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of Manitoba. ISO 639-5: alg."
+  },
+  {
+    "language_code": "oka",
+    "language_name": "Okanagan",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Salishan language of the Okanagan Valley. ISO 639-5: nai."
+  },
+  {
+    "language_code": "osa",
+    "language_name": "Osage",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Siouan language of Oklahoma. ISO 639-5: nai."
+  },
+  {
+    "language_code": "osc",
+    "language_name": "Oscan",
+    "iso639_5": "ine",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Italic Indo-European language of ancient Italy. ISO 639-5: ine."
+  },
+  {
+    "language_code": "ota",
+    "language_name": "Ottoman Turkish",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Historical form of Turkish used in the Ottoman Empire. ISO 639-5: trk."
+  },
+  {
+    "language_code": "otk",
+    "language_name": "Old Turkish",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Earliest attested Turkic language (Orkhon inscriptions). ISO 639-5: trk."
+  },
+  {
+    "language_code": "pal",
+    "language_name": "Pahlavi",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Middle Iranian language; liturgical language of Zoroastrianism. ISO 639-5: ira."
+  },
+  {
+    "language_code": "pau",
+    "language_name": "Palauan",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Palau. ISO 639-5: map."
+  },
+  {
+    "language_code": "pcd",
+    "language_name": "Picard",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Oïl Romance language of northern France and Belgium. ISO 639-5: roa."
+  },
+  {
+    "language_code": "pcm",
+    "language_name": "Nigerian Pidgin",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "English-based pidgin/creole of Nigeria. ISO 639-5: crp."
+  },
+  {
+    "language_code": "pdt",
+    "language_name": "Plautdietsch",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Low German dialect spoken by Mennonites. ISO 639-5: gem."
+  },
+  {
+    "language_code": "peo",
+    "language_name": "Old Persian",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Ancient Southwest Iranian language of the Achaemenid Empire. ISO 639-5: ira."
+  },
+  {
+    "language_code": "pfl",
+    "language_name": "Palatine German",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Central German dialect of the Palatinate region. ISO 639-5: gem."
+  },
+  {
+    "language_code": "phn",
+    "language_name": "Phoenician",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Extinct Northwest Semitic language of the ancient Levant. ISO 639-5: sem."
+  },
+  {
+    "language_code": "pis",
+    "language_name": "Pijin",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "English-based creole of the Solomon Islands. ISO 639-5: crp."
+  },
+  {
+    "language_code": "pko",
+    "language_name": "Pökoot",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of Kenya/Uganda. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "pnt",
+    "language_name": "Pontic",
+    "iso639_5": "grk",
+    "family_name": "Indo-European languages",
+    "rationale": "Greek dialect of the Pontus region (Black Sea coast). ISO 639-5: grk."
+  },
+  {
+    "language_code": "pon",
+    "language_name": "Pohnpeian",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Oceanic Austronesian language of Pohnpei, Micronesia. ISO 639-5: map."
+  },
+  {
+    "language_code": "pqm",
+    "language_name": "Maliseet-Passamaquoddy",
+    "iso639_5": "alg",
+    "family_name": "North American Indian languages",
+    "rationale": "Algonquian language of New Brunswick/Maine. ISO 639-5: alg."
+  },
+  {
+    "language_code": "prd",
+    "language_name": "Parsi-Dari",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Iranian variety spoken by Zoroastrians in Yazd and Kerman. ISO 639-5: ira."
+  },
+  {
+    "language_code": "prg",
+    "language_name": "Prussian",
+    "iso639_5": "bat",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Baltic IE language of Old Prussia. ISO 639-5: bat."
+  },
+  {
+    "language_code": "pro",
+    "language_name": "Old Provençal",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Medieval Occitan language of southern France. ISO 639-5: roa."
+  },
+  {
+    "language_code": "puu",
+    "language_name": "Punu",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Gabon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "quc",
+    "language_name": "Kiche",
+    "iso639_5": "cai",
+    "family_name": "Central American Indian languages",
+    "rationale": "Mayan language of Guatemala. ISO 639-5: cai."
+  },
+  {
+    "language_code": "qug",
+    "language_name": "Chimborazo Highland Quichua",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Quechuan language of Ecuador. ISO 639-5: sai."
+  },
+  {
+    "language_code": "raj",
+    "language_name": "Rajasthani",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language group of Rajasthan. ISO 639-5: inc."
+  },
+  {
+    "language_code": "rap",
+    "language_name": "Rapanui",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Polynesian language (reassigned above to map)."
+  },
+  {
+    "language_code": "rar",
+    "language_name": "Rarotongan",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Polynesian language of the Cook Islands. ISO 639-5: map."
+  },
+  {
+    "language_code": "rcf",
+    "language_name": "Réunion Creole French",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "French-based creole of Réunion. ISO 639-5: crp."
+  },
+  {
+    "language_code": "rej",
+    "language_name": "Rejang",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Bengkulu, Sumatra. ISO 639-5: map."
+  },
+  {
+    "language_code": "rgn",
+    "language_name": "Romagnol",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Gallo-Italic Romance language of Romagna. ISO 639-5: roa."
+  },
+  {
+    "language_code": "rhg",
+    "language_name": "Rohingya",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Rohingya people. ISO 639-5: inc."
+  },
+  {
+    "language_code": "ria",
+    "language_name": "Riang India",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Tripura/Assam. ISO 639-5: sit."
+  },
+  {
+    "language_code": "rif",
+    "language_name": "Riffian",
+    "iso639_5": "ber",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Berber language of northern Morocco. ISO 639-5: ber."
+  },
+  {
+    "language_code": "rjs",
+    "language_name": "Rajbanshi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Terai. ISO 639-5: inc."
+  },
+  {
+    "language_code": "rkt",
+    "language_name": "Rangpuri",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of West Bengal and Bangladesh. ISO 639-5: inc."
+  },
+  {
+    "language_code": "rmf",
+    "language_name": "Kalo Finnish Romani",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan (Romani) language spoken in Finland. ISO 639-5: inc."
+  },
+  {
+    "language_code": "rmo",
+    "language_name": "Sinte Romani",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan (Romani) language. ISO 639-5: inc."
+  },
+  {
+    "language_code": "rmt",
+    "language_name": "Domari",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Dom people (Middle East). ISO 639-5: ira (some debate; inc also used)."
+  },
+  {
+    "language_code": "rmu",
+    "language_name": "Tavringer Romani",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan (Romani) language of Scandinavia. ISO 639-5: inc."
+  },
+  {
+    "language_code": "rng",
+    "language_name": "Ronga",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Mozambique. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "rob",
+    "language_name": "Tae'",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of South Sulawesi. ISO 639-5: map."
+  },
+  {
+    "language_code": "rof",
+    "language_name": "Rombo",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "rom",
+    "language_name": "Romany",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of the Romani people. ISO 639-5: inc."
+  },
+  {
+    "language_code": "rtm",
+    "language_name": "Rotuman",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Polynesian language of Rotuma Island, Fiji. ISO 639-5: map."
+  },
+  {
+    "language_code": "rue",
+    "language_name": "Rusyn",
+    "iso639_5": "sla",
+    "family_name": "Indo-European languages",
+    "rationale": "East Slavic language of the Carpathian region. ISO 639-5: sla."
+  },
+  {
+    "language_code": "rug",
+    "language_name": "Roviana",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Oceanic Austronesian language of the Solomon Islands. ISO 639-5: map."
+  },
+  {
+    "language_code": "rup",
+    "language_name": "Aromanian",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Romance language spoken in the Balkans. ISO 639-5: roa."
+  },
+  {
+    "language_code": "rwk",
+    "language_name": "Rwa",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "ryu",
+    "language_name": "Central Okinawan",
+    "iso639_5": "jpx",
+    "family_name": "Japanese languages",
+    "rationale": "Ryukyuan language closely related to Japanese. ISO 639-5: jpx."
+  },
+  {
+    "language_code": "sad",
+    "language_name": "Sandawe",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate (proposed Khoisan link unconfirmed) of Tanzania. No ISO 639-5 code."
+  },
+  {
+    "language_code": "saf",
+    "language_name": "Safaliba",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Gur Niger-Congo language of Ghana. ISO 639-5: nic."
+  },
+  {
+    "language_code": "sah",
+    "language_name": "Yakut",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Siberian Turkic language of the Sakha Republic. ISO 639-5: trk."
+  },
+  {
+    "language_code": "sam",
+    "language_name": "Samaritan Aramaic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Aramaic variety of the Samaritan community. ISO 639-5: sem."
+  },
+  {
+    "language_code": "saq",
+    "language_name": "Samburu",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of Kenya. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "sas",
+    "language_name": "Sasak",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Lombok. ISO 639-5: map."
+  },
+  {
+    "language_code": "sat",
+    "language_name": "Santali",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Munda) language of eastern India. ISO 639-5: aav."
+  },
+  {
+    "language_code": "saz",
+    "language_name": "Saurashtra",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Gujarat/Tamil Nadu. ISO 639-5: inc."
+  },
+  {
+    "language_code": "sba",
+    "language_name": "Ngambay",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Central Sudanic Nilo-Saharan language of Chad. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "sbp",
+    "language_name": "Sangu",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "sck",
+    "language_name": "Sadri",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Indo-Aryan language of Jharkhand. ISO 639-5: inc."
+  },
+  {
+    "language_code": "scs",
+    "language_name": "North Slavey",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of the Northwest Territories. ISO 639-5: nai."
+  },
+  {
+    "language_code": "sdc",
+    "language_name": "Sassarese Sardinian",
+    "iso639_5": "roa",
+    "family_name": "Indo-European languages",
+    "rationale": "Sardinian Romance language of northern Sardinia. ISO 639-5: roa."
+  },
+  {
+    "language_code": "sdh",
+    "language_name": "Southern Kurdish",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Southern branch of Kurdish, a Northwestern Iranian language. ISO 639-5: ira."
+  },
+  {
+    "language_code": "see",
+    "language_name": "Seneca",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Iroquoian language of New York. ISO 639-5: nai."
+  },
+  {
+    "language_code": "sef",
+    "language_name": "Cebaara Senoufo",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Gur (Senufo) Niger-Congo language of Côte d'Ivoire. ISO 639-5: nic."
+  },
+  {
+    "language_code": "seh",
+    "language_name": "Sena",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Mozambique. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "sei",
+    "language_name": "Seri",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of coastal Sonora, Mexico. No ISO 639-5 code."
+  },
+  {
+    "language_code": "sel",
+    "language_name": "Selkup",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Samoyedic Uralic language of western Siberia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "ses",
+    "language_name": "Koyraboro Senni",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Songhay Nilo-Saharan language of Mali. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "sga",
+    "language_name": "Old Irish",
+    "iso639_5": "cel",
+    "family_name": "Indo-European languages",
+    "rationale": "Earliest attested form of the Irish language (600–900 CE). ISO 639-5: cel."
+  },
+  {
+    "language_code": "sgs",
+    "language_name": "Samogitian",
+    "iso639_5": "bat",
+    "family_name": "Indo-European languages",
+    "rationale": "Baltic Indo-European dialect of Lithuania. ISO 639-5: bat."
+  },
+  {
+    "language_code": "shi",
+    "language_name": "Tachelhit",
+    "iso639_5": "ber",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Berber language of the Souss-Massa region. ISO 639-5: ber."
+  },
+  {
+    "language_code": "shn",
+    "language_name": "Shan",
+    "iso639_5": "tai",
+    "family_name": "Tai languages",
+    "rationale": "Tai-Kadai language of Myanmar and Yunnan. ISO 639-5: tai."
+  },
+  {
+    "language_code": "shu",
+    "language_name": "Chadian Arabic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Central Arabic variety of Chad/Sudan. ISO 639-5: sem."
+  },
+  {
+    "language_code": "sid",
+    "language_name": "Sidamo",
+    "iso639_5": "cus",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Highland East Cushitic language of Ethiopia. ISO 639-5: cus."
+  },
+  {
+    "language_code": "skr",
+    "language_name": "Saraiki",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of southern Punjab, Pakistan. ISO 639-5: inc."
+  },
+  {
+    "language_code": "slh",
+    "language_name": "Southern Lushootseed",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Salishan language of the Puget Sound. ISO 639-5: nai."
+  },
+  {
+    "language_code": "sli",
+    "language_name": "Lower Silesian",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Central German dialect historically spoken in Silesia. ISO 639-5: gem."
+  },
+  {
+    "language_code": "sly",
+    "language_name": "Selayar",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Selayar Island. ISO 639-5: map."
+  },
+  {
+    "language_code": "sma",
+    "language_name": "Southern Sami",
+    "iso639_5": "smi",
+    "family_name": "Uralic languages",
+    "rationale": "Sami language of central Scandinavia. ISO 639-5: smi."
+  },
+  {
+    "language_code": "smj",
+    "language_name": "Lule Sami",
+    "iso639_5": "smi",
+    "family_name": "Uralic languages",
+    "rationale": "Sami language of northern Sweden/Norway. ISO 639-5: smi."
+  },
+  {
+    "language_code": "smn",
+    "language_name": "Inari Sami",
+    "iso639_5": "smi",
+    "family_name": "Uralic languages",
+    "rationale": "Sami language of the Inari region, Finland. ISO 639-5: smi."
+  },
+  {
+    "language_code": "smp",
+    "language_name": "Samaritan",
+    "iso639_5": "art",
+    "family_name": "Artificial languages",
+    "rationale": "Not a spoken language per se; Samaritan script tradition. ISO 639-5: art."
+  },
+  {
+    "language_code": "sms",
+    "language_name": "Skolt Sami",
+    "iso639_5": "smi",
+    "family_name": "Uralic languages",
+    "rationale": "Sami language of Finland, Russia, and Norway. ISO 639-5: smi."
+  },
+  {
+    "language_code": "snk",
+    "language_name": "Soninke",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of West Africa. ISO 639-5: nic."
+  },
+  {
+    "language_code": "sog",
+    "language_name": "Sogdian",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Ancient Eastern Middle Iranian language of Sogdia. ISO 639-5: ira."
+  },
+  {
+    "language_code": "sou",
+    "language_name": "Southern Thai",
+    "iso639_5": "tai",
+    "family_name": "Tai languages",
+    "rationale": "Tai-Kadai language of peninsular Thailand. ISO 639-5: tai."
+  },
+  {
+    "language_code": "srb",
+    "language_name": "Sora",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Munda) language of Odisha. ISO 639-5: aav."
+  },
+  {
+    "language_code": "srn",
+    "language_name": "Sranan Tongo",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "English-based creole of Suriname. ISO 639-5: crp."
+  },
+  {
+    "language_code": "srr",
+    "language_name": "Serer",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Atlantic Niger-Congo language of Senegal/Gambia. ISO 639-5: nic."
+  },
+  {
+    "language_code": "srx",
+    "language_name": "Sirmauri",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Pahari Indo-Aryan language of Himachal Pradesh. ISO 639-5: inc."
+  },
+  {
+    "language_code": "ssy",
+    "language_name": "Saho",
+    "iso639_5": "cus",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Cushitic language of Eritrea/Ethiopia. ISO 639-5: cus."
+  },
+  {
+    "language_code": "stq",
+    "language_name": "Saterland Frisian",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "West Germanic Frisian language of Lower Saxony. ISO 639-5: gem."
+  },
+  {
+    "language_code": "str",
+    "language_name": "Straits Salish",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Salishan language of the Gulf Islands. ISO 639-5: nai."
+  },
+  {
+    "language_code": "suk",
+    "language_name": "Sukuma",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "sus",
+    "language_name": "Susu",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Guinea. ISO 639-5: nic."
+  },
+  {
+    "language_code": "sux",
+    "language_name": "Sumerian",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of ancient Mesopotamia. No ISO 639-5 code."
+  },
+  {
+    "language_code": "swb",
+    "language_name": "Comorian",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of the Comoros. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "swg",
+    "language_name": "Swabian",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Alemannic German dialect of Swabia. ISO 639-5: gem."
+  },
+  {
+    "language_code": "swv",
+    "language_name": "Shekhawati",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Rajasthani dialect of Shekhawati region. ISO 639-5: inc."
+  },
+  {
+    "language_code": "sxn",
+    "language_name": "Sangir",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Malayo-Polynesian language of Sangihe Islands. ISO 639-5: map."
+  },
+  {
+    "language_code": "syc",
+    "language_name": "Classical Syriac",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Literary Aramaic Semitic language. ISO 639-5: sem."
+  },
+  {
+    "language_code": "syi",
+    "language_name": "Seki",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon/Gabon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "syl",
+    "language_name": "Sylheti",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Eastern Indo-Aryan language of the Sylhet region. ISO 639-5: inc."
+  },
+  {
+    "language_code": "syr",
+    "language_name": "Syriac",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Aramaic Semitic language of the Middle East. ISO 639-5: sem."
+  },
+  {
+    "language_code": "szl",
+    "language_name": "Silesian",
+    "iso639_5": "sla",
+    "family_name": "Indo-European languages",
+    "rationale": "West Slavic language of Upper Silesia (reassigned below to sla)."
+  },
+  {
+    "language_code": "tab",
+    "language_name": "Tabassaran",
+    "iso639_5": "ccn",
+    "family_name": "Caucasian languages",
+    "rationale": "Northeast Caucasian (Lezgic) language of Dagestan. ISO 639-5: ccn."
+  },
+  {
+    "language_code": "taj",
+    "language_name": "Eastern Tamang",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Nepal. ISO 639-5: sit."
+  },
+  {
+    "language_code": "tbw",
+    "language_name": "Tagbanwa",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of Palawan. ISO 639-5: map."
+  },
+  {
+    "language_code": "tce",
+    "language_name": "Southern Tutchone",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of the Yukon. ISO 639-5: nai."
+  },
+  {
+    "language_code": "tcy",
+    "language_name": "Tulu",
+    "iso639_5": "dra",
+    "family_name": "Dravidian languages",
+    "rationale": "Dravidian language of coastal Karnataka. ISO 639-5: dra."
+  },
+  {
+    "language_code": "tdd",
+    "language_name": "Tai Nüa",
+    "iso639_5": "tai",
+    "family_name": "Tai languages",
+    "rationale": "Tai-Kadai language of Yunnan and Myanmar. ISO 639-5: tai."
+  },
+  {
+    "language_code": "tdg",
+    "language_name": "Western Tamang",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Nepal. ISO 639-5: sit."
+  },
+  {
+    "language_code": "tdh",
+    "language_name": "Thulung",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Kiranti Tibeto-Burman language of Nepal. ISO 639-5: sit."
+  },
+  {
+    "language_code": "tem",
+    "language_name": "Timne",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Atlantic Niger-Congo language of Sierra Leone. ISO 639-5: nic."
+  },
+  {
+    "language_code": "teo",
+    "language_name": "Teso",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Nilotic language of Uganda/Kenya. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "ter",
+    "language_name": "Tereno",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Arawakan language of Mato Grosso do Sul, Brazil. ISO 639-5: sai."
+  },
+  {
+    "language_code": "tgx",
+    "language_name": "Tagish",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of the southern Yukon. ISO 639-5: nai."
+  },
+  {
+    "language_code": "thl",
+    "language_name": "Dangaura Tharu",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Nepal's Terai. ISO 639-5: inc."
+  },
+  {
+    "language_code": "thq",
+    "language_name": "Kochila Tharu",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Nepal's Terai. ISO 639-5: inc."
+  },
+  {
+    "language_code": "thr",
+    "language_name": "Rana Tharu",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Nepal's Terai. ISO 639-5: inc."
+  },
+  {
+    "language_code": "tht",
+    "language_name": "Tahltan",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of northern British Columbia. ISO 639-5: nai."
+  },
+  {
+    "language_code": "tig",
+    "language_name": "Tigre",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Semitic language of Eritrea. ISO 639-5: sem."
+  },
+  {
+    "language_code": "tiv",
+    "language_name": "Tiv",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Benue-Congo Niger-Congo language of Nigeria/Cameroon. ISO 639-5: nic."
+  },
+  {
+    "language_code": "tkl",
+    "language_name": "Tokelau",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Polynesian language of Tokelau. ISO 639-5: map."
+  },
+  {
+    "language_code": "tkr",
+    "language_name": "Tsakhur",
+    "iso639_5": "ccn",
+    "family_name": "Caucasian languages",
+    "rationale": "Northeast Caucasian (Lezgic) language. ISO 639-5: ccn."
+  },
+  {
+    "language_code": "tkt",
+    "language_name": "Kathoriya Tharu",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Nepal's Terai. ISO 639-5: inc."
+  },
+  {
+    "language_code": "tli",
+    "language_name": "Tlingit",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Na-Dene language of Alaska/Yukon. ISO 639-5: nai."
+  },
+  {
+    "language_code": "tly",
+    "language_name": "Talysh",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Northwestern Iranian language of the South Caucasus / northern Iran. ISO 639-5: ira."
+  },
+  {
+    "language_code": "tmh",
+    "language_name": "Tamashek",
+    "iso639_5": "ber",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Tuareg Berber language of the Sahara. ISO 639-5: ber."
+  },
+  {
+    "language_code": "tog",
+    "language_name": "Nyasa Tonga",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Malawi/Mozambique. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "tok",
+    "language_name": "Toki Pona",
+    "iso639_5": "art",
+    "family_name": "Artificial languages",
+    "rationale": "Constructed minimalist language. ISO 639-5: art."
+  },
+  {
+    "language_code": "tru",
+    "language_name": "Turoyo",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Eastern Aramaic Semitic language of southeastern Turkey. ISO 639-5: sem."
+  },
+  {
+    "language_code": "trv",
+    "language_name": "Taroko",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Formosan Austronesian language of Taiwan. ISO 639-5: map."
+  },
+  {
+    "language_code": "trw",
+    "language_name": "Torwali",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Dardic Indo-Aryan language of the Swat Valley. ISO 639-5: inc."
+  },
+  {
+    "language_code": "tsd",
+    "language_name": "Tsakonian",
+    "iso639_5": "grk",
+    "family_name": "Indo-European languages",
+    "rationale": "Greek dialect isolate descending from Doric Greek. ISO 639-5: grk."
+  },
+  {
+    "language_code": "tsg",
+    "language_name": "Tausug",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Philippine language of the Sulu Archipelago. ISO 639-5: map."
+  },
+  {
+    "language_code": "tsi",
+    "language_name": "Tsimshian",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Tsimshianic language of British Columbia. ISO 639-5: nai."
+  },
+  {
+    "language_code": "tsj",
+    "language_name": "Tshangla",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of eastern Bhutan. ISO 639-5: sit."
+  },
+  {
+    "language_code": "ttj",
+    "language_name": "Tooro",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Uganda. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "ttm",
+    "language_name": "Northern Tutchone",
+    "iso639_5": "nai",
+    "family_name": "North American Indian languages",
+    "rationale": "Athabaskan language of the Yukon. ISO 639-5: nai."
+  },
+  {
+    "language_code": "tts",
+    "language_name": "Northeastern Thai",
+    "iso639_5": "tai",
+    "family_name": "Tai languages",
+    "rationale": "Tai-Kadai language (Isan/Lao) of northeastern Thailand. ISO 639-5: tai."
+  },
+  {
+    "language_code": "ttt",
+    "language_name": "Muslim Tat",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Southwest Iranian language of Azerbaijan/Dagestan. ISO 639-5: ira."
+  },
+  {
+    "language_code": "tvl",
+    "language_name": "Tuvalu",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Polynesian language of Tuvalu. ISO 639-5: map."
+  },
+  {
+    "language_code": "twq",
+    "language_name": "Tasawaq",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Songhay Nilo-Saharan language of Niger. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "tyv",
+    "language_name": "Tuvinian",
+    "iso639_5": "trk",
+    "family_name": "Altaic languages",
+    "rationale": "Siberian Turkic language of the Republic of Tuva. ISO 639-5: trk."
+  },
+  {
+    "language_code": "tzm",
+    "language_name": "Central Atlas Tamazight",
+    "iso639_5": "ber",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Berber language of the central High Atlas. ISO 639-5: ber."
+  },
+  {
+    "language_code": "ude",
+    "language_name": "Udihe",
+    "iso639_5": "tut",
+    "family_name": "Altaic languages",
+    "rationale": "Tungusic language of the Russian Far East. ISO 639-5: tut."
+  },
+  {
+    "language_code": "uga",
+    "language_name": "Ugaritic",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Extinct Northwest Semitic language of ancient Ugarit. ISO 639-5: sem."
+  },
+  {
+    "language_code": "uli",
+    "language_name": "Ulithian",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Oceanic Austronesian language of Yap, Micronesia. ISO 639-5: map."
+  },
+  {
+    "language_code": "umb",
+    "language_name": "Umbundu",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Angola. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "unr",
+    "language_name": "Mundari",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Munda) language of eastern India. ISO 639-5: aav."
+  },
+  {
+    "language_code": "unx",
+    "language_name": "Munda",
+    "iso639_5": "aav",
+    "family_name": "Austro-Asiatic languages",
+    "rationale": "Austroasiatic (Munda) language. ISO 639-5: aav."
+  },
+  {
+    "language_code": "vai",
+    "language_name": "Vai",
+    "iso639_5": "nic",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Mande Niger-Congo language of Liberia/Sierra Leone. ISO 639-5: nic."
+  },
+  {
+    "language_code": "vep",
+    "language_name": "Veps",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finnic Uralic language of northwestern Russia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "vic",
+    "language_name": "Virgin Islands Creole English",
+    "iso639_5": "crp",
+    "family_name": "Creoles and pidgins",
+    "rationale": "English-based creole of the US Virgin Islands. ISO 639-5: crp."
+  },
+  {
+    "language_code": "vmf",
+    "language_name": "Main-Franconian",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Central German dialect group of the Main river region. ISO 639-5: gem."
+  },
+  {
+    "language_code": "vmw",
+    "language_name": "Makhuwa",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Mozambique. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "vot",
+    "language_name": "Votic",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finnic Uralic language of the Votic people (nearly extinct). ISO 639-5: fiu."
+  },
+  {
+    "language_code": "vro",
+    "language_name": "Võro",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Finnic Uralic language of southeastern Estonia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "vun",
+    "language_name": "Vunjo",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "wae",
+    "language_name": "Walser",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Alemannic German dialect of the Walser settlements. ISO 639-5: gem."
+  },
+  {
+    "language_code": "was",
+    "language_name": "Washo",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of the Great Basin. No ISO 639-5 code."
+  },
+  {
+    "language_code": "wbp",
+    "language_name": "Warlpiri",
+    "iso639_5": "aus",
+    "family_name": "Australian languages",
+    "rationale": "Australian language of the Ngarrka branch. ISO 639-5: aus."
+  },
+  {
+    "language_code": "wbq",
+    "language_name": "Waddar",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Indo-Aryan language of Andhra Pradesh. ISO 639-5: inc."
+  },
+  {
+    "language_code": "wbr",
+    "language_name": "Wagdi",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Rajasthani dialect spoken in Gujarat/Rajasthan border areas. ISO 639-5: inc."
+  },
+  {
+    "language_code": "wls",
+    "language_name": "Wallisian",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Polynesian language of Wallis Island. ISO 639-5: map."
+  },
+  {
+    "language_code": "wni",
+    "language_name": "Ndzwani Comorian",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Anjouan, Comoros. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "wtm",
+    "language_name": "Mewati",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Western Hindi dialect of Mewat region. ISO 639-5: inc."
+  },
+  {
+    "language_code": "xav",
+    "language_name": "Xavánte",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Macro-Jê (Jêan) language of Mato Grosso, Brazil. ISO 639-5: sai."
+  },
+  {
+    "language_code": "xcr",
+    "language_name": "Carian",
+    "iso639_5": "ine",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Anatolian Indo-European language of southwest Anatolia. ISO 639-5: ine."
+  },
+  {
+    "language_code": "xlc",
+    "language_name": "Lycian",
+    "iso639_5": "ine",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Anatolian Indo-European language of Lycia. ISO 639-5: ine."
+  },
+  {
+    "language_code": "xld",
+    "language_name": "Lydian",
+    "iso639_5": "ine",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Anatolian Indo-European language of Lydia. ISO 639-5: ine."
+  },
+  {
+    "language_code": "xmn",
+    "language_name": "Manichaean Middle Persian",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Middle Iranian language attested in Manichaean texts. ISO 639-5: ira."
+  },
+  {
+    "language_code": "xmr",
+    "language_name": "Meroitic",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language of ancient Nubia; affiliation disputed, treated as isolate. No ISO 639-5 code."
+  },
+  {
+    "language_code": "xna",
+    "language_name": "Ancient North Arabian",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Extinct North Arabian Semitic language group. ISO 639-5: sem."
+  },
+  {
+    "language_code": "xnr",
+    "language_name": "Kangri",
+    "iso639_5": "inc",
+    "family_name": "Indo-European languages",
+    "rationale": "Pahari Indo-Aryan language of Himachal Pradesh. ISO 639-5: inc."
+  },
+  {
+    "language_code": "xog",
+    "language_name": "Soga",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Uganda. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "xpr",
+    "language_name": "Parthian",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Northwest Iranian language of the Parthian Empire. ISO 639-5: ira."
+  },
+  {
+    "language_code": "xsa",
+    "language_name": "Sabaean",
+    "iso639_5": "sem",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Extinct South Semitic language of ancient Yemen. ISO 639-5: sem."
+  },
+  {
+    "language_code": "xsr",
+    "language_name": "Sherpa",
+    "iso639_5": "sit",
+    "family_name": "Sino-Tibetan languages",
+    "rationale": "Tibeto-Burman language of Nepal/Tibet. ISO 639-5: sit."
+  },
+  {
+    "language_code": "xum",
+    "language_name": "Umbrian",
+    "iso639_5": "ine",
+    "family_name": "Indo-European languages",
+    "rationale": "Extinct Italic Indo-European language of ancient Umbria. ISO 639-5: ine."
+  },
+  {
+    "language_code": "yao",
+    "language_name": "Yao",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Malawi/Mozambique/Tanzania. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "yap",
+    "language_name": "Yapese",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Austronesian language of Yap, Micronesia. ISO 639-5: map."
+  },
+  {
+    "language_code": "yav",
+    "language_name": "Yangben",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "ybb",
+    "language_name": "Yemba",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Cameroon. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "yrk",
+    "language_name": "Nenets",
+    "iso639_5": "fiu",
+    "family_name": "Uralic languages",
+    "rationale": "Samoyedic Uralic language of Arctic Russia. ISO 639-5: fiu."
+  },
+  {
+    "language_code": "yrl",
+    "language_name": "Nheengatu",
+    "iso639_5": "sai",
+    "family_name": "South American Indian languages",
+    "rationale": "Tupian lingua franca of the Amazon basin. ISO 639-5: sai."
+  },
+  {
+    "language_code": "yua",
+    "language_name": "Yucateco",
+    "iso639_5": "cai",
+    "family_name": "Central American Indian languages",
+    "rationale": "Mayan language of the Yucatán Peninsula. ISO 639-5: cai."
+  },
+  {
+    "language_code": "zag",
+    "language_name": "Zaghawa",
+    "iso639_5": "ssa",
+    "family_name": "Nilo-Saharan languages",
+    "rationale": "Saharan Nilo-Saharan language of Sudan/Chad. ISO 639-5: ssa."
+  },
+  {
+    "language_code": "zap",
+    "language_name": "Zapotec",
+    "iso639_5": "cai",
+    "family_name": "Central American Indian languages",
+    "rationale": "Oto-Manguean language family of Oaxaca. ISO 639-5: cai."
+  },
+  {
+    "language_code": "zbl",
+    "language_name": "Blissymbols",
+    "iso639_5": "art",
+    "family_name": "Artificial languages",
+    "rationale": "Graphical symbol-based communication system. ISO 639-5: art."
+  },
+  {
+    "language_code": "zdj",
+    "language_name": "Ngazidja Comorian",
+    "iso639_5": "bnt",
+    "family_name": "Niger-Kordofanian languages",
+    "rationale": "Bantu language of Grande Comore. ISO 639-5: bnt."
+  },
+  {
+    "language_code": "zea",
+    "language_name": "Zeelandic",
+    "iso639_5": "gem",
+    "family_name": "Indo-European languages",
+    "rationale": "Low Franconian Germanic dialect of Zeeland. ISO 639-5: gem."
+  },
+  {
+    "language_code": "zen",
+    "language_name": "Zenaga",
+    "iso639_5": "ber",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Berber language of Mauritania. ISO 639-5: ber."
+  },
+  {
+    "language_code": "zgh",
+    "language_name": "Standard Moroccan Tamazight",
+    "iso639_5": "ber",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Standardized Berber language of Morocco. ISO 639-5: ber."
+  },
+  {
+    "language_code": "zmi",
+    "language_name": "Negeri Sembilan Malay",
+    "iso639_5": "map",
+    "family_name": "Austronesian languages",
+    "rationale": "Austronesian language of Negeri Sembilan, Malaysia. ISO 639-5: map."
+  },
+  {
+    "language_code": "zun",
+    "language_name": "Zuni",
+    "iso639_5": null,
+    "family_name": "Language isolate",
+    "rationale": "Language isolate of New Mexico. No ISO 639-5 code."
+  },
+  {
+    "language_code": "zza",
+    "language_name": "Zaza",
+    "iso639_5": "ira",
+    "family_name": "Indo-European languages",
+    "rationale": "Northwestern Iranian (Zaza-Gorani) language of eastern Turkey. ISO 639-5: ira."
+  }
+]

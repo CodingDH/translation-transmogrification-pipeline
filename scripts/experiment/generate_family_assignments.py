@@ -16,7 +16,7 @@ import os
 # Paths
 # ---------------------------------------------------------------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-JSON_PATH = os.path.join(BASE_DIR, "scripts", "experiment", "language_family_assignments.json")
+JSON_PATH = os.path.join(BASE_DIR, "datasets", "metadata_files", "language_family_assignments.json")
 CSV_PATH  = os.path.join(BASE_DIR, "datasets", "metadata_files", "language_codes_comprehensive.csv")
 
 # ---------------------------------------------------------------------------

@@ -830,6 +830,7 @@ def add_family_info(comp_df: pd.DataFrame, set5_df: pd.DataFrame,
     # Load JSON fallback (codes not covered by MANUAL_LANG_TO_SET5)
     if fallback_json is None:
         fallback_json = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                     '..', '..', 'datasets', 'metadata_files',
                                      'language_family_assignments.json')
     json_fallback: dict = {}
     if os.path.exists(fallback_json):
@@ -929,6 +930,7 @@ def load_language_codes(output_dir: str = None) -> pd.DataFrame:
     # authoritative source; the JSON family_name string is only used for codes that have
     # no ISO 639-5 entry (isolates, undeciphered scripts, etc.).
     json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             '..', '..', 'datasets', 'metadata_files',
                              'language_family_assignments.json')
     if os.path.exists(json_path):
         import json as _json

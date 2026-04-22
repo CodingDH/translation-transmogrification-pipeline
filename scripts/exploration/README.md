@@ -41,7 +41,7 @@ python explore_confidence_within_variant.py --variants minimal expert_persona
 
 ### `explore_confidence_across_variants.py` — Step 2: Cross-variant prompt robustness
 
-For each (language × service), compares translations across all five prompt variants. Measures whether a given LLM gives the same answer regardless of how it was asked.
+For each (language × service), compares translations across the four prompt variants. Measures whether a given LLM gives the same answer regardless of how it was asked.
 
 - **Question**: "Does the same LLM produce the same translation for 'expert_persona' and 'minimal'?"
 - **Input**: `translated_terms/{term}/prompt_services/` for each variant
@@ -51,22 +51,23 @@ Agreement rate = fraction of variants that produced the same translation for a g
 
 ```bash
 python explore_confidence_across_variants.py --term "Digital Humanities"
-python explore_confidence_across_variants.py --variants minimal comparative expert_persona
+python explore_confidence_across_variants.py --variants minimal expert_persona native_rationale
 ```
 
 ---
 
 ### `explore_disagreements.py` — Step 3: Disagreement typology
 
-Classifies each language into one of four disagreement categories using string matching on translations and rationale text:
+Classifies each language into one of six disagreement categories using string matching on translations and rationale text:
 
 | Category | Description |
 | --- | --- |
-| `NOT_APPLICABLE` | Only one service produced data — no disagreement possible |
-| `MEASUREMENT_ARTEFACT` | Services agree after normalization (capitalization/whitespace only) |
-| `PRODUCTIVE_DISAGREEMENT` | Wikipedia coverage exists; services debate between coexisting community terms |
-| `STRUCTURAL_ABSENCE` | No established equivalent; services borrow the source term directly |
 | `TRANSMOGRIFICATION` | No established equivalent; services construct elaborate novel terms |
+| `STRUCTURAL_ABSENCE` | No established equivalent; services borrow the source term directly |
+| `PRODUCTIVE_DISAGREEMENT` | Wikipedia coverage exists; services debate between coexisting community terms |
+| `MEASUREMENT_ARTEFACT` | Services agree after normalization (capitalization/whitespace only) |
+| `NOT_APPLICABLE` | Only one service produced data — no disagreement possible |
+| `CONSENSUS` | All services agree on the same translation without normalization |
 
 - **Input**: `translated_terms/{term}/evaluation/across_variant_detail.csv` + variant DataFrames (for rationale columns)
 - **Output**: `translated_terms/{term}/evaluation/disagreement_analysis.csv`

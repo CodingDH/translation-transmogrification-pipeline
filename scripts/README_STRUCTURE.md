@@ -4,6 +4,7 @@
 scripts/
 ├── experiment/                              # Active translation pipeline
 │   ├── generate_language_codes.py           # Builds language_codes_comprehensive.csv
+│   ├── generate_family_assignments.py       # Generated datasets/metadata_files/language_family_assignments.json (one-time)
 │   ├── generate_translations.py             # Main orchestrator
 │   ├── generate_translation_prompts.py      # Prompt variant testing runner
 │   ├── translation_prompts.py               # Prompt templates (4 variants: minimal, expert_persona, native_rationale, judge)
@@ -13,6 +14,10 @@ scripts/
 │   └── README.md
 │
 ├── exploration/                             # Analysis and disagreement exploration
+│   ├── explore_confidence_within_variant.py # Step 1: within-variant LLM agreement
+│   ├── explore_confidence_across_variants.py# Step 2: cross-variant prompt robustness
+│   ├── explore_disagreements.py             # Step 3: disagreement typology classification
+│   ├── build_disagreement_explorer_data.py  # Builds CSV for the HTML disagreement explorer
 │   └── README.md
 │
 ├── utils.py                                 # Shared utilities

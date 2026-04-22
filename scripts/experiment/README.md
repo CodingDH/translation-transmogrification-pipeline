@@ -31,6 +31,18 @@ Output is written to `{DATA_DIR}/metadata_files/`:
 
 ---
 
+### `generate_family_assignments.py`
+
+One-time generator that produced `datasets/metadata_files/language_family_assignments.json` — the JSON fallback used by `load_language_codes()` for the ~610 language codes not covered by `MANUAL_LANG_TO_SET5`. Each entry records a `language_code`, `family_name`, and `iso639_5` code where applicable, along with a brief rationale.
+
+This script is **not part of the active pipeline** — it ran once and the JSON is committed. It is kept as the authoritative source for the family assignment decisions: if you ever need to add or revise assignments (e.g. after expanding the language list), edit the `ASSIGNMENTS` dict here and re-run to regenerate the JSON.
+
+```bash
+python generate_family_assignments.py
+```
+
+---
+
 ### `generate_translations.py`
 
 Main pipeline orchestrator. Loops over target terms and runs all enabled translation services, returning three DataFrames: raw translations, processed/verified translations, and grouped-by-term summaries.
