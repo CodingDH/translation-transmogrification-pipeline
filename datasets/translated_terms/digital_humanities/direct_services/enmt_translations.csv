@@ -1,0 +1,858 @@
+language_code,language_name,term_source,enmt_translated_term,term,wikipedia_translated_term,coding_dh_date,exclude_google_cloud_translate,gt_translated_term,exclude_easynmt,family_name
+en,English,Digital Humanities,,Digital Humanities,digital humanities,2026-04-18 19:13:11,False,Digital Humanities,True,Indo-European languages
+sl,Slovene,Digital Humanities,,Digitalna humanistika,Digitalna humanistika,2026-04-18 19:13:11,False,Digitalna humanistika,True,Indo-European languages
+sh,Serbo-Croatian,Digital Humanities,,Дигиталне хуманистичке науке,Digitalne humanističke nauke,2026-04-18 19:13:11,False,,True,Indo-European languages
+zu,Zulu,Digital Humanities,,,Ezezibhangqiwe zoLuntu,2026-04-18 19:13:11,False,I-Digital Humanities,True,Niger-Kordofanian languages
+tr,Turkish,Digital Humanities,,,Dijital beşeri bilimler,2026-04-18 19:13:11,False,Dijital Beşeri Bilimler,True,Altaic languages
+th,Thai,Digital Humanities,,มนุษยศาสตร์ดิจิทัล,มนุษยศาสตร์ดิจิทัล,2026-04-18 19:13:11,False,มนุษยศาสตร์ดิจิทัล,True,Tai languages
+ta,Tamil,Digital Humanities,,எண்ணிம மனிதவியல்,எண்ணிம மனிதவியல்,2026-04-18 19:13:11,False,டிஜிட்டல் மானுடவியல்,True,Dravidian languages
+sr,Serbian,Digital Humanities,,,Дигитална хуманистика,2026-04-18 19:13:11,False,Дигиталне хуманистичке науке,True,Indo-European languages
+fa,Persian,Digital Humanities,,,علوم انسانی دیجیتال,2026-04-18 19:13:11,False,علوم انسانی دیجیتال,True,Indo-European languages
+pt,Portuguese,Digital Humanities,,,Humanidades digitais,2026-04-18 19:13:11,False,Humanidades Digitais,True,Indo-European languages
+pl,Polish,Digital Humanities,,,Humanistyka cyfrowa,2026-04-18 19:13:11,False,Humanistyka cyfrowa,True,Indo-European languages
+lmo,Lombard,Digital Humanities,,,Informatega umanistega,2026-04-18 19:13:11,False,Scienzi umanistich digitai,True,Indo-European languages
+la,Latin,Digital Humanities,,Humanitates digitales,Humanitates digitales,2026-04-18 19:13:11,False,Humanitates Digitales,True,Indo-European languages
+ko,Korean,Digital Humanities,,디지털 인문학,디지털 인문학,2026-04-18 19:13:11,False,디지털 인문학,True,Language isolate
+ja,Japanese,Digital Humanities,,デジタル・ヒューマニティーズ,デジタル・ヒューマニティーズ,2026-04-18 19:13:11,False,デジタルヒューマニティーズ,True,Japanese (family)
+af,Afrikaans,Digital Humanities,Digitale Menslikhede,,,2026-04-19 16:24:26,,,,Indo-European languages
+ar,Arabic,Digital Humanities,العلوم البشرية,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+az,Azerbaijani,Digital Humanities,İnsaniyyətləri,,,2026-04-19 16:24:26,,,,Altaic languages
+bcl,Bikol,Digital Humanities,Mga Pag - eksister nin Tawo,,,2026-04-19 16:24:26,,,,Austronesian languages
+bg,Bulgarian,Digital Humanities,(Средредредредредредредредредредредредредредредредредредредредредредредредредредредредредредредредредредредредредред,,,2026-04-19 16:24:26,,,,Indo-European languages
+bi,Bislama,Digital Humanities,Ol Fasin Blong Man We Oli No Isi,,,2026-04-19 16:24:26,,,,Austronesian languages
+ca,Catalan; Valencian,Digital Humanities,Humanitats digitals,,,2026-04-19 16:24:26,,,,Indo-European languages
+ceb,Cebuano,Digital Humanities,Digital nga mga Tawhanon,,,2026-04-19 16:24:26,,,,Austronesian languages
+cs,Czech,Digital Humanities,Digitální humanity,,,2026-04-19 16:24:26,,,,Indo-European languages
+cy,Welsh,Digital Humanities,"Person UnigolCity name (optional, probably does not need a translation)",,,2026-04-19 16:24:26,,,,Indo-European languages
+da,Danish,Digital Humanities,Digitale humaniora,,,2026-04-19 16:24:26,,,,Indo-European languages
+de,German,Digital Humanities,Digitale Geisteswissenschaften,,,2026-04-19 16:24:26,,,,Indo-European languages
+ee,Ewe,Digital Humanities,Internet Dzi Nu Siwo Gbɔ Míaƒe Ŋutete Ŋu Tsoe,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+el,"Greek, Modern",Digital Humanities,Ψηφιακές Ανθρωπιστικές Επιστήμες,,,2026-04-19 16:24:26,,,,Indo-European languages
+eo,Esperanto,Digital Humanities,Ciferecaj homoj,,,2026-04-19 16:24:26,,,,Artificial languages
+es,Spanish; Castilian,Digital Humanities,Humanidades digitales,,,2026-04-19 16:24:26,,,,Indo-European languages
+et,Estonian,Digital Humanities,Digitaalsed humanitaarteadused,,,2026-04-19 16:24:26,,,,Uralic languages
+eu,Basque,Digital Humanities,Gizatasun digitalak,,,2026-04-19 16:24:26,,,,Basque (family)
+fi,Finnish,Digital Humanities,Digitaaliset humanistiset tieteet,,,2026-04-19 16:24:26,,,,Uralic languages
+fj,Fijian,Digital Humanities,Cata na iTovo ni Tamata,,,2026-04-19 16:24:26,,,,Austronesian languages
+fr,French,Digital Humanities,Humanités numériques,,,2026-04-19 16:24:26,,,,Indo-European languages
+ga,Irish,Digital Humanities,Daonnachtaí Digiteacha,,,2026-04-19 16:24:26,,,,Indo-European languages
+gil,Gilbertese,Digital Humanities,Aroia Aomata n Tokanikai i Aoni Bwaai ni Kabane,,,2026-04-19 16:24:26,,,,Austronesian languages
+gl,Galician,Digital Humanities,Humanos dixitais,,,2026-04-19 16:24:26,,,,Indo-European languages
+gv,Manx,Digital Humanities,Aghtyn mair-chlaa,,,2026-04-19 16:24:26,,,,Indo-European languages
+ha,Hausa,Digital Humanities,KCharselect unicode block name,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+he,Hebrew (modern),Digital Humanities,Humanital Humanities,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+hi,Hindi,Digital Humanities,डिजिटल मानवता,,,2026-04-19 16:24:26,,,,Indo-European languages
+ho,Hiri Motu,Digital Humanities,NOVEMBER 3 - 5,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+ht,Haitian,Digital Humanities,Reflechi sou fason lèzòm pral viv,,,2026-04-19 16:24:26,,,,Indo-European languages
+hu,Hungarian,Digital Humanities,Digitális bölcsészettudományok,,,2026-04-19 16:24:26,,,,Uralic languages
+hy,Armenian,Digital Humanities,Դժբախտ մարդիկ,,,2026-04-19 16:24:26,,,,Indo-European languages
+id,Indonesian,Digital Humanities,Humanities Digital,,,2026-04-19 16:24:26,,,,Austronesian languages
+ig,Igbo,Digital Humanities,Ihe Ùgwù Ụmụ Mmadụ,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ilo,Ilokano,Digital Humanities,Digital Humanies,,,2026-04-19 16:24:26,,,,Austronesian languages
+is,Icelandic,Digital Humanities,Stafræn mannvera,,,2026-04-19 16:24:26,,,,Indo-European languages
+it,Italian,Digital Humanities,Digital Humanities,,,2026-04-19 16:24:26,,,,Indo-European languages
+kg,Kongo,Digital Humanities,Mambu ya Mfunu Yina Bantu Ketudilaka Ntima,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kj,"Kwanyama, Kuanyama",Digital Humanities,Kala u na etaleko liwa li na sha novanhu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+lg,Luganda,Digital Humanities,Obusobozi bw'Abantu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ln,Lingala,Digital Humanities,Biloko oyo bato bazali na yango,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+lu,Luba-Katanga,Digital Humanities,BISHINTE BYA KWIFUNDA,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mg,Malagasy,Digital Humanities,Maha-olombelona nomerika,,,2026-04-19 16:24:26,,,,Austronesian languages
+mh,Marshallese,Digital Humanities,Ta ko Rej Wal̦o̦k ñan Armej?,,,2026-04-19 16:24:26,,,,Austronesian languages
+mk,Macedonian,Digital Humanities,Дигитални хуманости,,,2026-04-19 16:24:26,,,,Indo-European languages
+ml,Malayalam,Digital Humanities,മാനവരാശി,,,2026-04-19 16:24:26,,,,Dravidian languages
+mr,Marathi (Marāṭhī),Digital Humanities,मानवी क्षमता,,,2026-04-19 16:24:26,,,,Indo-European languages
+mt,Maltese,Digital Humanities,L-istudji umanistiċi diġitali,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+ng,Ndonga,Digital Humanities,Omithikampango dhaantu odha li hadhi ningitha aantu ya kale ye na ekwatathano ewanawa,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+nl,Dutch,Digital Humanities,Digitale geesteswetenschappen,,,2026-04-19 16:24:26,,,,Indo-European languages
+nso,Northern Sotho,Digital Humanities,Ditekanyo tša Batho,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ny,Chichewa; Chewa; Nyanja,Digital Humanities,Digital Humans,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+om,Oromo,Digital Humanities,WANTA IRRATTI HUNDAAʼE,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+pag,Pangasinan,Digital Humanities,Saray Manangiyabawag na Too,,,2026-04-19 16:24:26,,,,Austronesian languages
+pap,Papiamentu,Digital Humanities,Di Con Asina Tantu Cos Humano,,,2026-04-19 16:24:26,,,,Creolesandpidgins
+rn,Kirundi,Digital Humanities,Abantu b’intagondwa,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ro,"Romanian, Moldavan",Digital Humanities,Umanități digitale,,,2026-04-19 16:24:26,,,,Indo-European languages
+ru,Russian,Digital Humanities,Цифровые гуманитарные науки,,,2026-04-19 16:24:26,,,,Indo-European languages
+rw,Kinyarwanda,Digital Humanities,Ubwoko bw'Abantu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sg,Sango,Digital Humanities,Gi ti duti na aye mingi ape na yâ ti fini ti mo,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+sk,Slovak,Digital Humanities,Digitálne humanitné vedy,,,2026-04-19 16:24:26,,,,Indo-European languages
+sm,Samoan,Digital Humanities,Digital Man's,,,2026-04-19 16:24:26,,,,Austronesian languages
+sn,Shona,Digital Humanities,Vanhu Vanogutsikana,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sq,Albanian,Digital Humanities,Humanitetet Dixhitale,,,2026-04-19 16:24:26,,,,Indo-European languages
+ss,Swati,Digital Humanities,Imibono Lemayelana Nendzawo Tabantfu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+st,Southern Sotho,Digital Humanities,Lik'hemik'hale Tseo Batho ba li Hlokang,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sv,Swedish,Digital Humanities,Digital humaniora,,,2026-04-19 16:24:26,,,,Indo-European languages
+sw,Swahili,Digital Humanities,Viasili vya Kielektroni,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ti,Tigrinya,Digital Humanities,ሰብኣዊ ባህርያት,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+tl,Tagalog,Digital Humanities,Digital na mga Tao,,,2026-04-19 16:24:26,,,,Austronesian languages
+tn,Tswana,Digital Humanities,Batho ba ba Itshekileng,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+to,Tonga,Digital Humanities,"Ngaahi Anga'itangata "" o e Fa'ahinga "" o e Tangatá",,,2026-04-19 16:24:26,,,,Austronesian languages
+tpi,Tok Pisin,Digital Humanities,Ol Samting Ol Man i Mekim,,,2026-04-19 16:24:26,,,,Creolesandpidgins
+ts,Tsonga,Digital Humanities,Vutivi Bya Vanhu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+tw,Twi,Digital Humanities,Nneɛma a Ɛyɛ Hu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ty,Tahitian,Digital Humanities,Digital Te mau mea ora o te taata,,,2026-04-19 16:24:26,,,,Austronesian languages
+uk,Ukrainian,Digital Humanities,Цифрові гуманітарні дані,,,2026-04-19 16:24:26,,,,Indo-European languages
+ur,Urdu,Digital Humanities,انسانی کمزوریوں کی وجہ سے,,,2026-04-19 16:24:26,,,,Indo-European languages
+vi,Vietnamese,Digital Humanities,Hệ bình bình bình bình bình bình bình bình bình bình bình bình bình bình bình bình bình đẳng,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+xh,Xhosa,Digital Humanities,Ubuntu bamanani,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+zh,Chinese,Digital Humanities,数字人文,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+aa,Afar,Digital Humanities,,,,2026-04-19 16:24:26,False,Xiyitaal Sehdaytiino,True,Afro-Asiatic languages
+ab,Abkhaz,Digital Humanities,,,,2026-04-19 16:24:26,False,Ацифратә гуманитартә ҵарақәа,True,Caucasian languages
+ae,Avestan,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ak,Akan,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitals Nnipa Ho Adesua,True,Niger-Kordofanian languages
+als,Alemannic,Digital Humanities,,,,2026-04-19 16:24:26,False,Shkencat Humane Dixhitale,True,Indo-European languages
+am,Amharic,Digital Humanities,,,,2026-04-19 16:24:26,False,ዲጂታል ሂውማኒቲስ,True,Afro-Asiatic languages
+an,Aragonese,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ang,Anglo-Saxon / Old English,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+arc,Aramaic,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Afro-Asiatic languages
+arz,Egyptian Arabic,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Afro-Asiatic languages
+as,Assamese,Digital Humanities,,,,2026-04-19 16:24:26,False,ডিজিটেল মানৱীয় বিজ্ঞান,True,Indo-European languages
+ast,Asturian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+av,Avaric,Digital Humanities,,,,2026-04-19 16:24:26,False,Цифралъулал гуманитариялин абулел,True,Caucasian languages
+awa,Awadhi,Digital Humanities,,,,2026-04-19 16:24:26,False,डिजिटल मानविकी,True,Indo-European languages
+ay,Aymara,Digital Humanities,,,,2026-04-19 16:24:26,False,Humanidades Digitales uka tuqit yatxataña,True,South American Indian languages
+ba,Bashkir,Digital Humanities,,,,2026-04-19 16:24:26,False,Һанлы гуманитар фәндәр,True,Altaic languages
+bar,Bavarian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+bat-smg,Samogitian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+be,Belarusian,Digital Humanities,,,,2026-04-19 16:24:26,False,Лічбавыя гуманітарныя навукі,True,Indo-European languages
+be-x-old,Belarusian (Taraškievica),Digital Humanities,,,,2026-04-19 16:24:26,False,Лічбавыя гуманітарныя навукі,True,Indo-European languages
+bh,Bihari,Digital Humanities,,,,2026-04-19 16:24:26,False,डिजिटल मानविकी के बारे में बतावल गइल बा,True,Indo-European languages
+bm,Bambara,Digital Humanities,,,,2026-04-19 16:24:26,False,Hadamadenw ka dɔnniya nimɔrɔma,True,Niger-Kordofanian languages
+bn,Bengali,Digital Humanities,,,,2026-04-19 16:24:26,False,ডিজিটাল মানববিদ্যা,True,Indo-European languages
+bo,Tibetan,Digital Humanities,,,,2026-04-19 16:24:26,False,གྲངས་འཛིན་མི་ཆོས་རིག་པ།,True,Sino-Tibetan languages
+bpy,Bishnupriya Manipuri,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+br,Breton,Digital Humanities,,,,2026-04-19 16:24:26,False,Skiantoù mab-den niverel,True,Indo-European languages
+brx,Boro,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+bs,Bosnian,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitalne humanističke nauke,True,Indo-European languages
+bug,Buginese,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Austronesian languages
+bxr,Buriat (Russia),Digital Humanities,,,,2026-04-19 16:24:26,False,Тоон гуманитарна эрдэмүүд,True,Altaic languages
+cdo,Min Dong Chinese,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Sino-Tibetan languages
+ce,Chechen,Digital Humanities,,,,2026-04-19 16:24:26,False,Терахьийн гуманитаран Ӏилманаш,True,Caucasian languages
+ch,Chamorro,Digital Humanities,,,,2026-04-19 16:24:26,False,Digital Humanities,True,Austronesian languages
+cho,Choctaw,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+chr,Cherokee,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+chy,Cheyenne,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+ckb,Kurdish (Sorani),Digital Humanities,,,,2026-04-19 16:24:26,False,زانستە مرۆییە دیجیتاڵییەکان,True,Indo-European languages
+co,Corsican,Digital Humanities,,,,2026-04-19 16:24:26,False,Umanità Digitale,True,Indo-European languages
+cr,Cree,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+csb,Kashubian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+cu,Old Church Slavonic,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+cv,Chuvash,Digital Humanities,,,,2026-04-19 16:24:26,False,Цифра гуманитари,True,Altaic languages
+diq,Dimli,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+dsb,Lower Sorbian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+dv,Divehi; Maldivian;,Digital Humanities,,,,2026-04-19 16:24:26,False,ދިރާގު ހިއުމަނިޓީސް އެވެ,True,Indo-European languages
+dz,Dzongkha,Digital Humanities,,,,2026-04-19 16:24:26,False,དྲ་རྒྱའི་མི་རིགས།,True,Indo-European languages
+ext,Extremaduran,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ff,Fula,Digital Humanities,,,,2026-04-19 16:24:26,False,Neɗɗaŋke Dijital,True,Niger-Kordofanian languages
+fiu-vro,Võro,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Uralic languages
+fo,Faroese,Digital Humanities,,,,2026-04-19 16:24:26,False,Talgild hugvísindi,True,Indo-European languages
+frp,Arpitan / Franco-Provençal,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+fur,Friulian,Digital Humanities,,,,2026-04-19 16:24:26,False,Lis siencis umanis digjitâls,True,Indo-European languages
+fy,Western Frisian,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitale Humaniora,True,Indo-European languages
+gan,Gan Chinese,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Sino-Tibetan languages
+gbm,Garhwali,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+gd,Scottish Gaelic,Digital Humanities,,,,2026-04-19 16:24:26,False,Daonnachdan Didseatach,True,Indo-European languages
+gn,Guaraní,Digital Humanities,,,,2026-04-19 16:24:26,False,Humanidades Digitales rehegua,True,South American Indian languages
+got,Gothic,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+gu,Gujarati,Digital Humanities,,,,2026-04-19 16:24:26,False,ડિજિટલ હ્યુમેનિટીઝ,True,Indo-European languages
+hak,Hakka Chinese,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Sino-Tibetan languages
+haw,Hawaiian,Digital Humanities,,,,2026-04-19 16:24:26,False,Nā Humanities Kikohoʻe,True,Austronesian languages
+hr,Croatian,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitalne humanističke znanosti,True,Indo-European languages
+hz,Herero,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Niger-Kordofanian languages
+ia,Interlingua,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Artificial languages
+ie,Interlingue,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Artificial languages
+ii,Nuosu,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Sino-Tibetan languages
+ik,Inupiaq,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+inh,Ingush,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Caucasian languages
+io,Ido,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Artificial languages
+iu,Inuktitut,Digital Humanities,,,,2026-04-19 16:24:26,False,ᖃᕆᑕᐅᔭᒃᑯᑦ ᐃᓄᓕᕆᓂᕐᒧᑦ,True,Eskimo-Aleut languages
+jbo,Lojban,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Artificial languages
+jv,Javanese,Digital Humanities,,,,2026-04-19 16:24:26,False,Humaniora Digital,True,Austronesian languages
+ka,Georgian,Digital Humanities,,,,2026-04-19 16:24:26,False,ციფრული ჰუმანიტარული მეცნიერებები,True,Caucasian languages
+khw,Khowar,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ki,"Kikuyu, Gikuyu",Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Niger-Kordofanian languages
+kk,Kazakh,Digital Humanities,,,,2026-04-19 16:24:26,False,Сандық гуманитарлық ғылымдар,True,Altaic languages
+kl,Kalaallisut,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitalimik inuussutissarsiorneq,True,North American Indian languages
+km,Khmer,Digital Humanities,,,,2026-04-19 16:24:26,False,មនុស្សសាស្ត្រឌីជីថល,True,Austro-Asiatic languages
+kn,Kannada,Digital Humanities,,,,2026-04-19 16:24:26,False,ಡಿಜಿಟಲ್ ಮಾನವಿಕಗಳು,True,Dravidian languages
+kr,Kanuri,Digital Humanities,,,,2026-04-19 16:24:26,False,Ilmu adamganabe zamanbe,True,Nilo-Saharan languages
+ks,Kashmiri,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ksh,Ripuarian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ku,Kurdish,Digital Humanities,,,,2026-04-19 16:24:26,False,Mirovahiyên Dîjîtal,True,Indo-European languages
+kv,Komi,Digital Humanities,,,,2026-04-19 16:24:26,False,Цифрӧвӧй гуманитарнӧй наукаяс,True,Uralic languages
+kw,Cornish,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ky,"Kirghiz, Kyrgyz",Digital Humanities,,,,2026-04-19 16:24:26,False,Санариптик гуманитардык илимдер,True,Altaic languages
+lad,Ladino / Judeo-Spanish,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+lan,Lango,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Nilo-Saharan languages
+lb,Luxembourgish,Digital Humanities,,,,2026-04-19 16:24:26,False,Digital Humanities,True,Indo-European languages
+li,Limburgish,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitale geestesweitesjappe,True,Indo-European languages
+lij,Ligurian,Digital Humanities,,,,2026-04-19 16:24:26,False,Sciense umañe digitale,True,Indo-European languages
+lo,Lao,Digital Humanities,,,,2026-04-19 16:24:26,False,ມະນຸດສາດດິຈິຕອນ,True,Tai languages
+lt,Lithuanian,Digital Humanities,,,,2026-04-19 16:24:26,False,Skaitmeniniai humanitariniai mokslai,True,Indo-European languages
+lv,Latvian,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitālās humanitārās zinātnes,True,Indo-European languages
+lzz,Laz,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Caucasian languages
+man,Mandarin,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Sino-Tibetan languages
+map-bms,Banyumasan,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Austronesian languages
+mi,Māori,Digital Humanities,,,,2026-04-19 16:24:26,False,Ngā Tikanga Mamati,True,Austronesian languages
+min,Minangkabau,Digital Humanities,,,,2026-04-19 16:24:26,False,Kamanusiaan Digital,True,Austronesian languages
+mn,Mongolian,Digital Humanities,,,,2026-04-19 16:24:26,False,Дижитал хүмүүнлэгийн ухаан,True,Altaic languages
+mo,Moldovan,Digital Humanities,,,,2026-04-19 16:24:26,False,Științe Umaniste Digitale,True,Indo-European languages
+mrh,Mara,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Sino-Tibetan languages
+ms,Malay,Digital Humanities,,,,2026-04-19 16:24:26,False,Kemanusiaan Digital,True,Austronesian languages
+mus,Creek / Muskogee,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+mwl,Mirandese,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+my,Burmese,Digital Humanities,,,,2026-04-19 16:24:26,False,ဒစ်ဂျစ်တယ် လူသားပညာ,True,Sino-Tibetan languages
+na,Nauru,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Austronesian languages
+nah,Nahuatl,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+nap,Neapolitan,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+nb,Norwegian Bokmål,Digital Humanities,,,,2026-04-19 16:24:26,False,Digital humaniora,True,Indo-European languages
+nd,North Ndebele,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Niger-Kordofanian languages
+nds,Low German / Low Saxon,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+nds-nl,Dutch Low Saxon,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ne,Nepali,Digital Humanities,,,,2026-04-19 16:24:26,False,डिजिटल मानविकी,True,Indo-European languages
+new,Newar,Digital Humanities,,,,2026-04-19 16:24:26,False,डिजिटल मानविकी,True,Sino-Tibetan languages
+nn,Norwegian Nynorsk,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+no,Norwegian,Digital Humanities,,,,2026-04-19 16:24:26,False,Digital humaniora,True,Indo-European languages
+nr,South Ndebele,Digital Humanities,,,,2026-04-19 16:24:26,False,I-Digital Humanities,True,Niger-Kordofanian languages
+nrm,Norman,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+nv,"Navajo, Navaho",Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+oc,Occitan,Digital Humanities,,,,2026-04-19 16:24:26,False,Umanitats numericas,True,Indo-European languages
+oj,"Ojibwe, Ojibwa",Digital Humanities,,,,2026-04-19 16:24:26,True,,True,North American Indian languages
+or,Oriya,Digital Humanities,,,,2026-04-19 16:24:26,False,ଡିଜିଟାଲ୍ ମାନବିକତା,True,Indo-European languages
+os,"Ossetian, Ossetic",Digital Humanities,,,,2026-04-19 16:24:26,False,Нымæцон гуманитарон зонæдтæ,True,Indo-European languages
+pa,"Panjabi, Punjabi",Digital Humanities,,,,2026-04-19 16:24:26,False,ਡਿਜੀਟਲ ਹਿਊਮੈਨਿਟੀਜ਼,True,Indo-European languages
+pam,Kapampangan,Digital Humanities,,,,2026-04-19 16:24:26,False,Digital Humanities,True,Austronesian languages
+pdc,Pennsylvania German,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+pi,Pāli,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+pih,Norfolk,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Creolesandpidgins
+pms,Piedmontese,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+ps,"Pashto, Pushto",Digital Humanities,,,,2026-04-19 16:24:26,False,ډیجیټل انسانیتونه,True,Indo-European languages
+qu,Quechua,Digital Humanities,,,,2026-04-19 16:24:26,False,Humanidades Digitales nisqa,True,South American Indian languages
+rm,Romansh,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+rmy,Romani,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitalno Humaniàlo,True,Indo-European languages
+roa-rup,Aromanian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+sa,Sanskrit (Saṁskṛta),Digital Humanities,,,,2026-04-19 16:24:26,False,डिजिटल मानविकी,True,Indo-European languages
+sc,Sardinian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+scn,Sicilian,Digital Humanities,,,,2026-04-19 16:24:26,False,Scienzi umanistichi diggitali,True,Indo-European languages
+sco,Scots,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+sd,Sindhi,Digital Humanities,,,,2026-04-19 16:24:26,False,ڊجيٽل هيومنٽيز,True,Indo-European languages
+se,Northern Sami,Digital Humanities,,,,2026-04-19 16:24:26,False,Digitála humanisttalaš dieđat,True,Uralic languages
+si,"Sinhala, Sinhalese",Digital Humanities,,,,2026-04-19 16:24:26,False,ඩිජිටල් මානව ශාස්ත්‍ර,True,Indo-European languages
+so,Somali,Digital Humanities,,,,2026-04-19 16:24:26,False,Bani&#39;aadamnimada Dijital ah,True,Afro-Asiatic languages
+su,Sundanese,Digital Humanities,,,,2026-04-19 16:24:26,False,Élmu Kamanusaan Digital,True,Austronesian languages
+te,Telugu,Digital Humanities,,,,2026-04-19 16:24:26,False,డిజిటల్ హ్యుమానిటీస్,True,Dravidian languages
+tet,Tetum,Digital Humanities,,,,2026-04-19 16:24:26,False,Umanidade Dijitál,True,Austronesian languages
+tg,Tajik,Digital Humanities,,,,2026-04-19 16:24:26,False,Гуманитаризми рақамӣ,True,Indo-European languages
+tk,Turkmen,Digital Humanities,,,,2026-04-19 16:24:26,False,Sanly ynsanperwerlik,True,Altaic languages
+tlh,Klingon,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Artificial languages
+tokipona,tokipona,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Artificial languages
+tt,Tatar,Digital Humanities,,,,2026-04-19 16:24:26,False,Цифрлы гуманитар фәннәр,True,Altaic languages
+tum,Tumbuka,Digital Humanities,,,,2026-04-19 16:24:26,False,Ŵanthu ŵa pa intaneti,True,Niger-Kordofanian languages
+udm,Udmurt,Digital Humanities,,,,2026-04-19 16:24:26,False,Цифровой гуманитарной наукаос,True,Uralic languages
+ug,"Uighur, Uyghur",Digital Humanities,,,,2026-04-19 16:24:26,False,رەقەملىك ئىنسانىيەت,True,Altaic languages
+uz,Uzbek,Digital Humanities,,,,2026-04-19 16:24:26,False,Raqamli gumanitar fanlar,True,Altaic languages
+uz_AF,Uzbeki Afghanistan,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Altaic languages
+ve,Venda,Digital Humanities,,,,2026-04-19 16:24:26,False,Vhuthu ha Didzhithala,True,Niger-Kordofanian languages
+vec,Venetian,Digital Humanities,,,,2026-04-19 16:24:26,False,Siense umane digitałi,True,Indo-European languages
+vls,West Flemish,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+vo,Volapük,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Artificial languages
+wa,Walloon,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Indo-European languages
+war,Waray / Samar-Leyte Visayan,Digital Humanities,,,,2026-04-19 16:24:26,False,Digital nga Katawhan,True,Austronesian languages
+wo,Wolof,Digital Humanities,,,,2026-04-19 16:24:26,False,Humanité numérique,True,Niger-Kordofanian languages
+xal,Kalmyk,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Altaic languages
+xmf,Megrelian,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Caucasian languages
+yi,Yiddish,Digital Humanities,,,,2026-04-19 16:24:26,False,דיגיטאַלע הומאַניטיעס,True,Indo-European languages
+yo,Yoruba,Digital Humanities,,,,2026-04-19 16:24:26,False,Àwọn Ènìyàn Oní-nọ́ńbà,True,Niger-Kordofanian languages
+za,"Zhuang, Chuang",Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Tai languages
+zh-classical,Classical Chinese,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Sino-Tibetan languages
+zh-min-nan,Minnan,Digital Humanities,,,,2026-04-19 16:24:26,True,,True,Sino-Tibetan languages
+zh-tw,Traditional Chinese,Digital Humanities,,,,2026-04-19 16:24:26,False,數位人文,True,Sino-Tibetan languages
+zh-yue,Cantonese,Digital Humanities,,,,2026-04-19 16:24:26,False,數碼人文,True,Sino-Tibetan languages
+abq,Abaza,Digital Humanities,,,,2026-04-19 16:24:26,,,,Caucasian languages
+abr,Abron,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ace,Acehnese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+ach,Acoli,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+ada,Adangme,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ady,Adyghe,Digital Humanities,,,,2026-04-19 16:24:26,,,,Caucasian languages
+aeb,Tunisian Arabic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+afh,Afrihili,Digital Humanities,,,,2026-04-19 16:24:26,,,,Artificial languages
+agq,Aghem,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+aii,Assyrian Neo-Aramaic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+ain,Ainu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+akk,Akkadian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+akz,Alabama,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+ale,Aleut,Digital Humanities,,,,2026-04-19 16:24:26,,,,Eskimo-Aleut languages
+aln,Gheg Albanian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+alt,Southern Altai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+amo,Amo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ann,Obolo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+anp,Angika,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+aoz,Uab Meto,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+apc,Levantine Arabic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+arn,Mapuche,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+aro,Araona,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+arp,Arapaho,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+arq,Algerian Arabic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+ars,Najdi Arabic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+arw,Arawak,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+ary,Moroccan Arabic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+asa,Asu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ase,American Sign Language,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sign languages
+atj,Atikamekw,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+avk,Kotava,Digital Humanities,,,,2026-04-19 16:24:26,,,,Artificial languages
+bal,Baluchi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+ban,Balinese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+bap,Bantawa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+bas,Basaa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bax,Bamun,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bbc,Batak Toba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+bbj,Ghomala,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bci,Baoulé,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bej,Beja,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+bem,Bemba,Digital Humanities,Ukwiba Abantu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bew,Betawi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+bez,Bena,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bfd,Bafut,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bfq,Badaga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Dravidian languages
+bft,Balti,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+bfy,Bagheli,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bgc,Haryanvi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bgn,Western Balochi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bgx,Balkan Gagauz Turkish,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+bhb,Bhili,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bhi,Bhilali,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bho,Bhojpuri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bik,Bikol,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+bin,Bini,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bjj,Kanauji,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bjn,Banjar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+bkm,Kom,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bku,Buhid,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+bla,Siksiká,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+blo,Anii,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+blt,Tai Dam,Digital Humanities,,,,2026-04-19 16:24:26,,,,Tai languages
+bmq,Bomu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bqi,Bakhtiari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bqv,Koro Wachi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bra,Braj,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+brh,Brahui,Digital Humanities,,,,2026-04-19 16:24:26,,,,Dravidian languages
+bss,Akoose,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bto,Rinconada Bikol,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+btv,Bateri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+bua,Buriat,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+buc,Bushi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bum,Bulu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bvb,Bube,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+byn,Blin,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+byv,Medumba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+bze,Jenaama Bozo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+bzx,Kɛlɛngaxo Bozo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+cad,Caddo,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+car,Carib,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+cay,Cayuga,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+cch,Atsam,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ccp,Chakma,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+cgg,Chiga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+chb,Chibcha,Digital Humanities,,,,2026-04-19 16:24:26,,,,Central American Indian languages
+chg,Chagatai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+chk,Chuukese,Digital Humanities,Kopwe Tongeni Süföliti Aramas,,,2026-04-19 16:24:26,,,,Austronesian languages
+chm,Mari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+chn,Chinook Jargon,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+chp,Chipewyan,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+cic,Chickasaw,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+cja,Western Cham,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+cjm,Eastern Cham,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+cjs,Shor,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+ckt,Chukot,Digital Humanities,,,,2026-04-19 16:24:26,,,,Chukotko-Kamchatkan languages
+clc,Chilcotin,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+cnr,Montenegrin,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+cop,Coptic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+cps,Capiznon,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+crg,Michif,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+crh,Crimean Tatar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+crj,Southern East Cree,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+crk,Plains Cree,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+crl,Northern East Cree,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+crm,Moose Cree,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+crn,Montenegrin,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+crs,Seselwa Creole French,Digital Humanities,Fer sir ki zot maryaz i ganny fer,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+csw,Swampy Cree,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+ctd,Tedim Chin,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+cwd,Woods Cree,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+dak,Dakota,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+dar,Dargwa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Caucasian languages
+dav,Taita,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+dcc,Deccan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+del,Delaware,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+den,Slave,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+dgr,Dogrib,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+din,Dinka,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+dje,Zarma,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+dng,Dungan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+dnj,Dan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+doi,Dogri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+dtm,Tomo Kan Dogon,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+dtp,Central Dusun,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+dty,Dotyali,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+dua,Duala,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+dum,Middle Dutch,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+dyo,Jola-Fonyi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+dyu,Dyula,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+dzg,Dazaga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+ebu,Embu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+efi,Efik,Digital Humanities,Digital Obio Ubọn̄ Owo,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+egl,Emilian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+egy,Ancient Egyptian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+eka,Ekajuk,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+eky,Eastern Kayah,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+elx,Elamite,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+enm,Middle English,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+esu,Central Yupik,Digital Humanities,,,,2026-04-19 16:24:26,,,,Eskimo-Aleut languages
+ett,Etruscan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+evn,Evenki,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+ewo,Ewondo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+fan,Fang,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+fat,Fanti,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ffm,Maasina Fulfulde,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+fia,Nobiin,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+fil,Filipino,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+fit,Tornedalen Finnish,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+fon,Fon,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+frc,Cajun French,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+frm,Middle French,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+fro,Old French,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+frr,Northern Frisian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+frs,Eastern Frisian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+fud,East Futuna,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+fuq,Central-Eastern Niger Fulfulde,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+fuv,Nigerian Fulfulde,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+fvr,Fur,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+gaa,Ga,Digital Humanities,Nibii ni Haa Mɔ Tsui Nyɔɔ Emli ni Haa Mɔ Tsui Nyɔɔ Emli,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+gag,Gagauz,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+gay,Gayo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+gba,Gbaya,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+gbz,Zoroastrian Dari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+gcr,Guianese Creole French,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+gez,Geez,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+gjk,Kachi Koli,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+gju,Gujari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+gld,Nanai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+glk,Gilaki,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+gmh,Middle High German,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+goh,Old High German,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+gom,Goan Konkani,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+gon,Gondi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Dravidian languages
+gor,Gorontalo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+gos,Gronings,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+grb,Grebo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+grc,Ancient Greek,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+grt,Garo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+gsw,Swiss German,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+gub,Guajajára,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+guc,Wayuu,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+gur,Frafra,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+guz,Gusii,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+gvr,Gurung,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+gwi,Gwichʼin,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+hai,Haida,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+hax,Southern Haida,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+haz,Hazaragi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+hdn,Northern Haida,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+hif,Fiji Hindi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+hil,Hiligaynon,Digital Humanities,Digital Humanity,,,2026-04-19 16:24:26,,,,Austronesian languages
+hit,Hittite,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+hmd,Large Flowery Miao,Digital Humanities,,,,2026-04-19 16:24:26,,,,Hmong-Mien languages
+hmn,Hmong,Digital Humanities,,,,2026-04-19 16:24:26,,,,Hmong-Mien languages
+hnd,Southern Hindko,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+hne,Chhattisgarhi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+hnj,Hmong Njua,Digital Humanities,,,,2026-04-19 16:24:26,,,,Hmong-Mien languages
+hnn,Hanunoo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+hno,Northern Hindko,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+hoc,Ho,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+hoj,Hadothi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+hop,Hopi,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+hsb,Upper Sorbian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+hsn,Xiang Chinese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+hup,Hupa,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+hur,Halkomelem,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+iba,Iban,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+ibb,Ibibio,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ife,Ifè,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ike,Eastern Canadian Inuktitut,Digital Humanities,,,,2026-04-19 16:24:26,,,,Eskimo-Aleut languages
+ikt,Western Canadian Inuktitut,Digital Humanities,,,,2026-04-19 16:24:26,,,,Eskimo-Aleut languages
+izh,Ingrian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+jam,Jamaican Creole English,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+jgo,Ngomba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+jmc,Machame,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+jml,Jumli,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+jpr,Judeo-Persian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+jrb,Judeo-Arabic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+jut,Jutish,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+kaa,Kara-Kalpak,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+kab,Kabyle,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+kac,Kachin,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+kaj,Jju,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kam,Kamba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kao,Xaasongaxango,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kaw,Kawi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+kbd,Kabardian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Caucasian languages
+kbl,Kanembu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+kca,Khanty,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+kcg,Tyap,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kck,Kalanga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kde,Makonde,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kdt,Kuy,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+kea,Kabuverdianu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+ken,Kenyang,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kfo,Koro,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kfr,Kachhi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+kfy,Kumaoni,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+kge,Komering,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+kgp,Kaingang,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+kha,Khasi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+khb,Lü,Digital Humanities,,,,2026-04-19 16:24:26,,,,Tai languages
+khn,Khandesi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+kho,Khotanese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+khq,Koyra Chiini,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+kht,Khamti,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+kiu,Kirmanjki,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+kjg,Khmu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+kjh,Khakas,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+kkj,Kako,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kln,Kalenjin,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+kmb,Kimbundu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+koi,Komi-Permyak,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+kok,Konkani,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+kos,Kosraean,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+kpe,Kpelle,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kpy,Koryak,Digital Humanities,,,,2026-04-19 16:24:26,,,,Chukotko-Kamchatkan languages
+krc,Karachay-Balkar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+kri,Krio,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+krj,Kinaray-a,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+krl,Karelian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+kru,Kurukh,Digital Humanities,,,,2026-04-19 16:24:26,,,,Dravidian languages
+ksb,Shambala,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ksf,Bafia,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+kum,Kumyk,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+kut,Kutenai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+kvr,Kerinci,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+kvx,Parkari Koli,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+kwk,Kwakʼwala,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+kxm,Northern Khmer,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+kxp,Wadiyara Koli,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+kxv,Kuvi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Dravidian languages
+kyu,Western Kayah,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+lab,Linear A,Digital Humanities,,,,2026-04-19 16:24:26,,,,Undeciphered script
+lag,Langi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+lah,Western Panjabi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+laj,Lango (Uganda),Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+lam,Lamba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+lbe,Lak,Digital Humanities,,,,2026-04-19 16:24:26,,,,Caucasian languages
+lbw,Tolaki,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+lcp,Western Lawa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+lep,Lepcha,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+lez,Lezghian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Caucasian languages
+lfn,Lingua Franca Nova,Digital Humanities,,,,2026-04-19 16:24:26,,,,Artificial languages
+lif,Limbu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+lil,Lillooet,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+lis,Lisu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+liv,Livonian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+ljp,Lampung Api,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+lki,Laki,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+lkt,Lakota,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+lmn,Lambadi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+lol,Mongo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+lou,Louisiana Creole,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+loz,Lozi,Digital Humanities,Litaba za Kwaikale ze Bulezwi Mwa Bibele ka za Litaba za Kwaikale ze Bulezwi Mwa Bibele ka za Bupilo Bwa Batu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+lrc,Northern Luri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+lsm,Saamia,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ltg,Latgalian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+lua,Luba-Lulua,Digital Humanities,Bitupa bia mubidi wa bantu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+lui,Luiseno,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+lun,Lunda,Digital Humanities,Kaanenu Yuma Yikamwekana Kumbidi,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+luo,Luo,Digital Humanities,Gik Manyiso ni Nyasaye Ok En Ng'at Machalo Nade?,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+lus,Mizo,Digital Humanities,Mihringte Thil Siama Langtute,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+lut,Lushootseed,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+luy,Luyia,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+luz,Southern Luri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+lwl,Eastern Lawa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+lzh,Literary Chinese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+mad,Madurese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+maf,Mafa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+mag,Magahi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+mai,Maithili,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+mak,Makasar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+mas,Masai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+maz,Central Mazahua,Digital Humanities,,,,2026-04-19 16:24:26,,,,Central American Indian languages
+mde,Maba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+mdf,Moksha,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+mdh,Maguindanaon,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+mdr,Mandar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+mdt,Mbere,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+men,Mende,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mer,Meru,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mfa,Pattani Malay,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+mfe,Morisyen,Digital Humanities,BANN LARTIK L'ETUDE,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+mga,"Irish, Middle (900-1200)",Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+mgh,Makhuwa-Meetto,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mgo,Metaʼ,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mgp,Eastern Magar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+mgy,Mbunga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mic,Mi'kmaw,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+mls,Masalit,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+mnc,Manchu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+mni,Manipuri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+mns,Mansi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+mnw,Mon,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+moe,Innu-aimun,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+moh,Mohawk,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+mos,Mossi,Digital Humanities,SẼN BE SEBRÃ PƲGẼ ME,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mrd,Western Magar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+mrj,Western Mari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+mro,Mru,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+mtr,Mewari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+mua,Mundang,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+mvy,Indus Kohistani,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+mwk,Kita Maninkakan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mwr,Marwari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+mwv,Mentawai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+mxc,Manyika,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+mye,Myene,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+myv,Erzya,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+myx,Masaaba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+myz,Classical Mandaic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+mzn,Mazanderani,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+naq,Nama,Digital Humanities,,,,2026-04-19 16:24:26,,,,Khoisan languages
+nch,Central Huasteca Nahuatl,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+ndc,Ndau,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ngl,Lomwe,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+nhe,Eastern Huasteca Nahuatl,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+nhw,Western Huasteca Nahuatl,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+nia,Nias,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+nij,Ngaju,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+niu,Niuean,Digital Humanities,Tiaki e Tau Mena he Tagata,,,2026-04-19 16:24:26,,,,Austronesian languages
+njo,Ao Naga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+nmg,Kwasio,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+nnh,Ngiemboon,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+nod,Northern Thai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Tai languages
+noe,Nimadi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+nog,Nogai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+non,Old Norse,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+nov,Novial,Digital Humanities,,,,2026-04-19 16:24:26,,,,Artificial languages
+nqo,N’Ko,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+nsk,Naskapi,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+nus,Nuer,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+nwc,Classical Newari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+nxq,Naxi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+nym,Nyamwezi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+nyn,Nyankole,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+nyo,Nyoro,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+nzi,Nzima,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ojb,Northwestern Ojibwa,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+ojc,Central Ojibwa,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+ojg,Eastern Ojibwa,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+ojs,Oji-Cree,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+ojw,Western Ojibwa,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+oka,Okanagan,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+osa,Osage,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+osc,Oscan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+ota,"Turkish, Ottoman (1500-1928)",Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+otk,Old Turkish,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+pal,Pahlavi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+pau,Palauan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+pcd,Picard,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+pcm,Nigerian Pidgin,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+pdt,Plautdietsch,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+peo,Old Persian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+pfl,Palatine German,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+phn,Phoenician,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+pis,Pijin,Digital Humanities,Protectim Olketa Man,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+pko,Pökoot,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+pnt,Pontic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+pon,Pohnpeian,Digital Humanities,IREN ONOP KAN,,,2026-04-19 16:24:26,,,,Austronesian languages
+pqm,Maliseet-Passamaquoddy,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+prd,Parsi-Dari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+prg,Prussian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+pro,Old Provençal,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+puu,Punu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+quc,Kʼicheʼ,Digital Humanities,,,,2026-04-19 16:24:26,,,,Central American Indian languages
+qug,Chimborazo Highland Quichua,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+raj,Rajasthani,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rap,Rapanui,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+rar,Rarotongan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+rcf,Réunion Creole French,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+rej,Rejang,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+rgn,Romagnol,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rhg,Rohingya,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+ria,Riang (India),Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+rif,Riffian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+rjs,Rajbanshi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rkt,Rangpuri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rmf,Kalo Finnish Romani,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rmo,Sinte Romani,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rmt,Domari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rmu,Tavringer Romani,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rng,Ronga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+rob,Tae',Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+rof,Rombo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+rom,Romany,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rtm,Rotuman,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+rue,Rusyn,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rug,Roviana,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+rup,Aromanian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+rwk,Rwa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ryu,Central Okinawan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Japanese languages
+sad,Sandawe,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+saf,Safaliba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sah,Yakut,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+sam,Samaritan Aramaic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+saq,Samburu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+sas,Sasak,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+sat,Santali,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+saz,Saurashtra,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+sba,Ngambay,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+sbp,Sangu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sck,Sadri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+scs,North Slavey,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+sdc,Sassarese Sardinian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+sdh,Southern Kurdish,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+see,Seneca,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+see also: test languages at the Wikimedia Incubator,see also: test languages at the Wikimedia Incubator,Digital Humanities,,,,2026-04-19 16:24:26,,,,Other
+sef,Cebaara Senoufo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+seh,Sena,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sei,Seri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+sel,Selkup,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+ses,Koyraboro Senni,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+sga,Old Irish,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+sgs,Samogitian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+shi,Tachelhit,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+shn,Shan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Tai languages
+shu,Chadian Arabic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+sid,Sidamo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+skr,Saraiki,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+slh,Southern Lushootseed,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+sli,Lower Silesian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+sly,Selayar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+sma,Southern Sami,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+smj,Lule Sami,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+smn,Inari Sami,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+smp,Samaritan,Digital Humanities,,,,2026-04-19 16:24:26,,,,Artificial languages
+sms,Skolt Sami,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+snk,Soninke,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sog,Sogdian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+sou,Southern Thai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Tai languages
+srb,Sora,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+srn,Sranan Tongo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+srr,Serer,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+srx,Sirmauri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+ssy,Saho,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+stq,Saterland Frisian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+str,Straits Salish,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+suk,Sukuma,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sus,Susu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+sux,Sumerian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+swb,Comorian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+swg,Swabian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+swv,Shekhawati,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+sxn,Sangir,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+syc,Classical Syriac,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+syi,Seki,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+syl,Sylheti,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+syr,Syriac,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+szl,Silesian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+tab,Tabassaran,Digital Humanities,,,,2026-04-19 16:24:26,,,,Caucasian languages
+taj,Eastern Tamang,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+tbw,Tagbanwa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+tce,Southern Tutchone,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+tcy,Tulu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Dravidian languages
+tdd,Tai Nüa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Tai languages
+tdg,Western Tamang,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+tdh,Thulung,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+tem,Timne,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+teo,Teso,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+ter,Tereno,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+tgx,Tagish,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+thl,Dangaura Tharu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+thq,Kochila Tharu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+thr,Rana Tharu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+tht,Tahltan,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+tig,Tigre,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+tiv,Tiv,Digital Humanities,Akaa a Uumace Ve Eren Yô,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+tkl,Tokelau,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+tkr,Tsakhur,Digital Humanities,,,,2026-04-19 16:24:26,,,,Caucasian languages
+tkt,Kathoriya Tharu,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+tli,Tlingit,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+tly,Talysh,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+tmh,Tamashek,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+tog,Nyasa Tonga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+tok,Toki Pona,Digital Humanities,,,,2026-04-19 16:24:26,,,,Artificial languages
+tru,Turoyo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+trv,Taroko,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+trw,Torwali,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+tsd,Tsakonian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+tsg,Tausug,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+tsi,Tsimshian,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+tsj,Tshangla,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+ttj,Tooro,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ttm,Northern Tutchone,Digital Humanities,,,,2026-04-19 16:24:26,,,,North American Indian languages
+tts,Northeastern Thai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Tai languages
+ttt,Muslim Tat,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+tvl,Tuvalu,Digital Humanities,Mea Kolā e ‵ Tau o ‵ Saga Tonu Atu ki ei a Tino,,,2026-04-19 16:24:26,,,,Austronesian languages
+twq,Tasawaq,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+tyv,Tuvinian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+tzm,Central Atlas Tamazight,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+ude,Udihe,Digital Humanities,,,,2026-04-19 16:24:26,,,,Altaic languages
+uga,Ugaritic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+uli,Ulithian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+umb,Umbundu,Digital Humanities,O Afendeli va Yehova va Siata Oku Teyuila Omanu,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+unr,Mundari,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+unx,Munda,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austro-Asiatic languages
+vai,Vai,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+vep,Veps,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+vic,Virgin Islands Creole English,Digital Humanities,,,,2026-04-19 16:24:26,,,,Creoles and pidgins
+vmf,Main-Franconian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+vmw,Makhuwa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+vot,Votic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+vro,Võro,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+vun,Vunjo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+wae,Walser,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+wal,Wolaytta,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+was,Washo,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+wbp,Warlpiri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Australian languages
+wbq,Waddar,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+wbr,Wagdi,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+wls,Wallisian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+wni,Ndzwani Comorian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+wtm,Mewati,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+wuu,Wu Chinese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+xav,Xavánte,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+xcr,Carian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+xlc,Lycian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+xld,Lydian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+xmn,Manichaean Middle Persian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+xmr,Meroitic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+xna,Ancient North Arabian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+xnr,Kangri,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+xog,Soga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+xpr,Parthian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+xsa,Sabaean,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+xsr,Sherpa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+xum,Umbrian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+yao,Yao,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+yap,Yapese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+yav,Yangben,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+ybb,Yemba,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+yrk,Nenets,Digital Humanities,,,,2026-04-19 16:24:26,,,,Uralic languages
+yrl,Nheengatu,Digital Humanities,,,,2026-04-19 16:24:26,,,,South American Indian languages
+yua,Yucateco,Digital Humanities,,,,2026-04-19 16:24:26,,,,Central American Indian languages
+yue,Cantonese,Digital Humanities,,,,2026-04-19 16:24:26,,,,Sino-Tibetan languages
+zag,Zaghawa,Digital Humanities,,,,2026-04-19 16:24:26,,,,Nilo-Saharan languages
+zap,Zapotec,Digital Humanities,,,,2026-04-19 16:24:26,,,,Central American Indian languages
+zbl,Blissymbols,Digital Humanities,,,,2026-04-19 16:24:26,,,,Artificial languages
+zdj,Ngazidja Comorian,Digital Humanities,,,,2026-04-19 16:24:26,,,,Niger-Kordofanian languages
+zea,Zeelandic,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages
+zen,Zenaga,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+zg,Moroccan Amazigh,Digital Humanities,,,,2026-04-19 16:24:26,,,,Unclassified
+zgh,Standard Moroccan Tamazight,Digital Humanities,,,,2026-04-19 16:24:26,,,,Afro-Asiatic languages
+zmi,Negeri Sembilan Malay,Digital Humanities,,,,2026-04-19 16:24:26,,,,Austronesian languages
+zun,Zuni,Digital Humanities,,,,2026-04-19 16:24:26,,,,Language isolate
+zza,Zaza,Digital Humanities,,,,2026-04-19 16:24:26,,,,Indo-European languages

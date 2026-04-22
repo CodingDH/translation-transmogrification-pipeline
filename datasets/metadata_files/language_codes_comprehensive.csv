@@ -1,0 +1,859 @@
+language_code,language_name,local_name,iso639_1,iso639_2_t,iso639_2_b,scripts,script_codes,primary_script,primary_script_code,directionality,directionality_wikimedia,modern_language,is_official,n_scripts,in_iso639_1,in_iso639_2,in_wikimedia,is_group_iso639_2,sources,iso639_5_direct,iso639_5_family,family_name,subfamily_name
+aa,Afar,Afar,aa,aar,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Afro-Asiatic languages,
+ab,Abkhazian,Аҧсуа,ab,abk,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ccn,cau,Caucasian languages,North Caucasian languages
+abq,Abaza,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,ccn,Caucasian languages,
+abr,Abron,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+ace,Acehnese,,,ace,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+ach,Acoli,,,ach,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ssa,Nilo-Saharan languages,
+ada,Adangme,,,ada,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+ady,Adyghe,,,ady,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ccn,Caucasian languages,
+ae,Avestan,,ae,ave,,Avestan,Avst,Avestan,Avst,rtl,,False,False,1,True,True,False,False,cldr|iso639_1|iso639_2,,,Indo-European languages,
+aeb,Tunisian Arabic,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+af,Afrikaans,Afrikaans,af,afr,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+afh,Afrihili,,,afh,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,art,Artificial languages,
+agq,Aghem,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+aii,Assyrian Neo-Aramaic,,,,,Cyrillic|Syriac,Cyrl|Syrc,Cyrillic,Cyrl,ltr,,True,False,2,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+ain,Ainu,,,ain,,Katakana|Latin,Kana|Latn,Katakana,Kana,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,,Language isolate,
+ak,Akan,Akana,ak,aka,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nic,nic,Niger-Kordofanian languages,Niger-Kordofanian languages
+akk,Akkadian,,,akk,,Sumero-Akkadian Cuneiform,Xsux,Sumero-Akkadian Cuneiform,Xsux,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,sem,Afro-Asiatic languages,
+akz,Alabama,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+ale,Aleut,,,ale,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,esx,Eskimo-Aleut languages,
+aln,Gheg Albanian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sqj,Indo-European languages,
+als,Alemannic,Alemannisch,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,gem,ine,Indo-European languages,Germanic languages
+alt,Southern Altai,,,alt,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,trk,Altaic languages,
+am,Amharic,አማርኛ,am,amh,,Ethiopic,Ethi,Ethiopic,Ethi,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sem,afa,Afro-Asiatic languages,Semitic languages
+amo,Amo,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+an,Aragonese,Aragonés,an,arg,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+ang,Old English,Angal Heneng,,ang,,Latin,Latn,Latin,Latn,ltr,ltr,False,False,1,False,True,True,False,cldr|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+ann,Obolo,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+anp,Angika,,,anp,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+aoz,Uab Meto,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+apc,Levantine Arabic,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+ar,Arabic,العربية,ar,ara,,Arabic|Syriac,Arab|Syrc,Arabic,Arab,rtl,rtl,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sem,afa,Afro-Asiatic languages,Semitic languages
+arc,Aramaic,ܣܘܪܬ,,arc,,Imperial Aramaic|Nabataean|Palmyrene,Armi|Nbat|Palm,Nabataean,Nbat,rtl,rtl,False,False,3,False,True,True,False,cldr|iso639_2|wikimedia,sem,afa,Afro-Asiatic languages,Semitic languages
+arn,Mapuche,,,arn,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,sai,South American Indian languages,
+aro,Araona,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sai,South American Indian languages,
+arp,Arapaho,,,arp,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,alg,North American Indian languages,
+arq,Algerian Arabic,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+ars,Najdi Arabic,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+arw,Arawak,,,arw,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,sai,South American Indian languages,
+ary,Moroccan Arabic,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+arz,Egyptian Arabic,مصرى,,,,Arabic,Arab,Arabic,Arab,rtl,rtl,True,False,1,False,False,True,False,cldr|wikimedia,sem,afa,Afro-Asiatic languages,Semitic languages
+as,Assamese,অসমীয়া,as,asm,,Bangla,Beng,Bangla,Beng,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+asa,Asu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+ase,American Sign Language,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,sgn,Sign languages,
+ast,Asturian,Asturianu,,ast,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,,,Indo-European languages,
+atj,Atikamekw,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,alg,North American Indian languages,
+av,Avaric,Авар,av,ava,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ccn,cau,Caucasian languages,North Caucasian languages
+avk,Kotava,,,,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,False,False,False,cldr,,art,Artificial languages,
+awa,Awadhi,Awadhi,,awa,,Devanagari,Deva,Devanagari,Deva,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+ay,Aymara,Aymar,ay,aym,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sai,sai,South American Indian languages,South American Indian languages
+az,Azerbaijani,Azərbaycanca / آذربايجان,az,aze,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,ltr,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+ba,Bashkir,Башҡорт,ba,bak,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+bal,Baluchi,,,bal,,Arabic|Latin,Arab|Latn,Arabic,Arab,rtl,,True,False,2,False,True,False,False,cldr|iso639_2,,ira,Indo-European languages,
+ban,Balinese,,,ban,,Balinese|Latin,Bali|Latn,Balinese,Bali,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+bap,Bantawa,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+bar,Bavarian,Boarisch,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,gem,ine,Indo-European languages,Germanic languages
+bas,Basaa,,,bas,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+bat-smg,Samogitian,Žemaitėška,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,bat,ine,Indo-European languages,Baltic languages
+bax,Bamun,,,,,Bamum,Bamu,Bamum,Bamu,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+bbc,Batak Toba,,,,,Batak|Latin,Batk|Latn,Batak,Batk,ltr,,True,False,2,False,False,False,False,cldr,,map,Austronesian languages,
+bbj,Ghomala,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+bci,Baoulé,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+bcl,Bikol,Bikol Central,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,map,map,Austronesian languages,Austronesian languages
+be,Belarusian,Беларуская,be,bel,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+be-x-old,Belarusian (Taraškievica),Беларуская (тарашкевіца),,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,sla,ine,Indo-European languages,Slavic languages
+bej,Beja,,,bej,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,True,False,False,cldr|iso639_2,,cus,Afro-Asiatic languages,
+bem,Bemba,,,bem,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+bew,Betawi,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+bez,Bena,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+bfd,Bafut,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+bfq,Badaga,,,,,Tamil,Taml,Tamil,Taml,ltr,,True,False,1,False,False,False,False,cldr,,dra,Dravidian languages,
+bft,Balti,,,,,Arabic|Tibetan,Arab|Tibt,Arabic,Arab,rtl,,True,False,2,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+bfy,Bagheli,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+bg,Bulgarian,Български,bg,bul,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+bgc,Haryanvi,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+bgn,Western Balochi,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+bgx,Balkan Gagauz Turkish,,,,,Greek,Grek,Greek,Grek,ltr,,True,False,1,False,False,False,False,cldr,,trk,Altaic languages,
+bh,Bihari,भोजपुरी,bh,,,,,,,ltr,ltr,True,False,0,True,False,True,False,wikimedia_only|iso639_1,,,Indo-European languages,
+bhb,Bhili,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+bhi,Bhilali,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+bho,Bhojpuri,,,bho,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,inc,ine,Indo-European languages,Indic languages
+bi,Bislama,Bislama,bi,bis,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+bik,Bikol,,,bik,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+bin,Bini,,,bin,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+bjj,Kanauji,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+bjn,Banjar,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+bkm,Kom,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+bku,Buhid,,,,,Latin|Buhid,Latn|Buhd,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,map,Austronesian languages,
+bla,Siksiká,,,bla,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,alg,North American Indian languages,
+blo,Anii,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+blt,Tai Dam,,,,,Tai Viet,Tavt,Tai Viet,Tavt,ltr,,True,False,1,False,False,False,False,cldr,,tai,Tai languages,
+bm,Bambara,Bamanankan,bm,bam,,Latin|N’Ko,Latn|Nkoo,Latin,Latn,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nic,nic,Niger-Kordofanian languages,Niger-Kordofanian languages
+bmq,Bomu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+bn,Bangla,বাংলা,bn,ben,,Bangla,Beng,Bangla,Beng,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+bo,Tibetan,བོད་ཡིག / Bod skad,bo,bod,tib,Tibetan,Tibt,Tibetan,Tibt,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+bpy,Bishnupriya,ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী,,,,Bangla,Beng,Bangla,Beng,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,inc,ine,Indo-European languages,Indic languages
+bqi,Bakhtiari,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+bqv,Koro Wachi,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+br,Breton,Brezhoneg,br,bre,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cel,ine,Indo-European languages,Celtic languages
+bra,Braj,,,bra,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+brh,Brahui,,,,,Arabic|Latin,Arab|Latn,Arabic,Arab,rtl,,True,False,2,False,False,False,False,cldr,,dra,Dravidian languages,
+brx,Bodo,बड़,,,,Devanagari,Deva,Devanagari,Deva,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,inc,ine,Indo-European languages,Indic languages
+bs,Bosnian,Bosanski,bs,bos,,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+bss,Akoose,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+bto,Rinconada Bikol,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+btv,Bateri,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+bua,Buriat,,,bua,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,xgn,Altaic languages,
+buc,Bushi,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+bug,Buginese,ᨅᨔ ᨕᨘᨁᨗ / Basa Ugi,,bug,,Latin|Buginese,Latn|Bugi,Latin,Latn,ltr,ltr,True,False,2,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+bum,Bulu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+bvb,Bube,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+bxr,Buriat (Russia),Буряад хэлэн,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,xgn,tut,Altaic languages,Mongolian languages
+byn,Blin,,,byn,,Ethiopic,Ethi,Ethiopic,Ethi,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,cus,Afro-Asiatic languages,
+byv,Medumba,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+bze,Jenaama Bozo,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+bzx,Kɛlɛngaxo Bozo,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+ca,Catalan,Català,ca,cat,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+cad,Caddo,,,cad,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+car,Carib,,,car,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,sai,South American Indian languages,
+cay,Cayuga,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+cch,Atsam,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+ccp,Chakma,,,,,Bangla|Chakma,Beng|Cakm,Bangla,Beng,ltr,,True,False,2,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+cdo,Min Dong Chinese,Mìng-dĕ̤ng-ngṳ̄ / 閩東語,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+ce,Chechen,Нохчийн,ce,che,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ccn,cau,Caucasian languages,North Caucasian languages
+ceb,Cebuano,Sinugboanong Binisaya,,ceb,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+cgg,Chiga,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+ch,Chamorro,Chamoru,ch,cha,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+chb,Chibcha,,,chb,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,cai,Central American Indian languages,
+chg,Chagatai,,,chg,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,trk,Altaic languages,
+chk,Chuukese,,,chk,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+chm,Mari,,,chm,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,fiu,Uralic languages,
+chn,Chinook Jargon,,,chn,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,crp,Creoles and pidgins,
+cho,Choctaw,Choctaw,,cho,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+chp,Chipewyan,,,chp,,Latin|Unified Canadian Aboriginal Syllabics,Latn|Cans,Latin,Latn,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+chr,Cherokee,ᏣᎳᎩ,,chr,,Cherokee,Cher,Cherokee,Cher,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+chy,Cheyenne,Tsetsêhestâhese,,chy,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+cic,Chickasaw,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+cja,Western Cham,,,,,Arabic|Cham,Arab|Cham,Arabic,Arab,rtl,,True,False,2,False,False,False,False,cldr,,map,Austronesian languages,
+cjm,Eastern Cham,,,,,Arabic|Cham,Arab|Cham,Arabic,Arab,rtl,,True,False,2,False,False,False,False,cldr,,map,Austronesian languages,
+cjs,Shor,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,trk,Altaic languages,
+ckb,Central Kurdish,کوردی,,,,Arabic,Arab,Arabic,Arab,rtl,rtl,True,False,1,False,False,True,False,cldr|wikimedia,ira,ine,Indo-European languages,Iranian languages
+ckt,Chukot,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,,Chukotko-Kamchatkan languages,
+clc,Chilcotin,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+cnr,Montenegrin,,,cnr,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,sla,Indo-European languages,
+co,Corsican,Corsu,co,cos,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+cop,Coptic,,,cop,,Arabic|Greek|Coptic,Arab|Grek|Copt,Arabic,Arab,rtl,,False,False,3,False,True,False,False,cldr|iso639_2,,afa,Afro-Asiatic languages,
+cps,Capiznon,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+cr,Cree,Nehiyaw,cr,cre,,Latin|Unified Canadian Aboriginal Syllabics,Latn|Cans,Latin,Latn,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+crg,Michif,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,alg,North American Indian languages,
+crh,Crimean Tatar,,,crh,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,trk,Altaic languages,
+crj,Southern East Cree,,,,,Latin|Unified Canadian Aboriginal Syllabics,Latn|Cans,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,alg,North American Indian languages,
+crk,Plains Cree,,,,,Unified Canadian Aboriginal Syllabics,Cans,Unified Canadian Aboriginal Syllabics,Cans,ltr,,True,False,1,False,False,False,False,cldr,,alg,North American Indian languages,
+crl,Northern East Cree,,,,,Latin|Unified Canadian Aboriginal Syllabics,Latn|Cans,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,alg,North American Indian languages,
+crm,Moose Cree,,,,,Unified Canadian Aboriginal Syllabics,Cans,Unified Canadian Aboriginal Syllabics,Cans,ltr,,True,False,1,False,False,False,False,cldr,,alg,North American Indian languages,
+crn,Montenegrin,crnogorski,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,,,North American Indian languages,
+crs,Seselwa Creole French,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+cs,Czech,Česky,cs,ces,cze,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+csb,Kashubian,Kaszëbsczi,,csb,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+csw,Swampy Cree,,,,,Unified Canadian Aboriginal Syllabics,Cans,Unified Canadian Aboriginal Syllabics,Cans,ltr,,True,False,1,False,False,False,False,cldr,,alg,North American Indian languages,
+ctd,Tedim Chin,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+cu,Church Slavic,словѣньскъ / slověnĭskŭ,cu,chu,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,False,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+cv,Chuvash,Чăваш,cv,chv,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+cwd,Woods Cree,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,alg,North American Indian languages,
+cy,Welsh,Cymraeg,cy,cym,wel,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cel,ine,Indo-European languages,Celtic languages
+da,Danish,Dansk,da,dan,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+dak,Dakota,,,dak,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+dar,Dargwa,,,dar,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ccn,Caucasian languages,
+dav,Taita,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+dcc,Deccan,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+de,German,Deutsch,de,deu,ger,Latin|Runic,Latn|Runr,Latin,Latn,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+del,Delaware,,,del,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,alg,North American Indian languages,
+den,Slave,,,den,,Latin|Unified Canadian Aboriginal Syllabics,Latn|Cans,Latin,Latn,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+dgr,Dogrib,,,dgr,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+din,Dinka,,,din,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ssa,Nilo-Saharan languages,
+diq,Dimli,Zazaki,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,ira,ine,Indo-European languages,Iranian languages
+dje,Zarma,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+dng,Dungan,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+dnj,Dan,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+doi,Dogri,,,doi,,Arabic|Devanagari|Takri,Arab|Deva|Takr,Arabic,Arab,rtl,,True,False,3,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+dsb,Lower Sorbian,Dolnoserbski,,dsb,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+dtm,Tomo Kan Dogon,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+dtp,Central Dusun,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+dty,Dotyali,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+dua,Duala,,,dua,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+dum,Middle Dutch,,,dum,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+dv,Divehi,ދިވެހިބަސް,dv,div,,Thaana,Thaa,Thaana,Thaa,rtl,rtl,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+dyo,Jola-Fonyi,,,,,Arabic|Latin,Arab|Latn,Arabic,Arab,rtl,,True,False,2,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+dyu,Dyula,,,dyu,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+dz,Dzongkha,རྫོང་ཁ,dz,dzo,,Tibetan,Tibt,Tibetan,Tibt,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+dzg,Dazaga,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+ebu,Embu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+ee,Ewe,Ɛʋɛ,ee,ewe,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nic,nic,Niger-Kordofanian languages,Niger-Kordofanian languages
+efi,Efik,,,efi,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+egl,Emilian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,roa,Indo-European languages,
+egy,Ancient Egyptian,,,egy,,Egyptian hieroglyphs,Egyp,Egyptian hieroglyphs,Egyp,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,afa,Afro-Asiatic languages,
+eka,Ekajuk,,,eka,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+eky,Eastern Kayah,,,,,Kayah Li,Kali,Kayah Li,Kali,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+el,Greek,Ελληνικά,el,ell,gre,Greek,Grek,Greek,Grek,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,grk,ine,Indo-European languages,Greek languages
+elx,Elamite,,,elx,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,,Language isolate,
+en,English,English,en,eng,,Latin|Deseret|Shavian,Latn|Dsrt|Shaw,Latin,Latn,ltr,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+enm,Middle English,,,enm,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+eo,Esperanto,Esperanto,eo,epo,,Latin,Latn,Latin,Latn,ltr,ltr,False,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,art,art,Artificial languages,Artificial languages
+es,Spanish,Español,es,spa,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+esu,Central Yupik,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,esx,Eskimo-Aleut languages,
+et,Estonian,Eesti,et,est,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,fiu,urj,Uralic languages,Finno-Ugrian languages
+ett,Etruscan,,,,,Latin|Old Italic,Latn|Ital,Latin,Latn,ltr,,False,False,2,False,False,False,False,cldr,,,Language isolate,
+eu,Basque,Euskara,eu,eus,baq,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,euq,euq,Basque (family),Basque (family)
+evn,Evenki,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,tut,Altaic languages,
+ewo,Ewondo,,,ewo,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+ext,Extremaduran,Estremeñu,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,roa,ine,Indo-European languages,Romance languages
+fa,Persian,فارسی,fa,fas,per,Arabic,Arab,Arabic,Arab,rtl,rtl,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ira,ine,Indo-European languages,Iranian languages
+fan,Fang,,,fan,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+fat,Fanti,,,fat,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+ff,Fula,Fulfulde,ff,ful,,Adlam|Latin,Adlm|Latn,Adlam,Adlm,rtl,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nic,nic,Niger-Kordofanian languages,Niger-Kordofanian languages
+ffm,Maasina Fulfulde,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+fi,Finnish,Suomi,fi,fin,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,fiu,urj,Uralic languages,Finno-Ugrian languages
+fia,Nobiin,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+fil,Filipino,,,fil,,Latin|Tagalog,Latn|Tglg,Latin,Latn,ltr,,True,True,2,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+fit,Tornedalen Finnish,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+fiu-vro,Võro,Võro,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,fiu,urj,Uralic languages,Finno-Ugrian languages
+fj,Fijian,Na Vosa Vakaviti,fj,fij,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+fo,Faroese,Føroyskt,fo,fao,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+fon,Fon,,,fon,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+fr,French,Français,fr,fra,fre,Latin|Duployan shorthand,Latn|Dupl,Latin,Latn,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+frc,Cajun French,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,roa,Indo-European languages,
+frm,Middle French,,,frm,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+fro,Old French,,,fro,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+frp,Arpitan,Arpitan / francoprovençal,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,roa,ine,Indo-European languages,Romance languages
+frr,Northern Frisian,,,frr,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+frs,Eastern Frisian,,,frs,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+fud,East Futuna,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+fuq,Central-Eastern Niger Fulfulde,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+fur,Friulian,Furlan,,fur,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+fuv,Nigerian Fulfulde,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+fvr,Fur,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+fy,Western Frisian,Frysk,fy,fry,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+ga,Irish,Gaeilge,ga,gle,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cel,ine,Indo-European languages,Celtic languages
+gaa,Ga,,,gaa,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+gag,Gagauz,,,,,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,,True,False,2,False,False,False,False,cldr,,trk,Altaic languages,
+gan,Gan Chinese,贛語,,,,Simplified,Hans,Simplified,Hans,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+gay,Gayo,,,gay,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+gba,Gbaya,,,gba,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+gbm,Garhwali,गढ़वळी,,,,Devanagari,Deva,Devanagari,Deva,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,inc,ine,Indo-European languages,Indic languages
+gbz,Zoroastrian Dari,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+gcr,Guianese Creole French,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+gd,Scottish Gaelic,Gàidhlig,gd,gla,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cel,ine,Indo-European languages,Celtic languages
+gez,Geez,,,gez,,Ethiopic,Ethi,Ethiopic,Ethi,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,sem,Afro-Asiatic languages,
+gil,Gilbertese,Taetae ni kiribati,,gil,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+gjk,Kachi Koli,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+gju,Gujari,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+gl,Galician,Galego,gl,glg,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+gld,Nanai,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,tut,Altaic languages,
+glk,Gilaki,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,ira,ine,Indo-European languages,Iranian languages
+gmh,Middle High German,,,gmh,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+gn,Guarani,Avañe'ẽ,gn,grn,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sai,sai,South American Indian languages,South American Indian languages
+goh,Old High German,,,goh,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+gom,Goan Konkani,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+gon,Gondi,,,gon,,Devanagari|Telugu,Deva|Telu,Devanagari,Deva,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,dra,Dravidian languages,
+gor,Gorontalo,,,gor,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+gos,Gronings,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+got,Gothic,gutisk,,got,,Gothic,Goth,Gothic,Goth,ltr,ltr,False,False,1,False,True,True,False,cldr|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+grb,Grebo,,,grb,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+grc,Ancient Greek,,,grc,,Greek|Cypriot|Linear B,Grek|Cprt|Linb,Greek,Grek,ltr,,False,False,3,False,True,False,False,cldr|iso639_2,,grk,Indo-European languages,
+grt,Garo,,,,,Bangla,Beng,Bangla,Beng,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+gsw,Swiss German,,,gsw,,Latin,Latn,Latin,Latn,ltr,,True,True,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+gu,Gujarati,ગુજરાતી,gu,guj,,Gujarati,Gujr,Gujarati,Gujr,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+gub,Guajajára,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sai,South American Indian languages,
+guc,Wayuu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sai,South American Indian languages,
+gur,Frafra,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+guz,Gusii,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+gv,Manx,Gaelg,gv,glv,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cel,ine,Indo-European languages,Celtic languages
+gvr,Gurung,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+gwi,Gwichʼin,,,gwi,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+ha,Hausa,هَوُسَ,ha,hau,,Arabic|Latin,Arab|Latn,Arabic,Arab,ltr,rtl,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cdc,afa,Afro-Asiatic languages,Chadic languages
+hai,Haida,,,hai,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,,Language isolate,
+hak,Hakka Chinese,客家語/Hak-kâ-ngî,,,,Simplified,Hans,Simplified,Hans,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+haw,Hawaiian,Hawai`i,,haw,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+hax,Southern Haida,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,,Language isolate,
+haz,Hazaragi,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+hdn,Northern Haida,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,,Language isolate,
+he,Hebrew,עברית,he,heb,,Hebrew,Hebr,Hebrew,Hebr,rtl,rtl,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sem,afa,Afro-Asiatic languages,Semitic languages
+hi,Hindi,हिन्दी,hi,hin,,Devanagari|Latin|Mahajani,Deva|Latn|Mahj,Devanagari,Deva,ltr,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+hif,Fiji Hindi,,,,,Devanagari|Latin,Deva|Latn,Devanagari,Deva,ltr,,True,True,2,False,False,False,False,cldr,,inc,Indo-European languages,
+hil,Hiligaynon,,,hil,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+hit,Hittite,,,hit,,Sumero-Akkadian Cuneiform,Xsux,Sumero-Akkadian Cuneiform,Xsux,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,ine,Indo-European languages,
+hmd,Large Flowery Miao,,,,,Pollard Phonetic,Plrd,Pollard Phonetic,Plrd,ltr,,True,False,1,False,False,False,False,cldr,,hmx,Hmong-Mien languages,
+hmn,Hmong,,,hmn,,Latin|Pahawh Hmong,Latn|Hmng,Latin,Latn,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,hmx,Hmong-Mien languages,
+hnd,Southern Hindko,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+hne,Chhattisgarhi,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+hnj,Hmong Njua,,,,,Lao,Laoo,Lao,Laoo,ltr,,True,False,1,False,False,False,False,cldr,,hmx,Hmong-Mien languages,
+hnn,Hanunoo,,,,,Latin|Hanunoo,Latn|Hano,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,map,Austronesian languages,
+hno,Northern Hindko,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+ho,Hiri Motu,Hiri Motu,ho,hmo,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Creoles and pidgins,
+hoc,Ho,,,,,Devanagari|Varang Kshiti,Deva|Wara,Devanagari,Deva,ltr,,True,False,2,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+hoj,Hadothi,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+hop,Hopi,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+hr,Croatian,Hrvatski,hr,hrv,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+hsb,Upper Sorbian,,,hsb,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+hsn,Xiang Chinese,,,,,Simplified,Hans,Simplified,Hans,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+ht,Haitian Creole,Krèyol ayisyen,ht,hat,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+hu,Hungarian,Magyar,hu,hun,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,fiu,urj,Uralic languages,Finno-Ugrian languages
+hup,Hupa,,,hup,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+hur,Halkomelem,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+hy,Armenian,Հայերեն,hy,hye,arm,Armenian,Armn,Armenian,Armn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,hyx,ine,Indo-European languages,Armenian (family)
+hz,Herero,Otsiherero,hz,her,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Niger-Kordofanian languages,
+ia,Interlingua,Interlingua,ia,ina,,Latin,Latn,Latin,Latn,ltr,ltr,False,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,art,art,Artificial languages,Artificial languages
+iba,Iban,,,iba,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+ibb,Ibibio,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+id,Indonesian,Bahasa Indonesia,id,ind,,Arabic|Latin,Arab|Latn,Arabic,Arab,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+ie,Interlingue,Interlingue,ie,ile,,Latin,Latn,Latin,Latn,ltr,ltr,False,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,art,art,Artificial languages,Artificial languages
+ife,Ifè,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+ig,Igbo,Igbo,ig,ibo,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nic,nic,Niger-Kordofanian languages,Niger-Kordofanian languages
+ii,Sichuan Yi,ꆇꉙ / 四川彝语,ii,iii,,Latin|Yi,Latn|Yiii,Latin,Latn,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Sino-Tibetan languages,
+ik,Inupiaq,Iñupiak,ik,ipk,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+ike,Eastern Canadian Inuktitut,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,esx,Eskimo-Aleut languages,
+ikt,Western Canadian Inuktitut,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,esx,Eskimo-Aleut languages,
+ilo,Iloko,Ilokano,,ilo,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+inh,Ingush,ГӀалгӀай,,inh,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,rtl,ltr,True,False,3,False,True,True,False,cldr|iso639_2|wikimedia,ccn,cau,Caucasian languages,North Caucasian languages
+io,Ido,Ido,io,ido,,,,,,ltr,ltr,True,False,0,True,True,True,False,wikimedia_only|iso639_1|iso639_2,art,art,Artificial languages,Artificial languages
+is,Icelandic,Íslenska,is,isl,ice,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+it,Italian,Italiano,it,ita,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+iu,Inuktitut,ᐃᓄᒃᑎᑐᑦ,iu,iku,,Latin|Unified Canadian Aboriginal Syllabics,Latn|Cans,Latin,Latn,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,esx,esx,Eskimo-Aleut languages,Eskimo-Aleut languages
+izh,Ingrian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+ja,Japanese,日本語,ja,jpn,,Japanese,Jpan,Japanese,Jpan,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,jpx,jpx,Japanese (family),Japanese (family)
+jam,Jamaican Creole English,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+jbo,Lojban,Lojban,,jbo,,,,,,ltr,ltr,True,False,0,False,True,True,False,wikimedia_only|iso639_2,art,art,Artificial languages,Artificial languages
+jgo,Ngomba,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+jmc,Machame,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+jml,Jumli,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+jpr,Judeo-Persian,,,jpr,,Hebrew,Hebr,Hebrew,Hebr,rtl,,True,False,1,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+jrb,Judeo-Arabic,,,jrb,,Hebrew,Hebr,Hebrew,Hebr,rtl,,True,False,1,False,True,False,False,cldr|iso639_2,,sem,Afro-Asiatic languages,
+jut,Jutish,,,,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+jv,Javanese,Basa Jawa,jv,jav,,Javanese|Latin,Java|Latn,Javanese,Java,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+ka,Georgian,ქართული,ka,kat,geo,Georgian,Geor,Georgian,Geor,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ccs,cau,Caucasian languages,South Caucasian languages
+kaa,Kara-Kalpak,,,kaa,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,trk,Altaic languages,
+kab,Kabyle,,,kab,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,ber,afa,Afro-Asiatic languages,Berber languages
+kac,Kachin,,,kac,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,sit,Sino-Tibetan languages,
+kaj,Jju,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+kam,Kamba,,,kam,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+kao,Xaasongaxango,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+kaw,Kawi,,,kaw,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,map,Austronesian languages,
+kbd,Kabardian,,,kbd,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ccn,Caucasian languages,
+kbl,Kanembu,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+kca,Khanty,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+kcg,Tyap,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+kck,Kalanga,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+kde,Makonde,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+kdt,Kuy,,,,,Thai,Thai,Thai,Thai,ltr,,True,False,1,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+kea,Kabuverdianu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+ken,Kenyang,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+kfo,Koro,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+kfr,Kachhi,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+kfy,Kumaoni,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+kg,Kongo,KiKongo,kg,kon,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+kge,Komering,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+kgp,Kaingang,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sai,South American Indian languages,
+kha,Khasi,,,kha,,Bangla|Latin,Beng|Latn,Bangla,Beng,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,aav,Austro-Asiatic languages,
+khb,Lü,,,,,New Tai Lue,Talu,New Tai Lue,Talu,ltr,,True,False,1,False,False,False,False,cldr,,tai,Tai languages,
+khn,Khandesi,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+kho,Khotanese,,,kho,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,ira,Indo-European languages,
+khq,Koyra Chiini,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+kht,Khamti,,,,,Myanmar,Mymr,Myanmar,Mymr,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+khw,Khowar,کھوار,,,,Arabic,Arab,Arabic,Arab,rtl,rtl,True,False,1,False,False,True,False,cldr|wikimedia,ira,ine,Indo-European languages,Iranian languages
+ki,Kikuyu,Gĩkũyũ,ki,kik,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Niger-Kordofanian languages,
+kiu,Kirmanjki,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+kj,Kuanyama,Kuanyama,kj,kua,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Niger-Kordofanian languages,
+kjg,Khmu,,,,,Lao|Latin,Laoo|Latn,Lao,Laoo,ltr,,True,False,2,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+kjh,Khakas,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,trk,Altaic languages,
+kk,Kazakh,Қазақша,kk,kaz,,Arabic|Cyrillic,Arab|Cyrl,Arabic,Arab,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+kkj,Kako,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+kl,Kalaallisut,Kalaallisut,kl,kal,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+kln,Kalenjin,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+km,Khmer,ភាសាខ្មែរ,km,khm,,Khmer,Khmr,Khmer,Khmr,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,mkh,aav,Austro-Asiatic languages,Mon-Khmer languages
+kmb,Kimbundu,,,kmb,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+kn,Kannada,ಕನ್ನಡ,kn,kan,,Kannada,Knda,Kannada,Knda,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,dra,dra,Dravidian languages,Dravidian languages
+ko,Korean,한국어,ko,kor,,Korean,Kore,Korean,Kore,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,isolate,isolate,Language isolate,Language isolate
+koi,Komi-Permyak,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+kok,Konkani,,,kok,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+kos,Kosraean,,,kos,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+kpe,Kpelle,,,kpe,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+kpy,Koryak,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,,Chukotko-Kamchatkan languages,
+kr,Kanuri,Kanuri,kr,kau,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ssa,ssa,Nilo-Saharan languages,Nilo-Saharan languages
+krc,Karachay-Balkar,,,krc,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,trk,Altaic languages,
+kri,Krio,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+krj,Kinaray-a,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+krl,Karelian,,,krl,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,fiu,Uralic languages,
+kru,Kurukh,,,kru,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,dra,Dravidian languages,
+ks,Kashmiri,कॉशुर / کٲشُر,ks,kas,,Arabic|Devanagari,Arab|Deva,Arabic,Arab,rtl,rtl,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+ksb,Shambala,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+ksf,Bafia,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+ksh,Colognian,Ripoarisch,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,gem,ine,Indo-European languages,Germanic languages
+ku,Kurdish,Kurdî,ku,kur,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,ltr,ltr,True,False,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ira,ine,Indo-European languages,Iranian languages
+kum,Kumyk,,,kum,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,trk,Altaic languages,
+kut,Kutenai,,,kut,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,,Language isolate,
+kv,Komi,Коми,kv,kom,,Cyrillic|Old Permic,Cyrl|Perm,Cyrillic,Cyrl,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,fiu,urj,Uralic languages,Finno-Ugrian languages
+kvr,Kerinci,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+kvx,Parkari Koli,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+kw,Cornish,Kernewek,kw,cor,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cel,ine,Indo-European languages,Celtic languages
+kwk,Kwakʼwala,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+kxm,Northern Khmer,,,,,Thai,Thai,Thai,Thai,ltr,,True,False,1,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+kxp,Wadiyara Koli,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+kxv,Kuvi,,,,,Devanagari|Latin|Odia|Telugu,Deva|Latn|Orya|Telu,Devanagari,Deva,ltr,,True,False,4,False,False,False,False,cldr,,dra,Dravidian languages,
+ky,Kyrgyz,Kırgızca / Кыргызча,ky,kir,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,ltr,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+kyu,Western Kayah,,,,,Kayah Li,Kali,Kayah Li,Kali,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+la,Latin,Latina,la,lat,,Latin,Latn,Latin,Latn,ltr,ltr,False,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+lab,Linear A,,,,,Linear A,Lina,Linear A,Lina,ltr,,False,False,1,False,False,False,False,cldr,,,Undeciphered script,
+lad,Ladino,Dzhudezmo / Djudeo-Espanyol,,lad,,Hebrew,Hebr,Hebrew,Hebr,rtl,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+lag,Langi,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+lah,Western Panjabi,,,lah,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+laj,Lango (Uganda),,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+lam,Lamba,,,lam,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+lan,Lango,Leb Lango / Luo,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,,ssa,Nilo-Saharan languages,
+lb,Luxembourgish,Lëtzebuergesch,lb,ltz,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+lbe,Lak,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,ccn,Caucasian languages,
+lbw,Tolaki,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+lcp,Western Lawa,,,,,Thai,Thai,Thai,Thai,ltr,,True,False,1,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+lep,Lepcha,,,,,Lepcha,Lepc,Lepcha,Lepc,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+lez,Lezghian,,,lez,,Cyrillic|Caucasian Albanian,Cyrl|Aghb,Cyrillic,Cyrl,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,ccn,Caucasian languages,
+lfn,Lingua Franca Nova,,,,,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,,False,False,2,False,False,False,False,cldr,,art,Artificial languages,
+lg,Ganda,Luganda,lg,lug,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+li,Limburgish,Limburgs,li,lim,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+lif,Limbu,,,,,Devanagari|Limbu,Deva|Limb,Devanagari,Deva,ltr,,True,False,2,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+lij,Ligurian,Líguru,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,roa,ine,Indo-European languages,Romance languages
+lil,Lillooet,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+lis,Lisu,,,,,Fraser,Lisu,Fraser,Lisu,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+liv,Livonian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+ljp,Lampung Api,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+lki,Laki,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+lkt,Lakota,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+lmn,Lambadi,,,,,Telugu,Telu,Telugu,Telu,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+lmo,Lombard,Lumbaart,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,roa,ine,Indo-European languages,Romance languages
+ln,Lingala,Lingála,ln,lin,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+lo,Lao,ລາວ / Pha xa lao,lo,lao,,Lao,Laoo,Lao,Laoo,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,tai,tai,Tai languages,Tai languages
+lol,Mongo,,,lol,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+lou,Louisiana Creole,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+loz,Lozi,,,loz,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+lrc,Northern Luri,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+lsm,Saamia,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+lt,Lithuanian,Lietuvių,lt,lit,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bat,ine,Indo-European languages,Baltic languages
+ltg,Latgalian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bat,Indo-European languages,
+lu,Luba-Katanga,,lu,lub,,Latin,Latn,Latin,Latn,ltr,,True,False,1,True,True,False,False,cldr|iso639_1|iso639_2,,,Niger-Kordofanian languages,
+lua,Luba-Lulua,,,lua,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+lui,Luiseno,,,lui,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+lun,Lunda,,,lun,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+luo,Luo,,,luo,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ssa,Nilo-Saharan languages,
+lus,Mizo,,,lus,,Bangla,Beng,Bangla,Beng,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,sit,Sino-Tibetan languages,
+lut,Lushootseed,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+luy,Luyia,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+luz,Southern Luri,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+lv,Latvian,Latviešu,lv,lav,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bat,ine,Indo-European languages,Baltic languages
+lwl,Eastern Lawa,,,,,Thai,Thai,Thai,Thai,ltr,,True,False,1,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+lzh,Literary Chinese,,,,,Simplified,Hans,Simplified,Hans,ltr,,False,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+lzz,Laz,Lazuri / ლაზური,,,,Georgian|Latin,Geor|Latn,Georgian,Geor,ltr,ltr,True,False,2,False,False,True,False,cldr|wikimedia,ccn,cau,Caucasian languages,North Caucasian languages
+mad,Madurese,,,mad,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+maf,Mafa,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,cdc,Afro-Asiatic languages,
+mag,Magahi,,,mag,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+mai,Maithili,,,mai,,Devanagari|Tirhuta,Deva|Tirh,Devanagari,Deva,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+mak,Makasar,,,mak,,Latin|Buginese,Latn|Bugi,Latin,Latn,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+man,Mandingo,官話/官话,,man,,Latin|N’Ko,Latn|Nkoo,Latin,Latn,ltr,ltr,True,False,2,False,True,True,False,cldr|iso639_2|wikimedia,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+map-bms,Banyumasan,Basa Banyumasan,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,map,map,Austronesian languages,Austronesian languages
+mas,Masai,,,mas,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ssa,Nilo-Saharan languages,
+maz,Central Mazahua,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,cai,Central American Indian languages,
+mde,Maba,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+mdf,Moksha,,,mdf,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,fiu,Uralic languages,
+mdh,Maguindanaon,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+mdr,Mandar,,,mdr,,Latin|Buginese,Latn|Bugi,Latin,Latn,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+mdt,Mbere,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+men,Mende,,,men,,Latin|Mende,Latn|Mend,Latin,Latn,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+mer,Meru,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+mfa,Pattani Malay,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+mfe,Morisyen,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+mg,Malagasy,Malagasy,mg,mlg,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+mga,"Irish, Middle (900-1200)",,,mga,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,cel,Indo-European languages,
+mgh,Makhuwa-Meetto,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+mgo,Metaʼ,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+mgp,Eastern Magar,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+mgy,Mbunga,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+mh,Marshallese,Kajin Majel / Ebon,mh,mah,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+mi,Māori,Māori,mi,mri,mao,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+mic,Mi'kmaw,,,mic,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,alg,North American Indian languages,
+min,Minangkabau,Minangkabau,,min,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+mk,Macedonian,Македонски,mk,mkd,mac,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+ml,Malayalam,മലയാളം,ml,mal,,Malayalam,Mlym,Malayalam,Mlym,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,dra,dra,Dravidian languages,Dravidian languages
+mls,Masalit,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+mn,Mongolian,Монгол,mn,mon,,Cyrillic|Mongolian|Phags-pa,Cyrl|Mong|Phag,Cyrillic,Cyrl,ltr,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,xgn,tut,Altaic languages,Mongolian languages
+mnc,Manchu,,,mnc,,Mongolian,Mong,Mongolian,Mong,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,tut,Altaic languages,
+mni,Manipuri,,,mni,,Bangla|Meitei Mayek,Beng|Mtei,Bangla,Beng,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,sit,Sino-Tibetan languages,
+mns,Mansi,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+mnw,Mon,,,,,Myanmar,Mymr,Myanmar,Mymr,ltr,,True,False,1,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+mo,Moldovan,Moldovenească,mo,,,,,,,ltr,ltr,True,False,0,True,False,True,False,wikimedia_only|iso639_1,,,Indo-European languages,
+moe,Innu-aimun,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,alg,North American Indian languages,
+moh,Mohawk,,,moh,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+mos,Mossi,,,mos,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+mr,Marathi,मराठी,mr,mar,,Devanagari|Modi,Deva|Modi,Devanagari,Deva,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+mrd,Western Magar,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+mrh,Mara,Mara,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+mrj,Western Mari,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+mro,Mru,,,,,Latin|Mro,Latn|Mroo,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+ms,Malay,Bahasa Melayu,ms,msa,may,Arabic|Latin,Arab|Latn,Arabic,Arab,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+mt,Maltese,bil-Malti,mt,mlt,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sem,afa,Afro-Asiatic languages,Semitic languages
+mtr,Mewari,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+mua,Mundang,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+mus,Muscogee,Mvskoke,,mus,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+mvy,Indus Kohistani,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+mwk,Kita Maninkakan,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+mwl,Mirandese,Mirandés,,mwl,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+mwr,Marwari,,,mwr,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+mwv,Mentawai,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+mxc,Manyika,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+my,Burmese,Myanmasa,my,mya,bur,Myanmar,Mymr,Myanmar,Mymr,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+mye,Myene,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+myv,Erzya,,,myv,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,fiu,Uralic languages,
+myx,Masaaba,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+myz,Classical Mandaic,,,,,Mandaean,Mand,Mandaean,Mand,ltr,,False,False,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+mzn,Mazanderani,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,ira,ine,Indo-European languages,Iranian languages
+na,Nauru,Dorerin Naoero,na,nau,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+nah,Nahuatl,Nahuatl,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,nai,nai,North American Indian languages,North American Indian languages
+,Min Nan Chinese,,,,,Simplified,Hans,Simplified,Hans,ltr,,True,False,1,False,False,False,False,cldr,,,,
+nap,Neapolitan,Nnapulitano,,nap,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+naq,Nama,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,khi,Khoisan languages,
+nb,Norwegian Bokmål,Norsk (bokmål),nb,nob,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+nch,Central Huasteca Nahuatl,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+nd,North Ndebele,Sindebele,nd,nde,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Niger-Kordofanian languages,
+ndc,Ndau,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+nds,Low German,Plattdüütsch,,nds,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+nds-nl,Dutch Low Saxon,Nedersaksisch,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,gem,ine,Indo-European languages,Germanic languages
+ne,Nepali,नेपाली,ne,nep,,Devanagari,Deva,Devanagari,Deva,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+new,Newari,नेपालभाषा / Newah Bhaye,,new,,Devanagari,Deva,Devanagari,Deva,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,,,Sino-Tibetan languages,
+ng,Ndonga,Oshiwambo,ng,ndo,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Niger-Kordofanian languages,
+ngl,Lomwe,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+nhe,Eastern Huasteca Nahuatl,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+nhw,Western Huasteca Nahuatl,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+nia,Nias,,,nia,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+nij,Ngaju,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+niu,Niuean,,,niu,,Latin,Latn,Latin,Latn,ltr,,True,True,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+njo,Ao Naga,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+nl,Dutch,Nederlands,nl,nld,dut,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+nmg,Kwasio,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+nn,Norwegian Nynorsk,Norsk (nynorsk),nn,nno,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+nnh,Ngiemboon,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+no,Norwegian,Norsk (bokmål / riksmål),no,nor,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+nod,Northern Thai,,,,,Lanna,Lana,Lanna,Lana,ltr,,True,False,1,False,False,False,False,cldr,,tai,Tai languages,
+noe,Nimadi,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+nog,Nogai,,,nog,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,trk,Altaic languages,
+non,Old Norse,,,non,,Runic,Runr,Runic,Runr,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,gem,Indo-European languages,
+nov,Novial,,,,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,False,False,False,cldr,,art,Artificial languages,
+nqo,N’Ko,,,nqo,,N’Ko,Nkoo,N’Ko,Nkoo,rtl,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+nr,South Ndebele,isiNdebele,nr,nbl,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Niger-Kordofanian languages,
+nrm,Norman,Nouormand / Normaund,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,roa,ine,Indo-European languages,Romance languages
+nsk,Naskapi,,,,,Latin|Unified Canadian Aboriginal Syllabics,Latn|Cans,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,alg,North American Indian languages,
+nso,Northern Sotho,Sesotho sa Leboa / Sepedi,,nso,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+nus,Nuer,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+nv,Navajo,Diné bizaad,nv,nav,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+nwc,Classical Newari,,,nwc,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,sit,Sino-Tibetan languages,
+nxq,Naxi,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+ny,Nyanja,Chi-Chewa,ny,nya,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+nym,Nyamwezi,,,nym,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+nyn,Nyankole,,,nyn,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+nyo,Nyoro,,,nyo,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+nzi,Nzima,,,nzi,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+oc,Occitan,Occitan,oc,oci,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+oj,Ojibwa,ᐊᓂᔑᓈᐯᒧᐎᓐ / Anishinaabemowin,oj,oji,,Latin|Unified Canadian Aboriginal Syllabics,Latn|Cans,Latin,Latn,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nai,nai,North American Indian languages,North American Indian languages
+ojb,Northwestern Ojibwa,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,alg,North American Indian languages,
+ojc,Central Ojibwa,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,alg,North American Indian languages,
+ojg,Eastern Ojibwa,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,alg,North American Indian languages,
+ojs,Oji-Cree,,,,,Unified Canadian Aboriginal Syllabics,Cans,Unified Canadian Aboriginal Syllabics,Cans,ltr,,True,False,1,False,False,False,False,cldr,,alg,North American Indian languages,
+ojw,Western Ojibwa,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,alg,North American Indian languages,
+oka,Okanagan,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+om,Oromo,Oromoo,om,orm,,Ethiopic|Latin,Ethi|Latn,Ethiopic,Ethi,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cus,afa,Afro-Asiatic languages,Cushitic languages
+or,Odia,ଓଡ଼ିଆ,or,ori,,Odia,Orya,Odia,Orya,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+os,Ossetic,Иронау,os,oss,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ira,ine,Indo-European languages,Iranian languages
+osa,Osage,,,osa,,Latin|Osage,Latn|Osge,Latin,Latn,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+osc,Oscan,,,,,Latin|Old Italic,Latn|Ital,Latin,Latn,ltr,,False,False,2,False,False,False,False,cldr,,ine,Indo-European languages,
+ota,"Turkish, Ottoman (1500-1928)",,,ota,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,trk,Altaic languages,
+otk,Old Turkish,,,,,Orkhon,Orkh,Orkhon,Orkh,ltr,,False,False,1,False,False,False,False,cldr,,trk,Altaic languages,
+pa,Punjabi,ਪੰਜਾਬੀ / پنجابی,pa,pan,,Arabic|Gurmukhi,Arab|Guru,Arabic,Arab,rtl,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+pag,Pangasinan,Pangasinan,,pag,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+pal,Pahlavi,,,pal,,Inscriptional Pahlavi|Psalter Pahlavi,Phli|Phlp,Psalter Pahlavi,Phlp,ltr,,False,False,2,False,True,False,False,cldr|iso639_2,,ira,Indo-European languages,
+pam,Pampanga,Kapampangan,,pam,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+pap,Papiamento,Papiamentu,,pap,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,False,True,True,False,cldr|iso639_2|wikimedia,crp,crp,Creolesandpidgins,Creolesandpidgins
+pau,Palauan,,,pau,,Latin,Latn,Latin,Latn,ltr,,True,True,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+pcd,Picard,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,roa,Indo-European languages,
+pcm,Nigerian Pidgin,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+pdc,Pennsylvania German,Deitsch,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,gem,ine,Indo-European languages,Germanic languages
+pdt,Plautdietsch,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+peo,Old Persian,,,peo,,Old Persian,Xpeo,Old Persian,Xpeo,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,ira,Indo-European languages,
+pfl,Palatine German,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+phn,Phoenician,,,phn,,Phoenician,Phnx,Phoenician,Phnx,rtl,,False,False,1,False,True,False,False,cldr|iso639_2,,sem,Afro-Asiatic languages,
+pi,Pali,Pāli / पाऴि,pi,pli,,Devanagari|Sinhala|Thai,Deva|Sinh|Thai,Devanagari,Deva,ltr,ltr,False,False,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+pih,Norfolk,Norfuk,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,crp,crp,Creolesandpidgins,Creolesandpidgins
+pis,Pijin,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+pko,Pökoot,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+pl,Polish,Polski,pl,pol,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+pms,Piedmontese,Piemontèis,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,roa,ine,Indo-European languages,Romance languages
+pnt,Pontic,,,,,Cyrillic|Greek|Latin,Cyrl|Grek|Latn,Cyrillic,Cyrl,ltr,,True,False,3,False,False,False,False,cldr,,grk,Indo-European languages,
+pon,Pohnpeian,,,pon,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+pqm,Maliseet-Passamaquoddy,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,alg,North American Indian languages,
+prd,Parsi-Dari,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+prg,Prussian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bat,Indo-European languages,
+pro,Old Provençal,,,pro,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,roa,Indo-European languages,
+ps,Pashto,پښتو,ps,pus,,Arabic,Arab,Arabic,Arab,rtl,rtl,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ira,ine,Indo-European languages,Iranian languages
+pt,Portuguese,Português,pt,por,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+puu,Punu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+qu,Quechua,Runa Simi,qu,que,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sai,sai,South American Indian languages,South American Indian languages
+quc,Kʼicheʼ,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,cai,Central American Indian languages,
+qug,Chimborazo Highland Quichua,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sai,South American Indian languages,
+raj,Rajasthani,,,raj,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+rap,Rapanui,,,rap,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+rar,Rarotongan,,,rar,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+rcf,Réunion Creole French,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+rej,Rejang,,,,,Latin|Rejang,Latn|Rjng,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,map,Austronesian languages,
+rgn,Romagnol,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,roa,Indo-European languages,
+rhg,Rohingya,,,,,Arabic|Hanifi|Latin,Arab|Rohg|Latn,Arabic,Arab,rtl,,True,False,3,False,False,False,False,cldr,,inc,Indo-European languages,
+ria,Riang (India),,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+rif,Riffian,,,,,Latin|Tifinagh,Latn|Tfng,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,ber,Afro-Asiatic languages,
+rjs,Rajbanshi,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+rkt,Rangpuri,,,,,Bangla,Beng,Bangla,Beng,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+rm,Romansh,Rumantsch,rm,roh,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+rmf,Kalo Finnish Romani,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+rmo,Sinte Romani,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+rmt,Domari,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+rmu,Tavringer Romani,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+rmy,Romani,Romani / रोमानी,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,,,Indo-European languages,
+rn,Rundi,Kirundi,rn,run,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+rng,Ronga,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+ro,Romanian,Română,ro,ron,rum,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+roa-rup,Aromanian,Armâneashti,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,roa,ine,Indo-European languages,Romance languages
+rob,Tae',,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+rof,Rombo,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+rom,Romany,,,rom,,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,inc,Indo-European languages,
+rtm,Rotuman,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+ru,Russian,Русский,ru,rus,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+rue,Rusyn,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,sla,Indo-European languages,
+rug,Roviana,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+rup,Aromanian,,,rup,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,roa,Indo-European languages,
+rw,Kinyarwanda,Kinyarwandi,rw,kin,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+rwk,Rwa,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+ryu,Central Okinawan,,,,,Katakana,Kana,Katakana,Kana,ltr,,True,False,1,False,False,False,False,cldr,,jpx,Japanese languages,
+sa,Sanskrit,संस्कृतम्,sa,san,,Devanagari|Sinhala|Grantha|Sharada|Siddham,Deva|Sinh|Gran|Shrd|Sidd,Devanagari,Deva,ltr,ltr,False,False,5,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+sad,Sandawe,,,sad,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,,Language isolate,
+saf,Safaliba,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+sah,Yakut,,,sah,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,trk,Altaic languages,
+sam,Samaritan Aramaic,,,sam,,Hebrew|Samaritan,Hebr|Samr,Hebrew,Hebr,rtl,,False,False,2,False,True,False,False,cldr|iso639_2,,sem,Afro-Asiatic languages,
+saq,Samburu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+sas,Sasak,,,sas,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+sat,Santali,,,sat,,Bangla|Devanagari|Latin|Odia|Ol Chiki,Beng|Deva|Latn|Orya|Olck,Bangla,Beng,ltr,,True,False,5,False,True,False,False,cldr|iso639_2,,aav,Austro-Asiatic languages,
+saz,Saurashtra,,,,,Saurashtra,Saur,Saurashtra,Saur,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+sba,Ngambay,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+sbp,Sangu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+sc,Sardinian,Sardu,sc,srd,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+sck,Sadri,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+scn,Sicilian,Sicilianu,,scn,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+sco,Scots,Scots,,sco,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+scs,North Slavey,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+sd,Sindhi,सिंधी / سنڌي‎,sd,snd,,Arabic|Devanagari|Khojki|Khudawadi,Arab|Deva|Khoj|Sind,Arabic,Arab,rtl,rtl,True,False,4,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Indo-European languages,
+sdc,Sassarese Sardinian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,roa,Indo-European languages,
+sdh,Southern Kurdish,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+se,Northern Sami,Davvisámegiella,se,sme,,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,smi,urj,Uralic languages,Sami languages
+see,Seneca,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nai,North American Indian languages,
+see also: test languages at the Wikimedia Incubator,see also: test languages at the Wikimedia Incubator,see also: test languages at the Wikimedia Incubator,,,,,,,,ltr,,True,False,0,False,False,True,False,wikimedia_only,,,,
+sef,Cebaara Senoufo,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+seh,Sena,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+sei,Seri,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,,Language isolate,
+sel,Selkup,,,sel,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,fiu,Uralic languages,
+ses,Koyraboro Senni,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+sg,Sango,Sängö,sg,sag,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ssa,ssa,Nilo-Saharan languages,Nilo-Saharan languages
+sga,Old Irish,,,sga,,Latin|Ogham,Latn|Ogam,Latin,Latn,ltr,,False,False,2,False,True,False,False,cldr|iso639_2,,cel,Indo-European languages,
+sgs,Samogitian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bat,Indo-European languages,
+sh,Serbo-Croatian,Srpskohrvatski / Српскохрватски,sh,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,ltr,True,True,1,True,False,True,False,cldr|iso639_1|wikimedia,sla,ine,Indo-European languages,Slavic languages
+shi,Tachelhit,,,,,Arabic|Latin|Tifinagh,Arab|Latn|Tfng,Arabic,Arab,rtl,,True,False,3,False,False,False,False,cldr,,ber,Afro-Asiatic languages,
+shn,Shan,,,shn,,Myanmar,Mymr,Myanmar,Mymr,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,tai,Tai languages,
+shu,Chadian Arabic,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+si,Sinhala,සිංහල,si,sin,,Sinhala,Sinh,Sinhala,Sinh,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+sid,Sidamo,,,sid,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,cus,Afro-Asiatic languages,
+sk,Slovak,Slovenčina,sk,slk,slo,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+skr,Saraiki,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+sl,Slovenian,Slovenščina,sl,slv,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+slh,Southern Lushootseed,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,nai,North American Indian languages,
+sli,Lower Silesian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+sly,Selayar,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+sm,Samoan,Gagana Samoa,sm,smo,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+sma,Southern Sami,,,sma,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,smi,Uralic languages,
+smj,Lule Sami,,,smj,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,smi,Uralic languages,
+smn,Inari Sami,,,smn,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,smi,Uralic languages,
+smp,Samaritan,,,,,Samaritan,Samr,Samaritan,Samr,ltr,,False,False,1,False,False,False,False,cldr,,art,Artificial languages,
+sms,Skolt Sami,,,sms,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,smi,Uralic languages,
+sn,Shona,chiShona,sn,sna,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+snk,Soninke,,,snk,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+so,Somali,Soomaaliga,so,som,,Arabic|Latin|Osmanya,Arab|Latn|Osma,Arabic,Arab,ltr,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,cus,afa,Afro-Asiatic languages,Cushitic languages
+sog,Sogdian,,,sog,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,ira,Indo-European languages,
+sou,Southern Thai,,,,,Thai,Thai,Thai,Thai,ltr,,True,False,1,False,False,False,False,cldr,,tai,Tai languages,
+sq,Albanian,shqip,sq,sqi,alb,Latin|Elbasan,Latn|Elba,Latin,Latn,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sqj,ine,Indo-European languages,Albanian languages
+sr,Serbian,Српски,sr,srp,,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+srb,Sora,,,,,Latin|Sora Sompeng,Latn|Sora,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+srn,Sranan Tongo,,,srn,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,crp,Creoles and pidgins,
+srr,Serer,,,srr,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+srx,Sirmauri,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+ss,Swati,SiSwati,ss,ssw,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+ssy,Saho,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,cus,Afro-Asiatic languages,
+st,Southern Sotho,Sesotho,st,sot,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+stq,Saterland Frisian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+str,Straits Salish,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,nai,North American Indian languages,
+su,Sundanese,Basa Sunda,su,sun,,Latin|Sundanese,Latn|Sund,Latin,Latn,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+suk,Sukuma,,,suk,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+sus,Susu,,,sus,,Arabic|Latin,Arab|Latn,Arabic,Arab,rtl,,True,False,2,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+sux,Sumerian,,,sux,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,,Language isolate,
+sv,Swedish,Svenska,sv,swe,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+sw,Swahili,Kiswahili,sw,swa,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+swb,Comorian,,,,,Arabic|Latin,Arab|Latn,Arabic,Arab,rtl,,True,False,2,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+swg,Swabian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+swv,Shekhawati,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+sxn,Sangir,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+syc,Classical Syriac,,,syc,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,sem,Afro-Asiatic languages,
+syi,Seki,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,nic,Niger-Kordofanian languages,
+syl,Sylheti,,,,,Bangla|Syloti Nagri,Beng|Sylo,Bangla,Beng,ltr,,True,False,2,False,False,False,False,cldr,,inc,Indo-European languages,
+syr,Syriac,,,syr,,Syriac,Syrc,Syriac,Syrc,rtl,,True,False,1,False,True,False,False,cldr|iso639_2,,sem,Afro-Asiatic languages,
+szl,Silesian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sla,Indo-European languages,
+ta,Tamil,தமிழ்,ta,tam,,Tamil,Taml,Tamil,Taml,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,dra,dra,Dravidian languages,Dravidian languages
+tab,Tabassaran,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,ccn,Caucasian languages,
+taj,Eastern Tamang,,,,,Devanagari|Tibetan,Deva|Tibt,Devanagari,Deva,ltr,,True,False,2,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+tbw,Tagbanwa,,,,,Latin|Tagbanwa,Latn|Tagb,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,map,Austronesian languages,
+tce,Southern Tutchone,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,nai,North American Indian languages,
+tcy,Tulu,,,,,Kannada,Knda,Kannada,Knda,ltr,,True,False,1,False,False,False,False,cldr,,dra,Dravidian languages,
+tdd,Tai Nüa,,,,,Tai Le,Tale,Tai Le,Tale,ltr,,True,False,1,False,False,False,False,cldr,,tai,Tai languages,
+tdg,Western Tamang,,,,,Devanagari|Tibetan,Deva|Tibt,Devanagari,Deva,ltr,,True,False,2,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+tdh,Thulung,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+te,Telugu,తెలుగు,te,tel,,Telugu,Telu,Telugu,Telu,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,dra,dra,Dravidian languages,Dravidian languages
+tem,Timne,,,tem,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+teo,Teso,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+ter,Tereno,,,ter,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,sai,South American Indian languages,
+tet,Tetum,Tetun,,tet,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+tg,Tajik,Тоҷикӣ,tg,tgk,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,rtl,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,ira,ine,Indo-European languages,Iranian languages
+tgx,Tagish,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,nai,North American Indian languages,
+th,Thai,ไทย / Phasa Thai,th,tha,,Thai,Thai,Thai,Thai,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,tai,tai,Tai languages,Tai languages
+thl,Dangaura Tharu,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+thq,Kochila Tharu,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+thr,Rana Tharu,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+tht,Tahltan,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,nai,North American Indian languages,
+ti,Tigrinya,ትግርኛ,ti,tir,,Ethiopic,Ethi,Ethiopic,Ethi,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sem,afa,Afro-Asiatic languages,Semitic languages
+tig,Tigre,,,tig,,Ethiopic,Ethi,Ethiopic,Ethi,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,sem,Afro-Asiatic languages,
+tiv,Tiv,,,tiv,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+tk,Turkmen,Туркмен / تركمن,tk,tuk,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,ltr,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+tkl,Tokelau,,,tkl,,Latin,Latn,Latin,Latn,ltr,,True,True,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+tkr,Tsakhur,,,,,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,,True,False,2,False,False,False,False,cldr,,ccn,Caucasian languages,
+tkt,Kathoriya Tharu,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+tl,Tagalog,Tagalog / ᜆᜄᜎᜓᜄ᜔,tl,tgl,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+tlh,Klingon,tlhIngan-Hol,,tlh,,,,,,ltr,ltr,True,False,0,False,True,True,False,wikimedia_only|iso639_2,art,art,Artificial languages,Artificial languages
+tli,Tlingit,,,tli,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+tly,Talysh,,,,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,rtl,,True,False,3,False,False,False,False,cldr,,ira,Indo-European languages,
+tmh,Tamashek,,,tmh,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ber,Afro-Asiatic languages,
+tn,Tswana,Setswana,tn,tsn,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+to,Tongan,Lea Faka-Tonga,to,ton,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+tog,Nyasa Tonga,,,tog,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+tok,Toki Pona,,,,,Latin,Latn,Latin,Latn,ltr,,False,False,1,False,False,False,False,cldr,,art,Artificial languages,
+tokipona,tokipona,tokipona,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,art,art,Artificial languages,Artificial languages
+tpi,Tok Pisin,Tok Pisin,,tpi,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,False,True,True,False,cldr|iso639_2|wikimedia,crp,crp,Creolesandpidgins,Creolesandpidgins
+tr,Turkish,Türkçe,tr,tur,,Arabic|Latin,Arab|Latn,Arabic,Arab,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+tru,Turoyo,,,,,Latin|Syriac,Latn|Syrc,Latin,Latn,ltr,,True,False,2,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+trv,Taroko,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+trw,Torwali,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+ts,Tsonga,Xitsonga,ts,tso,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+tsd,Tsakonian,,,,,Greek,Grek,Greek,Grek,ltr,,True,False,1,False,False,False,False,cldr,,grk,Indo-European languages,
+tsg,Tausug,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+tsi,Tsimshian,,,tsi,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,nai,North American Indian languages,
+tsj,Tshangla,,,,,Tibetan,Tibt,Tibetan,Tibt,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+tt,Tatar,Tatarça,tt,tat,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+ttj,Tooro,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+ttm,Northern Tutchone,,,,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,,True,True,1,False,False,False,False,cldr,,nai,North American Indian languages,
+tts,Northeastern Thai,,,,,Thai,Thai,Thai,Thai,ltr,,True,False,1,False,False,False,False,cldr,,tai,Tai languages,
+ttt,Muslim Tat,,,,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,rtl,,True,False,3,False,False,False,False,cldr,,ira,Indo-European languages,
+tum,Tumbuka,chiTumbuka,,tum,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+tvl,Tuvalu,,,tvl,,Latin,Latn,Latin,Latn,ltr,,True,True,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+tw,Twi,Twi,tw,twi,,Unknown Script,Zzzz,Unknown Script,Zzzz,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nic,nic,Niger-Kordofanian languages,Niger-Kordofanian languages
+twq,Tasawaq,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+ty,Tahitian,Reo Mā`ohi,ty,tah,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+tyv,Tuvinian,,,tyv,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,trk,Altaic languages,
+tzm,Central Atlas Tamazight,,,,,Latin|Tifinagh,Latn|Tfng,Latin,Latn,ltr,,True,True,2,False,False,False,False,cldr,,ber,Afro-Asiatic languages,
+ude,Udihe,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,tut,Altaic languages,
+udm,Udmurt,Удмурт кыл,,udm,,Cyrillic|Latin,Cyrl|Latn,Cyrillic,Cyrl,ltr,ltr,True,False,2,False,True,True,False,cldr|iso639_2|wikimedia,fiu,urj,Uralic languages,Finno-Ugrian languages
+ug,Uyghur,Uyƣurqə / ئۇيغۇرچە,ug,uig,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,rtl,ltr,True,False,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+uga,Ugaritic,,,uga,,Ugaritic,Ugar,Ugaritic,Ugar,ltr,,False,False,1,False,True,False,False,cldr|iso639_2,,sem,Afro-Asiatic languages,
+uk,Ukrainian,Українська,uk,ukr,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sla,ine,Indo-European languages,Slavic languages
+uli,Ulithian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+umb,Umbundu,,,umb,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+unr,Mundari,,,,,Bangla|Devanagari,Beng|Deva,Bangla,Beng,ltr,,True,False,2,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+unx,Munda,,,,,Bangla|Devanagari,Beng|Deva,Bangla,Beng,ltr,,True,False,2,False,False,False,False,cldr,,aav,Austro-Asiatic languages,
+ur,Urdu,اردو,ur,urd,,Arabic,Arab,Arabic,Arab,rtl,rtl,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,inc,ine,Indo-European languages,Indic languages
+uz,Uzbek,Ўзбек,uz,uzb,,Arabic|Cyrillic|Latin,Arab|Cyrl|Latn,Arabic,Arab,ltr,ltr,True,True,3,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+uz_AF,Uzbeki Afghanistan,اوزبیکی,,,,,,,,ltr,rtl,True,False,0,False,False,True,False,wikimedia_only,trk,tut,Altaic languages,Turkic languages
+vai,Vai,,,vai,,Latin|Vai,Latn|Vaii,Latin,Latn,ltr,,True,False,2,False,True,False,False,cldr|iso639_2,,nic,Niger-Kordofanian languages,
+ve,Venda,Tshivenḓa,ve,ven,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+vec,Venetian,Vèneto,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,roa,ine,Indo-European languages,Romance languages
+vep,Veps,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+vi,Vietnamese,Tiếng Việt,vi,vie,,Han|Latin,Hani|Latn,Han,Hani,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,mkh,aav,Austro-Asiatic languages,Mon-Khmer languages
+vic,Virgin Islands Creole English,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,crp,Creoles and pidgins,
+vls,West Flemish,West-Vlaoms,,,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,gem,ine,Indo-European languages,Germanic languages
+vmf,Main-Franconian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+vmw,Makhuwa,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+vo,Volapük,Volapük,vo,vol,,Latin,Latn,Latin,Latn,ltr,ltr,False,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,art,art,Artificial languages,Artificial languages
+vot,Votic,,,vot,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,fiu,Uralic languages,
+vro,Võro,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+vun,Vunjo,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+wa,Walloon,Walon,wa,wln,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,roa,ine,Indo-European languages,Romance languages
+wae,Walser,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+wal,Wolaytta,Wolayttattuwa,,wal,,Ethiopic,Ethi,Ethiopic,Ethi,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,,,Afro-Asiatic languages,
+war,Waray,Winaray / Binisaya Lineyte-Samarnon,,war,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,map,map,Austronesian languages,Austronesian languages
+was,Washo,,,was,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,,Language isolate,
+wbp,Warlpiri,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,aus,Australian languages,
+wbq,Waddar,,,,,Telugu,Telu,Telugu,Telu,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+wbr,Wagdi,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+wls,Wallisian,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+wni,Ndzwani Comorian,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,True,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+wo,Wolof,Wollof,wo,wol,,Arabic|Latin,Arab|Latn,Arabic,Arab,ltr,ltr,True,True,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Niger-Kordofanian languages,
+wtm,Mewati,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+wuu,Wu Chinese,,,,,Simplified,Hans,Simplified,Hans,ltr,,True,False,1,False,False,False,False,cldr,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+xal,Kalmyk,Хальмг,,xal,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,ltr,True,False,1,False,True,True,False,cldr|iso639_2|wikimedia,trk,tut,Altaic languages,Turkic languages
+xav,Xavánte,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sai,South American Indian languages,
+xcr,Carian,,,,,Carian,Cari,Carian,Cari,ltr,,False,False,1,False,False,False,False,cldr,,ine,Indo-European languages,
+xh,Xhosa,isiXhosa,xh,xho,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+xlc,Lycian,,,,,Lycian,Lyci,Lycian,Lyci,ltr,,False,False,1,False,False,False,False,cldr,,ine,Indo-European languages,
+xld,Lydian,,,,,Lydian,Lydi,Lydian,Lydi,rtl,,False,False,1,False,False,False,False,cldr,,ine,Indo-European languages,
+xmf,Mingrelian,მარგალური,,,,Georgian,Geor,Georgian,Geor,ltr,ltr,True,False,1,False,False,True,False,cldr|wikimedia,ccs,cau,Caucasian languages,South Caucasian languages
+xmn,Manichaean Middle Persian,,,,,Manichaean,Mani,Manichaean,Mani,ltr,,False,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+xmr,Meroitic,,,,,Meroitic Cursive,Merc,Meroitic Cursive,Merc,ltr,,False,False,1,False,False,False,False,cldr,,,Language isolate,
+xna,Ancient North Arabian,,,,,Old North Arabian,Narb,Old North Arabian,Narb,rtl,,False,False,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+xnr,Kangri,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,inc,Indo-European languages,
+xog,Soga,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+xpr,Parthian,,,,,Inscriptional Parthian,Prti,Inscriptional Parthian,Prti,rtl,,False,False,1,False,False,False,False,cldr,,ira,Indo-European languages,
+xsa,Sabaean,,,,,Old South Arabian,Sarb,Old South Arabian,Sarb,rtl,,False,False,1,False,False,False,False,cldr,,sem,Afro-Asiatic languages,
+xsr,Sherpa,,,,,Devanagari,Deva,Devanagari,Deva,ltr,,True,False,1,False,False,False,False,cldr,,sit,Sino-Tibetan languages,
+xum,Umbrian,,,,,Latin|Old Italic,Latn|Ital,Latin,Latn,ltr,,False,False,2,False,False,False,False,cldr,,ine,Indo-European languages,
+yao,Yao,,,yao,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,bnt,Niger-Kordofanian languages,
+yap,Yapese,,,yap,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,map,Austronesian languages,
+yav,Yangben,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+ybb,Yemba,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+yi,Yiddish,ייִדיש,yi,yid,,Hebrew,Hebr,Hebrew,Hebr,rtl,rtl,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,gem,ine,Indo-European languages,Germanic languages
+yo,Yoruba,Yorùbá,yo,yor,,Latin,Latn,Latin,Latn,ltr,ltr,True,True,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,nic,nic,Niger-Kordofanian languages,Niger-Kordofanian languages
+yrk,Nenets,,,,,Cyrillic,Cyrl,Cyrillic,Cyrl,ltr,,True,False,1,False,False,False,False,cldr,,fiu,Uralic languages,
+yrl,Nheengatu,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,sai,South American Indian languages,
+yua,Yucateco,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,cai,Central American Indian languages,
+yue,Cantonese,,,,,Simplified|Traditional,Hans|Hant,Simplified,Hans,ltr,,True,False,2,False,False,False,False,cldr,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+za,Zhuang,Cuengh / Tôô / 壮语,za,zha,,Latin|Simplified,Latn|Hans,Latin,Latn,ltr,ltr,True,False,2,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,,,Tai languages,
+zag,Zaghawa,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,ssa,Nilo-Saharan languages,
+zap,Zapotec,,,zap,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,cai,Central American Indian languages,
+zbl,Blissymbols,,,zbl,,,,,,ltr,,True,False,0,False,True,False,False,loc_only,,art,Artificial languages,
+zdj,Ngazidja Comorian,,,,,Arabic,Arab,Arabic,Arab,rtl,,True,True,1,False,False,False,False,cldr,,bnt,Niger-Kordofanian languages,
+zea,Zeelandic,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,gem,Indo-European languages,
+zen,Zenaga,,,zen,,Tifinagh,Tfng,Tifinagh,Tfng,rtl,,True,False,1,False,True,False,False,cldr|iso639_2,,ber,Afro-Asiatic languages,
+zg,Moroccan Amazigh,ⵜⴰⵎⴰⵣⵉⵖⵜ,zg,,,,,,,ltr,ltr,True,False,0,True,False,True,False,wikimedia_only|iso639_1,,,Unclassified,
+zgh,Standard Moroccan Tamazight,,,zgh,,Tifinagh,Tfng,Tifinagh,Tfng,rtl,,True,False,1,False,True,False,False,cldr|iso639_2,,ber,Afro-Asiatic languages,
+zh,Chinese,中文,zh,zho,chi,Bopomofo|Simplified|Traditional|Phags-pa,Bopo|Hans|Hant|Phag,Bopomofo,Bopo,ltr,ltr,True,True,4,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+zh-classical,Classical Chinese,文言,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+zh-min-nan,Minnan,Bân-lâm-gú,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+zh-tw,Traditional Chinese,‪中文(台灣)‬,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+zh-yue,Cantonese,粵語 / 粤语,,,,,,,,ltr,ltr,True,False,0,False,False,True,False,wikimedia_only,sit,sit,Sino-Tibetan languages,Sino-Tibetan languages
+zmi,Negeri Sembilan Malay,,,,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,False,False,False,cldr,,map,Austronesian languages,
+zu,Zulu,isiZulu,zu,zul,,Latin,Latn,Latin,Latn,ltr,ltr,True,False,1,True,True,True,False,cldr|iso639_1|iso639_2|wikimedia,bnt,nic,Niger-Kordofanian languages,Bantu languages
+zun,Zuni,,,zun,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,,Language isolate,
+zza,Zaza,,,zza,,Latin,Latn,Latin,Latn,ltr,,True,False,1,False,True,False,False,cldr|iso639_2,,ira,Indo-European languages,

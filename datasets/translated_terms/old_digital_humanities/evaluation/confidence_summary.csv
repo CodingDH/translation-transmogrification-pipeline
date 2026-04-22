@@ -1,0 +1,6 @@
+term,variant,total_languages,languages_with_llm,mean_llm_confidence,median_llm_confidence,std_llm_confidence,cv_llm_confidence,llm_unique_candidates_mean,languages_with_baseline,mean_baseline_confidence
+Digital Humanities,comparative,269,269,0.5067,0.4,0.1849,0.3649,3.07,192,0.7166
+Digital Humanities,minimal,269,269,0.3885,0.25,0.1993,0.5129,3.43,192,0.7166
+Digital Humanities,expert_persona,269,269,0.3925,0.25,0.2061,0.5251,3.38,192,0.7166
+Digital Humanities,contextual,269,269,0.3919,0.25,0.2073,0.529,3.36,192,0.7166
+Digital Humanities,native_rationale,269,269,0.3959,0.3333,0.1945,0.4914,3.23,192,0.7166

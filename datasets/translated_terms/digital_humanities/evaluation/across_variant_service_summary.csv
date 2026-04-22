@@ -1,0 +1,9 @@
+service,n_languages,mean_agreement,std_agreement,is_baseline,cv_agreement
+EasyNMT,100,1.0,0.0,True,0.0
+Google Translate,242,1.0,0.0,True,0.0
+Lingvanex,109,1.0,0.0,True,0.0
+Wikipedia,40,1.0,0.0,True,0.0
+Claude,857,0.5928,0.2678,False,0.4518
+Gemini,855,0.5864,0.2554,False,0.4355
+OpenAI,857,0.4657,0.2359,False,0.5065
+Ollama,804,0.3556,0.1887,False,0.5307
