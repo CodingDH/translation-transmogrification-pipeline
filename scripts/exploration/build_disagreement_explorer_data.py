@@ -6,7 +6,7 @@ Merge disagreement analysis, per-language confidence stats, rationale lengths,
 and parsed service translations into a single CSV for the HTML explorer.
 
 Run after:
-  1. notebooks/04_disagreement_exploration.ipynb  (produces confidence_scores.csv + disagreement_analysis.csv)
+  1. notebooks/05_disagreement_exploration.ipynb  (produces confidence_scores.csv + disagreement_analysis.csv)
   2. scripts/exploration/explore_disagreements.py  (produces disagreement_analysis.csv)
 
 Usage
@@ -23,24 +23,22 @@ import sys
 
 import pandas as pd
 
-RATIONALE_VARIANT = 'comparative'  # default variant (kept for backward compat)
+RATIONALE_VARIANT = 'native_rationale'
 
-VARIANTS = ['comparative', 'minimal', 'expert_persona', 'contextual', 'native_rationale']
+VARIANTS = ['minimal', 'expert_persona', 'native_rationale', 'judge']
 
 RATIONALE_SERVICE_COLS = {
-    'claude':       'claude_translation_rationale',
-    'openai':       'openai_translation_rationale',
-    'gemini':       'gemini_translation_rationale',
-    'first_ollama': 'first_ollama_translation_rationale',
-    'ollama':       'ollama_translation_rationale',
+    'claude':  'claude_translation_rationale',
+    'openai':  'openai_translation_rationale',
+    'gemini':  'gemini_translation_rationale',
+    'ollama':  'ollama_translation_rationale',
 }
 
 TERM_SERVICE_COLS = {
-    'claude':       'claude_translated_term',
-    'openai':       'openai_translated_term',
-    'gemini':       'gemini_translated_term',
-    'first_ollama': 'first_ollama_translated_term',
-    'ollama':       'ollama_translated_term',
+    'claude':  'claude_translated_term',
+    'openai':  'openai_translated_term',
+    'gemini':  'gemini_translated_term',
+    'ollama':  'ollama_translated_term',
 }
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
@@ -57,11 +55,10 @@ CAT_ORDER = {
 
 SERVICE_MAP = {
     'Google Translate': 'gt_term',
-    'OpenAI': 'openai_term',
-    'Claude': 'claude_term',
-    'Gemini': 'gemini_term',
-    'First Ollama': 'first_ollama_term',
-    'Second Ollama': 'second_ollama_term',
+    'OpenAI':           'openai_term',
+    'Claude':           'claude_term',
+    'Gemini':           'gemini_term',
+    'Ollama':           'ollama_term',
 }
 
 
@@ -203,7 +200,7 @@ def main():
     parser.add_argument('--output-dir', default=None, help='Override output directory')
     parser.add_argument(
         '--rationale-variant', default=RATIONALE_VARIANT,
-        choices=['minimal', 'comparative', 'expert_persona', 'contextual', 'native_rationale'],
+        choices=['minimal', 'expert_persona', 'native_rationale', 'judge'],
         help=f'Prompt variant to pull full rationales from (default: {RATIONALE_VARIANT})'
     )
     args = parser.parse_args()
