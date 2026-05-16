@@ -1,5 +1,5 @@
 term,variant,total_languages,languages_with_llm,mean_llm_confidence,median_llm_confidence,std_llm_confidence,cv_llm_confidence,llm_unique_candidates_mean,languages_with_baseline,mean_baseline_confidence
-Digital Humanities,minimal,858,858,0.3452,0.25,0.1716,0.497,3.56,257,0.7662
-Digital Humanities,expert_persona,858,858,0.3424,0.25,0.1661,0.485,3.51,257,0.7662
-Digital Humanities,native_rationale,858,857,0.3681,0.3333,0.1791,0.4864,3.29,257,0.7662
-Digital Humanities,judge,858,858,0.5202,0.5,0.2513,0.4831,2.77,257,0.7662
+Digital Humanities,minimal,880,880,0.2299,0.1429,0.1537,0.6685,6.85,257,0.7662
+Digital Humanities,expert_persona,880,880,0.2035,0.125,0.1452,0.7138,7.21,257,0.7662
+Digital Humanities,native_rationale,880,880,0.211,0.1429,0.1445,0.6846,6.88,257,0.7662
+Digital Humanities,judge,880,880,0.4671,0.375,0.212,0.4539,4.59,257,0.7662

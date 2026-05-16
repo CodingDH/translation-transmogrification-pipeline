@@ -21,6 +21,10 @@ This pipeline translates key domain terms (e.g. "Digital Humanities", "Computati
 - `contextual` — provides rich semantic/definitional context
 - `native_rationale` — asks for rationale in the target language
 
+## Documentation
+
+- [docs/exclusion_strategy.md](docs/exclusion_strategy.md) — Data quality flags, manual exclusion taxonomy, and the three-tier exclusion policy (service exploration → translation analysis → search term generation)
+
 ## Repository Structure
 
 ```

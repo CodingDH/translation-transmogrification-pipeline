@@ -9,8 +9,13 @@ each prompt variant. This measures prompt robustness — does the same LLM give
 the same answer regardless of how it was prompted?
 
   - Is Claude's German translation stable across minimal vs expert_persona?
+  - Are local models (Llama, Gemma, Qwen, Mistral) more prompt-sensitive than
+    API models (OpenAI, Claude, Gemini, DeepSeek)?
   - Which services are most sensitive to prompt wording?
   - Which language families show the most prompt-driven variation?
+
+LLM services compared: OpenAI, Claude, Gemini, DeepSeek (API) and
+Llama, Gemma, Qwen, Mistral (local Ollama).
 
 Baseline services (Wikipedia, GT, EasyNMT, Lingvanex) are prompt-invariant by
 design and should always score 1.0 — they serve as a sanity check.
@@ -39,7 +44,7 @@ from rich.console import Console
 from rich.table import Table
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from scripts.utils import get_data_directory_path, read_csv_file, get_language_family, analyze_differences
+from scripts.utils import get_data_directory_path, get_language_family, analyze_differences
 from scripts.exploration.explore_confidence_within_variant import load_variant_df
 
 console = Console()
@@ -50,10 +55,14 @@ ALL_VARIANTS = [
 
 # Services whose translations vary by prompt variant (LLMs)
 LLM_SERVICES: Dict[str, str] = {
-    'OpenAI':  'openai_translated_term',
-    'Claude':  'claude_translated_term',
-    'Gemini':  'gemini_translated_term',
-    'Ollama':  'ollama_translated_term',
+    'OpenAI':   'openai_translated_term',
+    'Claude':   'claude_translated_term',
+    'Gemini':   'gemini_translated_term',
+    'DeepSeek': 'deepseek_translated_term',
+    'Llama':    'llama_translated_term',
+    'Gemma':    'gemma_translated_term',
+    'Qwen':     'qwen_translated_term',
+    'Mistral':  'mistral_translated_term',
 }
 
 # Services that are prompt-invariant — should always score 1.0 (sanity check)

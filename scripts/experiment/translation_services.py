@@ -6,6 +6,11 @@ import json
 import time
 import threading
 from typing import Tuple
+
+
+class OllamaUnresponsiveError(BaseException):
+    """Raised when Ollama hits MAX_CONSECUTIVE_TIMEOUTS; inherits BaseException so
+    it propagates through all `except Exception` handlers without being swallowed."""
 import pandas as pd
 from rich.console import Console
 from openai import OpenAI, OpenAIError
@@ -23,9 +28,9 @@ from google import genai as google_genai
 import arabic_reshaper
 from bidi.algorithm import get_display
 
-from data_processing import parse_translation_response, is_enmt_model_available
+from data_processing import parse_translation_response, is_enmt_model_available, TranslationRefusedError
 from scripts.utils import log_error_to_file
-from translation_prompts import get_prompt
+from translation_prompts import get_prompt, get_system_prompt
 import google.genai.types as google_genai_types
 import translators as ts_lib
 
@@ -102,6 +107,17 @@ gemini_client = None
 GEMINI_MODEL = "gemini-2.5-flash"
 gemini_api_key = apikey.load("CODING_DH_GEMINI_KEY")
 gemini_client = google_genai.Client(api_key=gemini_api_key)
+
+# Load DeepSeek credentials (OpenAI-compatible API)
+DEEPSEEK_MODEL = "deepseek-chat"  # points to DeepSeek-V3
+deepseek_api_key = apikey.load("CODING_DH_DEEPSEEK_KEY")
+deepseek_client = OpenAI(api_key=deepseek_api_key, base_url="https://api.deepseek.com")
+
+# Pinned Ollama model tags for reproducibility
+OLLAMA_LLAMA_MODEL   = "llama3.1:latest"
+OLLAMA_GEMMA_MODEL   = "gemma3:12b"
+OLLAMA_QWEN_MODEL    = "qwen2.5:7b"
+OLLAMA_MISTRAL_MODEL = "mistral:7b"
 
 # Initialize the EasyNMT model once
 model = EasyNMT('opus-mt')
@@ -215,8 +231,12 @@ def get_gt_translation(row: pd.Series, error_file_path: str, console: Console) -
 	except Exception as e:
 		error_str = str(e)
 
-		# Check if it's an unsupported language error
-		if 'Bad language pair' in error_str or 'badRequest' in error_str.lower():
+		# Check if it's an unsupported language error.
+		# Google Cloud API errors include the HTTP status at the start of the string
+		# (e.g. "400 POST https://..."), and unsupported language codes come back as
+		# "Invalid Value" with a fieldViolations entry for the target field.
+		if ('Bad language pair' in error_str or 'badRequest' in error_str.lower()
+				or error_str.startswith('400') or 'fieldViolations' in error_str):
 			console.print(f"⚠ Google Translate does not support language: {target_language}", style="bold yellow")
 			status_code = 400
 			error_msg = f"Unsupported language: {target_language}"
@@ -236,7 +256,8 @@ def get_gt_translation(row: pd.Series, error_file_path: str, console: Console) -
 			error_file_path=error_file_path,
 			additional_data=additional_data,
 			status_code=status_code,
-			error_url=f"translate_client.translate({target_language}) - {error_msg}"
+			error_url=f"translate_client.translate({target_language}) - {error_msg}",
+			error_message=error_msg,
 		)
 
 	return row
@@ -301,7 +322,8 @@ def get_enmt_translation(row: pd.Series, error_file_path: str, console: Console)
 			error_file_path=error_file_path,
 			additional_data=additional_data,
 			status_code=500,
-			error_url=f"model.translate({target_language})"
+			error_url=f"model.translate({target_language})",
+			error_message=str(e),
 		)
 
 
@@ -382,8 +404,17 @@ def get_lingvanex_translation(row: pd.Series, error_file_path: str, console: Con
 				)
 				translated_terms.append(result)
 			except Exception as term_err:
+				term_err_str = str(term_err)
+				term_status = 400 if ('400' in term_err_str or 'Bad Request' in term_err_str) else 500
 				console.print(f"⚠ Lingvanex failed for '{term}' → {target_language}: {term_err}", style="bold yellow")
 				translated_terms.append(None)
+				log_error_to_file(
+					error_file_path=error_file_path,
+					additional_data={'term_source': dh_terms, 'language_code': target_language, 'lingvanex_translated_term': None},
+					status_code=term_status,
+					error_url=f"translators.translate_text(lingvanex, {target_language})",
+					error_message=term_err_str,
+				)
 
 		row['lingvanex_translated_term'] = list(zip(dh_terms, translated_terms))
 
@@ -397,6 +428,7 @@ def get_lingvanex_translation(row: pd.Series, error_file_path: str, console: Con
 			additional_data={'term_source': dh_terms, 'language_code': target_language, 'lingvanex_translated_term': None},
 			status_code=500,
 			error_url=f"translators.translate_text(lingvanex, {row.language_code})",
+			error_message=str(e),
 		)
 
 	return row
@@ -447,20 +479,30 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 			existing_translations=existing_translations,
 		)
 		console.print(f"Using prompt variant: {current_prompt_variant}", style="bold cyan")
-		prompt_messages = [
-			{"role": "system", "content": f"You are a {term_source} scholar who speaks many languages."},
-			{"role": "user", "content": user_content}
-		]
+		# System prompt is variant-dependent; minimal returns None to mean
+		# "send no system message at all" (not an empty string, which some
+		# providers treat as a real signal).
+		openai_system_content = get_system_prompt(current_prompt_variant, term_source)
+		if openai_system_content is None:
+			prompt_messages = [{"role": "user", "content": user_content}]
+		else:
+			prompt_messages = [
+				{"role": "system", "content": openai_system_content},
+				{"role": "user", "content": user_content}
+			]
 		console.print(f"Prompt messages: {json.dumps(prompt_messages, indent=2)}", style="bold yellow")
 
 		# Save prompts to row for audit trail
-		row['openai_system_prompt'] = prompt_messages[0]['content']
+		row['openai_system_prompt'] = openai_system_content
 		row['openai_user_prompt'] = user_content
 
 		# Call the OpenAI Chat API directly using the `openai` module
 		chat_completion = client.chat.completions.create(
 			model="gpt-4o",
 			messages=prompt_messages,
+			temperature=0,
+			top_p=1,
+			max_tokens=2048,
 		)
 		console.print(f"Chat completion: {chat_completion}", style="bright_cyan")
 		# Extract the response and the rationale
@@ -484,6 +526,17 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 		# Update the DataFrame row with the metadata
 		for key, value in metadata.items():
 			row["openai_" + key] = value
+	except TranslationRefusedError as e:
+		console.print(f"⚠ OpenAI declined to translate {term_source} → {language_name}: {e.rationale}", style="bold yellow")
+		row['openai_translated_term'] = None
+		row['openai_translation_rationale'] = e.rationale
+		log_error_to_file(
+			error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "openai_translated_term": None},
+			status_code=400,
+			error_url=f"openai.chat.completions.create - TranslationRefused",
+			error_message=e.rationale,
+		)
 	except json.JSONDecodeError as e:
 		console.print(f"Error decoding JSON response from OpenAI: {e}", style="bold red")
 		row['openai_translated_term'] = None
@@ -492,10 +545,29 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 			additional_data={
 				"term_source": term_source,
 				"language_code": language_code,
+				"variant": current_prompt_variant,
 				"openai_translated_term": None
 			},
 			status_code=400,
-			error_url="openai.chat.completions.create - JSONDecodeError"
+			error_url="openai.chat.completions.create - JSONDecodeError",
+			error_message=str(e),
+		)
+	except ValueError as e:
+		# parse_translation_response raised ValueError — model returned prose instead of JSON.
+		# Deterministic (retrying won't help), so log as 400 to skip on subsequent runs.
+		console.print(f"⚠ OpenAI parse failure for {term_source} → {language_name}: {e}", style="bold yellow")
+		row['openai_translated_term'] = None
+		log_error_to_file(
+			error_file_path,
+			additional_data={
+				"term_source": term_source,
+				"language_code": language_code,
+				"variant": current_prompt_variant,
+				"openai_translated_term": None
+			},
+			status_code=400,
+			error_url="openai.chat.completions.create - ParseError",
+			error_message=str(e),
 		)
 	except OpenAIError as e:
 		error_str = str(e)
@@ -508,10 +580,12 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 				additional_data={
 					"term_source": term_source,
 					"language_code": language_code,
+					"variant": current_prompt_variant,
 					"openai_translated_term": None
 				},
 				status_code=429,
-				error_url="openai.chat.completions.create - QuotaExceeded"
+				error_url="openai.chat.completions.create - QuotaExceeded",
+				error_message=error_str,
 			)
 			raise Exception("OpenAI quota exceeded — aborting OpenAI translation pass") from e
 		console.print(f"Error translating {term_source} to {language_name} using OpenAI: {e}", style="bold red")
@@ -521,10 +595,12 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 			additional_data={
 				"term_source": term_source,
 				"language_code": language_code,
+				"variant": current_prompt_variant,
 				"openai_translated_term": None
 			},
 			status_code=500,
-			error_url="openai.chat.completions.create - OpenAIError"
+			error_url="openai.chat.completions.create - OpenAIError",
+			error_message=error_str,
 		)
 	except Exception as e:
 		console.print(f"Unexpected error: {e}", style="bold red")
@@ -534,13 +610,120 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 			additional_data={
 				"term_source": term_source,
 				"language_code": language_code,
+				"variant": current_prompt_variant,
 				"openai_translated_term": None
 			},
 			status_code=500,
-			error_url="openai.chat.completions.create - General Exception"
+			error_url="openai.chat.completions.create - General Exception",
+			error_message=str(e),
 		)
 
 	return row
+
+
+def get_deepseek_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
+	"""
+	Translate a single row using the DeepSeek API (OpenAI-compatible).
+
+	Uses DEEPSEEK_MODEL ("deepseek-chat", which points to DeepSeek-V3).
+	Mirrors get_openai_translation() exactly; columns are prefixed 'deepseek_'.
+	"""
+	time.sleep(1)
+	try:
+		term_source = row.term_source
+		language_name = row.language_name
+		language_code = row.language_code
+
+		console.print(f"Translating {term_source} to {language_name} using DeepSeek API", style="bold green")
+
+		existing_translations = _build_existing_translations(row, current_prompt_variant, current_term_contexts)
+
+		user_content = get_prompt(
+			variant=current_prompt_variant,
+			term_source=term_source,
+			language_name=language_name,
+			language_code=language_code,
+			existing_translations=existing_translations,
+		)
+		console.print(f"Using prompt variant: {current_prompt_variant}", style="bold cyan")
+		deepseek_system_content = get_system_prompt(current_prompt_variant, term_source)
+		if deepseek_system_content is None:
+			prompt_messages = [{"role": "user", "content": user_content}]
+		else:
+			prompt_messages = [
+				{"role": "system", "content": deepseek_system_content},
+				{"role": "user", "content": user_content}
+			]
+		console.print(f"Prompt messages: {json.dumps(prompt_messages, indent=2)}", style="bold yellow")
+
+		row['deepseek_system_prompt'] = deepseek_system_content
+		row['deepseek_user_prompt'] = user_content
+
+		chat_completion = deepseek_client.chat.completions.create(
+			model=DEEPSEEK_MODEL,
+			messages=prompt_messages,
+			temperature=0,
+			top_p=1,
+			max_tokens=2048,
+		)
+		console.print(f"Chat completion: {chat_completion}", style="bright_cyan")
+		message_content = chat_completion.choices[0].message.content
+		response = parse_translation_response(message_content)
+
+		metadata = {
+			'translated_term':      response.translated_term,
+			'translation_rationale': response.translation_rationale,
+			'model':               chat_completion.model,
+			'finish_reason':       chat_completion.choices[0].finish_reason,
+			'created':             chat_completion.created,
+			'total_tokens':        chat_completion.usage.total_tokens,
+			'prompt_tokens':       chat_completion.usage.prompt_tokens,
+			'completion_tokens':   chat_completion.usage.completion_tokens,
+		}
+		for key, value in metadata.items():
+			row["deepseek_" + key] = value
+
+	except TranslationRefusedError as e:
+		console.print(f"⚠ DeepSeek declined to translate {term_source} → {language_name}: {e.rationale}", style="bold yellow")
+		row['deepseek_translated_term'] = None
+		row['deepseek_translation_rationale'] = e.rationale
+		log_error_to_file(error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "deepseek_translated_term": None},
+			status_code=400, error_url="deepseek.chat.completions.create - TranslationRefused", error_message=e.rationale)
+	except json.JSONDecodeError as e:
+		console.print(f"Error decoding JSON response from DeepSeek: {e}", style="bold red")
+		row['deepseek_translated_term'] = None
+		log_error_to_file(error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "deepseek_translated_term": None},
+			status_code=400, error_url="deepseek.chat.completions.create - JSONDecodeError", error_message=str(e))
+	except ValueError as e:
+		console.print(f"⚠ DeepSeek parse failure for {term_source} → {language_name}: {e}", style="bold yellow")
+		row['deepseek_translated_term'] = None
+		log_error_to_file(error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "deepseek_translated_term": None},
+			status_code=400, error_url="deepseek.chat.completions.create - ParseError", error_message=str(e))
+	except OpenAIError as e:
+		error_str = str(e)
+		if 'insufficient_quota' in error_str or 'quota' in error_str.lower() or getattr(e, 'status_code', None) == 429:
+			console.print(f"✗ DeepSeek quota exceeded — aborting DeepSeek translation pass: {e}", style="bold red")
+			log_error_to_file(error_file_path,
+				additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "deepseek_translated_term": None},
+				status_code=429, error_url="deepseek.chat.completions.create - QuotaExceeded", error_message=error_str)
+			raise Exception("DeepSeek quota exceeded — aborting DeepSeek translation pass") from e
+		console.print(f"Error translating {term_source} to {language_name} using DeepSeek: {e}", style="bold red")
+		row['deepseek_translated_term'] = None
+		log_error_to_file(error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "deepseek_translated_term": None},
+			status_code=500, error_url="deepseek.chat.completions.create - OpenAIError", error_message=error_str)
+	except Exception as e:
+		console.print(f"Unexpected error: {e}", style="bold red")
+		row['deepseek_translated_term'] = None
+		log_error_to_file(error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "deepseek_translated_term": None},
+			status_code=500, error_url="deepseek.chat.completions.create - General Exception", error_message=str(e))
+
+	return row
+
 
 def get_claude_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
 	"""
@@ -585,22 +768,25 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 		)
 		console.print(f"Using prompt variant: {current_prompt_variant}", style="bold cyan")
 
-		system_content = f"You are a {term_source} scholar who speaks many languages."
+		system_content = get_system_prompt(current_prompt_variant, term_source)
 		console.print(f"Claude user prompt: {user_content}", style="bold yellow")
 
 		# Save prompts to row for audit trail
 		row['claude_system_prompt'] = system_content
 		row['claude_user_prompt'] = user_content
 
-		# Call the Claude API
-		message = claude_client.messages.create(
+		# Call the Claude API. Omit `system=` entirely for the minimal variant
+		# rather than passing an empty string — Anthropic's API treats empty
+		# strings as a real signal.
+		claude_create_kwargs = dict(
 			model="claude-sonnet-4-5",
-			max_tokens=1024,
-			system=system_content,
-			messages=[
-				{"role": "user", "content": user_content}
-			]
+			max_tokens=2048,
+			temperature=0,
+			messages=[{"role": "user", "content": user_content}]
 		)
+		if system_content is not None:
+			claude_create_kwargs['system'] = system_content
+		message = claude_client.messages.create(**claude_create_kwargs)
 		console.print(f"Claude response: {message}", style="bright_cyan")
 
 		if message.stop_reason == 'max_tokens':
@@ -630,6 +816,17 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 		# Update the DataFrame row with the metadata
 		for key, value in metadata.items():
 			row["claude_" + key] = value
+	except TranslationRefusedError as e:
+		console.print(f"⚠ Claude declined to translate {term_source} → {language_name}: {e.rationale}", style="bold yellow")
+		row['claude_translated_term'] = None
+		row['claude_translation_rationale'] = e.rationale
+		log_error_to_file(
+			error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "claude_translated_term": None},
+			status_code=400,
+			error_url=f"claude.messages.create - TranslationRefused",
+			error_message=e.rationale,
+		)
 	except json.JSONDecodeError as e:
 		console.print(f"Error decoding JSON response from Claude: {e}", style="bold red")
 		row['claude_translated_term'] = None
@@ -638,20 +835,39 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 			additional_data={
 				"term_source": term_source,
 				"language_code": language_code,
+				"variant": current_prompt_variant,
 				"claude_translated_term": None
 			},
 			status_code=400,
-			error_url="claude.messages.create - JSONDecodeError"
+			error_url="claude.messages.create - JSONDecodeError",
+			error_message=str(e),
+		)
+	except ValueError as e:
+		console.print(f"⚠ Claude parse failure for {term_source} → {language_name}: {e}", style="bold yellow")
+		row['claude_translated_term'] = None
+		log_error_to_file(
+			error_file_path,
+			additional_data={
+				"term_source": term_source,
+				"language_code": language_code,
+				"variant": current_prompt_variant,
+				"claude_translated_term": None
+			},
+			status_code=400,
+			error_url="claude.messages.create - ParseError",
+			error_message=str(e),
 		)
 	except APIError as e:
 		error_str = str(e)
 		status_code = getattr(e, 'status_code', 500)
-		# 404 means the model name is wrong/retired — this is an infrastructure problem,
-		# not a per-language failure. Don't log it to the persistent error file or it
-		# will exclude every language on the next run even after the model is fixed.
+		# 404 means the model name is wrong/retired — infrastructure problem, not per-language.
 		if status_code == 404 or 'not_found_error' in error_str:
 			console.print(f"✗ Claude model not found — check model string in get_claude_translation: {e}", style="bold red")
 			raise Exception("Claude model not found — aborting Claude translation pass") from e
+		# Billing failure — no point continuing, every subsequent call will fail the same way.
+		if 'credit balance is too low' in error_str or 'insufficient_funds' in error_str:
+			console.print(f"✗ Claude billing error — out of credits. Stopping Claude translation pass.", style="bold red")
+			raise Exception("Claude billing error — aborting Claude translation pass") from e
 		console.print(f"Error translating {term_source} to {language_name} using Claude: {e}", style="bold red")
 		row['claude_translated_term'] = None
 		log_error_to_file(
@@ -659,10 +875,12 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 			additional_data={
 				"term_source": term_source,
 				"language_code": language_code,
+				"variant": current_prompt_variant,
 				"claude_translated_term": None
 			},
 			status_code=status_code,
-			error_url="claude.messages.create - APIError"
+			error_url="claude.messages.create - APIError",
+			error_message=error_str,
 		)
 	except Exception as e:
 		console.print(f"Unexpected error: {e}", style="bold red")
@@ -672,13 +890,49 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 			additional_data={
 				"term_source": term_source,
 				"language_code": language_code,
+				"variant": current_prompt_variant,
 				"claude_translated_term": None
 			},
 			status_code=500,
-			error_url="claude.messages.create - General Exception"
+			error_url="claude.messages.create - General Exception",
+			error_message=str(e),
 		)
 
 	return row
+
+def _fetch_gemini_rationale(term_source: str, language_name: str, salvaged_term: str, console: Console) -> str:
+	"""
+	Fetch only the translation rationale for a term that was already translated but whose
+	rationale was cut off due to MAX_TOKENS in the primary call. Uses a short, focused prompt
+	so the output stays well within token limits.
+
+	Returns the rationale string, or a failure notice if the follow-up call also fails.
+	"""
+	prompt = (
+		f"You previously translated the Digital Humanities term '{term_source}' into {language_name} "
+		f"as '{salvaged_term}'. In 2–3 sentences, explain your reasoning for this translation choice."
+	)
+	try:
+		response = gemini_client.models.generate_content(
+			model=GEMINI_MODEL,
+			contents=prompt,
+			config=google_genai_types.GenerateContentConfig(
+				system_instruction=f"You are a {term_source} scholar who speaks many languages.",
+				temperature=0,
+				top_p=1.0,
+				max_output_tokens=2048,
+				thinking_config=google_genai_types.ThinkingConfig(thinking_budget=0),
+				http_options=google_genai_types.HttpOptions(timeout=60_000),
+			),
+		)
+		finish_reason = response.candidates[0].finish_reason.name if response.candidates else None
+		if finish_reason == 'MAX_TOKENS':
+			console.print(f"⚠ Gemini rationale follow-up also hit MAX_TOKENS for {language_name}.", style="bold yellow")
+			return "[rationale unavailable — follow-up call also hit MAX_TOKENS]"
+		return response.text.strip()
+	except Exception as e:
+		console.print(f"⚠ Gemini rationale follow-up failed for {language_name}: {e}", style="bold yellow")
+		return f"[rationale unavailable — follow-up call failed: {type(e).__name__}]"
 
 def get_gemini_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict) -> pd.Series:
 	"""
@@ -735,22 +989,27 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 		console.print(f"Using prompt variant: {current_prompt_variant}", style="bold cyan")
 		console.print(f"Gemini user prompt: {user_content}", style="bold yellow")
 
-		system_content = f"You are a {term_source} scholar who speaks many languages."
+		system_content = get_system_prompt(current_prompt_variant, term_source)
 
 		# Save prompts to row for audit trail
 		row['gemini_system_prompt'] = system_content
 		row['gemini_user_prompt'] = user_content
 
+		gemini_config_kwargs = dict(
+			temperature=0,
+			top_p=1.0,
+			max_output_tokens=2048,
+			thinking_config=google_genai_types.ThinkingConfig(thinking_budget=0),
+			http_options=google_genai_types.HttpOptions(timeout=60_000),
+		)
+		# Omit system_instruction entirely for minimal (None), rather than
+		# passing an empty string.
+		if system_content is not None:
+			gemini_config_kwargs['system_instruction'] = system_content
 		response = gemini_client.models.generate_content(
 			model=GEMINI_MODEL,
 			contents=user_content,
-			config=google_genai_types.GenerateContentConfig(
-				system_instruction=system_content,
-				temperature=0,
-				max_output_tokens=4096,
-				thinking_config=google_genai_types.ThinkingConfig(thinking_budget=0),
-				http_options=google_genai_types.HttpOptions(timeout=60_000),
-			),
+			config=google_genai_types.GenerateContentConfig(**gemini_config_kwargs),
 		)
 		console.print(f"Gemini response: {response}", style="bright_cyan")
 
@@ -759,7 +1018,8 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 
 		if finish_reason == 'MAX_TOKENS':
 			# Rationale was truncated (often a repetition loop on rare/extinct languages).
-			# Salvage the translated_term from the partial JSON and skip the broken rationale.
+			# Salvage the translated_term from the partial JSON, then fetch the rationale
+			# via a short follow-up call so the record stays meaningful.
 			import re as _re
 			_m = _re.search(r'"translated_term"\s*:\s*"([^"\\]*(?:\\.[^"\\]*)*)"', message_content)
 			if _m:
@@ -768,12 +1028,19 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 					# Hallucination loop — model generated a wall of characters, not a real translation.
 					console.print(f"⚠ Gemini MAX_TOKENS for {language_name} — salvaged term is suspiciously long ({len(salvaged)} chars), discarding.", style="bold yellow")
 					raise ValueError(f"MAX_TOKENS hallucination loop for {language_name} — salvaged term too long to be valid")
-				console.print(f"⚠ Gemini MAX_TOKENS for {language_name} — salvaging translated_term, rationale truncated.", style="bold yellow")
+				console.print(f"⚠ Gemini MAX_TOKENS for {language_name} — term salvaged, fetching rationale via follow-up call.", style="bold yellow")
+				followup_rationale = _fetch_gemini_rationale(
+					term_source=term_source,
+					language_name=language_name,
+					salvaged_term=salvaged,
+					console=console,
+				)
 				metadata = {
 					'translated_term': salvaged,
-					'translation_rationale': '[rationale truncated — MAX_TOKENS]',
+					'translation_rationale': followup_rationale,
 					'model': GEMINI_MODEL,
 					'created': datetime.datetime.now().isoformat(),
+					'rationale_from_followup': True,
 				}
 				for key, value in metadata.items():
 					row[f"gemini_{key}"] = value
@@ -792,6 +1059,27 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 		for key, value in metadata.items():
 			row[f"gemini_{key}"] = value
 
+	except TranslationRefusedError as e:
+		console.print(f"⚠ Gemini declined to translate {term_source} → {language_name}: {e.rationale}", style="bold yellow")
+		row['gemini_translated_term'] = None
+		row['gemini_translation_rationale'] = e.rationale
+		log_error_to_file(
+			error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "gemini_translated_term": None},
+			status_code=400,
+			error_url=f"gemini.models.generate_content - TranslationRefused",
+			error_message=e.rationale,
+		)
+	except ValueError as e:
+		console.print(f"⚠ Gemini parse failure for {term_source} → {language_name}: {e}", style="bold yellow")
+		row['gemini_translated_term'] = None
+		log_error_to_file(
+			error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "gemini_translated_term": None},
+			status_code=400,
+			error_url=f"gemini.models.generate_content - ParseError",
+			error_message=str(e),
+		)
 	except Exception as e:
 		error_str = str(e)
 		if '429' in error_str or 'quota' in error_str.lower() or 'rate' in error_str.lower():
@@ -801,15 +1089,16 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 		row['gemini_translated_term'] = None
 		log_error_to_file(
 			error_file_path,
-			additional_data={"term_source": term_source, "language_code": language_code, "gemini_translated_term": None},
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, "gemini_translated_term": None},
 			status_code=500,
 			error_url=f"gemini.models.generate_content - {type(e).__name__}",
+			error_message=str(e),
 		)
 
 	return row
 
 
-def get_ollama_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict, ollama_model: str = 'llama3.1', request_delay: float = 2.0, request_timeout: int = 120, consecutive_timeouts: int = 0) -> Tuple[pd.Series, int]:
+def get_ollama_translation(row: pd.Series, error_file_path: str, console: Console, current_prompt_variant: str, current_term_contexts: dict, ollama_model: str = 'llama3.1', request_delay: float = 2.0, request_timeout: int = 120, consecutive_timeouts: int = 0, col_prefix: str = 'ollama') -> Tuple[pd.Series, int]:
 	"""
 	Function to get translations of terms using a local Ollama model with throttling. This function assumes you have Ollama set up locally with the specified model and that the Ollama server is running. It also uses the prompt variants defined in translation_prompts.py to test different strategies for improving translation quality.
 
@@ -862,11 +1151,21 @@ def get_ollama_translation(row: pd.Series, error_file_path: str, console: Consol
 		console.print(f"Initial prompt is {_display_text(user_content)}", style="bright_cyan")
 		console.print(f"Using Ollama model: {ollama_model} (timeout: {request_timeout}s)", style="bold cyan")
 
-		system_content = f"You are a {term_source} scholar who speaks many languages."
+		system_content = get_system_prompt(current_prompt_variant, term_source)
 
 		# Save prompts to row for audit trail
-		row['ollama_system_prompt'] = system_content
-		row['ollama_user_prompt'] = user_content
+		row[f'{col_prefix}_system_prompt'] = system_content
+		row[f'{col_prefix}_user_prompt'] = user_content
+
+		# Build message list — omit system message entirely for minimal (None)
+		# rather than passing an empty string.
+		if system_content is not None:
+			ollama_messages = [
+				{'role': 'system', 'content': system_content},
+				{'role': 'user', 'content': user_content},
+			]
+		else:
+			ollama_messages = [{'role': 'user', 'content': user_content}]
 
 		# Make Ollama call with timeout using threading
 		ollama_response = None
@@ -877,53 +1176,81 @@ def get_ollama_translation(row: pd.Series, error_file_path: str, console: Consol
 			try:
 				ollama_response = ollama.chat(
 					model=ollama_model,
-					messages=[
-						{
-							'role': 'system',
-							'content': system_content
-						},
-						{
-							'role': 'user',
-							'content': user_content
-						}
-					]
+					messages=ollama_messages,
+					options={'temperature': 0, 'top_p': 1, 'num_predict': 2048},
 				)
 			except Exception as e:
 				timeout_error = e
 
 		# Run Ollama call in a thread with timeout
 		ollama_thread = threading.Thread(target=call_ollama, daemon=True)
+		t_start = time.monotonic()
+		if consecutive_timeouts > 0:
+			console.print(f"  ⚠ Starting request with {consecutive_timeouts} consecutive timeout(s) already on record", style="bold yellow")
 		ollama_thread.start()
-		ollama_thread.join(timeout=request_timeout)
+		# Poll every 60s so we can see the model is still running vs. frozen
+		_poll = 60
+		while True:
+			ollama_thread.join(timeout=_poll)
+			if not ollama_thread.is_alive():
+				break
+			elapsed_so_far = time.monotonic() - t_start
+			if elapsed_so_far >= request_timeout:
+				break
+			console.print(f"  ⏳ Still waiting... ({elapsed_so_far:.0f}s / {request_timeout}s) — {language_name} ({language_code})", style="dim yellow")
+		elapsed = time.monotonic() - t_start
 
 		# Check if thread is still alive (timed out)
 		if ollama_thread.is_alive():
 			consecutive_timeouts += 1
-			console.print(f"⚠ Ollama request timed out after {request_timeout}s - skipping ({consecutive_timeouts}/{MAX_CONSECUTIVE_TIMEOUTS})", style="bold yellow")
+			console.print(f"⚠ Ollama request timed out after {elapsed:.1f}s (limit {request_timeout}s) - skipping ({consecutive_timeouts}/{MAX_CONSECUTIVE_TIMEOUTS})", style="bold yellow")
+			console.print(f"  Language: {language_name} ({language_code}) | Model: {ollama_model}", style="dim yellow")
 
 			if consecutive_timeouts >= MAX_CONSECUTIVE_TIMEOUTS:
 				console.print(f"✗ Too many consecutive Ollama timeouts ({MAX_CONSECUTIVE_TIMEOUTS}). Stopping to save progress.", style="bold red")
-				raise Exception(f"Ollama service unresponsive - stopping after {MAX_CONSECUTIVE_TIMEOUTS} consecutive timeouts")
+				raise OllamaUnresponsiveError(f"Ollama service unresponsive - stopping after {MAX_CONSECUTIVE_TIMEOUTS} consecutive timeouts")
 
-			row['ollama_translated_term'] = None
-			row['ollama_translation_rationale'] = None
-			log_error_to_file(error_file_path, additional_data={"term_source": term_source, "language_code": language_code, "ollama_translated_term": None}, status_code=408, error_url="ollama.chat - Request Timeout")
+			row[f'{col_prefix}_translated_term'] = None
+			row[f'{col_prefix}_translation_rationale'] = None
+			log_error_to_file(error_file_path, additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, f"{col_prefix}_translated_term": None}, status_code=408, error_url="ollama.chat - Request Timeout", error_message=f"Request timed out after {request_timeout}s")
 			return row, consecutive_timeouts
 
 		if timeout_error:
 			console.print(f"⚠ Ollama request failed: {timeout_error}", style="bold yellow")
-			row['ollama_translated_term'] = None
-			row['ollama_translation_rationale'] = None
-			log_error_to_file(error_file_path, additional_data={"term_source": term_source, "language_code": language_code, "ollama_translated_term": None}, status_code=500, error_url=f"ollama.chat - {str(timeout_error)}")
+			row[f'{col_prefix}_translated_term'] = None
+			row[f'{col_prefix}_translation_rationale'] = None
+			log_error_to_file(error_file_path, additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, f"{col_prefix}_translated_term": None}, status_code=500, error_url=f"ollama.chat - {str(timeout_error)}", error_message=str(timeout_error))
 			return row, consecutive_timeouts
 
 		if ollama_response is None:
 			console.print(f"⚠ No response from Ollama", style="bold yellow")
-			row['ollama_translated_term'] = None
-			row['ollama_translation_rationale'] = None
+			row[f'{col_prefix}_translated_term'] = None
+			row[f'{col_prefix}_translation_rationale'] = None
 			return row, consecutive_timeouts
 
 		console.print(f"Ollama response: {ollama_response}", style="bright_magenta")
+
+		# done=False means the model hit num_predict mid-generation (repetition loop).
+		# Timing fields are None in this state, so dict-style access raises KeyError.
+		# Treat it as a deterministic failure (400) — retrying won't fix a hallucination loop.
+		_done = getattr(ollama_response, 'done', True)
+		if not _done:
+			console.print(
+				f"⚠ Ollama returned done=False for {language_name} ({language_code}) — "
+				f"model hit token limit mid-generation (repetition loop). Skipping.",
+				style="bold yellow"
+			)
+			row[f'{col_prefix}_translated_term'] = None
+			row[f'{col_prefix}_translation_rationale'] = None
+			log_error_to_file(
+				error_file_path,
+				additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, f"{col_prefix}_translated_term": None},
+				status_code=400,
+				error_url=f"ollama.chat - HallucinationLoop",
+				error_message=f"done=False for {language_name} ({language_code}) — model hit token limit mid-generation",
+			)
+			return row, consecutive_timeouts
+
 		message_content = ollama_response['message']['content']
 		# Escape lone surrogates as \uXXXX literals so PyArrow can store them without
 		# data loss — the escaped form is reversible and preserves what the model returned.
@@ -931,65 +1258,94 @@ def get_ollama_translation(row: pd.Series, error_file_path: str, console: Consol
 			f'\\u{ord(c):04x}' if 0xD800 <= ord(c) <= 0xDFFF else c
 			for c in message_content
 		)
-		row['ollama_content'] = message_content
-		row['ollama_model'] = ollama_response['model']
-		row['ollama_created_at'] = ollama_response['created_at']
-		row['ollama_total_duration'] = ollama_response['total_duration']
-		row['ollama_load_duration'] = ollama_response['load_duration']
-		row['ollama_prompt_eval_count'] = ollama_response['prompt_eval_count']
-		row['ollama_prompt_eval_duration'] = ollama_response['prompt_eval_duration']
-		row['ollama_eval_count'] = ollama_response['eval_count']
-		row['ollama_eval_duration'] = ollama_response['eval_duration']
-		row['ollama_done_reason'] = ollama_response['done_reason']
+		row[f'{col_prefix}_content'] = message_content
+		# Use getattr for timing metadata — these fields are None when done=False and
+		# the ollama library's __getitem__ raises KeyError for None-valued fields.
+		row[f'{col_prefix}_model'] = getattr(ollama_response, 'model', None)
+		row[f'{col_prefix}_created_at'] = getattr(ollama_response, 'created_at', None)
+		row[f'{col_prefix}_total_duration'] = getattr(ollama_response, 'total_duration', None)
+		row[f'{col_prefix}_load_duration'] = getattr(ollama_response, 'load_duration', None)
+		row[f'{col_prefix}_prompt_eval_count'] = getattr(ollama_response, 'prompt_eval_count', None)
+		row[f'{col_prefix}_prompt_eval_duration'] = getattr(ollama_response, 'prompt_eval_duration', None)
+		row[f'{col_prefix}_eval_count'] = getattr(ollama_response, 'eval_count', None)
+		row[f'{col_prefix}_eval_duration'] = getattr(ollama_response, 'eval_duration', None)
+		row[f'{col_prefix}_done_reason'] = getattr(ollama_response, 'done_reason', None)
 
 		try:
 			response = parse_translation_response(message_content)
-			row['ollama_translated_term'] = response.translated_term
-			row['ollama_translation_rationale'] = response.translation_rationale
+			row[f'{col_prefix}_translated_term'] = response.translated_term
+			row[f'{col_prefix}_translation_rationale'] = response.translation_rationale
 			# Reset timeout counter on successful translation
 			consecutive_timeouts = 0
-			console.print(f"Llama translation: {_display_text(row.ollama_translated_term)}", style="bold green")
+			console.print(f"{col_prefix.capitalize()} translation: {_display_text(row[f'{col_prefix}_translated_term'])}", style="bold green")
 
 		except (KeyError, ValueError, SyntaxError, ValidationError) as e:
 			console.print(f"Error parsing Ollama response: {e}", style="bold red")
-			row['ollama_translated_term'] = None
-			row['ollama_translation_rationale'] = None
+			row[f'{col_prefix}_translated_term'] = None
+			row[f'{col_prefix}_translation_rationale'] = None
 			log_error_to_file(
 				error_file_path,
 				additional_data={
 					"term_source": term_source,
 					"language_code": language_code,
-					"ollama_translated_term": None
+					"variant": current_prompt_variant,
+					f"{col_prefix}_translated_term": None
 				},
 				status_code=400,
-				error_url="ollama.chat - Parsing Error"
+				error_url="ollama.chat - Parsing Error",
+				error_message=str(e),
 			)
 
+	except TranslationRefusedError as e:
+		console.print(f"⚠ Ollama declined to translate {term_source} → {language_name}: {e.rationale}", style="bold yellow")
+		row[f'{col_prefix}_translated_term'] = None
+		row[f'{col_prefix}_translation_rationale'] = e.rationale
+		log_error_to_file(
+			error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, f"{col_prefix}_translated_term": None},
+			status_code=400,
+			error_url=f"ollama.chat - TranslationRefused",
+			error_message=e.rationale,
+		)
 	except json.JSONDecodeError as e:
-		console.print(f"Error decoding JSON response from Llama: {e}", style="bold red")
-		row['ollama_translated_term'] = None
+		console.print(f"Error decoding JSON response from Ollama: {e}", style="bold red")
+		row[f'{col_prefix}_translated_term'] = None
 		log_error_to_file(
 			error_file_path,
 			additional_data={
 				"term_source": term_source,
 				"language_code": language_code,
-				"ollama_translated_term": None
+				"variant": current_prompt_variant,
+				f"{col_prefix}_translated_term": None
 			},
 			status_code=400,
-			error_url="ollama.chat - JSONDecodeError"
+			error_url="ollama.chat - JSONDecodeError",
+			error_message=str(e),
+		)
+	except ValueError as e:
+		console.print(f"⚠ Ollama parse failure for {term_source} → {language_name}: {e}", style="bold yellow")
+		row[f'{col_prefix}_translated_term'] = None
+		log_error_to_file(
+			error_file_path,
+			additional_data={"term_source": term_source, "language_code": language_code, "variant": current_prompt_variant, f"{col_prefix}_translated_term": None},
+			status_code=400,
+			error_url="ollama.chat - ParseError",
+			error_message=str(e),
 		)
 	except Exception as e:
 		console.print(f"Unexpected error: {e}", style="bold red")
-		row['ollama_translated_term'] = None
+		row[f'{col_prefix}_translated_term'] = None
 		log_error_to_file(
 			error_file_path,
 			additional_data={
 				"term_source": term_source,
 				"language_code": language_code,
-				"ollama_translated_term": None
+				"variant": current_prompt_variant,
+				f"{col_prefix}_translated_term": None
 			},
 			status_code=500,
-			error_url="ollama.chat - General Exception"
+			error_url="ollama.chat - General Exception",
+			error_message=str(e),
 		)
 
 	return row, consecutive_timeouts

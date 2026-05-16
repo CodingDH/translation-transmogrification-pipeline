@@ -1,0 +1,38 @@
+file,language_code,language_name,translated_term
+deepseek_expert_persona_translations.csv,dua,Duala,llama3.1:latest
+deepseek_expert_persona_translations.csv,dnj,Dan,llama3.1:latest
+gemini_expert_persona_translations.csv,ii,Sichuan Yi,llama3.1:latest
+gemini_expert_persona_translations.csv,eka,Ekajuk,llama3.1:latest
+gemini_expert_persona_translations.csv,dnj,Dan,llama3.1:latest
+gemini_expert_persona_translations.csv,csw,Swampy Cree,llama3.1:latest
+gemini_expert_persona_translations.csv,crm,Moose Cree,llama3.1:latest
+gemini_expert_persona_translations.csv,chk,Chuukese,llama3.1:latest
+gemini_expert_persona_translations.csv,car,Carib,llama3.1:latest
+gemini_expert_persona_translations.csv,bss,Akoose,llama3.1:latest
+gemini_expert_persona_translations.csv,bmq,Bomu,llama3.1:latest
+gemini_expert_persona_translations.csv,blo,Anii,llama3.1:latest
+gemini_expert_persona_translations.csv,bbj,Ghomala,llama3.1:latest
+gemini_expert_persona_translations.csv,ann,Obolo,llama3.1:latest
+gemma_expert_persona_translations.csv,ii,Sichuan Yi,llama3.1:latest
+gemma_expert_persona_translations.csv,hup,Hupa,llama3.1:latest
+gemma_expert_persona_translations.csv,hoj,Hadothi,llama3.1:latest
+gemma_expert_persona_translations.csv,gur,Frafra,llama3.1:latest
+gemma_expert_persona_translations.csv,elx,Elamite,llama3.1:latest
+gemma_expert_persona_translations.csv,diq,Dimli,llama3.1:latest
+gemma_expert_persona_translations.csv,chy,Cheyenne,llama3.1:latest
+gemma_expert_persona_translations.csv,bzx,Kɛlɛngaxo Bozo,llama3.1:latest
+gemma_expert_persona_translations.csv,byn,Blin,llama3.1:latest
+gemma_expert_persona_translations.csv,blt,Tai Dam,llama3.1:latest
+openai_expert_persona_translations.csv,ii,Sichuan Yi,llama3.1:latest
+openai_expert_persona_translations.csv,hnn,Hanunoo,llama3.1:latest
+openai_expert_persona_translations.csv,hmd,Large Flowery Miao,llama3.1:latest
+openai_expert_persona_translations.csv,hit,Hittite,llama3.1:latest
+openai_expert_persona_translations.csv,fud,East Futuna,llama3.1:latest
+openai_expert_persona_translations.csv,ett,Etruscan,llama3.1:latest
+openai_expert_persona_translations.csv,dnj,Dan,llama3.1:latest
+openai_expert_persona_translations.csv,crm,Moose Cree,llama3.1:latest
+openai_expert_persona_translations.csv,crl,Northern East Cree,llama3.1:latest
+openai_expert_persona_translations.csv,chb,Chibcha,llama3.1:latest
+openai_expert_persona_translations.csv,bku,Buhid,llama3.1:latest
+qwen_expert_persona_translations.csv,bfq,Badaga,llama3.1:latest
+qwen_expert_persona_translations.csv,bbj,Ghomala,llama3.1:latest

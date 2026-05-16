@@ -1,54 +1,96 @@
 #!/usr/bin/env python3
 """
-analyze_disagreements.py
+explore_disagreements.py
 ========================
-Classify translation disagreements into four uncertainty categories:
+Classify translation disagreements into five uncertainty categories:
 
-  MEASUREMENT_ARTEFACT — apparent disagreement that dissolves after normalization (e.g. Esperanto Ciferecaj vs Cifereca — one letter of grammatical agreement). The scoring tool's limit, not a real divergence.
+1. COMPLETE_CONSENSUS: All services agree. No disagreement to classify.
+2. MEASUREMENT_ARTEFACT: Apparent disagreement dissolves under normalization or is entirely explained by writing-script variation (e.g. Serbian Cyrillic ↔ Latin, Esperanto Ciferecaj vs Cifereca).
+3. PRODUCTIVE_DISAGREEMENT: Multiple legitimate in-language alternatives. Wikipedia presence is the positive signal: community presence, proxied by Wikipedia, reframes multi-output disagreement as translation-strategy debate rather than structural absence.
+4. STRUCTURAL_ABSENCE: The concept has no community equivalent. Detected by loan-word borrowing (services use the source term unadapted), very sparse coverage, or convergent rationale signals admitting absence.
+5. TRANSMOGRIFICATION: Default confident fluent output with no community anchor. The model produced a word-like object with no community practice to verify against.
 
-  STRUCTURAL_ABSENCE — the concept has no community equivalent; model signals this through loan words, explicit "no equivalent" rationale text, or near-zero coverage. Swahili: EasyNMT returns "electronic natural resources"; OpenAI keeps "Humanities" in English.
+Classification hierarchy (applied in order, first rule whose predicate fires
+wins, see CLASSIFIER_RULES below for the canonical list):
 
-  PRODUCTIVE_DISAGREEMENT — multiple legitimate in-language alternatives reflecting a real scholarly debate.  Wikipedia presence is the strongest positive signal. Arabic: إنسانيات vs العلوم الإنسانية — both valid, both used, community has not converged.
+  1. No translations at all                → STRUCTURAL_ABSENCE
+  2. All services agree                    → COMPLETE_CONSENSUS
+  3. Script-only disagreement              → MEASUREMENT_ARTEFACT
+  4. Normalization collapses disagreement  → MEASUREMENT_ARTEFACT
+  5. Wikipedia present + multiple outputs  → PRODUCTIVE_DISAGREEMENT
+  6. Loan-word present                     → STRUCTURAL_ABSENCE
+  7. Sparse coverage + absence keywords    → STRUCTURAL_ABSENCE  *(keyword)
+  8. Convergent absence keywords           → STRUCTURAL_ABSENCE  *(keyword)
+  9. Default                               → TRANSMOGRIFICATION
 
-  TRANSMOGRIFICATION — confident, fluent, elaborate output untethered from any community practice; rationales become the tell.  Gothic: five different outputs, all internally reasoned, none verifiable.
+Rules marked *(keyword) read rationale text for English-language signal words. They are gated on `rationales_are_english` and no-op when the rationale variant is in the target language. They can additionally be disabled entirely with `--no-keyword-rules` for ablation experiments. When turned off, the classifier
+runs on string/metadata features only, and the `rule_fired` column records which rule produced the verdict for every language so you can audit the ablation's effect row-by-row.
 
-NOT_APPLICABLE is used when all services agree (no disagreement to classify).
+The load-bearing ordering decision is that PRODUCTIVE_DISAGREEMENT (Wikipedia presence) fires before STRUCTURAL_ABSENCE (loan-word presence). A language with an established scholarly community whose services sometimes borrow the source term is showing translation-strategy debate, not structural absence. Reversing the order would re-classify German, Swedish, and other high-resource European languages as STRUCTURAL_ABSENCE any time one service output "Digital Humanities" untranslated — contradicting direct evidence of active DH communities there.
 
-Classification hierarchy (applied in order, first match wins):
-  1. All translations are absent/identical → NOT_APPLICABLE
-  2. Disagreement collapses after normalization → MEASUREMENT_ARTEFACT
-  3. Loan-word or rationale-based absence signals → STRUCTURAL_ABSENCE
-  4. Wikipedia present + multiple in-language outputs → PRODUCTIVE_DISAGREEMENT
-  5. Default → TRANSMOGRIFICATION
+Data quality
+------------
+LLMs occasionally return a translation but omit the rationale, or return a
+placeholder string such as "No rationale provided" instead of real reasoning.
+Both cases are treated as missing rationales:
+
+  - ``load_variant_df`` (explore_confidence_within_variant.py) nulls out any
+    translation whose rationale is absent or a placeholder, and vice versa.
+    This pairing is enforced before any notebook or script sees the data.
+  - Within this script, the same ``is_placeholder_rationale`` check is applied
+    a second time when building the per-language rationale dict from the variant
+    DataFrame index.
+  - After both dicts are built, any LLM service that still has a translation
+    but no rationale in the loaded variant is dropped from the ``translations``
+    dict, so its output does not influence the classifier or rationale-similarity
+    score.
 
 Input
 -----
   - translated_terms/{term}/evaluation/across_variant_detail.csv
-  - translated_terms/{term}/{direct,prompt}_services/*.csv (for rationales)
-    loaded via load_variant_df for a single reference variant
+    (produced by explore_confidence_across_variants.py)
+  - translated_terms/{term}/{direct,prompt}_services/*.csv
+    loaded via load_variant_df for a single reference variant's rationales
 
 Output
 ------
   translated_terms/{term}/evaluation/disagreement_analysis.csv
-    One row per (language_code × term_source) with category, evidence columns,
-    and extracted rationale snippets.
+    One row per (language_code × term_source) with:
+      - category, rule_fired, evidence
+      - classifier feature columns (unique counts, edit distance, script info,
+        loan words, signal counts)
+      - mean_rationale_similarity (surface lexical, not semantic — see docs)
+      - first 300 chars of each service's rationale for inspection
+
+When --no-keyword-rules is passed, output is written to
+disagreement_analysis_no_keywords.csv so ablation runs don't overwrite the
+canonical output.
 
 Usage
 -----
-    python analyze_disagreements.py
-    python analyze_disagreements.py --term "Digital Humanities"
-    python analyze_disagreements.py --term "Digital Humanities" --variant comparative
-    python analyze_disagreements.py --threshold 0.15
+    # Default: all rules on, canonical classification
+    python explore_disagreements.py
+
+    # Single term, non-default variant
+    python explore_disagreements.py --term "Digital Humanities" --variant expert_persona
+
+    # Ablation: keyword-rule contribution
+    python explore_disagreements.py --no-keyword-rules
+    # Then diff rule_fired between the two CSVs.
+
+    # Override source tokens for a different term
+    python explore_disagreements.py --source-tokens digital humanities dh
 """
+
+from __future__ import annotations
 
 import argparse
 import os
 import re
 import sys
 import unicodedata
-from collections import defaultdict
-from typing import Dict, List, Optional, Tuple
-
+from dataclasses import dataclass, replace
+from typing import Callable, Dict, List, Optional, Tuple
 
 import pandas as pd
 from rich.console import Console
@@ -58,31 +100,36 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..",
 from scripts.utils import (
     get_data_directory_path, read_csv_file,
     detect_script_disagreement,
+    is_placeholder_rationale,
 )
 from scripts.exploration.explore_confidence_within_variant import load_variant_df
 
 console = Console()
 
+
 # ── Constants ──────────────────────────────────────────────────────────────
 
 CATEGORIES = {
-    'NOT_APPLICABLE':        'All services agree — no disagreement to classify',
-    'MEASUREMENT_ARTEFACT':  'Disagreement dissolves after normalization',
-    'STRUCTURAL_ABSENCE':    'Concept absent from community; model borrows or signals absence',
+    'COMPLETE_CONSENSUS':      'All services agree — no disagreement to classify',
+    'MEASUREMENT_ARTEFACT':    'Disagreement dissolves after normalization',
     'PRODUCTIVE_DISAGREEMENT': 'Multiple legitimate in-language alternatives',
-    'TRANSMOGRIFICATION':    'Confident fluent output untethered from community practice',
+    'STRUCTURAL_ABSENCE':      'Concept absent from community; model borrows or signals absence',
+    'TRANSMOGRIFICATION':      'Confident fluent output untethered from community practice',
 }
 
-# Keyword matching assumes English-language rationales. Use 'comparative' or
-# any variant other than 'native_rationale' as the rationale source — those
-# variants ask models to reason in English regardless of target language.
-# 'native_rationale' produces rationales in the target language; keywords will
-# silently miss signals for non-Latin-script languages if that variant is used.
+# Which prompt variants produce English-language rationales. Keyword matching assumes English; native_rationale produces rationales in the target language and keyword rules are skipped for it.
+ENGLISH_RATIONALE_VARIANTS = {'minimal', 'expert_persona', 'judge'}
+NATIVE_RATIONALE_VARIANTS = {'native_rationale'}
+
 RATIONALE_COLS = {
-    'Claude':  'claude_translation_rationale',
-    'OpenAI':  'openai_translation_rationale',
-    'Gemini':  'gemini_translation_rationale',
-    'Ollama':  'ollama_translation_rationale',
+    'Claude':   'claude_translation_rationale',
+    'OpenAI':   'openai_translation_rationale',
+    'Gemini':   'gemini_translation_rationale',
+    'DeepSeek': 'deepseek_translation_rationale',
+    'Llama':    'llama_translation_rationale',
+    'Gemma':    'gemma_translation_rationale',
+    'Qwen':     'qwen_translation_rationale',
+    'Mistral':  'mistral_translation_rationale',
 }
 
 TRANSLATION_COLS = {
@@ -93,22 +140,28 @@ TRANSLATION_COLS = {
     'OpenAI':           'openai_translated_term',
     'Claude':           'claude_translated_term',
     'Gemini':           'gemini_translated_term',
-    'Ollama':           'ollama_translated_term',
+    'DeepSeek':         'deepseek_translated_term',
+    'Llama':            'llama_translated_term',
+    'Gemma':            'gemma_translated_term',
+    'Qwen':             'qwen_translated_term',
+    'Mistral':          'mistral_translated_term',
 }
 
-# Keywords in rationale text that signal the model knows there is no equivalent
+
+# Rationale keywords signaling the model knows no equivalent exists. Literal-word patterns use \b word boundaries so "overborrowed" or "colloquialism" don't accidentally match "borrow" or "anglicism".
 ABSENCE_KEYWORDS = [
     'no equivalent', 'no direct', 'no established', 'no widely', 'not adopted',
     'not institutionalized', 'not institutionalised', 'not yet adopted',
     'does not exist', "hasn't been", 'have not been', 'has not been',
     'no community', 'no scholarly', 'not used in', 'concept does not',
     'term does not', 'no translation', 'untranslated', 'no native',
-    'no recognized', 'no recognised', 'borrowed', 'loanword', 'loan word',
-    'borrowing', 'anglicism', 'anglicization', 'anglicised',
-    'transliterat', 'keep.*english', 'retain.*english',
+    'no recognized', 'no recognised',
+    r'\bborrowed\b', r'\bloanword\b', r'\bloan word\b',
+    r'\bborrowing\b', r'\banglicism\b', r'\banglicization\b', r'\banglicised\b',
+    r'\btransliterat', r'keep.*english', r'retain.*english',
 ]
 
-# Keywords suggesting elaborate construction — transmogrification signal
+# Rationale keywords suggesting elaborate construction as a transmogrification signal. Currently recorded in the output CSV but not used by any rule in the chain; retained because the signal is potentially useful for downstream analysis.
 CONSTRUCTION_KEYWORDS = [
     'etymolog', 'root word', 'compound', 'combining', 'derive from',
     'ancient', 'classical', 'proto-', 'reconstructed', 'neologism',
@@ -116,15 +169,50 @@ CONSTRUCTION_KEYWORDS = [
     'morpholog', 'word-forming', 'suffix', 'prefix',
 ]
 
-# Keywords suggesting community debate — productive disagreement signal
+# Rationale keywords suggesting community debate as a productive disagreement signal. Also recorded but not used by any rule (Wikipedia presence does the work).
 DEBATE_KEYWORDS = [
     'some scholars', 'different communities', 'preferred by', 'others use',
     'alternatively', 'debate', 'contested', 'competing', 'variant',
     'both terms', 'either', 'also used', 'sometimes rendered',
 ]
 
-# Source-language tokens that signal loan-word usage (case-insensitive)
-SOURCE_TOKENS = ['digital', 'humanities', 'humanit', 'numérique', 'digitale', 'dh']
+def derive_source_tokens(term: str) -> List[str]:
+    """Derive loanword-detection tokens from the source term itself.
+
+    Three forms, in order:
+      1. Full lowercased term          — catches exact phrase borrowing
+      2. Individual words              — catches per-word borrowing
+      3. Initial-letter acronym        — catches abbreviated forms (e.g. 'dh')
+
+    This replaces manual curation: tokens emerge from the term itself so no
+    domain knowledge is required when adding a new source term.
+    
+    Parameters
+    ----------
+    term : str
+		The source term, e.g. "Digital Humanities". Should be in English or
+		Latin script for the tokenization to work well; non-Latin scripts are
+		not guaranteed to split into meaningful tokens but will still be
+		included as-is in the output list so the loan-word rule can still fire
+		on exact matches.
+        
+    Returns
+    -------
+    List[str]
+		A list of tokens derived from the term, e.g. ["digital humanities", "digital", "humanities", "dh"].
+    """
+    term_lower = term.lower().strip()
+    words = [w for w in re.split(r'\s+', term_lower) if w]
+    tokens = [term_lower] + words
+    if len(words) > 1:
+        tokens.append(''.join(w[0] for w in words))
+    seen: set = set()
+    out: List[str] = []
+    for t in tokens:
+        if t not in seen:
+            seen.add(t)
+            out.append(t)
+    return out
 
 
 # ── String normalization ───────────────────────────────────────────────────
@@ -136,7 +224,7 @@ def normalize(text: str) -> str:
     Unicode-aware so Arabic/Hebrew letters are preserved by the punctuation
     strip, and NFKD decomposition correctly normalises Arabic compatibility
     forms. The only combining characters removed are vowel-pointing marks
-    (harakat, niqqud) which do not appear in formal scholarly translations.
+    (harakat, niqqud) which is a loss but necessary to avoid counting diacritic variation as disagreement. Though we do count it as disagreement at the raw level, so the edit-distance-based rules can still detect it as a measurement artefact when the underlying term is the same.
     """
     if not text or not isinstance(text, str):
         return ''
@@ -146,7 +234,7 @@ def normalize(text: str) -> str:
 
 
 def edit_distance(a: str, b: str) -> int:
-    """Levenshtein edit distance."""
+    """Levenshtein edit distance. Returns 0 for identical strings, 1 for one insertion/deletion/substitution, etc."""
     if not a:
         return len(b)
     if not b:
@@ -167,37 +255,32 @@ def max_pairwise_edit_distance(strings: List[str]) -> int:
     """Max edit distance among all pairs in a list of strings."""
     if len(strings) <= 1:
         return 0
-    return max(edit_distance(a, b) for i, a in enumerate(strings) for b in strings[i + 1:])
+    return max(
+        edit_distance(a, b)
+        for i, a in enumerate(strings)
+        for b in strings[i + 1:]
+    )
 
 
-def contains_source_token(
-    text: str,
-    source_tokens: List[str] = SOURCE_TOKENS,
-) -> bool:
-    """Return True if a full word in the translation matches a source-language token.
+def find_loan_words(text: str, source_tokens: List[str]) -> List[str]:
+    """Return the subset of source_tokens present as whole words in text.
 
-    Uses whole-word matching so that adapted forms like 'digitala' (Gothic
-    inflection of 'digital') are not flagged — only unadapted borrowings like
-    'digital' or 'humanities' appearing as standalone words.
+    Uses whole-word matching (post-normalization) so adapted inflections like 'digitala' (Gothic inflection of 'digital') are not flagged but instead only unadapted borrowings like 'digital' or 'humanities' as standalone words.
     """
     if not text:
-        return False
+        return []
     words = set(normalize(text).split())
-    return any(tok in words for tok in source_tokens)
+    return [tok for tok in source_tokens if tok in words]
 
 
-# ── Rationale similarity ──────────────────────────────────────────────────
+# ── Rationale similarity (surface metric) ─────────────────────────────────
 
 def compute_rationale_similarity(
-    rationales: Dict[str, Optional[str]]
+    rationales: Dict[str, Optional[str]],
 ) -> Optional[float]:
     """Mean pairwise TF-IDF cosine similarity across service rationales.
 
-    Uses character n-grams (3–5) so the metric is script-agnostic and works
-    for Arabic, CJK, and other non-Latin rationales as well as Latin ones.
-    Within-language comparisons (Claude vs OpenAI on the same target language)
-    are meaningful regardless of language: high similarity means the models
-    converged on the same reasoning; low similarity means divergent framings.
+    Uses character n-grams (3–5) so the metric is script-agnostic. This is a SURFACE metric: it measures how similarly two rationales are *phrased*, not whether they convey the same meaning. High similarity can arise from shared topic vocabulary even when the underlying claims differ. This similarity therefore is lexical convergence, not semantic agreement.
 
     Returns None when fewer than 2 non-empty rationales are available.
     """
@@ -223,24 +306,25 @@ def compute_rationale_similarity(
 
 # ── Rationale keyword matching ─────────────────────────────────────────────
 
-def match_keywords(rationale: str, keywords: List[str]) -> List[str]:
-    """Return which keywords (as regex patterns) match in rationale text."""
-    if not rationale or not isinstance(rationale, str):
+def match_keywords(text: str, keywords: List[str]) -> List[str]:
+    """Return which keyword patterns (as regex) match in text."""
+    if not text or not isinstance(text, str):
         return []
-    rationale_lower = rationale.lower()
-    return [kw for kw in keywords if re.search(kw, rationale_lower)]
+    text_lower = text.lower()
+    return [kw for kw in keywords if re.search(kw, text_lower)]
 
 
 def extract_rationale_signals(
-    rationales: Dict[str, Optional[str]]
-) -> Dict[str, List[str]]:
-    """
-    Scan all service rationales for absence, construction, and debate keywords.
+    rationales: Dict[str, Optional[str]],
+) -> Dict[str, List[Tuple[str, str]]]:
+    """Scan all service rationales for absence / construction / debate keywords.
 
     Returns dict with keys 'absence', 'construction', 'debate', each a list
-    of (service, keyword) tuples found.
+    of (service, keyword) tuples matched.
     """
-    signals: Dict[str, List] = {'absence': [], 'construction': [], 'debate': []}
+    signals: Dict[str, List[Tuple[str, str]]] = {
+        'absence': [], 'construction': [], 'debate': [],
+    }
     for service, text in rationales.items():
         if not text:
             continue
@@ -253,247 +337,437 @@ def extract_rationale_signals(
     return signals
 
 
-# ── Core classification ────────────────────────────────────────────────────
+# ── Features + rules ──────────────────────────────────────────────────────
 
-def classify_language(
+@dataclass
+class ClassifierConfig:
+    """Tunable knobs for the classifier, in one place."""
+    norm_threshold: float = 0.15
+    min_distinct_for_pd: int = 2
+    sparse_coverage_max: int = 2
+    min_absence_signals: int = 2
+    source_tokens: Optional[Tuple[str, ...]] = None  # None = derive from term at runtime
+    use_keyword_rules: bool = True
+
+
+@dataclass
+class Features:
+    """All features a rule might read, computed once per (language × term).
+
+    This is a plain data record of the rules read fields but it never mutates them. Keeps the rule functions short and makes it easy to add new rules without re-deriving features inside each one.
+    
+    The features are all derived from the raw translation outputs and rationales, plus Wikipedia presence as external metadata. The rationale-based features are gated on `rationales_are_english` because the keyword matching only works for English rationales; when False, the rationale fields are still populated in the output CSV for inspection but the keyword-rule functions are no-ops.
+    """
+    translations: Dict[str, str]
+    rationales: Dict[str, str]
+    has_wikipedia: bool
+    rationales_are_english: bool
+    n_unique_raw: int
+    n_unique_normalized: int
+    max_edit_distance: int
+    dist_threshold: int
+    script_info: Dict
+    loan_words_found: List[str]
+    signals: Dict[str, List[Tuple[str, str]]]
+
+
+def extract_features(
     translations: Dict[str, Optional[str]],
     rationales: Dict[str, Optional[str]],
     has_wikipedia: bool,
-    norm_threshold: float = 0.15,
-    source_tokens: List[str] = SOURCE_TOKENS,
-) -> Dict:
-    """
-    Classify a single (language × term) disagreement.
-
-    Parameters
-    ----------
-    translations : dict  service_name → best translation string or None
-    rationales   : dict  service_name → rationale text or None
-    has_wikipedia : bool  Wikipedia has a translation for this language
-    norm_threshold : float
-        Max edit distance (as fraction of mean length) to call an artefact.
-
-    Returns
-    -------
-    dict with 'category', 'evidence', 'loan_words_found', 'absence_signals',
-              'construction_signals', 'debate_signals', 'n_unique_raw',
-              'n_unique_normalized', 'max_edit_distance'
-    """
-    valid = {s: t for s, t in translations.items()
-             if t and isinstance(t, str) and t.strip() and t not in ('nan', 'None')}
-
-    # Script disagreement detection — run early so all branches can use it
-    script_info = detect_script_disagreement(valid)
-
-    if not valid:
-        return {
-            'category': 'STRUCTURAL_ABSENCE',
-            'evidence': 'No service produced a translation',
-            'loan_words_found': False,
-            'absence_signals': [],
-            'construction_signals': [],
-            'debate_signals': [],
-            'n_unique_raw': 0,
-            'n_unique_normalized': 0,
-            'max_edit_distance': None,
-            'has_script_disagreement': False,
-            'scripts_found': [],
-            'script_per_service': [],
-        }
+    rationales_are_english: bool,
+    config: ClassifierConfig,
+) -> Features:
+    """Compute all classifier features in one pass. See Features for fields."""
+    valid = {
+        s: t.strip() for s, t in translations.items()
+        if t and isinstance(t, str) and t.strip() and t not in ('nan', 'None')
+    }
+    valid_rationales = {
+        s: t.strip() for s, t in rationales.items()
+        if t and isinstance(t, str) and t.strip() and t not in ('nan', 'None')
+    } if rationales_are_english else {}
 
     raw_vals = list(valid.values())
     unique_raw = set(v.strip().lower() for v in raw_vals)
     norm_vals = [normalize(v) for v in raw_vals]
     unique_norm = set(v for v in norm_vals if v)
-
-    n_unique_raw = len(unique_raw)
-    n_unique_norm = len(unique_norm)
-
-    # Compute max edit distance among normalized unique values
     norm_list = list(unique_norm)
     max_dist = max_pairwise_edit_distance(norm_list)
-    mean_len = sum(len(v) for v in norm_list) / len(norm_list) if norm_list else 1
-    dist_threshold = max(2, int(norm_threshold * mean_len))
+    mean_len = (
+        sum(len(v) for v in norm_list) / len(norm_list) if norm_list else 1
+    )
+    dist_threshold = max(2, int(config.norm_threshold * mean_len))
 
-    # Loan word and rationale signals
-    loan_detected = any(contains_source_token(t, source_tokens) for t in valid.values())
-    signals = extract_rationale_signals(rationales)
+    script_info = detect_script_disagreement(valid)
 
-    script_suffix = (
-        f'; script disagreement: {"+".join(script_info["scripts_found"])}'
-        if script_info['has_script_disagreement'] else ''
+    # Loan words: union across all services' outputs
+    loan_set: set = set()
+    for t in valid.values():
+        loan_set.update(find_loan_words(t, list(config.source_tokens)))
+    loan_words_found = sorted(loan_set)
+
+    # Keyword signals — only extract when rationales are English
+    if rationales_are_english:
+        signals = extract_rationale_signals(valid_rationales)
+    else:
+        signals = {'absence': [], 'construction': [], 'debate': []}
+
+    return Features(
+        translations=valid,
+        rationales=valid_rationales,
+        has_wikipedia=has_wikipedia,
+        rationales_are_english=rationales_are_english,
+        n_unique_raw=len(unique_raw),
+        n_unique_normalized=len(unique_norm),
+        max_edit_distance=max_dist,
+        dist_threshold=dist_threshold,
+        script_info=script_info,
+        loan_words_found=loan_words_found,
+        signals=signals,
     )
 
-    def _base(category: str, evidence: str) -> Dict:
-        return {
-            'category': category,
-            'evidence': evidence + script_suffix,
-            'loan_words_found': loan_detected,
-            'absence_signals': signals['absence'],
-            'construction_signals': signals['construction'],
-            'debate_signals': signals['debate'],
-            'n_unique_raw': n_unique_raw,
-            'n_unique_normalized': n_unique_norm,
-            'max_edit_distance': max_dist,
-            'has_script_disagreement': script_info['has_script_disagreement'],
-            'scripts_found': script_info['scripts_found'],
-            'script_per_service': script_info['script_per_service'],
-        }
 
-    # ── Step 1: all agree (no disagreement) ──────────────────────────────
-    if n_unique_raw == 1:
-        return _base('NOT_APPLICABLE', 'All services produced the same translation')
+# ── Rules ──────────────────────────────────────────────────────────────────
+#
+# Each rule is a pure function (Features, ClassifierConfig) → Optional[tuple]. Return None to skip; return (category, evidence) to fire and stop the chain. The name of the function that fires is recorded as rule_fired in the output CSV so you can audit which rules do what work.
 
-    # ── Step 2: measurement artefact (disagreement dissolves after normalization,
-    #           or is explained entirely by script variant) ─────────────────
-    is_script_only = (
-        script_info['has_script_disagreement']
-        and n_unique_norm <= 1
-    )
-    if n_unique_norm <= 1 or max_dist <= dist_threshold or is_script_only:
-        reason = (
-            f'Normalized to {n_unique_norm} unique value(s); '
-            f'max edit distance {max_dist} ≤ threshold {dist_threshold}'
-        )
-        if is_script_only:
-            reason = (
-                f'Script-only disagreement ({"+".join(script_info["scripts_found"])}); '
-                f'same term in {n_unique_raw} scripts'
-            )
-        return _base('MEASUREMENT_ARTEFACT', reason)
+Rule = Callable[[Features, ClassifierConfig], Optional[Tuple[str, str]]]
 
-    # ── Step 3: productive disagreement ──────────────────────────────────
-    # Check Wikipedia BEFORE loan-word detection: a language like German or
-    # Swedish that has Wikipedia coverage and uses "Digital" as a loan word
-    # in some services is showing real community debate, not structural absence.
-    if has_wikipedia and n_unique_raw >= 2:
-        return _base(
-            'PRODUCTIVE_DISAGREEMENT',
-            f'Wikipedia translation present; '
-            f'{n_unique_raw} distinct outputs; '
-            f'debate signals: {len(signals["debate"])}',
-        )
 
-    # ── Step 4: structural absence ────────────────────────────────────────
-    # Key distinction from transmogrification: the model actually borrowed the
-    # source term OR produced very little data — not just said "no equivalent"
-    # while inventing elaborate constructed terms.
-    # Rationale absence keywords alone are not enough: Gothic's Claude says
-    # "no Gothic word for digital" then constructs 'digitala manna-kunþi' —
-    # that is transmogrification, not structural absence.
-    absence_score = len(signals['absence']) + (3 if loan_detected else 0)
-    genuine_absence = (
-        loan_detected                 # model borrowed the source term unadapted
-        or len(valid) <= 2            # almost no services produced anything
-        or (n_unique_raw <= 2 and len(signals['absence']) >= 2)  # said "no equivalent" AND agreed
-    )
-    if absence_score >= 2 and genuine_absence:
-        return _base(
-            'STRUCTURAL_ABSENCE',
-            f'Loan word detected: {loan_detected}; '
-            f'absence signals: {len(signals["absence"])}; '
-            f'services with data: {len(valid)}',
-        )
+def rule_no_translations(f: Features, cfg: ClassifierConfig):
+    """Empty translation set → STRUCTURAL_ABSENCE."""
+    if not f.translations:
+        return ('STRUCTURAL_ABSENCE', 'No service produced a translation')
+    return None
 
-    # ── Step 5: transmogrification (default) ─────────────────────────────
-    return _base(
-        'TRANSMOGRIFICATION',
-        f'No Wikipedia; {n_unique_raw} distinct outputs; '
-        f'absence signals: {len(signals["absence"])}; '
-        f'construction signals: {len(signals["construction"])}',
+
+def rule_all_agree(f: Features, cfg: ClassifierConfig):
+    """Every service produced the same string → COMPLETE_CONSENSUS."""
+    if f.n_unique_raw == 1:
+        return ('COMPLETE_CONSENSUS', 'All services produced the same translation')
+    return None
+
+
+def rule_script_only_disagreement(f: Features, cfg: ClassifierConfig):
+    """Disagreement is entirely explained by writing script."""
+    if f.script_info.get('has_script_disagreement') and f.n_unique_normalized <= 1:
+        scripts = '+'.join(f.script_info.get('scripts_found', []))
+        return ('MEASUREMENT_ARTEFACT',
+                f'Script-only disagreement ({scripts}); '
+                f'same term in {f.n_unique_raw} scripts')
+    return None
+
+
+def rule_normalization_artifact(f: Features, cfg: ClassifierConfig):
+    """Disagreement dissolves under case/diacritic/edit-distance tolerance."""
+    if f.n_unique_normalized <= 1 or f.max_edit_distance <= f.dist_threshold:
+        return ('MEASUREMENT_ARTEFACT',
+                f'Normalized to {f.n_unique_normalized} unique value(s); '
+                f'max edit distance {f.max_edit_distance} ≤ threshold {f.dist_threshold}')
+    return None
+
+
+def rule_wikipedia_presence(f: Features, cfg: ClassifierConfig):
+    """Wikipedia exists + multiple distinct outputs → PRODUCTIVE_DISAGREEMENT.
+
+    Fires BEFORE loan-word detection by design — see module docstring.
+    """
+    if f.has_wikipedia and f.n_unique_raw >= cfg.min_distinct_for_pd:
+        return ('PRODUCTIVE_DISAGREEMENT',
+                f'Wikipedia present; {f.n_unique_raw} distinct outputs; '
+                f'debate signals: {len(f.signals["debate"])}')
+    return None
+
+
+def rule_loanword_absence(f: Features, cfg: ClassifierConfig):
+    """At least one service borrowed the source term unadapted.
+
+    Reads translations only — works regardless of rationale language.
+    """
+    if f.loan_words_found:
+        return ('STRUCTURAL_ABSENCE',
+                f'Loan words present: {f.loan_words_found}')
+    return None
+
+
+def rule_sparse_coverage_absence(f: Features, cfg: ClassifierConfig):
+    """Very few services produced output AND rationales admit absence.
+
+    Keyword-dependent: requires English rationales. Disabled by --no-keyword-rules.
+    """
+    if not cfg.use_keyword_rules or not f.rationales_are_english:
+        return None
+    if (len(f.translations) <= cfg.sparse_coverage_max
+            and len(f.signals['absence']) >= cfg.min_absence_signals):
+        return ('STRUCTURAL_ABSENCE',
+                f'Sparse coverage ({len(f.translations)} services) + '
+                f'{len(f.signals["absence"])} absence signals')
+    return None
+
+
+def rule_convergent_absence(f: Features, cfg: ClassifierConfig):
+    """Services converge on few outputs AND rationales admit absence.
+
+    Keyword-dependent: requires English rationales. Disabled by --no-keyword-rules.
+    """
+    if not cfg.use_keyword_rules or not f.rationales_are_english:
+        return None
+    if f.n_unique_raw <= 2 and len(f.signals['absence']) >= cfg.min_absence_signals:
+        return ('STRUCTURAL_ABSENCE',
+                f'Convergent absence ({len(f.signals["absence"])} signals) '
+                f'across {f.n_unique_raw} distinct outputs')
+    return None
+
+
+def rule_default_transmogrification(f: Features, cfg: ClassifierConfig):
+    """Catch-all: no Wikipedia, no borrowing, no absence signal → TRANSMOGRIFICATION."""
+    return ('TRANSMOGRIFICATION',
+            f'No Wikipedia; {f.n_unique_raw} distinct outputs; '
+            f'construction signals: {len(f.signals["construction"])}')
+
+
+# The canonical rule chain. The ORDER encodes the classifier's theory: measurement artefacts come out first, then Wikipedia-gated productive disagreement, then absence detection (loanword before keywords), then transmogrification as the default.
+CLASSIFIER_RULES: Tuple[Rule, ...] = (
+    rule_no_translations,
+    rule_all_agree,
+    rule_script_only_disagreement,
+    rule_normalization_artifact,
+    rule_wikipedia_presence,
+    rule_loanword_absence,
+    rule_sparse_coverage_absence,    # keyword-dependent
+    rule_convergent_absence,         # keyword-dependent
+    rule_default_transmogrification,
+)
+
+
+def classify(
+    features: Features,
+    config: ClassifierConfig,
+    rules: Tuple[Rule, ...] = CLASSIFIER_RULES,
+) -> Tuple[str, str, str]:
+    """Run the rule chain until a rule fires.
+
+    Returns (category, evidence, rule_name). The rule_name is the __name__ of
+    the function that fired, recorded in the CSV so the ablation can be
+    audited row-by-row.
+    """
+    for rule in rules:
+        out = rule(features, config)
+        if out is not None:
+            category, evidence = out
+            return category, evidence, rule.__name__
+    # rule_default_transmogrification always fires, so we should never reach here
+    raise RuntimeError(
+        "Rule chain exhausted without a match. "
+        "CLASSIFIER_RULES must end with a catch-all."
     )
 
 
 # ── Main pipeline ──────────────────────────────────────────────────────────
 
+_RATIONALE_VARIANT_KEYS = [
+    'rationale_minimal',
+    'rationale_expert_persona',
+    'rationale_native_rationale',
+    'rationale_judge',
+]
+
+_TERM_VARIANT_KEYS = [
+    'term_minimal',
+    'term_expert_persona',
+    'term_native_rationale',
+    'term_judge',
+]
+
+
+def load_exclusions(path: str) -> Dict[str, Dict[str, Dict[str, bool]]]:
+    """Load manual_exclusions.csv into a nested dict.
+
+    Returns ``{language_code: {service: {term: bool, rationale_minimal: bool, ...}}}``.
+    The file is produced by html_files/disagreement_explorer.html.
+    Per-variant rationale keys: rationale_minimal, rationale_expert_persona,
+    rationale_native_rationale, rationale_judge.
+    """
+    df = pd.read_csv(path, converters={'language_code': str})
+    result: Dict[str, Dict[str, Dict[str, bool]]] = {}
+    for _, row in df.iterrows():
+        code = str(row.get('language_code', '')).strip()
+        svc  = str(row.get('service', '')).strip()
+        if not code or not svc:
+            continue
+        if code not in result:
+            result[code] = {}
+        entry: Dict[str, bool] = {
+            'term': str(row.get('exclude_translation', 'False')).strip().lower() == 'true',
+        }
+        for vkey in _TERM_VARIANT_KEYS:
+            col = f'exclude_{vkey}'
+            entry[vkey] = str(row.get(col, 'False')).strip().lower() == 'true'
+        # Auto-promote: if all per-variant terms are excluded, treat as full exclusion
+        if not entry['term'] and all(entry.get(k, False) for k in _TERM_VARIANT_KEYS):
+            entry['term'] = True
+        for vkey in _RATIONALE_VARIANT_KEYS:
+            col = f'exclude_{vkey}'
+            entry[vkey] = str(row.get(col, 'False')).strip().lower() == 'true'
+        result[code][svc] = entry
+    n_langs = len(result)
+    n_entries = sum(len(v) for v in result.values())
+    console.print(
+        f"  Loaded {n_entries} exclusion entries across {n_langs} languages from {path}",
+        style="dim cyan",
+    )
+    return result
+
+
+def load_term_corrections(path: str) -> Dict[str, Dict[str, str]]:
+    """Load term corrections from manual_exclusions.csv.
+
+    Returns ``{language_code: {original_term: corrected_term}}`` for rows
+    where ``service == 'term_correction'``.
+    """
+    df = pd.read_csv(path, converters={'language_code': str})
+    result: Dict[str, Dict[str, str]] = {}
+    if 'corrected_term' not in df.columns or 'original_term' not in df.columns:
+        return result
+    for _, row in df.iterrows():
+        if str(row.get('service', '')).strip() != 'term_correction':
+            continue
+        code = str(row.get('language_code', '')).strip()
+        original = str(row.get('original_term', '')).strip()
+        corrected = str(row.get('corrected_term', '')).strip()
+        if code and original and corrected and corrected not in ('', 'nan', 'None'):
+            if code not in result:
+                result[code] = {}
+            result[code][original] = corrected
+    n_corrections = sum(len(v) for v in result.values())
+    if n_corrections:
+        console.print(
+            f"  Loaded {n_corrections} term correction(s) across {len(result)} language(s) from {path}",
+            style="dim cyan",
+        )
+    return result
+
+
 def run_disagreement_analysis(
     data_directory_path: str,
     target_terms: List[str],
     rationale_variant: str = 'minimal',
-    norm_threshold: float = 0.15,
-    source_tokens: Optional[List[str]] = None,
+    config: Optional[ClassifierConfig] = None,
     output_dir: Optional[str] = None,
+    exclusions: Optional[Dict[str, Dict[str, Dict[str, bool]]]] = None,
+    corrections: Optional[Dict[str, Dict[str, str]]] = None,
 ) -> pd.DataFrame:
-    """
-    For every (language × term), classify the disagreement pattern.
+    """Classify every (language × term) disagreement.
 
     Parameters
     ----------
     data_directory_path : str
-    target_terms : List[str]
+        Root data directory.
+    target_terms : list of str
+        Each term needs an across_variant_detail.csv from
+        explore_confidence_across_variants.py.
     rationale_variant : str
-        Which prompt variant to use for extracting rationale text.
-        Must be an English-reasoning variant — keyword matching is English-only.
-        'minimal' is the default. Do NOT use 'native_rationale': that variant
-        produces rationales in the target language, so keyword signals will be
-        missed for non-Latin-script languages. 'judge' is acceptable but its
-        rationales are synthesis text rather than independent model reasoning.
-    norm_threshold : float
-        Fraction of mean string length used as edit-distance tolerance
-        for MEASUREMENT_ARTEFACT detection.
+        Which prompt variant to source rationales from. 'minimal' is the
+        canonical choice. 'native_rationale' silently disables keyword rules
+        because its rationales are in the target language. 'judge' emits a
+        warning — its rationales are synthesis text, not independent reasoning,
+        so keyword signals mix object-level and meta-level evidence.
+    config : ClassifierConfig, optional
+        Classifier knobs (thresholds, source tokens, keyword-rule toggle).
+        Defaults to ClassifierConfig() with source tokens tuned for Digital
+        Humanities.
+    corrections : dict, optional
+        Term corrections from load_term_corrections(). Maps
+        {language_code: {original_term: corrected_term}}. Applied after
+        exclusions, replacing matched translation strings before classification.
     output_dir : str, optional
-        Defaults to translated_terms/{first_term}/evaluation/
+        Defaults to translated_terms/{first_term}/evaluation/.
 
     Returns
     -------
-    pd.DataFrame with one row per (language_code × term_source)
+    pd.DataFrame with one row per (language_code × term_source).
     """
-    if rationale_variant == 'native_rationale':
+    cfg = config or ClassifierConfig()
+
+    if rationale_variant in NATIVE_RATIONALE_VARIANTS:
         console.print(
-            "⚠ 'native_rationale' produces rationales in the target language. "
-            "English keyword matching will miss signals for non-Latin-script languages. "
-            "Use 'minimal' or 'expert_persona' for reliable keyword analysis.",
-            style="bold yellow"
+            "ℹ Running with native_rationale variant. Keyword-dependent "
+            "rules will no-op; classification will use string/metadata features only.",
+            style="dim cyan",
+        )
+        rationales_are_english = False
+    elif rationale_variant in ENGLISH_RATIONALE_VARIANTS:
+        if rationale_variant == 'judge':
+            console.print(
+                "⚠ Using 'judge' variant: its rationales are synthesis text "
+                "across other variants, not independent model reasoning. "
+                "Keyword signals may conflate meta-level and object-level "
+                "evidence. Consider 'minimal' for the canonical classification.",
+                style="bold yellow",
+            )
+        rationales_are_english = True
+    else:
+        raise ValueError(
+            f"Unknown rationale_variant: {rationale_variant!r}. "
+            f"Expected one of {ENGLISH_RATIONALE_VARIANTS | NATIVE_RATIONALE_VARIANTS}."
         )
 
-    tokens = source_tokens if source_tokens is not None else SOURCE_TOKENS
-    all_rows = []
+    console.print(f"\n[bold]Classifier configuration[/bold]")
+    console.print(f"  rationale_variant        = {rationale_variant}")
+    console.print(f"  rationales_are_english   = {rationales_are_english}")
+    console.print(f"  use_keyword_rules        = {cfg.use_keyword_rules}")
+    console.print(f"  norm_threshold           = {cfg.norm_threshold}")
+    console.print(f"  min_distinct_for_pd      = {cfg.min_distinct_for_pd}")
+    console.print(f"  min_absence_signals      = {cfg.min_absence_signals}")
+    console.print(f"  source_tokens            = {'(derived from term)' if cfg.source_tokens is None else list(cfg.source_tokens)}")
+
+    all_rows: List[Dict] = []
 
     for term in target_terms:
         term_slug = term.lower().replace(' ', '_')
         console.print(f"\n[bold cyan]Analyzing disagreements: {term}[/bold cyan]")
+        term_tokens = cfg.source_tokens if cfg.source_tokens is not None else tuple(derive_source_tokens(term))
+        cfg_term = replace(cfg, source_tokens=term_tokens)
+        console.print(f"  source_tokens: {list(term_tokens)}")
 
-        # Load across_variant_detail for best_candidates per service
         eval_dir = os.path.join(
-            data_directory_path, 'translated_terms', term_slug, 'evaluation'
+            data_directory_path, 'translated_terms', term_slug, 'evaluation',
         )
         detail_path = os.path.join(eval_dir, 'across_variant_detail.csv')
         if not os.path.exists(detail_path):
             console.print(
-                f"  ⚠ across_variant_detail.csv not found — run "
-                "analyze_confidence_across_variants.py first",
-                style="bold yellow"
+                f"  ⚠ {detail_path} not found — run "
+                "explore_confidence_across_variants.py first",
+                style="bold yellow",
             )
             continue
 
         detail_df = read_csv_file(detail_path)
         detail_df = detail_df[detail_df['term_source'] == term]
 
-        # Load the reference variant DataFrame for rationale columns
         variant_df = load_variant_df(data_directory_path, term_slug, rationale_variant)
         if variant_df is None:
             console.print(
-                f"  ⚠ Could not load '{rationale_variant}' variant data",
-                style="bold yellow"
+                f"  ⚠ Could not load '{rationale_variant}' variant data; "
+                "rationales will be empty",
+                style="bold yellow",
             )
             variant_df = pd.DataFrame()
 
         console.print(
-            f"  detail rows: {len(detail_df)} | "
-            f"variant rows: {len(variant_df)}"
+            f"  detail rows: {len(detail_df)} | variant rows: {len(variant_df)}",
         )
-
-        # Index variant_df for fast lookup
         if not variant_df.empty:
             variant_df = variant_df.set_index(['language_code', 'term_source'])
 
         for (lang_code, term_source), grp in detail_df.groupby(
-            ['language_code', 'term_source']
+            ['language_code', 'term_source'],
+            dropna=False,
         ):
             lang_name = grp['language_name'].iloc[0]
             lang_family = grp['language_family'].iloc[0]
 
-            # Build translations dict: service → best_candidate across variants
             translations: Dict[str, Optional[str]] = {}
             for _, srow in grp.iterrows():
                 candidate = srow.get('best_candidate')
@@ -501,15 +775,32 @@ def run_disagreement_analysis(
                     str(candidate) if pd.notna(candidate) else None
                 )
 
-            # Check Wikipedia
+            # Apply manual exclusions from html_files/disagreement_explorer.html
+            if exclusions:
+                lang_excl = exclusions.get(lang_code, {})
+                translations = {
+                    s: t for s, t in translations.items()
+                    if not lang_excl.get(s, {}).get('term', False)
+                }
+
+            # Apply term corrections: replace original translation strings with
+            # user-corrected values before classification
+            if corrections:
+                lang_corr = corrections.get(lang_code, {})
+                if lang_corr:
+                    translations = {
+                        s: (lang_corr[t] if t and t in lang_corr else t)
+                        for s, t in translations.items()
+                    }
+
             wiki_row = grp[grp['service'] == 'Wikipedia']
             has_wikipedia = (
                 not wiki_row.empty
                 and pd.notna(wiki_row.iloc[0].get('best_candidate'))
-                and str(wiki_row.iloc[0].get('best_candidate', '')).strip() not in ('', 'nan')
+                and str(wiki_row.iloc[0].get('best_candidate', '')).strip()
+                    not in ('', 'nan')
             )
 
-            # Extract rationales from variant_df
             rationales: Dict[str, Optional[str]] = {}
             if not variant_df.empty:
                 key = (lang_code, term_source)
@@ -519,57 +810,74 @@ def run_disagreement_analysis(
                         vrow = vrow.iloc[0]
                     for service, col in RATIONALE_COLS.items():
                         val = vrow.get(col) if col in vrow.index else None
-                        rationales[service] = str(val) if pd.notna(val) else None
+                        if pd.notna(val) and not is_placeholder_rationale(str(val)):
+                            rationales[service] = str(val)
+                        else:
+                            rationales[service] = None
 
-            result = classify_language(
+            if exclusions:
+                lang_excl = exclusions.get(lang_code, {})
+                variant_key = f'rationale_{rationale_variant}'
+                rationales = {
+                    s: r for s, r in rationales.items()
+                    if not lang_excl.get(s, {}).get(variant_key, False)
+                }
+
+            # Drop LLM translations that have no rationale in this variant.
+            # Arises when across_variant_detail pulled a translation from a
+            # different variant file than the one loaded for rationales.
+            _LLM_SVCS = {'Claude', 'OpenAI', 'Gemini', 'Ollama'}
+            translations = {
+                s: t for s, t in translations.items()
+                if s not in _LLM_SVCS or rationales.get(s) is not None
+            }
+
+            features = extract_features(
                 translations=translations,
                 rationales=rationales,
                 has_wikipedia=has_wikipedia,
-                norm_threshold=norm_threshold,
-                source_tokens=tokens,
+                rationales_are_english=rationales_are_english,
+                config=cfg_term,
             )
+            category, evidence, rule_name = classify(features, cfg_term)
+            similarity = compute_rationale_similarity(rationales)
 
-            rationale_similarity = compute_rationale_similarity(rationales)
-
-            # Build the output row
             row: Dict = {
                 'language_code': lang_code,
                 'language_name': lang_name,
                 'language_family': lang_family,
                 'term_source': term_source,
+                'category': category,
+                'rule_fired': rule_name,
+                'evidence': evidence,
                 'has_wikipedia': has_wikipedia,
-                'n_services_with_data': sum(1 for t in translations.values() if t),
-                'mean_rationale_similarity': rationale_similarity,
+                'rationales_are_english': rationales_are_english,
+                'n_services_with_translation': len(features.translations),
+                'n_services_with_rationale': len(features.rationales),
+                'n_unique_raw': features.n_unique_raw,
+                'n_unique_normalized': features.n_unique_normalized,
+                'max_edit_distance': features.max_edit_distance,
+                'loan_words_found': '; '.join(features.loan_words_found),
+                'has_script_disagreement': features.script_info.get(
+                    'has_script_disagreement', False,
+                ),
+                'scripts_found': '; '.join(features.script_info.get('scripts_found', [])),
+                'absence_signals': '; '.join(
+                    f"{s}:{kw}" for s, kw in features.signals['absence']
+                ),
+                'construction_signals': '; '.join(
+                    f"{s}:{kw}" for s, kw in features.signals['construction']
+                ),
+                'debate_signals': '; '.join(
+                    f"{s}:{kw}" for s, kw in features.signals['debate']
+                ),
+                'mean_rationale_similarity': similarity,
             }
-            row.update(result)
-
-            # Flatten signal lists to comma-separated strings for CSV
-            row['absence_signals'] = '; '.join(
-                f"{s}:{kw}" for s, kw in result.get('absence_signals', [])
-            )
-            row['construction_signals'] = '; '.join(
-                f"{s}:{kw}" for s, kw in result.get('construction_signals', [])
-            )
-            row['debate_signals'] = '; '.join(
-                f"{s}:{kw}" for s, kw in result.get('debate_signals', [])
-            )
-            row['has_script_disagreement'] = result.get('has_script_disagreement', False)
-            row['script_signals'] = '; '.join(
-                f"{s}:{sc}" for s, sc in result.get('script_per_service', [])
-            )
-
-            # Attach first 300 chars of each rationale for inspection
             for service in ('Claude', 'OpenAI', 'Gemini', 'Ollama'):
-                text = rationales.get(service, '')
-                row[f'{service.lower().replace(" ", "_")}_rationale_snippet'] = (
-                    text[:300] if text else ''
-                )
+                text = features.rationales.get(service, '')
+                row[f'{service.lower()}_rationale_snippet'] = text[:300] if text else ''
 
-            # All service translations for reference
-            row['service_translations'] = str({
-                s: t for s, t in translations.items() if t
-            })
-
+            row['service_translations'] = str(features.translations)
             all_rows.append(row)
 
     if not all_rows:
@@ -577,41 +885,57 @@ def run_disagreement_analysis(
         return pd.DataFrame()
 
     result_df = pd.DataFrame(all_rows)
+    _print_summary(result_df)
 
-    # ── Summary ───────────────────────────────────────────────────────────
-    cat_counts = result_df['category'].value_counts()
-    _print_summary(result_df, cat_counts)
-
-    # ── Output ────────────────────────────────────────────────────────────
     _dir = output_dir or os.path.join(
         data_directory_path, 'translated_terms',
-        target_terms[0].lower().replace(' ', '_'), 'evaluation'
+        target_terms[0].lower().replace(' ', '_'), 'evaluation',
     )
     os.makedirs(_dir, exist_ok=True)
-    out_path = os.path.join(_dir, 'disagreement_analysis.csv')
+
+    # Canonical run (keyword rules on) writes disagreement_analysis.csv.
+    # Ablation run (--no-keyword-rules) gets a suffix so it never overwrites
+    # the canonical output.
+    suffix = '' if cfg.use_keyword_rules else '_no_keywords'
+    out_path = os.path.join(_dir, f'disagreement_analysis{suffix}.csv')
     result_df.to_csv(out_path, index=False)
     console.print(f"\n[bold green]✓ Wrote {len(result_df)} rows → {out_path}[/bold green]")
 
     return result_df
 
 
-def _print_summary(df: pd.DataFrame, cat_counts: pd.Series) -> None:
-    table = Table(title="Disagreement Classification Summary", show_header=True)
-    table.add_column("Category", style="cyan")
-    table.add_column("Count", style="white")
-    table.add_column("Pct", style="white")
-    table.add_column("Description", style="dim")
+def _print_summary(df: pd.DataFrame) -> None:
+    """Print category counts, rule-fired counts, and family breakdown."""
+    cat_counts = df['category'].value_counts()
     total = len(df)
+
+    cat_table = Table(title="Disagreement Classification Summary", show_header=True)
+    cat_table.add_column("Category", style="cyan")
+    cat_table.add_column("Count", style="white")
+    cat_table.add_column("Pct", style="white")
+    cat_table.add_column("Description", style="dim")
     for cat, count in cat_counts.items():
-        table.add_row(
-            cat,
-            str(count),
-            f"{count / total * 100:.1f}%",
+        cat_table.add_row(
+            cat, str(count), f"{count / total * 100:.1f}%",
             CATEGORIES.get(cat, ''),
         )
-    console.print(table)
+    console.print(cat_table)
 
-    # Per-family breakdown for the interesting categories
+    # Rule-fired counts: which rules actually did work?
+    # Useful for ablations — if rule_sparse_coverage_absence never fires,
+    # the keyword rule contributed zero independent signal.
+    rule_counts = df['rule_fired'].value_counts()
+    rule_table = Table(title="Rule-fired counts (which rules did the work)",
+                       show_header=True)
+    rule_table.add_column("Rule", style="cyan")
+    rule_table.add_column("Count", style="white")
+    rule_table.add_column("Pct", style="white")
+    for rule, count in rule_counts.items():
+        rule_table.add_row(
+            rule, str(count), f"{count / total * 100:.1f}%",
+        )
+    console.print(rule_table)
+
     interesting = ['PRODUCTIVE_DISAGREEMENT', 'STRUCTURAL_ABSENCE', 'TRANSMOGRIFICATION']
     family_counts = (
         df[df['category'].isin(interesting)]
@@ -629,36 +953,84 @@ def _print_summary(df: pd.DataFrame, cat_counts: pd.Series) -> None:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Classify translation disagreements into four uncertainty categories."
+        description="Classify translation disagreements into five uncertainty categories.",
     )
-    parser.add_argument('--term', nargs='+', default=['Digital Humanities'])
+    parser.add_argument(
+        '--term', nargs='+', default=['Digital Humanities'],
+    )
     parser.add_argument(
         '--variant', default='minimal',
-        choices=['minimal', 'expert_persona', 'native_rationale', 'judge'],
-        help='Prompt variant to use for rationale extraction (default: minimal)'
+        choices=sorted(ENGLISH_RATIONALE_VARIANTS | NATIVE_RATIONALE_VARIANTS),
+        help=(
+            "Prompt variant for rationale extraction. 'minimal' is canonical; "
+            "'native_rationale' disables keyword rules; 'judge' warns."
+        ),
     )
     parser.add_argument(
         '--threshold', type=float, default=0.15,
-        help='Edit-distance tolerance for artefact detection (default: 0.15 × mean length)'
+        help='Edit-distance tolerance as fraction of mean length (default 0.15)',
+    )
+    parser.add_argument(
+        '--min-distinct-for-pd', type=int, default=2,
+        help='Min distinct outputs for PRODUCTIVE_DISAGREEMENT (default 2)',
+    )
+    parser.add_argument(
+        '--min-absence-signals', type=int, default=2,
+        help='Min absence-keyword hits for keyword absence rules (default 2)',
     )
     parser.add_argument(
         '--source-tokens', nargs='+', default=None,
         help=(
-            'Loan-word tokens to detect (default: Digital Humanities tokens). '
-            'Pass space-separated values, e.g. --source-tokens digital humanities dh'
-        )
+            'Override source-language loanword tokens. Defaults to the Digital '
+            'Humanities curated list.'
+        ),
+    )
+    parser.add_argument(
+        '--no-keyword-rules', action='store_true',
+        help=(
+            'Disable the two keyword-dependent absence rules '
+            '(rule_sparse_coverage_absence, rule_convergent_absence). Output CSV '
+            'is suffixed _no_keywords.csv so the ablation run does not overwrite '
+            'the canonical output. Diff rule_fired columns against the default '
+            'run to see which classifications the keyword rules were providing.'
+        ),
     )
     parser.add_argument('--output-dir', default=None)
+    parser.add_argument(
+        '--exclusions', default=None, metavar='PATH',
+        help=(
+            'Path to manual_exclusions.csv produced by html_files/disagreement_explorer.html. '
+            'Rows specify per-language, per-service translations and/or rationales to remove '
+            'before the classifier runs — use this to fix bad translations (e.g. "To be '
+            'determined") without editing source data.'
+        ),
+    )
     args = parser.parse_args()
+
+    source_tokens = (
+        tuple(args.source_tokens) if args.source_tokens is not None
+        else None  # derive from term at runtime
+    )
+    cfg = ClassifierConfig(
+        norm_threshold=args.threshold,
+        min_distinct_for_pd=args.min_distinct_for_pd,
+        min_absence_signals=args.min_absence_signals,
+        source_tokens=source_tokens,
+        use_keyword_rules=not args.no_keyword_rules,
+    )
+
+    excl = load_exclusions(args.exclusions) if args.exclusions else None
+    corr = load_term_corrections(args.exclusions) if args.exclusions else None
 
     data_dir = get_data_directory_path()
     run_disagreement_analysis(
         data_directory_path=data_dir,
         target_terms=args.term,
         rationale_variant=args.variant,
-        norm_threshold=args.threshold,
-        source_tokens=args.source_tokens,
+        config=cfg,
         output_dir=args.output_dir,
+        exclusions=excl,
+        corrections=corr,
     )
 
 

@@ -8,8 +8,19 @@ Scripts for generating and evaluating translations of Digital Humanities terms a
 scripts/
   experiment/         - Active translation pipeline
   exploration/        - Analysis and disagreement exploration scripts
-  utils.py            - Shared utilities (get_data_directory_path, read_csv_file, etc.)
+  utils.py            - Shared utilities (see below)
 ```
+
+### `utils.py` — Shared utilities
+
+| Function | Purpose |
+| --- | --- |
+| `get_data_directory_path` / `set_data_directory_path` | Locate and persist the datasets/ root path |
+| `read_csv_file` | Safe CSV loader with error handling |
+| `get_language_family` | Map a language code to its broad family name |
+| `detect_dominant_script` / `detect_script_disagreement` | Script-level analysis for translation comparison |
+| `is_placeholder_rationale` | Returns `True` for literal placeholder strings such as `"No rationale provided"` or `"N/A"` that LLMs return instead of real reasoning |
+| `enforce_translation_rationale_pairing` | Nulls out the unpaired side of any LLM translation ↔ rationale mismatch (translation-without-rationale or rationale-without-translation) in a DataFrame; called automatically by `load_variant_df` so all downstream code receives clean data |
 
 ## Language Coverage
 

@@ -1,1011 +1,981 @@
 language_name,language_code,modern_language,is_official,script_name,script_code,script_modern,is_rtl
-Abaza,abq,True,False,Cyrillic,Cyrl,True,False
-Abkhazian,ab,True,False,Cyrillic,Cyrl,True,False
-Abron,abr,True,False,Latin,Latn,True,False
-Acehnese,ace,True,False,Latin,Latn,True,False
-Acoli,ach,True,False,Latin,Latn,True,False
-Adangme,ada,True,False,Latin,Latn,True,False
-Adyghe,ady,True,False,Cyrillic,Cyrl,True,False
-Afar,aa,True,False,Latin,Latn,True,False
-Afrikaans,af,True,False,Latin,Latn,True,False
-Aghem,agq,True,False,Latin,Latn,True,False
-Ainu,ain,True,False,Katakana,Kana,True,False
-Ainu,ain,True,False,Latin,Latn,True,False
-Akan,ak,True,False,Latin,Latn,True,False
-Akkadian,akk,False,False,Sumero-Akkadian Cuneiform,Xsux,False,False
-Akoose,bss,True,False,Latin,Latn,True,False
-Alabama,akz,True,False,Latin,Latn,True,False
-Albanian,sq,True,True,Latin,Latn,True,False
-Albanian,sq,True,True,Elbasan,Elba,False,False
-Aleut,ale,True,False,Latin,Latn,True,False
-Algerian Arabic,arq,True,False,Arabic,Arab,True,True
-American Sign Language,ase,True,True,Unknown Script,Zzzz,True,False
-Amharic,am,True,True,Ethiopic,Ethi,True,False
-Amo,amo,True,False,Latin,Latn,True,False
-Ancient Egyptian,egy,False,False,Egyptian hieroglyphs,Egyp,False,False
-Ancient Greek,grc,False,False,Greek,Grek,True,False
-Ancient Greek,grc,False,False,Cypriot,Cprt,False,True
-Ancient Greek,grc,False,False,Linear B,Linb,True,True
-Ancient North Arabian,xna,False,False,Old North Arabian,Narb,False,True
-Angika,anp,True,False,Devanagari,Deva,True,False
-Anii,blo,True,False,Latin,Latn,True,False
-Ao Naga,njo,True,False,Latin,Latn,True,False
-Arabic,ar,True,True,Arabic,Arab,True,True
-Arabic,ar,True,True,Syriac,Syrc,True,True
-Aragonese,an,True,False,Latin,Latn,True,False
-Aramaic,arc,False,False,Imperial Aramaic,Armi,False,True
-Aramaic,arc,False,False,Nabataean,Nbat,True,True
-Aramaic,arc,False,False,Palmyrene,Palm,True,True
-Araona,aro,True,False,Latin,Latn,True,False
-Arapaho,arp,True,False,Latin,Latn,True,False
-Arawak,arw,True,False,Latin,Latn,True,False
-Armenian,hy,True,True,Armenian,Armn,True,False
-Aromanian,rup,True,False,Latin,Latn,True,False
-Arpitan,frp,True,False,Latin,Latn,True,False
-Assamese,as,True,False,Bangla,Beng,True,False
-Assyrian Neo-Aramaic,aii,True,False,Cyrillic,Cyrl,True,False
-Assyrian Neo-Aramaic,aii,True,False,Syriac,Syrc,True,True
-Asturian,ast,True,False,Latin,Latn,True,False
-Asu,asa,True,False,Latin,Latn,True,False
-Atikamekw,atj,True,False,Latin,Latn,True,False
-Atsam,cch,True,False,Latin,Latn,True,False
-Avaric,av,True,False,Cyrillic,Cyrl,True,False
-Avestan,ae,False,False,Avestan,Avst,False,True
-Awadhi,awa,True,False,Devanagari,Deva,True,False
-Aymara,ay,True,True,Latin,Latn,True,False
-Azerbaijani,az,True,True,Arabic,Arab,True,True
-Azerbaijani,az,True,True,Cyrillic,Cyrl,True,False
-Azerbaijani,az,True,True,Latin,Latn,True,False
-Badaga,bfq,True,False,Tamil,Taml,True,False
-Bafia,ksf,True,False,Latin,Latn,True,False
-Bafut,bfd,True,False,Latin,Latn,True,False
-Bagheli,bfy,True,False,Devanagari,Deva,True,False
-Bakhtiari,bqi,True,False,Arabic,Arab,True,True
-Balinese,ban,True,False,Balinese,Bali,True,False
-Balinese,ban,True,False,Latin,Latn,True,False
-Balkan Gagauz Turkish,bgx,True,False,Greek,Grek,True,False
-Balti,bft,True,False,Arabic,Arab,True,True
-Balti,bft,True,False,Tibetan,Tibt,True,False
-Baluchi,bal,True,False,Arabic,Arab,True,True
-Baluchi,bal,True,False,Latin,Latn,True,False
-Bambara,bm,True,False,Latin,Latn,True,False
-Bambara,bm,True,False,N’Ko,Nkoo,True,True
-Bamun,bax,True,False,Bamum,Bamu,True,False
-Bangla,bn,True,True,Bangla,Beng,True,False
-Banjar,bjn,True,False,Latin,Latn,True,False
-Bantawa,bap,True,False,Devanagari,Deva,True,False
-Baoulé,bci,True,False,Latin,Latn,True,False
-Basaa,bas,True,False,Latin,Latn,True,False
-Bashkir,ba,True,False,Cyrillic,Cyrl,True,False
-Basque,eu,True,False,Latin,Latn,True,False
-Batak Toba,bbc,True,False,Batak,Batk,True,False
-Batak Toba,bbc,True,False,Latin,Latn,True,False
-Bateri,btv,True,False,Devanagari,Deva,True,False
-Bavarian,bar,True,False,Latin,Latn,True,False
-Beja,bej,True,False,Arabic,Arab,True,True
-Belarusian,be,True,True,Cyrillic,Cyrl,True,False
-Bemba,bem,True,False,Latin,Latn,True,False
-Bena,bez,True,False,Latin,Latn,True,False
-Betawi,bew,True,False,Latin,Latn,True,False
-Bhilali,bhi,True,False,Devanagari,Deva,True,False
-Bhili,bhb,True,False,Devanagari,Deva,True,False
-Bhojpuri,bho,True,False,Devanagari,Deva,True,False
-Bikol,bik,True,False,Latin,Latn,True,False
-Bini,bin,True,False,Latin,Latn,True,False
-Bishnupriya,bpy,True,False,Bangla,Beng,True,False
-Bislama,bi,True,True,Latin,Latn,True,False
-Blin,byn,True,False,Ethiopic,Ethi,True,False
-Bodo,brx,True,False,Devanagari,Deva,True,False
-Bomu,bmq,True,False,Latin,Latn,True,False
-Bosnian,bs,True,True,Cyrillic,Cyrl,True,False
-Bosnian,bs,True,True,Latin,Latn,True,False
-Brahui,brh,True,False,Arabic,Arab,True,True
-Brahui,brh,True,False,Latin,Latn,True,False
-Braj,bra,True,False,Devanagari,Deva,True,False
-Breton,br,True,False,Latin,Latn,True,False
-Bube,bvb,True,False,Latin,Latn,True,False
-Buginese,bug,True,False,Latin,Latn,True,False
-Buginese,bug,True,False,Buginese,Bugi,False,False
-Buhid,bku,True,False,Latin,Latn,True,False
-Buhid,bku,True,False,Buhid,Buhd,False,False
-Bulgarian,bg,True,True,Cyrillic,Cyrl,True,False
-Bulu,bum,True,False,Latin,Latn,True,False
-Buriat,bua,True,False,Cyrillic,Cyrl,True,False
-Burmese,my,True,True,Myanmar,Mymr,True,False
-Bushi,buc,True,False,Latin,Latn,True,False
-Caddo,cad,True,False,Latin,Latn,True,False
-Cajun French,frc,True,False,Latin,Latn,True,False
-Cantonese,yue,True,False,Simplified,Hans,True,False
-Cantonese,yue,True,False,Traditional,Hant,True,False
-Capiznon,cps,True,False,Latin,Latn,True,False
-Carian,xcr,False,False,Carian,Cari,False,False
-Carib,car,True,False,Latin,Latn,True,False
-Catalan,ca,True,True,Latin,Latn,True,False
-Cayuga,cay,True,False,Latin,Latn,True,False
-Cebaara Senoufo,sef,True,False,Latin,Latn,True,False
-Cebuano,ceb,True,False,Latin,Latn,True,False
-Central Atlas Tamazight,tzm,True,True,Latin,Latn,True,False
-Central Atlas Tamazight,tzm,True,True,Tifinagh,Tfng,True,True
-Central Dusun,dtp,True,False,Latin,Latn,True,False
-Central Huasteca Nahuatl,nch,True,False,Latin,Latn,True,False
-Central Kurdish,ckb,True,False,Arabic,Arab,True,True
-Central Mazahua,maz,True,False,Latin,Latn,True,False
-Central Ojibwa,ojc,True,True,Unknown Script,Zzzz,True,False
-Central Okinawan,ryu,True,False,Katakana,Kana,True,False
-Central Yupik,esu,True,False,Latin,Latn,True,False
-Central-Eastern Niger Fulfulde,fuq,True,False,Latin,Latn,True,False
-Chadian Arabic,shu,True,True,Unknown Script,Zzzz,True,False
-Chakma,ccp,True,False,Bangla,Beng,True,False
-Chakma,ccp,True,False,Chakma,Cakm,True,False
-Chamorro,ch,True,True,Latin,Latn,True,False
-Chechen,ce,True,False,Cyrillic,Cyrl,True,False
-Cherokee,chr,True,False,Cherokee,Cher,True,False
-Cheyenne,chy,True,False,Latin,Latn,True,False
-Chhattisgarhi,hne,True,False,Devanagari,Deva,True,False
-Chickasaw,cic,True,False,Latin,Latn,True,False
-Chiga,cgg,True,False,Latin,Latn,True,False
-Chilcotin,clc,True,False,Latin,Latn,True,False
-Chimborazo Highland Quichua,qug,True,False,Latin,Latn,True,False
-Chinese,zh,True,True,Bopomofo,Bopo,True,False
-Chinese,zh,True,True,Simplified,Hans,True,False
-Chinese,zh,True,True,Traditional,Hant,True,False
-Chinese,zh,True,True,Phags-pa,Phag,False,False
-Chinook Jargon,chn,True,False,Latin,Latn,True,False
-Chipewyan,chp,True,False,Latin,Latn,True,False
-Chipewyan,chp,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Choctaw,cho,True,False,Latin,Latn,True,False
-Chukot,ckt,True,False,Cyrillic,Cyrl,True,False
-Church Slavic,cu,False,False,Cyrillic,Cyrl,True,False
-Chuukese,chk,True,False,Latin,Latn,True,False
-Chuvash,cv,True,False,Cyrillic,Cyrl,True,False
-Classical Mandaic,myz,False,False,Mandaean,Mand,True,False
-Colognian,ksh,True,False,Latin,Latn,True,False
-Comorian,swb,True,False,Arabic,Arab,True,True
-Comorian,swb,True,False,Latin,Latn,True,False
-Coptic,cop,False,False,Arabic,Arab,True,True
-Coptic,cop,False,False,Greek,Grek,True,False
-Coptic,cop,False,False,Coptic,Copt,False,False
-Cornish,kw,True,False,Latin,Latn,True,False
-Corsican,co,True,False,Latin,Latn,True,False
-Cree,cr,True,False,Latin,Latn,True,False
-Cree,cr,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Crimean Tatar,crh,True,False,Cyrillic,Cyrl,True,False
-Croatian,hr,True,True,Latin,Latn,True,False
-Czech,cs,True,True,Latin,Latn,True,False
-Dakota,dak,True,False,Latin,Latn,True,False
-Dan,dnj,True,False,Latin,Latn,True,False
-Dangaura Tharu,thl,True,False,Devanagari,Deva,True,False
-Danish,da,True,True,Latin,Latn,True,False
-Dargwa,dar,True,False,Cyrillic,Cyrl,True,False
-Dazaga,dzg,True,True,Unknown Script,Zzzz,True,False
-Deccan,dcc,True,False,Arabic,Arab,True,True
-Delaware,del,True,False,Latin,Latn,True,False
-Dinka,din,True,False,Latin,Latn,True,False
-Divehi,dv,True,True,Thaana,Thaa,True,True
-Dogri,doi,True,False,Arabic,Arab,True,True
-Dogri,doi,True,False,Devanagari,Deva,True,False
-Dogri,doi,True,False,Takri,Takr,False,False
-Dogrib,dgr,True,False,Latin,Latn,True,False
-Domari,rmt,True,False,Arabic,Arab,True,True
-Dotyali,dty,True,False,Devanagari,Deva,True,False
-Duala,dua,True,False,Latin,Latn,True,False
-Dungan,dng,True,False,Cyrillic,Cyrl,True,False
-Dutch,nl,True,True,Latin,Latn,True,False
-Dyula,dyu,True,False,Latin,Latn,True,False
-Dzongkha,dz,True,True,Tibetan,Tibt,True,False
-East Futuna,fud,True,False,Latin,Latn,True,False
-Eastern Canadian Inuktitut,ike,True,True,Unknown Script,Zzzz,True,False
-Eastern Cham,cjm,True,False,Arabic,Arab,True,True
+Afar,aa,True,False,Latn,Latn,True,False
+Abkhazian,ab,True,False,Cyrl,Cyrl,True,False
+Abaza,abq,True,False,Cyrl,Cyrl,True,False
+Abaza,abq,True,False,Latn,Latn,False,False
+Abron,abr,True,False,Latn,Latn,True,False
+Acehnese,ace,True,False,Latn,Latn,True,False
+Acoli,ach,True,False,Latn,Latn,True,False
+Adangme,ada,True,False,Latn,Latn,True,False
+Adyghe,ady,True,False,Cyrl,Cyrl,True,False
+Avestan,ae,False,False,Avst,Avst,False,True
+Tunisian Arabic,aeb,True,False,Arab,Arab,True,True
+Afrikaans,af,True,False,Latn,Latn,True,False
+Aghem,agq,True,False,Latn,Latn,True,False
+Assyrian Neo-Aramaic,aii,True,False,Cyrl,Cyrl,True,False
+Assyrian Neo-Aramaic,aii,True,False,Syrc,Syrc,False,True
+Ainu,ain,True,False,Kana,Kana,False,False
+Ainu,ain,True,False,Latn,Latn,False,False
+Akan,ak,True,False,Latn,Latn,True,False
+Akkadian,akk,False,False,Xsux,Xsux,False,False
+Alabama,akz,True,False,Latn,Latn,True,False
+Aleut,ale,True,False,Latn,Latn,True,False
+Gheg Albanian,aln,True,False,Latn,Latn,True,False
+Southern Altai,alt,True,False,Cyrl,Cyrl,True,False
+Amharic,am,True,True,Ethi,Ethi,True,False
+Amo,amo,True,False,Latn,Latn,True,False
+Aragonese,an,True,False,Latn,Latn,True,False
+Old English,ang,True,False,Latn,Latn,True,False
+Obolo,ann,True,False,Latn,Latn,True,False
+Angika,anp,True,False,Deva,Deva,True,False
+Uab Meto,aoz,True,False,Latn,Latn,True,False
+Levantine Arabic,apc,True,False,Arab,Arab,True,True
+Sudanese Arabic,apd,True,False,Arab,Arab,True,True
+Arabic,ar,True,True,Arab,Arab,True,True
+Arabic,ar,True,True,Syrc,Syrc,False,True
+Aramaic,arc,False,False,Armi,Armi,False,True
+Aramaic,arc,False,False,Nbat,Nbat,False,True
+Aramaic,arc,False,False,Palm,Palm,False,True
+Mapuche,arn,True,False,Latn,Latn,True,False
+Araona,aro,True,False,Latn,Latn,True,False
+Arapaho,arp,True,False,Latn,Latn,True,False
+Algerian Arabic,arq,True,False,Arab,Arab,True,True
+Najdi Arabic,ars,True,False,Arab,Arab,True,True
+Arawak,arw,True,False,Latn,Latn,True,False
+Moroccan Arabic,ary,True,False,Arab,Arab,True,True
+Egyptian Arabic,arz,True,False,Arab,Arab,True,True
+Assamese,as,True,False,Beng,Beng,True,False
+Asu,asa,True,False,Latn,Latn,True,False
+Asturian,ast,True,False,Latn,Latn,True,False
+Atikamekw,atj,True,False,Latn,Latn,True,False
+Avaric,av,True,False,Cyrl,Cyrl,True,False
+Kotava,avk,True,False,Latn,Latn,True,False
+Awadhi,awa,True,False,Deva,Deva,True,False
+Aymara,ay,True,True,Latn,Latn,True,False
+Azerbaijani,az,True,True,Latn,Latn,True,False
+Azerbaijani,az,True,True,Arab,Arab,False,True
+Azerbaijani,az,True,True,Cyrl,Cyrl,False,False
+Bashkir,ba,True,False,Cyrl,Cyrl,True,False
+Baluchi,bal,True,False,Arab,Arab,True,True
+Baluchi,bal,True,False,Latn,Latn,False,False
+Balinese,ban,True,False,Latn,Latn,True,False
+Balinese,ban,True,False,Bali,Bali,False,False
+Bantawa,bap,True,False,Deva,Deva,True,False
+Bavarian,bar,True,False,Latn,Latn,True,False
+Basaa,bas,True,False,Latn,Latn,True,False
+Bamun,bax,True,False,Bamu,Bamu,True,False
+Batak Toba,bbc,True,False,Latn,Latn,True,False
+Batak Toba,bbc,True,False,Batk,Batk,False,False
+Ghomala,bbj,True,False,Latn,Latn,True,False
+Baoulé,bci,True,False,Latn,Latn,True,False
+Belarusian,be,True,True,Cyrl,Cyrl,True,False
+Beja,bej,True,False,Arab,Arab,True,True
+Bemba,bem,True,False,Latn,Latn,True,False
+Betawi,bew,True,False,Latn,Latn,True,False
+Bena,bez,True,False,Latn,Latn,True,False
+Bafut,bfd,True,False,Latn,Latn,True,False
+Badaga,bfq,True,False,Taml,Taml,True,False
+Balti,bft,True,False,Arab,Arab,True,True
+Balti,bft,True,False,Tibt,Tibt,False,False
+Bagheli,bfy,True,False,Deva,Deva,True,False
+Bulgarian,bg,True,True,Cyrl,Cyrl,True,False
+Haryanvi,bgc,True,False,Deva,Deva,True,False
+Western Balochi,bgn,True,False,Arab,Arab,True,True
+Balkan Gagauz Turkish,bgx,True,False,Grek,Grek,True,False
+Bhili,bhb,True,False,Deva,Deva,True,False
+Bhilali,bhi,True,False,Deva,Deva,True,False
+Bhojpuri,bho,True,False,Deva,Deva,True,False
+Bislama,bi,True,True,Latn,Latn,True,False
+Bikol,bik,True,False,Latn,Latn,True,False
+Bini,bin,True,False,Latn,Latn,True,False
+Kanauji,bjj,True,False,Deva,Deva,True,False
+Banjar,bjn,True,False,Latn,Latn,True,False
+Balanta-Ganja,bjt,True,False,Latn,Latn,True,False
+Kom,bkm,True,False,Latn,Latn,True,False
+Buhid,bku,True,False,Latn,Latn,True,False
+Buhid,bku,True,False,Buhd,Buhd,False,False
+Siksiká,bla,True,False,Latn,Latn,True,False
+Anii,blo,True,False,Latn,Latn,True,False
+Tai Dam,blt,True,False,Tavt,Tavt,True,False
+Bambara,bm,True,False,Latn,Latn,True,False
+Bambara,bm,True,False,Nkoo,Nkoo,True,True
+Bomu,bmq,True,False,Latn,Latn,True,False
+Bangla,bn,True,True,Beng,Beng,True,False
+Tibetan,bo,True,False,Tibt,Tibt,True,False
+Bishnupriya,bpy,True,False,Beng,Beng,True,False
+Bakhtiari,bqi,True,False,Arab,Arab,True,True
+Koro Wachi,bqv,True,False,Latn,Latn,True,False
+Breton,br,True,False,Latn,Latn,True,False
+Braj,bra,True,False,Deva,Deva,True,False
+Brahui,brh,True,False,Arab,Arab,True,True
+Brahui,brh,True,False,Latn,Latn,False,False
+Bodo,brx,True,False,Deva,Deva,True,False
+Bosnian,bs,True,True,Latn,Latn,True,False
+Bosnian,bs,True,True,Cyrl,Cyrl,True,False
+Bassari,bsc,True,False,Latn,Latn,True,False
+Bassa,bsq,True,False,Latn,Latn,True,False
+Bassa,bsq,True,False,Bass,Bass,False,False
+Akoose,bss,True,False,Latn,Latn,True,False
+Rinconada Bikol,bto,True,False,Latn,Latn,True,False
+Bateri,btv,True,False,Deva,Deva,True,False
+Buriat,bua,True,False,Cyrl,Cyrl,True,False
+Bushi,buc,True,False,Latn,Latn,True,False
+Buginese,bug,True,False,Latn,Latn,True,False
+Buginese,bug,True,False,Bugi,Bugi,False,False
+Bulu,bum,True,False,Latn,Latn,True,False
+Bube,bvb,True,False,Latn,Latn,True,False
+Blin,byn,True,False,Ethi,Ethi,True,False
+Medumba,byv,True,False,Latn,Latn,True,False
+Jenaama Bozo,bze,True,False,Latn,Latn,True,False
+Kɛlɛngaxo Bozo,bzx,True,False,Latn,Latn,True,False
+Catalan,ca,True,True,Latn,Latn,True,False
+Caddo,cad,True,False,Latn,Latn,True,False
+Carib,car,True,False,Latn,Latn,True,False
+Cayuga,cay,True,False,Latn,Latn,True,False
+Atsam,cch,True,False,Latn,Latn,True,False
+Chakma,ccp,True,False,Cakm,Cakm,True,False
+Chakma,ccp,True,False,Beng,Beng,True,False
+Cacaopera,ccr,True,False,Latn,Latn,True,False
+Chechen,ce,True,False,Cyrl,Cyrl,True,False
+Cebuano,ceb,True,False,Latn,Latn,True,False
+Chiga,cgg,True,False,Latn,Latn,True,False
+Chamorro,ch,True,True,Latn,Latn,True,False
+Chuukese,chk,True,False,Latn,Latn,True,False
+Mari,chm,True,False,Cyrl,Cyrl,True,False
+Chinook Jargon,chn,True,False,Latn,Latn,True,False
+Choctaw,cho,True,False,Latn,Latn,True,False
+Chipewyan,chp,True,False,Latn,Latn,True,False
+Chipewyan,chp,True,False,Cans,Cans,False,False
+Cherokee,chr,True,False,Cher,Cher,True,False
+Cheyenne,chy,True,False,Latn,Latn,True,False
+Chickasaw,cic,True,False,Latn,Latn,True,False
+Western Cham,cja,True,False,Arab,Arab,True,True
+Western Cham,cja,True,False,Cham,Cham,False,False
 Eastern Cham,cjm,True,False,Cham,Cham,True,False
-Eastern Frisian,frs,True,False,Latin,Latn,True,False
-Eastern Huasteca Nahuatl,nhe,True,False,Latin,Latn,True,False
-Eastern Kayah,eky,True,False,Kayah Li,Kali,True,False
-Eastern Lawa,lwl,True,False,Thai,Thai,True,False
-Eastern Magar,mgp,True,False,Devanagari,Deva,True,False
-Eastern Ojibwa,ojg,True,True,Unknown Script,Zzzz,True,False
-Eastern Tamang,taj,True,False,Devanagari,Deva,True,False
-Eastern Tamang,taj,True,False,Tibetan,Tibt,True,False
-Efik,efi,True,False,Latin,Latn,True,False
-Egyptian Arabic,arz,True,False,Arabic,Arab,True,True
-Ekajuk,eka,True,False,Latin,Latn,True,False
-Embu,ebu,True,False,Latin,Latn,True,False
-Emilian,egl,True,False,Latin,Latn,True,False
-English,en,True,True,Latin,Latn,True,False
-English,en,True,True,Deseret,Dsrt,False,False
-English,en,True,True,Shavian,Shaw,True,False
-Erzya,myv,True,False,Cyrillic,Cyrl,True,False
-Esperanto,eo,False,False,Latin,Latn,True,False
-Estonian,et,True,True,Latin,Latn,True,False
-Etruscan,ett,False,False,Latin,Latn,True,False
-Etruscan,ett,False,False,Old Italic,Ital,False,True
-Evenki,evn,True,False,Cyrillic,Cyrl,True,False
-Ewe,ee,True,False,Latin,Latn,True,False
-Ewondo,ewo,True,False,Latin,Latn,True,False
-Extremaduran,ext,True,False,Latin,Latn,True,False
-Fang,fan,True,False,Latin,Latn,True,False
-Fanti,fat,True,True,Unknown Script,Zzzz,True,False
-Faroese,fo,True,True,Latin,Latn,True,False
-Fiji Hindi,hif,True,True,Devanagari,Deva,True,False
-Fiji Hindi,hif,True,True,Latin,Latn,True,False
-Fijian,fj,True,True,Latin,Latn,True,False
-Filipino,fil,True,True,Latin,Latn,True,False
-Filipino,fil,True,True,Tagalog,Tglg,False,False
-Finnish,fi,True,True,Latin,Latn,True,False
-Fon,fon,True,False,Latin,Latn,True,False
-Frafra,gur,True,False,Latin,Latn,True,False
-French,fr,True,True,Latin,Latn,True,False
-French,fr,True,True,Duployan shorthand,Dupl,False,False
-Friulian,fur,True,False,Latin,Latn,True,False
-Fula,ff,True,False,Adlam,Adlm,True,True
-Fula,ff,True,False,Latin,Latn,True,False
-Fur,fvr,True,False,Latin,Latn,True,False
-Ga,gaa,True,False,Latin,Latn,True,False
-Gagauz,gag,True,False,Cyrillic,Cyrl,True,False
-Gagauz,gag,True,False,Latin,Latn,True,False
-Galician,gl,True,False,Latin,Latn,True,False
-Gan Chinese,gan,True,False,Simplified,Hans,True,False
-Ganda,lg,True,False,Latin,Latn,True,False
-Garhwali,gbm,True,False,Devanagari,Deva,True,False
-Garo,grt,True,False,Bangla,Beng,True,False
-Gayo,gay,True,False,Latin,Latn,True,False
-Gbaya,gba,True,False,Latin,Latn,True,False
-Geez,gez,False,False,Ethiopic,Ethi,True,False
-Georgian,ka,True,True,Georgian,Geor,True,False
-German,de,True,True,Latin,Latn,True,False
-German,de,True,True,Runic,Runr,False,False
-Gheg Albanian,aln,True,False,Latin,Latn,True,False
-Ghomala,bbj,True,False,Latin,Latn,True,False
-Gilaki,glk,True,False,Arabic,Arab,True,True
-Gilbertese,gil,True,True,Latin,Latn,True,False
-Goan Konkani,gom,True,False,Devanagari,Deva,True,False
-Gondi,gon,True,False,Devanagari,Deva,True,False
-Gondi,gon,True,False,Telugu,Telu,True,False
-Gorontalo,gor,True,False,Latin,Latn,True,False
-Gothic,got,False,False,Gothic,Goth,False,False
-Grebo,grb,True,False,Latin,Latn,True,False
-Greek,el,True,True,Greek,Grek,True,False
-Gronings,gos,True,False,Latin,Latn,True,False
-Guajajára,gub,True,False,Latin,Latn,True,False
-Guarani,gn,True,True,Latin,Latn,True,False
-Guianese Creole French,gcr,True,False,Latin,Latn,True,False
-Gujarati,gu,True,False,Gujarati,Gujr,True,False
-Gujari,gju,True,False,Arabic,Arab,True,True
-Gurung,gvr,True,False,Devanagari,Deva,True,False
-Gusii,guz,True,False,Latin,Latn,True,False
-Gwichʼin,gwi,True,False,Latin,Latn,True,False
-Hadothi,hoj,True,False,Devanagari,Deva,True,False
-Haida,hai,True,False,Latin,Latn,True,False
-Haitian Creole,ht,True,True,Latin,Latn,True,False
-Hakka Chinese,hak,True,False,Simplified,Hans,True,False
-Halkomelem,hur,True,False,Latin,Latn,True,False
-Hanunoo,hnn,True,False,Latin,Latn,True,False
-Hanunoo,hnn,True,False,Hanunoo,Hano,False,False
-Haryanvi,bgc,True,False,Devanagari,Deva,True,False
-Hausa,ha,True,False,Arabic,Arab,True,True
-Hausa,ha,True,False,Latin,Latn,True,False
-Hawaiian,haw,True,False,Latin,Latn,True,False
-Hazaragi,haz,True,False,Arabic,Arab,True,True
-Hebrew,he,True,True,Hebrew,Hebr,True,True
-Herero,hz,True,False,Latin,Latn,True,False
-Hiligaynon,hil,True,False,Latin,Latn,True,False
-Hindi,hi,True,True,Devanagari,Deva,True,False
-Hindi,hi,True,True,Latin,Latn,True,False
-Hindi,hi,True,True,Mahajani,Mahj,False,False
-Hiri Motu,ho,True,True,Latin,Latn,True,False
-Hittite,hit,False,False,Sumero-Akkadian Cuneiform,Xsux,False,False
-Hmong,hmn,True,False,Latin,Latn,True,False
-Hmong,hmn,True,False,Pahawh Hmong,Hmng,False,False
-Hmong Njua,hnj,True,False,Lao,Laoo,True,False
-Ho,hoc,True,False,Devanagari,Deva,True,False
-Ho,hoc,True,False,Varang Kshiti,Wara,False,False
-Hopi,hop,True,False,Latin,Latn,True,False
-Hungarian,hu,True,True,Latin,Latn,True,False
-Hupa,hup,True,False,Latin,Latn,True,False
-Iban,iba,True,False,Latin,Latn,True,False
-Ibibio,ibb,True,False,Latin,Latn,True,False
-Icelandic,is,True,True,Latin,Latn,True,False
-Ifè,ife,True,False,Latin,Latn,True,False
-Igbo,ig,True,False,Latin,Latn,True,False
-Iloko,ilo,True,False,Latin,Latn,True,False
-Inari Sami,smn,True,False,Latin,Latn,True,False
-Indonesian,id,True,True,Arabic,Arab,True,True
-Indonesian,id,True,True,Latin,Latn,True,False
-Indus Kohistani,mvy,True,False,Arabic,Arab,True,True
-Ingrian,izh,True,False,Latin,Latn,True,False
-Ingush,inh,True,False,Arabic,Arab,True,True
-Ingush,inh,True,False,Cyrillic,Cyrl,True,False
-Ingush,inh,True,False,Latin,Latn,True,False
-Innu-aimun,moe,True,False,Latin,Latn,True,False
-Interlingua,ia,False,False,Latin,Latn,True,False
-Interlingue,ie,False,False,Latin,Latn,True,False
-Inuktitut,iu,True,False,Latin,Latn,True,False
-Inuktitut,iu,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Inupiaq,ik,True,False,Latin,Latn,True,False
-Irish,ga,True,True,Latin,Latn,True,False
-Italian,it,True,True,Latin,Latn,True,False
-Jamaican Creole English,jam,True,False,Latin,Latn,True,False
-Japanese,ja,True,True,Japanese,Jpan,True,False
-Javanese,jv,True,False,Javanese,Java,True,False
-Javanese,jv,True,False,Latin,Latn,True,False
-Jenaama Bozo,bze,True,False,Latin,Latn,True,False
-Jju,kaj,True,False,Latin,Latn,True,False
-Jola-Fonyi,dyo,True,False,Arabic,Arab,True,True
-Jola-Fonyi,dyo,True,False,Latin,Latn,True,False
-Judeo-Arabic,jrb,True,False,Hebrew,Hebr,True,True
-Judeo-Persian,jpr,True,False,Hebrew,Hebr,True,True
-Jumli,jml,True,False,Devanagari,Deva,True,False
-Jutish,jut,False,False,Latin,Latn,True,False
-Kabardian,kbd,True,False,Cyrillic,Cyrl,True,False
-Kabuverdianu,kea,True,False,Latin,Latn,True,False
-Kabyle,kab,True,False,Latin,Latn,True,False
-Kachhi,kfr,True,False,Devanagari,Deva,True,False
-Kachi Koli,gjk,True,False,Arabic,Arab,True,True
-Kachin,kac,True,False,Latin,Latn,True,False
-Kaingang,kgp,True,False,Latin,Latn,True,False
-Kako,kkj,True,False,Latin,Latn,True,False
-Kalaallisut,kl,True,True,Latin,Latn,True,False
-Kalanga,kck,True,False,Latin,Latn,True,False
-Kalenjin,kln,True,False,Latin,Latn,True,False
-Kalmyk,xal,True,False,Cyrillic,Cyrl,True,False
-Kalo Finnish Romani,rmf,True,False,Latin,Latn,True,False
-Kamba,kam,True,False,Latin,Latn,True,False
-Kanauji,bjj,True,False,Devanagari,Deva,True,False
-Kanembu,kbl,True,True,Unknown Script,Zzzz,True,False
-Kangri,xnr,True,False,Devanagari,Deva,True,False
-Kannada,kn,True,False,Kannada,Knda,True,False
-Kanuri,kr,True,False,Latin,Latn,True,False
-Kara-Kalpak,kaa,True,False,Cyrillic,Cyrl,True,False
-Karachay-Balkar,krc,True,False,Cyrillic,Cyrl,True,False
-Karelian,krl,True,False,Latin,Latn,True,False
-Kashmiri,ks,True,False,Arabic,Arab,True,True
-Kashmiri,ks,True,False,Devanagari,Deva,True,False
-Kashubian,csb,True,False,Latin,Latn,True,False
-Kathoriya Tharu,tkt,True,False,Devanagari,Deva,True,False
-Kazakh,kk,True,True,Arabic,Arab,True,True
-Kazakh,kk,True,True,Cyrillic,Cyrl,True,False
-Kenyang,ken,True,True,Unknown Script,Zzzz,True,False
-Kerinci,kvr,True,False,Latin,Latn,True,False
-Kɛlɛngaxo Bozo,bzx,True,False,Latin,Latn,True,False
-Khakas,kjh,True,False,Cyrillic,Cyrl,True,False
-Khamti,kht,True,False,Myanmar,Mymr,True,False
-Khandesi,khn,True,False,Devanagari,Deva,True,False
-Khanty,kca,True,False,Cyrillic,Cyrl,True,False
-Khasi,kha,True,False,Bangla,Beng,True,False
-Khasi,kha,True,False,Latin,Latn,True,False
-Khmer,km,True,True,Khmer,Khmr,True,False
-Khmu,kjg,True,False,Lao,Laoo,True,False
-Khmu,kjg,True,False,Latin,Latn,True,False
-Khowar,khw,True,False,Arabic,Arab,True,True
-Kikuyu,ki,True,False,Latin,Latn,True,False
-Kimbundu,kmb,True,False,Latin,Latn,True,False
-Kinaray-a,krj,True,False,Latin,Latn,True,False
-Kinyarwanda,rw,True,True,Latin,Latn,True,False
-Kirmanjki,kiu,True,False,Latin,Latn,True,False
-Kita Maninkakan,mwk,True,False,Latin,Latn,True,False
-Kochila Tharu,thq,True,False,Devanagari,Deva,True,False
-Kom,bkm,True,False,Latin,Latn,True,False
-Komering,kge,True,False,Latin,Latn,True,False
-Komi,kv,True,False,Cyrillic,Cyrl,True,False
-Komi,kv,True,False,Old Permic,Perm,False,False
-Komi-Permyak,koi,True,False,Cyrillic,Cyrl,True,False
-Kongo,kg,True,False,Latin,Latn,True,False
-Konkani,kok,True,False,Devanagari,Deva,True,False
-Korean,ko,True,True,Korean,Kore,True,False
-Koro,kfo,True,False,Latin,Latn,True,False
-Koro Wachi,bqv,True,False,Latin,Latn,True,False
-Koryak,kpy,True,False,Cyrillic,Cyrl,True,False
-Kosraean,kos,True,False,Latin,Latn,True,False
-Kotava,avk,False,False,Latin,Latn,True,False
-Koyra Chiini,khq,True,False,Latin,Latn,True,False
-Koyraboro Senni,ses,True,False,Latin,Latn,True,False
-Kpelle,kpe,True,False,Latin,Latn,True,False
-Krio,kri,True,False,Latin,Latn,True,False
-Kuanyama,kj,True,False,Latin,Latn,True,False
-Kumaoni,kfy,True,False,Devanagari,Deva,True,False
-Kumyk,kum,True,False,Cyrillic,Cyrl,True,False
-Kurdish,ku,True,False,Arabic,Arab,True,True
-Kurdish,ku,True,False,Cyrillic,Cyrl,True,False
-Kurdish,ku,True,False,Latin,Latn,True,False
-Kurukh,kru,True,False,Devanagari,Deva,True,False
-Kutenai,kut,True,False,Latin,Latn,True,False
-Kuvi,kxv,True,False,Devanagari,Deva,True,False
-Kuvi,kxv,True,False,Latin,Latn,True,False
-Kuvi,kxv,True,False,Odia,Orya,True,False
-Kuvi,kxv,True,False,Telugu,Telu,True,False
+Eastern Cham,cjm,True,False,Arab,Arab,False,True
+Shor,cjs,True,False,Cyrl,Cyrl,True,False
+Central Kurdish,ckb,True,False,Arab,Arab,True,True
+Chukot,ckt,True,False,Cyrl,Cyrl,True,False
+Chilcotin,clc,True,False,Latn,Latn,True,False
+Corsican,co,True,False,Latn,Latn,True,False
+Coptic,cop,True,False,Copt,Copt,False,False
+Coptic,cop,True,False,Arab,Arab,False,True
+Coptic,cop,True,False,Grek,Grek,False,False
+Capiznon,cps,True,False,Latn,Latn,True,False
+Cree,cr,True,False,Cans,Cans,True,False
+Cree,cr,True,False,Latn,Latn,True,False
+Michif,crg,True,False,Latn,Latn,True,False
+Crimean Tatar,crh,True,False,Cyrl,Cyrl,True,False
+Southern East Cree,crj,True,False,Cans,Cans,True,False
+Southern East Cree,crj,True,False,Latn,Latn,False,False
+Plains Cree,crk,True,False,Cans,Cans,True,False
+Northern East Cree,crl,True,False,Cans,Cans,True,False
+Northern East Cree,crl,True,False,Latn,Latn,False,False
+Moose Cree,crm,True,False,Cans,Cans,True,False
+Seselwa Creole French,crs,True,False,Latn,Latn,True,False
+Czech,cs,True,True,Latn,Latn,True,False
+Kashubian,csb,True,False,Latn,Latn,True,False
+Swampy Cree,csw,True,False,Cans,Cans,True,False
+Tedim Chin,ctd,True,False,Latn,Latn,True,False
+Church Slavic,cu,True,False,Cyrl,Cyrl,True,False
+Chuvash,cv,True,False,Cyrl,Cyrl,True,False
+Welsh,cy,True,False,Latn,Latn,True,False
+Danish,da,True,True,Latn,Latn,True,False
+Dakota,dak,True,False,Latn,Latn,True,False
+Dargwa,dar,True,False,Cyrl,Cyrl,True,False
+Taita,dav,True,False,Latn,Latn,True,False
+Deccan,dcc,True,False,Arab,Arab,True,True
+German,de,True,True,Latn,Latn,True,False
+German,de,True,True,Runr,Runr,False,False
+Delaware,del,True,False,Latn,Latn,True,False
+Slave,den,True,False,Latn,Latn,True,False
+Slave,den,True,False,Cans,Cans,False,False
+Dogrib,dgr,True,False,Latn,Latn,True,False
+Dinka,din,True,False,Latn,Latn,True,False
+Zarma,dje,True,False,Latn,Latn,True,False
+Dungan,dng,True,False,Cyrl,Cyrl,True,False
+Dan,dnj,True,False,Latn,Latn,True,False
+Dogri,doi,True,False,Deva,Deva,True,False
+Dogri,doi,True,False,Arab,Arab,False,True
+Dogri,doi,True,False,Takr,Takr,False,False
+Lower Sorbian,dsb,True,False,Latn,Latn,True,False
+Tomo Kan Dogon,dtm,True,False,Latn,Latn,True,False
+Central Dusun,dtp,True,False,Latn,Latn,True,False
+Dotyali,dty,True,False,Deva,Deva,True,False
+Duala,dua,True,False,Latn,Latn,True,False
+Middle Dutch,dum,True,False,Latn,Latn,True,False
+Divehi,dv,True,True,Thaa,Thaa,True,True
+Jola-Fonyi,dyo,True,False,Latn,Latn,True,False
+Jola-Fonyi,dyo,True,False,Arab,Arab,False,True
+Dyula,dyu,True,False,Latn,Latn,True,False
+Dzongkha,dz,True,True,Tibt,Tibt,True,False
+Embu,ebu,True,False,Latn,Latn,True,False
+Eteocypriot,ecy,False,False,Cprt,Cprt,False,True
+Ewe,ee,True,False,Latn,Latn,True,False
+Efik,efi,True,False,Latn,Latn,True,False
+Emilian,egl,True,False,Latn,Latn,True,False
+Ancient Egyptian,egy,False,False,Egyp,Egyp,False,False
+Ekajuk,eka,True,False,Latn,Latn,True,False
+Eastern Kayah,eky,True,False,Kali,Kali,True,False
+Greek,el,True,True,Grek,Grek,True,False
+English,en,True,True,Latn,Latn,True,False
+English,en,True,True,Dsrt,Dsrt,False,False
+English,en,True,True,Shaw,Shaw,False,False
+Middle English,enm,True,False,Latn,Latn,True,False
+Esperanto,eo,True,False,Latn,Latn,True,False
+Spanish,es,True,True,Latn,Latn,True,False
+Central Yupik,esu,True,False,Latn,Latn,True,False
+Estonian,et,True,True,Latn,Latn,True,False
+Etruscan,ett,True,False,Ital,Ital,False,True
+Etruscan,ett,True,False,Latn,Latn,False,False
+Basque,eu,True,False,Latn,Latn,True,False
+Evenki,evn,True,False,Cyrl,Cyrl,True,False
+Ewondo,ewo,True,False,Latn,Latn,True,False
+Extremaduran,ext,True,False,Latn,Latn,True,False
+Persian,fa,True,True,Arab,Arab,True,True
+Fang,fan,True,False,Latn,Latn,True,False
+Fula,ff,True,False,Latn,Latn,True,False
+Fula,ff,True,False,Adlm,Adlm,False,True
+Maasina Fulfulde,ffm,True,False,Latn,Latn,True,False
+Finnish,fi,True,True,Latn,Latn,True,False
+Nobiin,fia,True,False,Arab,Arab,True,True
+Filipino,fil,True,True,Latn,Latn,True,False
+Filipino,fil,True,True,Tglg,Tglg,False,False
+Tornedalen Finnish,fit,True,False,Latn,Latn,True,False
+Fijian,fj,True,True,Latn,Latn,True,False
+Faroese,fo,True,True,Latn,Latn,True,False
+Fon,fon,True,False,Latn,Latn,True,False
+French,fr,True,True,Latn,Latn,True,False
+French,fr,True,True,Dupl,Dupl,False,False
+Cajun French,frc,True,False,Latn,Latn,True,False
+Middle French,frm,True,False,Latn,Latn,True,False
+Old French,fro,True,False,Latn,Latn,True,False
+Arpitan,frp,True,False,Latn,Latn,True,False
+Northern Frisian,frr,True,False,Latn,Latn,True,False
+Eastern Frisian,frs,True,False,Latn,Latn,True,False
+East Futuna,fud,True,False,Latn,Latn,True,False
+Central-Eastern Niger Fulfulde,fuq,True,False,Latn,Latn,True,False
+Friulian,fur,True,False,Latn,Latn,True,False
+Nigerian Fulfulde,fuv,True,False,Latn,Latn,True,False
+Fur,fvr,True,False,Latn,Latn,True,False
+Western Frisian,fy,True,False,Latn,Latn,True,False
+Irish,ga,True,True,Latn,Latn,True,False
+Ga,gaa,True,False,Latn,Latn,True,False
+Gagauz,gag,True,False,Latn,Latn,True,False
+Gagauz,gag,True,False,Cyrl,Cyrl,False,False
+Gan Chinese,gan,True,False,Hans,Hans,True,False
+Gayo,gay,True,False,Latn,Latn,True,False
+Gbaya,gba,True,False,Latn,Latn,True,False
+Garhwali,gbm,True,False,Deva,Deva,True,False
+Zoroastrian Dari,gbz,True,False,Arab,Arab,True,True
+Guianese Creole French,gcr,True,False,Latn,Latn,True,False
+Scottish Gaelic,gd,True,False,Latn,Latn,True,False
+Geez,gez,True,False,Ethi,Ethi,True,False
+Gilbertese,gil,True,True,Latn,Latn,True,False
+Kachi Koli,gjk,True,False,Arab,Arab,True,True
+Gujari,gju,True,False,Arab,Arab,True,True
+Galician,gl,True,False,Latn,Latn,True,False
+Nanai,gld,True,False,Cyrl,Cyrl,True,False
+Gilaki,glk,True,False,Arab,Arab,True,True
+Middle High German,gmh,True,False,Latn,Latn,True,False
+Mycenaean Greek,gmy,False,False,Linb,Linb,False,True
+Guarani,gn,True,True,Latn,Latn,True,False
+Old High German,goh,True,False,Latn,Latn,True,False
+Gondi,gon,True,False,Deva,Deva,True,False
+Gondi,gon,True,False,Telu,Telu,True,False
+Gorontalo,gor,True,False,Latn,Latn,True,False
+Gronings,gos,True,False,Latn,Latn,True,False
+Gothic,got,False,False,Goth,Goth,False,False
+Grebo,grb,True,False,Latn,Latn,True,False
+Ancient Greek,grc,True,False,Grek,Grek,True,False
+Taznatit,grr,True,False,Arab,Arab,True,True
+Taznatit,grr,True,False,Tfng,Tfng,False,True
+Garo,grt,True,False,Beng,Beng,True,False
+Swiss German,gsw,True,True,Latn,Latn,True,False
+Gujarati,gu,True,False,Gujr,Gujr,True,False
+Guajajára,gub,True,False,Latn,Latn,True,False
+Wayuu,guc,True,False,Latn,Latn,True,False
+Frafra,gur,True,False,Latn,Latn,True,False
+Gusii,guz,True,False,Latn,Latn,True,False
+Manx,gv,True,True,Latn,Latn,True,False
+Gurung,gvr,True,False,Deva,Deva,True,False
+Gwichʼin,gwi,True,False,Latn,Latn,True,False
+Hausa,ha,True,False,Latn,Latn,True,False
+Hausa,ha,True,False,Arab,Arab,True,True
+Haida,hai,True,False,Latn,Latn,True,False
+Hakka Chinese,hak,True,True,Hans,Hans,True,False
+Hakka Chinese,hak,True,True,Hant,Hant,False,False
+Hawaiian,haw,True,False,Latn,Latn,True,False
+Hazaragi,haz,True,False,Arab,Arab,True,True
+Hebrew,he,True,True,Hebr,Hebr,True,True
+Hindi,hi,True,True,Deva,Deva,True,False
+Hindi,hi,True,True,Latn,Latn,False,False
+Hindi,hi,True,True,Mahj,Mahj,False,False
+Fiji Hindi,hif,True,True,Deva,Deva,True,False
+Fiji Hindi,hif,True,True,Latn,Latn,True,False
+Hiligaynon,hil,True,False,Latn,Latn,True,False
+Hittite,hit,False,False,Xsux,Xsux,False,False
+Large Flowery Miao,hmd,True,False,Plrd,Plrd,True,False
+Hmong,hmn,True,False,Latn,Latn,True,False
+Hmong,hmn,True,False,Hmng,Hmng,False,False
+Southern Hindko,hnd,True,False,Arab,Arab,True,True
+Chhattisgarhi,hne,True,False,Deva,Deva,True,False
+Hmong Njua,hnj,True,False,Laoo,Laoo,True,False
+Hanunoo,hnn,True,False,Latn,Latn,True,False
+Hanunoo,hnn,True,False,Hano,Hano,False,False
+Northern Hindko,hno,True,False,Arab,Arab,True,True
+Hiri Motu,ho,True,True,Latn,Latn,True,False
+Ho,hoc,True,False,Deva,Deva,True,False
+Ho,hoc,True,False,Wara,Wara,False,False
+Hadothi,hoj,True,False,Deva,Deva,True,False
+Hopi,hop,True,False,Latn,Latn,True,False
+Croatian,hr,True,True,Latn,Latn,True,False
+Upper Sorbian,hsb,True,False,Latn,Latn,True,False
+Xiang Chinese,hsn,True,False,Hans,Hans,True,False
+Haitian Creole,ht,True,True,Latn,Latn,True,False
+Hungarian,hu,True,True,Latn,Latn,True,False
+Hupa,hup,True,False,Latn,Latn,True,False
+Halkomelem,hur,True,False,Latn,Latn,True,False
+Armenian,hy,True,True,Armn,Armn,True,False
+Herero,hz,True,False,Latn,Latn,True,False
+Interlingua,ia,True,False,Latn,Latn,True,False
+Iban,iba,True,False,Latn,Latn,True,False
+Ibibio,ibb,True,False,Latn,Latn,True,False
+Indonesian,id,True,True,Latn,Latn,True,False
+Indonesian,id,True,True,Arab,Arab,False,True
+Interlingue,ie,True,False,Latn,Latn,True,False
+Ifè,ife,True,False,Latn,Latn,True,False
+Igbo,ig,True,False,Latn,Latn,True,False
+Sichuan Yi,ii,True,False,Yiii,Yiii,True,False
+Sichuan Yi,ii,True,False,Latn,Latn,False,False
+Inupiaq,ik,True,False,Latn,Latn,True,False
+Western Canadian Inuktitut,ikt,True,False,Latn,Latn,True,False
+Iloko,ilo,True,False,Latn,Latn,True,False
+Ingush,inh,True,False,Cyrl,Cyrl,True,False
+Ingush,inh,True,False,Arab,Arab,False,True
+Ingush,inh,True,False,Latn,Latn,False,False
+Ido,io,True,False,Latn,Latn,True,False
+Icelandic,is,True,True,Latn,Latn,True,False
+Italian,it,True,True,Latn,Latn,True,False
+Inuktitut,iu,True,False,Cans,Cans,True,False
+Inuktitut,iu,True,False,Latn,Latn,True,False
+Ingrian,izh,True,False,Latn,Latn,True,False
+Japanese,ja,True,True,Jpan,Jpan,True,False
+Jamaican Creole English,jam,True,False,Latn,Latn,True,False
+Lojban,jbo,True,False,Latn,Latn,True,False
+Ngomba,jgo,True,False,Latn,Latn,True,False
+Machame,jmc,True,False,Latn,Latn,True,False
+Jumli,jml,True,False,Deva,Deva,True,False
+Judeo-Persian,jpr,True,False,Hebr,Hebr,True,True
+Judeo-Arabic,jrb,True,False,Hebr,Hebr,True,True
+Jutish,jut,True,False,Latn,Latn,True,False
+Javanese,jv,True,False,Latn,Latn,True,False
+Javanese,jv,True,False,Java,Java,False,False
+Georgian,ka,True,True,Geor,Geor,True,False
+Kara-Kalpak,kaa,True,False,Cyrl,Cyrl,True,False
+Kara-Kalpak,kaa,True,False,Latn,Latn,True,False
+Kabyle,kab,True,False,Latn,Latn,True,False
+Kachin,kac,True,False,Latn,Latn,True,False
+Jju,kaj,True,False,Latn,Latn,True,False
+Kamba,kam,True,False,Latn,Latn,True,False
+Xaasongaxango,kao,True,False,Latn,Latn,True,False
+Kawi,kaw,True,False,Bali,Bali,True,False
+Kawi,kaw,True,False,Java,Java,False,False
+Kawi,kaw,True,False,Kawi,Kawi,False,False
+Kabardian,kbd,True,False,Cyrl,Cyrl,True,False
+Khanty,kca,True,False,Cyrl,Cyrl,True,False
+Tyap,kcg,True,False,Latn,Latn,True,False
+Kalanga,kck,True,False,Latn,Latn,True,False
+Makonde,kde,True,False,Latn,Latn,True,False
 Kuy,kdt,True,False,Thai,Thai,True,False
-Kwakʼwala,kwk,True,False,Latin,Latn,True,False
-Kwasio,nmg,True,False,Latin,Latn,True,False
-Kyrgyz,ky,True,True,Arabic,Arab,True,True
-Kyrgyz,ky,True,True,Cyrillic,Cyrl,True,False
-Kyrgyz,ky,True,True,Latin,Latn,True,False
-Kʼicheʼ,quc,True,False,Latin,Latn,True,False
-Ladino,lad,True,False,Hebrew,Hebr,True,True
-Lak,lbe,True,False,Cyrillic,Cyrl,True,False
-Laki,lki,True,False,Arabic,Arab,True,True
-Lakota,lkt,True,False,Latin,Latn,True,False
-Lamba,lam,True,False,Latin,Latn,True,False
-Lambadi,lmn,True,False,Telugu,Telu,True,False
-Lampung Api,ljp,True,False,Latin,Latn,True,False
-Langi,lag,True,False,Latin,Latn,True,False
-Lango (Uganda),laj,True,False,Latin,Latn,True,False
-Lao,lo,True,True,Lao,Laoo,True,False
-Large Flowery Miao,hmd,True,False,Pollard Phonetic,Plrd,True,False
-Latgalian,ltg,True,False,Latin,Latn,True,False
-Latin,la,False,False,Latin,Latn,True,False
-Latvian,lv,True,True,Latin,Latn,True,False
-Laz,lzz,True,False,Georgian,Geor,True,False
-Laz,lzz,True,False,Latin,Latn,True,False
-Lepcha,lep,True,False,Lepcha,Lepc,True,False
-Levantine Arabic,apc,True,True,Unknown Script,Zzzz,True,False
-Lezghian,lez,True,False,Cyrillic,Cyrl,True,False
-Lezghian,lez,True,False,Caucasian Albanian,Aghb,False,False
-Ligurian,lij,True,False,Latin,Latn,True,False
-Lillooet,lil,True,False,Latin,Latn,True,False
-Limbu,lif,True,False,Devanagari,Deva,True,False
-Limbu,lif,True,False,Limbu,Limb,True,False
-Limburgish,li,True,False,Latin,Latn,True,False
-Linear A,lab,False,False,Linear A,Lina,False,False
-Lingala,ln,True,False,Latin,Latn,True,False
-Lingua Franca Nova,lfn,False,False,Cyrillic,Cyrl,True,False
-Lingua Franca Nova,lfn,False,False,Latin,Latn,True,False
-Lisu,lis,True,False,Fraser,Lisu,True,False
-Literary Chinese,lzh,False,False,Simplified,Hans,True,False
-Lithuanian,lt,True,True,Latin,Latn,True,False
-Livonian,liv,True,False,Latin,Latn,True,False
-Lombard,lmo,True,False,Latin,Latn,True,False
-Lomwe,ngl,True,False,Latin,Latn,True,False
-Louisiana Creole,lou,True,True,Unknown Script,Zzzz,True,False
-Low German,nds,True,False,Latin,Latn,True,False
-Lower Silesian,sli,True,False,Latin,Latn,True,False
-Lower Sorbian,dsb,True,False,Latin,Latn,True,False
-Lozi,loz,True,False,Latin,Latn,True,False
-Lü,khb,True,False,New Tai Lue,Talu,True,False
-Luba-Katanga,lu,True,False,Latin,Latn,True,False
-Luba-Lulua,lua,True,False,Latin,Latn,True,False
-Luiseno,lui,False,False,Latin,Latn,True,False
-Lule Sami,smj,True,False,Latin,Latn,True,False
-Lunda,lun,True,False,Latin,Latn,True,False
-Luo,luo,True,False,Latin,Latn,True,False
-Lushootseed,lut,True,False,Latin,Latn,True,False
-Luxembourgish,lb,True,True,Latin,Latn,True,False
-Luyia,luy,True,False,Latin,Latn,True,False
-Lycian,xlc,False,False,Lycian,Lyci,False,False
-Lydian,xld,False,False,Lydian,Lydi,False,True
-Maasina Fulfulde,ffm,True,False,Latin,Latn,True,False
-Maba,mde,True,True,Unknown Script,Zzzz,True,False
-Macedonian,mk,True,True,Cyrillic,Cyrl,True,False
-Machame,jmc,True,False,Latin,Latn,True,False
-Madurese,mad,True,False,Latin,Latn,True,False
-Mafa,maf,True,False,Latin,Latn,True,False
-Magahi,mag,True,False,Devanagari,Deva,True,False
-Maguindanaon,mdh,True,False,Latin,Latn,True,False
-Main-Franconian,vmf,True,False,Latin,Latn,True,False
-Maithili,mai,True,False,Devanagari,Deva,True,False
-Maithili,mai,True,False,Tirhuta,Tirh,False,False
-Makasar,mak,True,False,Latin,Latn,True,False
-Makasar,mak,True,False,Buginese,Bugi,False,False
-Makhuwa,vmw,True,False,Latin,Latn,True,False
-Makhuwa-Meetto,mgh,True,False,Latin,Latn,True,False
-Makonde,kde,True,False,Latin,Latn,True,False
-Malagasy,mg,True,True,Latin,Latn,True,False
-Malay,ms,True,True,Arabic,Arab,True,True
-Malay,ms,True,True,Latin,Latn,True,False
-Malayalam,ml,True,False,Malayalam,Mlym,True,False
-Maliseet-Passamaquoddy,pqm,True,False,Latin,Latn,True,False
-Maltese,mt,True,True,Latin,Latn,True,False
-Manchu,mnc,True,False,Mongolian,Mong,False,False
-Mandar,mdr,True,False,Latin,Latn,True,False
-Mandar,mdr,True,False,Buginese,Bugi,False,False
-Mandingo,man,True,False,Latin,Latn,True,False
-Mandingo,man,True,False,N’Ko,Nkoo,True,True
-Manichaean Middle Persian,xmn,False,False,Manichaean,Mani,False,False
-Manipuri,mni,True,False,Bangla,Beng,True,False
-Manipuri,mni,True,False,Meitei Mayek,Mtei,True,False
-Mansi,mns,True,False,Cyrillic,Cyrl,True,False
-Manx,gv,True,True,Latin,Latn,True,False
-Manyika,mxc,True,False,Latin,Latn,True,False
-Māori,mi,True,True,Latin,Latn,True,False
-Mapuche,arn,True,False,Latin,Latn,True,False
-Marathi,mr,True,False,Devanagari,Deva,True,False
-Marathi,mr,True,False,Modi,Modi,False,False
-Mari,chm,True,False,Cyrillic,Cyrl,True,False
-Marshallese,mh,True,True,Latin,Latn,True,False
-Marwari,mwr,True,False,Devanagari,Deva,True,False
-Masaaba,myx,True,False,Latin,Latn,True,False
-Masai,mas,True,False,Latin,Latn,True,False
-Masalit,mls,True,False,Latin,Latn,True,False
-Mazanderani,mzn,True,False,Arabic,Arab,True,True
-Mbere,mdt,True,False,Latin,Latn,True,False
-Mbunga,mgy,True,False,Latin,Latn,True,False
-Medumba,byv,True,False,Latin,Latn,True,False
-Mende,men,True,False,Latin,Latn,True,False
-Mende,men,True,False,Mende,Mend,False,True
-Mentawai,mwv,True,False,Latin,Latn,True,False
-Meroitic,xmr,False,False,Meroitic Cursive,Merc,False,False
-Meru,mer,True,False,Latin,Latn,True,False
-Metaʼ,mgo,True,False,Latin,Latn,True,False
-Mewari,mtr,True,False,Devanagari,Deva,True,False
-Mewati,wtm,True,False,Devanagari,Deva,True,False
-Mi'kmaw,mic,True,False,Latin,Latn,True,False
-Michif,crg,True,False,Latin,Latn,True,False
-Middle Dutch,dum,False,False,Latin,Latn,True,False
-Middle English,enm,False,False,Latin,Latn,True,False
-Middle French,frm,False,False,Latin,Latn,True,False
-Middle High German,gmh,False,False,Latin,Latn,True,False
-Min Nan Chinese,nan,True,False,Simplified,Hans,True,False
-Minangkabau,min,True,False,Latin,Latn,True,False
-Mingrelian,xmf,True,False,Georgian,Geor,True,False
-Mirandese,mwl,True,False,Latin,Latn,True,False
-Mizo,lus,True,False,Bangla,Beng,True,False
-Mohawk,moh,True,False,Latin,Latn,True,False
-Moksha,mdf,True,False,Cyrillic,Cyrl,True,False
-Mon,mnw,True,False,Myanmar,Mymr,True,False
-Mongo,lol,True,False,Latin,Latn,True,False
-Mongolian,mn,True,True,Cyrillic,Cyrl,True,False
-Mongolian,mn,True,True,Mongolian,Mong,False,False
-Mongolian,mn,True,True,Phags-pa,Phag,True,False
-Moose Cree,crm,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Morisyen,mfe,True,False,Latin,Latn,True,False
-Moroccan Arabic,ary,True,False,Arabic,Arab,True,True
-Mossi,mos,True,False,Latin,Latn,True,False
-Mru,mro,True,False,Latin,Latn,True,False
-Mru,mro,True,False,Mro,Mroo,False,False
-Munda,unx,True,False,Bangla,Beng,True,False
-Munda,unx,True,False,Devanagari,Deva,True,False
-Mundang,mua,True,False,Latin,Latn,True,False
-Mundari,unr,True,False,Bangla,Beng,True,False
-Mundari,unr,True,False,Devanagari,Deva,True,False
-Muscogee,mus,True,False,Latin,Latn,True,False
-Muslim Tat,ttt,True,False,Arabic,Arab,True,True
-Muslim Tat,ttt,True,False,Cyrillic,Cyrl,True,False
-Muslim Tat,ttt,True,False,Latin,Latn,True,False
-Myene,mye,True,True,Unknown Script,Zzzz,True,False
-N’Ko,nqo,True,False,N’Ko,Nkoo,True,True
-Najdi Arabic,ars,True,False,Arabic,Arab,True,True
-Nama,naq,True,False,Latin,Latn,True,False
-Nanai,gld,True,False,Cyrillic,Cyrl,True,False
-Naskapi,nsk,True,False,Latin,Latn,True,False
-Naskapi,nsk,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Nauru,na,True,True,Latin,Latn,True,False
-Navajo,nv,True,False,Latin,Latn,True,False
-Naxi,nxq,True,False,Latin,Latn,True,False
-Ndau,ndc,True,False,Latin,Latn,True,False
-Ndonga,ng,True,False,Latin,Latn,True,False
-Ndzwani Comorian,wni,True,True,Arabic,Arab,True,True
-Neapolitan,nap,True,False,Latin,Latn,True,False
-Negeri Sembilan Malay,zmi,True,False,Latin,Latn,True,False
-Nenets,yrk,True,False,Cyrillic,Cyrl,True,False
-Nepali,ne,True,True,Devanagari,Deva,True,False
-Newari,new,True,False,Devanagari,Deva,True,False
-Ngaju,nij,True,False,Latin,Latn,True,False
-Ngambay,sba,True,True,Unknown Script,Zzzz,True,False
-Ngazidja Comorian,zdj,True,True,Arabic,Arab,True,True
-Ngiemboon,nnh,True,False,Latin,Latn,True,False
-Ngomba,jgo,True,False,Latin,Latn,True,False
-Nheengatu,yrl,True,False,Latin,Latn,True,False
-Nias,nia,True,False,Latin,Latn,True,False
-Nigerian Fulfulde,fuv,True,False,Latin,Latn,True,False
-Nigerian Pidgin,pcm,True,False,Latin,Latn,True,False
-Nimadi,noe,True,False,Devanagari,Deva,True,False
-Niuean,niu,True,True,Latin,Latn,True,False
-Nobiin,fia,True,False,Arabic,Arab,True,True
-Nogai,nog,True,False,Cyrillic,Cyrl,True,False
-North Ndebele,nd,True,True,Latin,Latn,True,False
-North Slavey,scs,True,False,Latin,Latn,True,False
-Northeastern Thai,tts,True,False,Thai,Thai,True,False
-Northern East Cree,crl,True,False,Latin,Latn,True,False
-Northern East Cree,crl,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Northern Frisian,frr,True,False,Latin,Latn,True,False
-Northern Haida,hdn,True,True,Unknown Script,Zzzz,True,False
-Northern Hindko,hno,True,False,Arabic,Arab,True,True
+Kabuverdianu,kea,True,False,Latn,Latn,True,False
+Kenyang,ken,True,False,Latn,Latn,True,False
+Koro,kfo,True,False,Latn,Latn,True,False
+Kachhi,kfr,True,False,Deva,Deva,True,False
+Kumaoni,kfy,True,False,Deva,Deva,True,False
+Kongo,kg,True,False,Latn,Latn,True,False
+Komering,kge,True,False,Latn,Latn,True,False
+Kaingang,kgp,True,False,Latn,Latn,True,False
+Khasi,kha,True,False,Latn,Latn,True,False
+Khasi,kha,True,False,Beng,Beng,False,False
+Lü,khb,True,False,Talu,Talu,True,False
+Khandesi,khn,True,False,Deva,Deva,True,False
+Koyra Chiini,khq,True,False,Latn,Latn,True,False
+Khamti,kht,True,False,Mymr,Mymr,True,False
+Khowar,khw,True,False,Arab,Arab,True,True
+Kikuyu,ki,True,False,Latn,Latn,True,False
+Kirmanjki,kiu,True,False,Latn,Latn,True,False
+Kuanyama,kj,True,False,Latn,Latn,True,False
+Khmu,kjg,True,False,Laoo,Laoo,True,False
+Khmu,kjg,True,False,Latn,Latn,False,False
+Khakas,kjh,True,False,Cyrl,Cyrl,True,False
+Kazakh,kk,True,True,Cyrl,Cyrl,True,False
+Kazakh,kk,True,True,Arab,Arab,True,True
+Kako,kkj,True,False,Latn,Latn,True,False
+Kalaallisut,kl,True,True,Latn,Latn,True,False
+Kalenjin,kln,True,False,Latn,Latn,True,False
+Khmer,km,True,True,Khmr,Khmr,True,False
+Kimbundu,kmb,True,False,Latn,Latn,True,False
+Kannada,kn,True,False,Knda,Knda,True,False
+Mankanya,knf,True,False,Latn,Latn,True,False
+Konkani (individual language),knn,True,False,Deva,Deva,True,False
+Korean,ko,True,True,Kore,Kore,True,False
+Komi-Permyak,koi,True,False,Cyrl,Cyrl,True,False
+Konkani,kok,True,False,Deva,Deva,True,False
+Konkani,kok,True,False,Latn,Latn,True,False
+Kosraean,kos,True,False,Latn,Latn,True,False
+Kpelle,kpe,True,False,Latn,Latn,True,False
+Koryak,kpy,True,False,Cyrl,Cyrl,True,False
+Kanuri,kr,True,False,Latn,Latn,True,False
+Karachay-Balkar,krc,True,False,Cyrl,Cyrl,True,False
+Krio,kri,True,False,Latn,Latn,True,False
+Kinaray-a,krj,True,False,Latn,Latn,True,False
+Karelian,krl,True,False,Latn,Latn,True,False
+Kru languages,kro,True,False,Latn,Latn,True,False
+Kurukh,kru,True,False,Deva,Deva,True,False
+Kashmiri,ks,True,False,Arab,Arab,True,True
+Kashmiri,ks,True,False,Deva,Deva,True,False
+Shambala,ksb,True,False,Latn,Latn,True,False
+Bafia,ksf,True,False,Latn,Latn,True,False
+Colognian,ksh,True,False,Latn,Latn,True,False
+Kurdish,ku,True,False,Latn,Latn,True,False
+Kurdish,ku,True,False,Arab,Arab,False,True
+Kurdish,ku,True,False,Cyrl,Cyrl,False,False
+Kumyk,kum,True,False,Cyrl,Cyrl,True,False
+Kutenai,kut,True,False,Latn,Latn,True,False
+Komi,kv,True,False,Cyrl,Cyrl,True,False
+Komi,kv,True,False,Perm,Perm,False,False
+Kerinci,kvr,True,False,Latn,Latn,True,False
+Parkari Koli,kvx,True,False,Arab,Arab,True,True
+Cornish,kw,True,False,Latn,Latn,True,False
+Kwakʼwala,kwk,True,False,Latn,Latn,True,False
 Northern Khmer,kxm,True,False,Thai,Thai,True,False
-Northern Luri,lrc,True,False,Arabic,Arab,True,True
-Northern Sami,se,True,False,Cyrillic,Cyrl,True,False
-Northern Sami,se,True,False,Latin,Latn,True,False
-Northern Sotho,nso,True,False,Latin,Latn,True,False
-Northern Thai,nod,True,False,Lanna,Lana,True,False
-Northern Tutchone,ttm,True,True,Unknown Script,Zzzz,True,False
-Northwestern Ojibwa,ojb,True,True,Unknown Script,Zzzz,True,False
-Norwegian,no,True,True,Latin,Latn,True,False
-Norwegian Bokmål,nb,True,True,Latin,Latn,True,False
-Norwegian Nynorsk,nn,True,True,Latin,Latn,True,False
-Novial,nov,False,False,Latin,Latn,True,False
-Nuer,nus,True,False,Latin,Latn,True,False
-Nyamwezi,nym,True,False,Latin,Latn,True,False
-Nyanja,ny,True,True,Latin,Latn,True,False
-Nyankole,nyn,True,False,Latin,Latn,True,False
-Nyasa Tonga,tog,True,False,Latin,Latn,True,False
-Nyoro,nyo,True,False,Latin,Latn,True,False
-Nzima,nzi,True,False,Latin,Latn,True,False
-Obolo,ann,True,False,Latin,Latn,True,False
-Occitan,oc,True,False,Latin,Latn,True,False
-Odia,or,True,False,Odia,Orya,True,False
-Oji-Cree,ojs,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Ojibwa,oj,True,False,Latin,Latn,True,False
-Ojibwa,oj,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Okanagan,oka,True,False,Latin,Latn,True,False
-Old English,ang,False,False,Latin,Latn,True,False
-Old French,fro,False,False,Latin,Latn,True,False
-Old High German,goh,False,False,Latin,Latn,True,False
-Old Irish,sga,False,False,Latin,Latn,True,False
-Old Irish,sga,False,False,Ogham,Ogam,False,False
-Old Norse,non,False,False,Runic,Runr,False,False
-Old Persian,peo,False,False,Old Persian,Xpeo,False,False
-Old Provençal,pro,False,False,Latin,Latn,True,False
-Old Turkish,otk,False,False,Orkhon,Orkh,False,False
-Oromo,om,True,False,Ethiopic,Ethi,True,False
-Oromo,om,True,False,Latin,Latn,True,False
-Osage,osa,True,False,Latin,Latn,True,False
-Osage,osa,True,False,Osage,Osge,True,False
-Oscan,osc,False,False,Latin,Latn,True,False
-Oscan,osc,False,False,Old Italic,Ital,False,True
-Ossetic,os,True,False,Cyrillic,Cyrl,True,False
-Pahlavi,pal,False,False,Inscriptional Pahlavi,Phli,False,True
-Pahlavi,pal,False,False,Psalter Pahlavi,Phlp,True,False
-Palatine German,pfl,True,False,Latin,Latn,True,False
-Palauan,pau,True,True,Latin,Latn,True,False
-Pali,pi,False,False,Devanagari,Deva,True,False
-Pali,pi,False,False,Sinhala,Sinh,True,False
-Pali,pi,False,False,Thai,Thai,True,False
-Pampanga,pam,True,False,Latin,Latn,True,False
-Pangasinan,pag,True,False,Latin,Latn,True,False
-Papiamento,pap,True,True,Latin,Latn,True,False
-Parkari Koli,kvx,True,False,Arabic,Arab,True,True
-Parsi-Dari,prd,True,False,Arabic,Arab,True,True
-Parthian,xpr,False,False,Inscriptional Parthian,Prti,False,True
-Pashto,ps,True,True,Arabic,Arab,True,True
-Pattani Malay,mfa,True,False,Arabic,Arab,True,True
-Pennsylvania German,pdc,True,False,Latin,Latn,True,False
-Persian,fa,True,True,Arabic,Arab,True,True
-Phoenician,phn,False,False,Phoenician,Phnx,False,True
-Picard,pcd,True,False,Latin,Latn,True,False
-Piedmontese,pms,True,False,Latin,Latn,True,False
-Pijin,pis,True,False,Latin,Latn,True,False
-Plains Cree,crk,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Plautdietsch,pdt,True,False,Latin,Latn,True,False
-Pohnpeian,pon,True,False,Latin,Latn,True,False
-Pökoot,pko,True,False,Latin,Latn,True,False
-Polish,pl,True,True,Latin,Latn,True,False
-Pontic,pnt,True,False,Cyrillic,Cyrl,True,False
-Pontic,pnt,True,False,Greek,Grek,True,False
-Pontic,pnt,True,False,Latin,Latn,True,False
-Portuguese,pt,True,True,Latin,Latn,True,False
-Prussian,prg,True,False,Latin,Latn,True,False
-Punjabi,pa,True,False,Arabic,Arab,True,True
-Punjabi,pa,True,False,Gurmukhi,Guru,True,False
-Punu,puu,True,False,Latin,Latn,True,False
-Quechua,qu,True,True,Latin,Latn,True,False
-Rajasthani,raj,True,False,Devanagari,Deva,True,False
-Rajbanshi,rjs,True,False,Devanagari,Deva,True,False
-Rana Tharu,thr,True,False,Devanagari,Deva,True,False
-Rangpuri,rkt,True,False,Bangla,Beng,True,False
-Rapanui,rap,True,False,Latin,Latn,True,False
-Rarotongan,rar,True,False,Latin,Latn,True,False
-Rejang,rej,True,False,Latin,Latn,True,False
-Rejang,rej,True,False,Rejang,Rjng,False,False
-Réunion Creole French,rcf,True,False,Latin,Latn,True,False
-Riang (India),ria,True,False,Latin,Latn,True,False
-Riffian,rif,True,False,Latin,Latn,True,False
-Riffian,rif,True,False,Tifinagh,Tfng,True,True
-Rinconada Bikol,bto,True,False,Latin,Latn,True,False
-Rohingya,rhg,True,False,Arabic,Arab,True,True
-Rohingya,rhg,True,False,Hanifi,Rohg,True,True
-Rohingya,rhg,True,False,Latin,Latn,True,False
-Romagnol,rgn,True,False,Latin,Latn,True,False
-Romanian,ro,True,True,Cyrillic,Cyrl,True,False
-Romanian,ro,True,True,Latin,Latn,True,False
-Romansh,rm,True,False,Latin,Latn,True,False
-Romany,rom,True,False,Cyrillic,Cyrl,True,False
-Romany,rom,True,False,Latin,Latn,True,False
-Rombo,rof,True,False,Latin,Latn,True,False
-Ronga,rng,True,False,Latin,Latn,True,False
-Rotuman,rtm,True,False,Latin,Latn,True,False
-Roviana,rug,True,False,Latin,Latn,True,False
-Rundi,rn,True,True,Latin,Latn,True,False
-Russian,ru,True,True,Cyrillic,Cyrl,True,False
-Rusyn,rue,True,False,Cyrillic,Cyrl,True,False
-Rwa,rwk,True,False,Latin,Latn,True,False
-Saamia,lsm,True,True,Unknown Script,Zzzz,True,False
-Sabaean,xsa,False,False,Old South Arabian,Sarb,False,True
-Sadri,sck,True,False,Devanagari,Deva,True,False
-Safaliba,saf,True,False,Latin,Latn,True,False
-Saho,ssy,True,False,Latin,Latn,True,False
-Samaritan,smp,False,False,Samaritan,Samr,False,False
-Samaritan Aramaic,sam,False,False,Hebrew,Hebr,True,True
-Samaritan Aramaic,sam,False,False,Samaritan,Samr,False,False
-Samburu,saq,True,False,Latin,Latn,True,False
-Samoan,sm,True,True,Latin,Latn,True,False
-Samogitian,sgs,True,False,Latin,Latn,True,False
-Sandawe,sad,True,False,Latin,Latn,True,False
-Sangir,sxn,True,False,Latin,Latn,True,False
-Sango,sg,True,True,Latin,Latn,True,False
-Sangu,sbp,True,False,Latin,Latn,True,False
-Sanskrit,sa,False,False,Devanagari,Deva,True,False
-Sanskrit,sa,False,False,Sinhala,Sinh,True,False
-Sanskrit,sa,False,False,Grantha,Gran,False,False
-Sanskrit,sa,False,False,Sharada,Shrd,True,False
-Sanskrit,sa,False,False,Siddham,Sidd,True,False
-Santali,sat,True,False,Bangla,Beng,True,False
-Santali,sat,True,False,Devanagari,Deva,True,False
-Santali,sat,True,False,Latin,Latn,True,False
-Santali,sat,True,False,Odia,Orya,True,False
-Santali,sat,True,False,Ol Chiki,Olck,True,False
-Saraiki,skr,True,False,Arabic,Arab,True,True
-Sardinian,sc,True,False,Latin,Latn,True,False
-Sasak,sas,True,False,Latin,Latn,True,False
-Sassarese Sardinian,sdc,True,False,Latin,Latn,True,False
-Saterland Frisian,stq,True,False,Latin,Latn,True,False
-Saurashtra,saz,True,False,Saurashtra,Saur,True,False
-Scots,sco,True,False,Latin,Latn,True,False
-Scottish Gaelic,gd,True,False,Latin,Latn,True,False
-Seki,syi,True,False,Latin,Latn,True,False
-Selayar,sly,True,False,Latin,Latn,True,False
-Selkup,sel,True,False,Cyrillic,Cyrl,True,False
-Sena,seh,True,False,Latin,Latn,True,False
-Seneca,see,True,False,Latin,Latn,True,False
-Serbian,sr,True,True,Cyrillic,Cyrl,True,False
-Serbian,sr,True,True,Latin,Latn,True,False
-Serbo-Croatian,sh,True,True,Unknown Script,Zzzz,True,False
-Serer,srr,True,False,Latin,Latn,True,False
-Seri,sei,True,False,Latin,Latn,True,False
-Seselwa Creole French,crs,True,False,Latin,Latn,True,False
-Shambala,ksb,True,False,Latin,Latn,True,False
-Shan,shn,True,False,Myanmar,Mymr,True,False
-Shekhawati,swv,True,False,Devanagari,Deva,True,False
-Sherpa,xsr,True,False,Devanagari,Deva,True,False
-Shona,sn,True,True,Latin,Latn,True,False
-Shor,cjs,True,False,Cyrillic,Cyrl,True,False
-Sichuan Yi,ii,True,False,Latin,Latn,True,False
-Sichuan Yi,ii,True,False,Yi,Yiii,True,False
-Sicilian,scn,True,False,Latin,Latn,True,False
-Sidamo,sid,True,False,Latin,Latn,True,False
-Siksiká,bla,True,False,Latin,Latn,True,False
-Silesian,szl,True,False,Latin,Latn,True,False
-Sindhi,sd,True,False,Arabic,Arab,True,True
-Sindhi,sd,True,False,Devanagari,Deva,True,False
-Sindhi,sd,True,False,Khojki,Khoj,False,False
-Sindhi,sd,True,False,Khudawadi,Sind,True,False
-Sinhala,si,True,True,Sinhala,Sinh,True,False
-Sinte Romani,rmo,True,False,Latin,Latn,True,False
-Sirmauri,srx,True,False,Devanagari,Deva,True,False
-Skolt Sami,sms,True,False,Latin,Latn,True,False
-Slave,den,True,False,Latin,Latn,True,False
-Slave,den,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Slovak,sk,True,True,Latin,Latn,True,False
-Slovenian,sl,True,True,Latin,Latn,True,False
-Soga,xog,True,False,Latin,Latn,True,False
-Somali,so,True,True,Arabic,Arab,True,True
-Somali,so,True,True,Latin,Latn,True,False
-Somali,so,True,True,Osmanya,Osma,False,False
-Soninke,snk,True,False,Latin,Latn,True,False
-Sora,srb,True,False,Latin,Latn,True,False
-Sora,srb,True,False,Sora Sompeng,Sora,False,False
-South Ndebele,nr,True,False,Latin,Latn,True,False
-Southern Altai,alt,True,False,Cyrillic,Cyrl,True,False
-Southern East Cree,crj,True,False,Latin,Latn,True,False
-Southern East Cree,crj,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Southern Haida,hax,True,True,Unknown Script,Zzzz,True,False
-Southern Hindko,hnd,True,False,Arabic,Arab,True,True
-Southern Kurdish,sdh,True,False,Arabic,Arab,True,True
-Southern Luri,luz,True,False,Arabic,Arab,True,True
-Southern Lushootseed,slh,True,True,Unknown Script,Zzzz,True,False
-Southern Sami,sma,True,False,Latin,Latn,True,False
-Southern Sotho,st,True,True,Latin,Latn,True,False
-Southern Thai,sou,True,False,Thai,Thai,True,False
-Southern Tutchone,tce,True,True,Unknown Script,Zzzz,True,False
-Spanish,es,True,True,Latin,Latn,True,False
-Sranan Tongo,srn,True,False,Latin,Latn,True,False
-Standard Moroccan Tamazight,zgh,True,False,Tifinagh,Tfng,True,True
-Straits Salish,str,True,True,Unknown Script,Zzzz,True,False
-Sukuma,suk,True,False,Latin,Latn,True,False
-Sundanese,su,True,False,Latin,Latn,True,False
-Sundanese,su,True,False,Sundanese,Sund,True,False
-Susu,sus,True,False,Arabic,Arab,True,True
-Susu,sus,True,False,Latin,Latn,True,False
-Swabian,swg,True,False,Latin,Latn,True,False
-Swahili,sw,True,True,Latin,Latn,True,False
-Swampy Cree,csw,True,False,Unified Canadian Aboriginal Syllabics,Cans,True,False
-Swati,ss,True,True,Latin,Latn,True,False
-Swedish,sv,True,True,Latin,Latn,True,False
-Swiss German,gsw,True,True,Latin,Latn,True,False
-Sylheti,syl,True,False,Bangla,Beng,True,False
-Sylheti,syl,True,False,Syloti Nagri,Sylo,True,False
-Syriac,syr,True,False,Syriac,Syrc,True,True
-Tabassaran,tab,True,False,Cyrillic,Cyrl,True,False
-Tachelhit,shi,True,False,Arabic,Arab,True,True
-Tachelhit,shi,True,False,Latin,Latn,True,False
-Tachelhit,shi,True,False,Tifinagh,Tfng,True,True
-Tae',rob,True,False,Latin,Latn,True,False
-Tagalog,tl,True,True,Unknown Script,Zzzz,True,False
-Tagbanwa,tbw,True,False,Latin,Latn,True,False
-Tagbanwa,tbw,True,False,Tagbanwa,Tagb,False,False
-Tagish,tgx,True,True,Unknown Script,Zzzz,True,False
-Tahitian,ty,True,True,Latin,Latn,True,False
-Tahltan,tht,True,True,Unknown Script,Zzzz,True,False
-Tai Dam,blt,True,False,Tai Viet,Tavt,True,False
-Tai Nüa,tdd,True,False,Tai Le,Tale,True,False
-Taita,dav,True,False,Latin,Latn,True,False
-Tajik,tg,True,True,Arabic,Arab,True,True
-Tajik,tg,True,True,Cyrillic,Cyrl,True,False
-Tajik,tg,True,True,Latin,Latn,True,False
-Talysh,tly,True,False,Arabic,Arab,True,True
-Talysh,tly,True,False,Cyrillic,Cyrl,True,False
-Talysh,tly,True,False,Latin,Latn,True,False
-Tamashek,tmh,True,False,Latin,Latn,True,False
-Tamil,ta,True,True,Tamil,Taml,True,False
-Taroko,trv,True,False,Latin,Latn,True,False
-Tasawaq,twq,True,False,Latin,Latn,True,False
-Tatar,tt,True,False,Cyrillic,Cyrl,True,False
-Tausug,tsg,True,False,Latin,Latn,True,False
-Tavringer Romani,rmu,True,False,Latin,Latn,True,False
-Tedim Chin,ctd,True,False,Latin,Latn,True,False
-Telugu,te,True,False,Telugu,Telu,True,False
-Tereno,ter,True,False,Latin,Latn,True,False
-Teso,teo,True,False,Latin,Latn,True,False
-Tetum,tet,True,True,Latin,Latn,True,False
-Thai,th,True,True,Thai,Thai,True,False
-Thulung,tdh,True,False,Devanagari,Deva,True,False
-Tibetan,bo,True,False,Tibetan,Tibt,True,False
-Tigre,tig,True,False,Ethiopic,Ethi,True,False
-Tigrinya,ti,True,True,Ethiopic,Ethi,True,False
-Timne,tem,True,False,Latin,Latn,True,False
-Tiv,tiv,True,False,Latin,Latn,True,False
-Tlingit,tli,True,False,Latin,Latn,True,False
-Tok Pisin,tpi,True,True,Latin,Latn,True,False
-Tokelau,tkl,True,True,Latin,Latn,True,False
-Toki Pona,tok,False,False,Latin,Latn,True,False
-Tolaki,lbw,True,False,Latin,Latn,True,False
-Tomo Kan Dogon,dtm,True,False,Latin,Latn,True,False
-Tongan,to,True,True,Latin,Latn,True,False
-Tooro,ttj,True,False,Latin,Latn,True,False
-Tornedalen Finnish,fit,True,False,Latin,Latn,True,False
-Torwali,trw,True,False,Arabic,Arab,True,True
-Tsakhur,tkr,True,False,Cyrillic,Cyrl,True,False
-Tsakhur,tkr,True,False,Latin,Latn,True,False
-Tsakonian,tsd,True,False,Greek,Grek,True,False
-Tshangla,tsj,True,False,Tibetan,Tibt,True,False
-Tsimshian,tsi,True,False,Latin,Latn,True,False
-Tsonga,ts,True,False,Latin,Latn,True,False
-Tswana,tn,True,True,Latin,Latn,True,False
-Tulu,tcy,True,False,Kannada,Knda,True,False
-Tumbuka,tum,True,False,Latin,Latn,True,False
-Tunisian Arabic,aeb,True,False,Arabic,Arab,True,True
-Turkish,tr,True,True,Arabic,Arab,True,True
-Turkish,tr,True,True,Latin,Latn,True,False
-Turkmen,tk,True,True,Arabic,Arab,True,True
-Turkmen,tk,True,True,Cyrillic,Cyrl,True,False
-Turkmen,tk,True,True,Latin,Latn,True,False
-Turoyo,tru,True,False,Latin,Latn,True,False
-Turoyo,tru,True,False,Syriac,Syrc,True,True
-Tuvalu,tvl,True,True,Latin,Latn,True,False
-Tuvinian,tyv,True,False,Cyrillic,Cyrl,True,False
-Twi,tw,True,True,Unknown Script,Zzzz,True,False
-Tyap,kcg,True,False,Latin,Latn,True,False
-Uab Meto,aoz,True,False,Latin,Latn,True,False
-Udihe,ude,True,False,Cyrillic,Cyrl,True,False
-Udmurt,udm,True,False,Cyrillic,Cyrl,True,False
-Udmurt,udm,True,False,Latin,Latn,True,False
-Ugaritic,uga,False,False,Ugaritic,Ugar,False,False
-Ukrainian,uk,True,True,Cyrillic,Cyrl,True,False
-Ulithian,uli,True,False,Latin,Latn,True,False
-Umbrian,xum,False,False,Latin,Latn,True,False
-Umbrian,xum,False,False,Old Italic,Ital,False,True
-Umbundu,umb,True,False,Latin,Latn,True,False
-Unknown language,und,True,True,Gunjala Gondi,Gong,True,False
-Unknown language,und,True,True,Hangul,Hang,True,False
-Unknown language,und,True,True,Inherited,Zinh,True,False
-Unknown language,und,True,True,Newa,Newa,True,False
-Unknown language,und,True,True,Nyiakeng Puachue Hmong,Hmnp,True,False
-Unknown language,und,True,True,Wancho,Wcho,True,False
-Unknown language,und,True,True,Ahom,Ahom,False,False
-Unknown language,und,True,True,Anatolian Hieroglyphs,Hluw,True,False
-Unknown language,und,True,True,Bassa Vah,Bass,True,False
-Unknown language,und,True,True,Bhaiksuki,Bhks,True,False
-Unknown language,und,True,True,Brahmi,Brah,True,False
-Unknown language,und,True,True,Chorasmian,Chrs,True,False
-Unknown language,und,True,True,Cypro-Minoan,Cpmn,True,False
-Unknown language,und,True,True,Dives Akuru,Diak,True,False
-Unknown language,und,True,True,Dogra,Dogr,True,False
-Unknown language,und,True,True,Elymaic,Elym,True,False
-Unknown language,und,True,True,Glagolitic,Glag,True,False
-Unknown language,und,True,True,Hatran,Hatr,True,True
-Unknown language,und,True,True,Kaithi,Kthi,True,False
-Unknown language,und,True,True,Kawi,Kawi,True,False
-Unknown language,und,True,True,Kharoshthi,Khar,True,True
-Unknown language,und,True,True,Khitan small script,Kits,True,False
-Unknown language,und,True,True,Makasar,Maka,True,False
-Unknown language,und,True,True,Marchen,Marc,True,False
-Unknown language,und,True,True,Masaram Gondi,Gonm,True,False
-Unknown language,und,True,True,Medefaidrin,Medf,True,False
-Unknown language,und,True,True,Meroitic,Mero,True,False
-Unknown language,und,True,True,Multani,Mult,True,False
-Unknown language,und,True,True,Nag Mundari,Nagm,True,False
-Unknown language,und,True,True,Nandinagari,Nand,True,False
-Unknown language,und,True,True,Nüshu,Nshu,True,False
-Unknown language,und,True,True,Old Hungarian,Hung,True,True
-Unknown language,und,True,True,Old Sogdian,Sogo,True,False
-Unknown language,und,True,True,Old Uyghur,Ougr,True,False
-Unknown language,und,True,True,Pau Cin Hau,Pauc,True,False
-Unknown language,und,True,True,SignWriting,Sgnw,True,False
-Unknown language,und,True,True,Sogdian,Sogd,True,True
-Unknown language,und,True,True,Soyombo,Soyo,True,False
-Unknown language,und,True,True,Tangsa,Tnsa,True,False
-Unknown language,und,True,True,Tangut,Tang,True,False
-Unknown language,und,True,True,Toto,Toto,True,False
-Unknown language,und,True,True,Vithkuqi,Vith,True,False
-Unknown language,und,True,True,Yezidi,Yezi,True,True
-Unknown language,und,True,True,Zanabazar Square,Zanb,True,False
-Upper Sorbian,hsb,True,False,Latin,Latn,True,False
-Urdu,ur,True,True,Arabic,Arab,True,True
-Uyghur,ug,True,False,Arabic,Arab,True,True
-Uyghur,ug,True,False,Cyrillic,Cyrl,True,False
-Uyghur,ug,True,False,Latin,Latn,True,False
-Uzbek,uz,True,True,Arabic,Arab,True,True
-Uzbek,uz,True,True,Cyrillic,Cyrl,True,False
-Uzbek,uz,True,True,Latin,Latn,True,False
-Vai,vai,True,False,Latin,Latn,True,False
-Vai,vai,True,False,Vai,Vaii,True,False
-Venda,ve,True,False,Latin,Latn,True,False
-Venetian,vec,True,False,Latin,Latn,True,False
-Veps,vep,True,False,Latin,Latn,True,False
-Vietnamese,vi,True,True,Han,Hani,True,False
-Vietnamese,vi,True,True,Latin,Latn,True,False
-Virgin Islands Creole English,vic,True,False,Latin,Latn,True,False
-Volapük,vo,False,False,Latin,Latn,True,False
-Võro,vro,True,False,Latin,Latn,True,False
-Votic,vot,True,False,Latin,Latn,True,False
-Vunjo,vun,True,False,Latin,Latn,True,False
-Waddar,wbq,True,False,Telugu,Telu,True,False
-Wadiyara Koli,kxp,True,False,Arabic,Arab,True,True
-Wagdi,wbr,True,False,Devanagari,Deva,True,False
-Wallisian,wls,True,False,Latin,Latn,True,False
-Walloon,wa,True,False,Latin,Latn,True,False
-Walser,wae,True,False,Latin,Latn,True,False
-Waray,war,True,False,Latin,Latn,True,False
-Warlpiri,wbp,True,False,Latin,Latn,True,False
-Washo,was,True,False,Latin,Latn,True,False
-Wayuu,guc,True,False,Latin,Latn,True,False
-Welsh,cy,True,False,Latin,Latn,True,False
-West Flemish,vls,True,False,Latin,Latn,True,False
-Western Balochi,bgn,True,False,Arabic,Arab,True,True
-Western Canadian Inuktitut,ikt,True,False,Latin,Latn,True,False
-Western Cham,cja,True,False,Arabic,Arab,True,True
-Western Cham,cja,True,False,Cham,Cham,True,False
-Western Frisian,fy,True,False,Latin,Latn,True,False
-Western Huasteca Nahuatl,nhw,True,False,Latin,Latn,True,False
-Western Kayah,kyu,True,False,Kayah Li,Kali,True,False
+Wadiyara Koli,kxp,True,False,Arab,Arab,True,True
+Kuvi,kxv,True,False,Latn,Latn,True,False
+Kuvi,kxv,True,False,Deva,Deva,False,False
+Kuvi,kxv,True,False,Orya,Orya,False,False
+Kuvi,kxv,True,False,Telu,Telu,False,False
+Kyrgyz,ky,True,True,Cyrl,Cyrl,True,False
+Kyrgyz,ky,True,True,Arab,Arab,True,True
+Kyrgyz,ky,True,True,Latn,Latn,True,False
+Western Kayah,kyu,True,False,Kali,Kali,True,False
+Latin,la,True,False,Latn,Latn,True,False
+Linear A,lab,False,False,Lina,Lina,False,False
+Ladino,lad,True,False,Hebr,Hebr,True,True
+Langi,lag,True,False,Latn,Latn,True,False
+Western Panjabi,lah,True,False,Arab,Arab,True,True
+Lango (Uganda),laj,True,False,Latn,Latn,True,False
+Lamba,lam,True,False,Latn,Latn,True,False
+Luxembourgish,lb,True,True,Latn,Latn,True,False
+Lak,lbe,True,False,Cyrl,Cyrl,True,False
+Tolaki,lbw,True,False,Latn,Latn,True,False
 Western Lawa,lcp,True,False,Thai,Thai,True,False
-Western Magar,mrd,True,False,Devanagari,Deva,True,False
-Western Mari,mrj,True,False,Cyrillic,Cyrl,True,False
-Western Ojibwa,ojw,True,True,Unknown Script,Zzzz,True,False
-Western Panjabi,lah,True,False,Arabic,Arab,True,True
-Western Tamang,tdg,True,False,Devanagari,Deva,True,False
-Western Tamang,tdg,True,False,Tibetan,Tibt,True,False
-Wolaytta,wal,True,False,Ethiopic,Ethi,True,False
-Wolof,wo,True,True,Arabic,Arab,True,True
-Wolof,wo,True,True,Latin,Latn,True,False
-Woods Cree,cwd,True,True,Unknown Script,Zzzz,True,False
-Wu Chinese,wuu,True,False,Simplified,Hans,True,False
-Xaasongaxango,kao,True,False,Latin,Latn,True,False
-Xavánte,xav,True,False,Latin,Latn,True,False
-Xhosa,xh,True,False,Latin,Latn,True,False
-Xiang Chinese,hsn,True,False,Simplified,Hans,True,False
-Yakut,sah,True,False,Cyrillic,Cyrl,True,False
-Yangben,yav,True,False,Latin,Latn,True,False
-Yao,yao,True,False,Latin,Latn,True,False
-Yapese,yap,True,False,Latin,Latn,True,False
-Yemba,ybb,True,False,Latin,Latn,True,False
-Yiddish,yi,True,False,Hebrew,Hebr,True,True
-Yoruba,yo,True,True,Latin,Latn,True,False
-Yucateco,yua,True,False,Latin,Latn,True,False
-Zaghawa,zag,True,False,Latin,Latn,True,False
-Zapotec,zap,True,False,Latin,Latn,True,False
-Zarma,dje,True,False,Latin,Latn,True,False
-Zaza,zza,True,False,Latin,Latn,True,False
-Zeelandic,zea,True,False,Latin,Latn,True,False
-Zenaga,zen,True,False,Tifinagh,Tfng,True,True
-Zhuang,za,True,False,Latin,Latn,True,False
-Zhuang,za,True,False,Simplified,Hans,True,False
-Zoroastrian Dari,gbz,True,False,Arabic,Arab,True,True
-Zulu,zu,True,False,Latin,Latn,True,False
-Zuni,zun,True,False,Latin,Latn,True,False
+Lenca,len,True,False,Latn,Latn,True,False
+Lepcha,lep,True,False,Lepc,Lepc,True,False
+Lezghian,lez,True,False,Cyrl,Cyrl,True,False
+Lezghian,lez,True,False,Aghb,Aghb,False,False
+Lingua Franca Nova,lfn,True,False,Latn,Latn,False,False
+Lingua Franca Nova,lfn,True,False,Cyrl,Cyrl,False,False
+Ganda,lg,True,False,Latn,Latn,True,False
+Limburgish,li,True,False,Latn,Latn,True,False
+Limbu,lif,True,False,Deva,Deva,True,False
+Limbu,lif,True,False,Limb,Limb,True,False
+Ligurian,lij,True,False,Latn,Latn,True,False
+Lillooet,lil,True,False,Latn,Latn,True,False
+Lisu,lis,True,False,Lisu,Lisu,True,False
+Livonian,liv,True,False,Latn,Latn,True,False
+Lampung Api,ljp,True,False,Latn,Latn,True,False
+Laki,lki,True,False,Arab,Arab,True,True
+Lakota,lkt,True,False,Latn,Latn,True,False
+Ladin,lld,True,False,Latn,Latn,True,False
+Lambadi,lmn,True,False,Telu,Telu,True,False
+Lombard,lmo,True,False,Latn,Latn,True,False
+Lingala,ln,True,False,Latn,Latn,True,False
+Lao,lo,True,True,Laoo,Laoo,True,False
+Mongo,lol,True,False,Latn,Latn,True,False
+Lozi,loz,True,False,Latn,Latn,True,False
+Northern Luri,lrc,True,False,Arab,Arab,True,True
+Lithuanian,lt,True,True,Latn,Latn,True,False
+Latgalian,ltg,True,False,Latn,Latn,True,False
+Luba-Katanga,lu,True,False,Latn,Latn,True,False
+Luba-Lulua,lua,True,False,Latn,Latn,True,False
+Luiseno,lui,True,False,Latn,Latn,True,False
+Lunda,lun,True,False,Latn,Latn,True,False
+Luo,luo,True,False,Latn,Latn,True,False
+Mizo,lus,True,False,Beng,Beng,True,False
+Lushootseed,lut,True,False,Latn,Latn,True,False
+Luyia,luy,True,False,Latn,Latn,True,False
+Southern Luri,luz,True,False,Arab,Arab,True,True
+Latvian,lv,True,True,Latn,Latn,True,False
+Eastern Lawa,lwl,True,False,Thai,Thai,True,False
+Literary Chinese,lzh,True,False,Hant,Hant,True,False
+Laz,lzz,True,False,Latn,Latn,True,False
+Laz,lzz,True,False,Geor,Geor,False,False
+Madurese,mad,True,False,Latn,Latn,True,False
+Mafa,maf,True,False,Latn,Latn,True,False
+Magahi,mag,True,False,Deva,Deva,True,False
+Maithili,mai,True,False,Deva,Deva,True,False
+Maithili,mai,True,False,Tirh,Tirh,False,False
+Makasar,mak,True,False,Latn,Latn,True,False
+Makasar,mak,True,False,Bugi,Bugi,False,False
+Mandingo,man,True,False,Latn,Latn,True,False
+Mandingo,man,True,False,Nkoo,Nkoo,True,True
+Masai,mas,True,False,Latn,Latn,True,False
+Central Mazahua,maz,True,False,Latn,Latn,True,False
+Moksha,mdf,True,False,Cyrl,Cyrl,True,False
+Maguindanaon,mdh,True,False,Latn,Latn,True,False
+Mandar,mdr,True,False,Latn,Latn,True,False
+Mandar,mdr,True,False,Bugi,Bugi,False,False
+Mbere,mdt,True,False,Latn,Latn,True,False
+Mende,men,True,False,Latn,Latn,True,False
+Mende,men,True,False,Mend,Mend,False,True
+Meru,mer,True,False,Latn,Latn,True,False
+Hassaniyya,mey,True,False,Arab,Arab,True,True
+Hassaniyya,mey,True,False,Latn,Latn,False,False
+Pattani Malay,mfa,True,False,Arab,Arab,True,True
+Morisyen,mfe,True,False,Latn,Latn,True,False
+Mandjak,mfv,True,False,Latn,Latn,True,False
+Malagasy,mg,True,True,Latn,Latn,True,False
+Makhuwa-Meetto,mgh,True,False,Latn,Latn,True,False
+Metaʼ,mgo,True,False,Latn,Latn,True,False
+Eastern Magar,mgp,True,False,Deva,Deva,True,False
+Mbunga,mgy,True,False,Latn,Latn,True,False
+Marshallese,mh,True,True,Latn,Latn,True,False
+Mòcheno,mhn,True,False,Latn,Latn,True,False
+Māori,mi,True,True,Latn,Latn,True,False
+Mi'kmaw,mic,True,False,Latn,Latn,True,False
+Minangkabau,min,True,False,Latn,Latn,True,False
+Macedonian,mk,True,True,Cyrl,Cyrl,True,False
+Malayalam,ml,True,False,Mlym,Mlym,True,False
+Masalit,mls,True,False,Latn,Latn,True,False
+Mongolian,mn,True,True,Cyrl,Cyrl,True,False
+Mongolian,mn,True,True,Mong,Mong,False,False
+Mongolian,mn,True,True,Phag,Phag,False,False
+Manchu,mnc,False,False,Mong,Mong,False,False
+Manipuri,mni,True,False,Beng,Beng,True,False
+Manipuri,mni,True,False,Mtei,Mtei,False,False
+Mansi,mns,True,False,Cyrl,Cyrl,True,False
+Mon,mnw,True,False,Mymr,Mymr,True,False
+Innu-aimun,moe,True,False,Latn,Latn,True,False
+Mohawk,moh,True,False,Latn,Latn,True,False
+Mossi,mos,True,False,Latn,Latn,True,False
+Marathi,mr,True,False,Deva,Deva,True,False
+Marathi,mr,True,False,Modi,Modi,False,False
+Western Magar,mrd,True,False,Deva,Deva,True,False
+Western Mari,mrj,True,False,Cyrl,Cyrl,True,False
+Mru,mro,True,False,Latn,Latn,True,False
+Mru,mro,True,False,Mroo,Mroo,False,False
+Malay,ms,True,True,Latn,Latn,True,False
+Malay,ms,True,True,Arab,Arab,True,True
+Maltese,mt,True,True,Latn,Latn,True,False
+Mewari,mtr,True,False,Deva,Deva,True,False
+Mundang,mua,True,False,Latn,Latn,True,False
+Muscogee,mus,True,False,Latn,Latn,True,False
+Indus Kohistani,mvy,True,False,Arab,Arab,True,True
+Kita Maninkakan,mwk,True,False,Latn,Latn,True,False
+Mirandese,mwl,True,False,Latn,Latn,True,False
+Marwari,mwr,True,False,Deva,Deva,True,False
+Mentawai,mwv,True,False,Latn,Latn,True,False
+Hmong Daw,mww,True,False,Latn,Latn,True,False
+Hmong Daw,mww,True,False,Hmnp,Hmnp,False,False
+Manyika,mxc,True,False,Latn,Latn,True,False
+Burmese,my,True,True,Mymr,Mymr,True,False
+Erzya,myv,True,False,Cyrl,Cyrl,True,False
+Masaaba,myx,True,False,Latn,Latn,True,False
+Classical Mandaic,myz,True,False,Mand,Mand,True,True
+Tumzabt,mzb,True,False,Arab,Arab,True,True
+Tumzabt,mzb,True,False,Latn,Latn,False,False
+Mazanderani,mzn,True,False,Arab,Arab,True,True
+Nauru,na,True,True,Latn,Latn,True,False
+Min Nan Chinese,nan,True,True,Hans,Hans,True,False
+Min Nan Chinese,nan,True,True,Hant,Hant,False,False
+Neapolitan,nap,True,False,Latn,Latn,True,False
+Nama,naq,True,False,Latn,Latn,True,False
+Norwegian Bokmål,nb,True,True,Latn,Latn,True,False
+Central Huasteca Nahuatl,nch,True,False,Latn,Latn,True,False
+North Ndebele,nd,True,True,Latn,Latn,True,False
+Ndau,ndc,True,False,Latn,Latn,True,False
+Low German,nds,True,False,Latn,Latn,True,False
+Nepali,ne,True,True,Deva,Deva,True,False
+Newari,new,True,False,Deva,Deva,True,False
+Ndonga,ng,True,False,Latn,Latn,True,False
+Lomwe,ngl,True,False,Latn,Latn,True,False
+Eastern Huasteca Nahuatl,nhe,True,False,Latn,Latn,True,False
+Western Huasteca Nahuatl,nhw,True,False,Latn,Latn,True,False
+Nias,nia,True,False,Latn,Latn,True,False
+Ngaju,nij,True,False,Latn,Latn,True,False
+Niuean,niu,True,True,Latn,Latn,True,False
+Ao Naga,njo,True,False,Latn,Latn,True,False
+Dutch,nl,True,True,Latn,Latn,True,False
+Kwasio,nmg,True,False,Latn,Latn,True,False
+Norwegian Nynorsk,nn,True,True,Latn,Latn,True,False
+Ngiemboon,nnh,True,False,Latn,Latn,True,False
+Norwegian,no,True,True,Latn,Latn,True,False
+Northern Thai,nod,True,False,Lana,Lana,True,False
+Nimadi,noe,True,False,Deva,Deva,True,False
+Nogai,nog,True,False,Cyrl,Cyrl,True,False
+Old Norse,non,False,False,Runr,Runr,False,False
+Novial,nov,True,False,Latn,Latn,True,False
+N’Ko,nqo,True,False,Nkoo,Nkoo,True,True
+South Ndebele,nr,True,False,Latn,Latn,True,False
+Naskapi,nsk,True,False,Cans,Cans,True,False
+Naskapi,nsk,True,False,Latn,Latn,False,False
+Northern Sotho,nso,True,False,Latn,Latn,True,False
+Nuer,nus,True,False,Latn,Latn,True,False
+Navajo,nv,True,False,Latn,Latn,True,False
+Naxi,nxq,True,False,Latn,Latn,True,False
+Nyanja,ny,True,True,Latn,Latn,True,False
+Nyamwezi,nym,True,False,Latn,Latn,True,False
+Nyankole,nyn,True,False,Latn,Latn,True,False
+Nyoro,nyo,True,False,Latn,Latn,True,False
+Nzima,nzi,True,False,Latn,Latn,True,False
+Occitan,oc,True,False,Latn,Latn,True,False
+Ojibwa,oj,True,False,Cans,Cans,True,False
+Ojibwa,oj,True,False,Latn,Latn,False,False
+Oji-Cree,ojs,True,False,Cans,Cans,True,False
+Western Ojibwa,ojw,True,False,Latn,Latn,True,False
+Okanagan,oka,True,False,Latn,Latn,True,False
+Oromo,om,True,False,Latn,Latn,True,False
+Oromo,om,True,False,Ethi,Ethi,False,False
+Odia,or,True,False,Orya,Orya,True,False
+Ossetic,os,True,False,Cyrl,Cyrl,True,False
+Osage,osa,True,False,Osge,Osge,True,False
+Osage,osa,True,False,Latn,Latn,False,False
+Oscan,osc,True,False,Ital,Ital,False,True
+Oscan,osc,True,False,Latn,Latn,False,False
+Old Turkish,otk,False,False,Orkh,Orkh,False,True
+Punjabi,pa,True,False,Guru,Guru,True,False
+Punjabi,pa,True,False,Arab,Arab,False,True
+Pangasinan,pag,True,False,Latn,Latn,True,False
+Pahlavi,pal,False,False,Phli,Phli,False,True
+Pahlavi,pal,False,False,Phlp,Phlp,False,True
+Pampanga,pam,True,False,Latn,Latn,True,False
+Papiamento,pap,True,True,Latn,Latn,True,False
+Palauan,pau,True,True,Latn,Latn,True,False
+Picard,pcd,True,False,Latn,Latn,True,False
+Nigerian Pidgin,pcm,True,False,Latn,Latn,True,False
+Pennsylvania German,pdc,True,False,Latn,Latn,True,False
+Plautdietsch,pdt,True,False,Latn,Latn,True,False
+Old Persian,peo,False,False,Xpeo,Xpeo,False,False
+Palatine German,pfl,True,False,Latn,Latn,True,False
+Phoenician,phn,False,False,Phnx,Phnx,False,True
+Pali,pi,True,False,Latn,Latn,True,False
+Pali,pi,True,False,Deva,Deva,False,False
+Pali,pi,True,False,Mymr,Mymr,False,False
+Pali,pi,True,False,Sinh,Sinh,False,False
+Pali,pi,True,False,Thai,Thai,False,False
+Pijin,pis,True,False,Latn,Latn,True,False
+Pökoot,pko,True,False,Latn,Latn,True,False
+Polish,pl,True,True,Latn,Latn,True,False
+Piedmontese,pms,True,False,Latn,Latn,True,False
+Pontic,pnt,True,False,Grek,Grek,True,False
+Pontic,pnt,True,False,Cyrl,Cyrl,False,False
+Pontic,pnt,True,False,Latn,Latn,False,False
+Pohnpeian,pon,True,False,Latn,Latn,True,False
+Pipil,ppl,True,False,Latn,Latn,True,False
+Maliseet-Passamaquoddy,pqm,True,False,Latn,Latn,True,False
+Parsi-Dari,prd,True,False,Arab,Arab,True,True
+Prussian,prg,True,False,Latn,Latn,True,False
+Old Provençal,pro,True,False,Latn,Latn,True,False
+Pashto,ps,True,True,Arab,Arab,True,True
+Portuguese,pt,True,True,Latn,Latn,True,False
+Punu,puu,True,False,Latn,Latn,True,False
+Quechua,qu,True,True,Latn,Latn,True,False
+Kʼicheʼ,quc,True,False,Latn,Latn,True,False
+Chimborazo Highland Quichua,qug,True,False,Latn,Latn,True,False
+Rajasthani,raj,True,False,Deva,Deva,True,False
+Rapanui,rap,True,False,Latn,Latn,True,False
+Rarotongan,rar,True,False,Latn,Latn,True,False
+Réunion Creole French,rcf,True,False,Latn,Latn,True,False
+Rejang,rej,True,False,Latn,Latn,True,False
+Rejang,rej,True,False,Rjng,Rjng,False,False
+Romagnol,rgn,True,False,Latn,Latn,True,False
+Rohingya,rhg,True,False,Rohg,Rohg,True,True
+Rohingya,rhg,True,False,Arab,Arab,False,True
+Rohingya,rhg,True,False,Latn,Latn,False,False
+Riang (India),ria,True,False,Latn,Latn,True,False
+Riffian,rif,True,False,Latn,Latn,True,False
+Riffian,rif,True,False,Tfng,Tfng,True,True
+Rajbanshi,rjs,True,False,Deva,Deva,True,False
+Rangpuri,rkt,True,False,Beng,Beng,True,False
+Romansh,rm,True,False,Latn,Latn,True,False
+Kalo Finnish Romani,rmf,True,False,Latn,Latn,True,False
+Sinte Romani,rmo,True,False,Latn,Latn,True,False
+Domari,rmt,True,False,Arab,Arab,True,True
+Tavringer Romani,rmu,True,False,Latn,Latn,True,False
+Rundi,rn,True,True,Latn,Latn,True,False
+Ronga,rng,True,False,Latn,Latn,True,False
+Romanian,ro,True,True,Latn,Latn,True,False
+Romanian,ro,True,True,Cyrl,Cyrl,False,False
+Tae',rob,True,False,Latn,Latn,True,False
+Rombo,rof,True,False,Latn,Latn,True,False
+Romany,rom,True,False,Latn,Latn,True,False
+Romany,rom,True,False,Cyrl,Cyrl,False,False
+Rotuman,rtm,True,False,Latn,Latn,True,False
+Russian,ru,True,True,Cyrl,Cyrl,True,False
+Rusyn,rue,True,False,Cyrl,Cyrl,True,False
+Roviana,rug,True,False,Latn,Latn,True,False
+Aromanian,rup,True,False,Latn,Latn,True,False
+Kinyarwanda,rw,True,True,Latn,Latn,True,False
+Rwa,rwk,True,False,Latn,Latn,True,False
+Central Okinawan,ryu,True,False,Kana,Kana,True,False
+Sanskrit,sa,True,False,Deva,Deva,False,False
+Sanskrit,sa,True,False,Gran,Gran,False,False
+Sanskrit,sa,True,False,Shrd,Shrd,False,False
+Sanskrit,sa,True,False,Sidd,Sidd,False,False
+Sanskrit,sa,True,False,Sinh,Sinh,False,False
+Sandawe,sad,True,False,Latn,Latn,True,False
+Safaliba,saf,True,False,Latn,Latn,True,False
+Yakut,sah,True,False,Cyrl,Cyrl,True,False
+Samaritan Aramaic,sam,True,False,Samr,Samr,False,True
+Samaritan Aramaic,sam,True,False,Hebr,Hebr,False,True
+Samburu,saq,True,False,Latn,Latn,True,False
+Sasak,sas,True,False,Latn,Latn,True,False
+Santali,sat,True,False,Olck,Olck,True,False
+Santali,sat,True,False,Beng,Beng,False,False
+Santali,sat,True,False,Deva,Deva,False,False
+Santali,sat,True,False,Latn,Latn,False,False
+Santali,sat,True,False,Orya,Orya,False,False
+Sourashtra,saz,True,False,Saur,Saur,True,False
+Sangu,sbp,True,False,Latn,Latn,True,False
+Sardinian,sc,True,False,Latn,Latn,True,False
+Sadri,sck,True,False,Deva,Deva,True,False
+Sicilian,scn,True,False,Latn,Latn,True,False
+Scots,sco,True,False,Latn,Latn,True,False
+North Slavey,scs,True,False,Latn,Latn,True,False
+Sindhi,sd,True,False,Arab,Arab,True,True
+Sindhi,sd,True,False,Deva,Deva,True,False
+Sindhi,sd,True,False,Khoj,Khoj,False,False
+Sindhi,sd,True,False,Sind,Sind,False,False
+Sassarese Sardinian,sdc,True,False,Latn,Latn,True,False
+Southern Kurdish,sdh,True,False,Arab,Arab,True,True
+Northern Sami,se,True,False,Latn,Latn,True,False
+Northern Sami,se,True,False,Cyrl,Cyrl,False,False
+Seneca,see,True,False,Latn,Latn,True,False
+Cebaara Senoufo,sef,True,False,Latn,Latn,True,False
+Sena,seh,True,False,Latn,Latn,True,False
+Seri,sei,True,False,Latn,Latn,True,False
+Selkup,sel,True,False,Cyrl,Cyrl,True,False
+Koyraboro Senni,ses,True,False,Latn,Latn,True,False
+Sango,sg,True,True,Latn,Latn,True,False
+Old Irish,sga,True,False,Latn,Latn,True,False
+Old Irish,sga,True,False,Ogam,Ogam,False,False
+Samogitian,sgs,True,False,Latn,Latn,True,False
+Tachelhit,shi,True,False,Tfng,Tfng,True,True
+Tachelhit,shi,True,False,Latn,Latn,True,False
+Tachelhit,shi,True,False,Arab,Arab,True,True
+Shan,shn,True,False,Mymr,Mymr,True,False
+Sinhala,si,True,True,Sinh,Sinh,True,False
+Sidamo,sid,True,False,Latn,Latn,True,False
+Slovak,sk,True,True,Latn,Latn,True,False
+Saraiki,skr,True,False,Arab,Arab,True,True
+Slovenian,sl,True,True,Latn,Latn,True,False
+Lower Silesian,sli,True,False,Latn,Latn,True,False
+Selayar,sly,True,False,Latn,Latn,True,False
+Samoan,sm,True,True,Latn,Latn,True,False
+Southern Sami,sma,True,False,Latn,Latn,True,False
+Lule Sami,smj,True,False,Latn,Latn,True,False
+Inari Sami,smn,True,False,Latn,Latn,True,False
+Samaritan,smp,False,False,Samr,Samr,False,True
+Skolt Sami,sms,True,False,Latn,Latn,True,False
+Shona,sn,True,True,Latn,Latn,True,False
+Noon,snf,True,False,Latn,Latn,True,False
+Soninke,snk,True,False,Latn,Latn,True,False
+Somali,so,True,True,Latn,Latn,True,False
+Somali,so,True,True,Arab,Arab,False,True
+Somali,so,True,True,Osma,Osma,False,False
+Southern Thai,sou,True,False,Thai,Thai,True,False
+Albanian,sq,True,True,Latn,Latn,True,False
+Albanian,sq,True,True,Elba,Elba,False,False
+Serbian,sr,True,True,Cyrl,Cyrl,True,False
+Serbian,sr,True,True,Latn,Latn,True,False
+Sora,srb,True,False,Latn,Latn,True,False
+Sora,srb,True,False,Sora,Sora,False,False
+Sranan Tongo,srn,True,False,Latn,Latn,True,False
+Serer,srr,True,False,Latn,Latn,True,False
+Sirmauri,srx,True,False,Deva,Deva,True,False
+Swati,ss,True,True,Latn,Latn,True,False
+Saho,ssy,True,False,Latn,Latn,True,False
+Southern Sotho,st,True,True,Latn,Latn,True,False
+Saterland Frisian,stq,True,False,Latn,Latn,True,False
+Samtao,stu,True,False,Lana,Lana,True,False
+Samtao,stu,True,False,Tale,Tale,False,False
+Sundanese,su,True,False,Latn,Latn,True,False
+Sundanese,su,True,False,Sund,Sund,False,False
+Sukuma,suk,True,False,Latn,Latn,True,False
+Susu,sus,True,False,Latn,Latn,True,False
+Susu,sus,True,False,Arab,Arab,False,True
+Sunwar,suz,True,False,Deva,Deva,True,False
+Sunwar,suz,True,False,Sunu,Sunu,False,False
+Swedish,sv,True,True,Latn,Latn,True,False
+Swahili,sw,True,True,Latn,Latn,True,False
+Comorian,swb,True,False,Arab,Arab,True,True
+Comorian,swb,True,False,Latn,Latn,False,False
+Swabian,swg,True,False,Latn,Latn,True,False
+Shekhawati,swv,True,False,Deva,Deva,True,False
+Sangir,sxn,True,False,Latn,Latn,True,False
+Seki,syi,True,False,Latn,Latn,True,False
+Sylheti,syl,True,False,Beng,Beng,True,False
+Sylheti,syl,True,False,Sylo,Sylo,False,False
+Syriac,syr,True,False,Syrc,Syrc,True,True
+Silesian,szl,True,False,Latn,Latn,True,False
+Tamil,ta,True,True,Taml,Taml,True,False
+Tabassaran,tab,True,False,Cyrl,Cyrl,True,False
+Eastern Tamang,taj,True,False,Deva,Deva,True,False
+Eastern Tamang,taj,True,False,Tibt,Tibt,False,False
+Tagbanwa,tbw,True,False,Latn,Latn,True,False
+Tagbanwa,tbw,True,False,Tagb,Tagb,False,False
+Tulu,tcy,True,False,Knda,Knda,True,False
+Tai Nüa,tdd,True,False,Tale,Tale,True,False
+Western Tamang,tdg,True,False,Deva,Deva,True,False
+Western Tamang,tdg,True,False,Tibt,Tibt,False,False
+Thulung,tdh,True,False,Deva,Deva,True,False
+Telugu,te,True,False,Telu,Telu,True,False
+Timne,tem,True,False,Latn,Latn,True,False
+Teso,teo,True,False,Latn,Latn,True,False
+Tereno,ter,True,False,Latn,Latn,True,False
+Tetum,tet,True,True,Latn,Latn,True,False
+Tajik,tg,True,True,Cyrl,Cyrl,True,False
+Tajik,tg,True,True,Arab,Arab,True,True
+Tajik,tg,True,True,Latn,Latn,True,False
+Thai,th,True,True,Thai,Thai,True,False
+Dangaura Tharu,thl,True,False,Deva,Deva,True,False
+Kochila Tharu,thq,True,False,Deva,Deva,True,False
+Rana Tharu,thr,True,False,Deva,Deva,True,False
+Tigrinya,ti,True,True,Ethi,Ethi,True,False
+Tigre,tig,True,False,Ethi,Ethi,True,False
+Tiv,tiv,True,False,Latn,Latn,True,False
+Turkmen,tk,True,True,Latn,Latn,True,False
+Turkmen,tk,True,True,Arab,Arab,True,True
+Turkmen,tk,True,True,Cyrl,Cyrl,True,False
+Tokelauan,tkl,True,True,Latn,Latn,True,False
+Tsakhur,tkr,True,False,Latn,Latn,True,False
+Tsakhur,tkr,True,False,Cyrl,Cyrl,False,False
+Kathoriya Tharu,tkt,True,False,Deva,Deva,True,False
+Tlingit,tli,True,False,Latn,Latn,True,False
+Talysh,tly,True,False,Latn,Latn,True,False
+Talysh,tly,True,False,Arab,Arab,False,True
+Talysh,tly,True,False,Cyrl,Cyrl,False,False
+Tamashek,tmh,True,False,Latn,Latn,True,False
+Tswana,tn,True,True,Latn,Latn,True,False
+Ménik,tnr,True,False,Latn,Latn,True,False
+Tongan,to,True,True,Latn,Latn,True,False
+Nyasa Tonga,tog,True,False,Latn,Latn,True,False
+Toki Pona,tok,True,False,Latn,Latn,True,False
+Tok Pisin,tpi,True,True,Latn,Latn,True,False
+Turkish,tr,True,True,Latn,Latn,True,False
+Turkish,tr,True,True,Arab,Arab,False,True
+Turoyo,tru,True,False,Latn,Latn,True,False
+Turoyo,tru,True,False,Syrc,Syrc,False,True
+Taroko,trv,True,False,Latn,Latn,True,False
+Torwali,trw,True,False,Arab,Arab,True,True
+Tsonga,ts,True,False,Latn,Latn,True,False
+Tsakonian,tsd,True,False,Grek,Grek,True,False
+Tausug,tsg,True,False,Latn,Latn,True,False
+Tsimshian,tsi,True,False,Latn,Latn,True,False
+Tshangla,tsj,True,False,Tibt,Tibt,True,False
+Tatar,tt,True,False,Cyrl,Cyrl,True,False
+Tooro,ttj,True,False,Latn,Latn,True,False
+Northeastern Thai,tts,True,False,Thai,Thai,True,False
+Muslim Tat,ttt,True,False,Latn,Latn,True,False
+Muslim Tat,ttt,True,False,Arab,Arab,False,True
+Muslim Tat,ttt,True,False,Cyrl,Cyrl,False,False
+Tumbuka,tum,True,False,Latn,Latn,True,False
+Tuvalu,tvl,True,True,Latn,Latn,True,False
+Tasawaq,twq,True,False,Latn,Latn,True,False
+Tahitian,ty,True,True,Latn,Latn,True,False
+Tuvinian,tyv,True,False,Cyrl,Cyrl,True,False
+Central Atlas Tamazight,tzm,True,True,Latn,Latn,True,False
+Central Atlas Tamazight,tzm,True,True,Tfng,Tfng,True,True
+Udihe,ude,True,False,Cyrl,Cyrl,True,False
+Udmurt,udm,True,False,Cyrl,Cyrl,True,False
+Udmurt,udm,True,False,Latn,Latn,False,False
+Uyghur,ug,True,False,Arab,Arab,True,True
+Uyghur,ug,True,False,Cyrl,Cyrl,True,False
+Uyghur,ug,True,False,Latn,Latn,False,False
+Ugaritic,uga,False,False,Ugar,Ugar,False,False
+Ukrainian,uk,True,True,Cyrl,Cyrl,True,False
+Ulithian,uli,True,False,Latn,Latn,True,False
+Umbundu,umb,True,False,Latn,Latn,True,False
+Mundari,unr,True,False,Beng,Beng,True,False
+Mundari,unr,True,False,Deva,Deva,True,False
+Munda,unx,True,False,Beng,Beng,True,False
+Munda,unx,True,False,Deva,Deva,True,False
+Urdu,ur,True,True,Arab,Arab,True,True
+Uzbek,uz,True,True,Latn,Latn,True,False
+Uzbek,uz,True,True,Cyrl,Cyrl,True,False
+Uzbek,uz,True,True,Arab,Arab,True,True
+Vai,vai,True,False,Vaii,Vaii,True,False
+Vai,vai,True,False,Latn,Latn,True,False
+Venda,ve,True,False,Latn,Latn,True,False
+Venetian,vec,True,False,Latn,Latn,True,False
+Veps,vep,True,False,Latn,Latn,True,False
+Vietnamese,vi,True,True,Latn,Latn,True,False
+Vietnamese,vi,True,True,Hani,Hani,False,False
+Virgin Islands Creole English,vic,True,False,Latn,Latn,True,False
+West Flemish,vls,True,False,Latn,Latn,True,False
+Main-Franconian,vmf,True,False,Latn,Latn,True,False
+Makhuwa,vmw,True,False,Latn,Latn,True,False
+Volapük,vo,True,False,Latn,Latn,True,False
+Votic,vot,True,False,Latn,Latn,True,False
+Võro,vro,True,False,Latn,Latn,True,False
+Vunjo,vun,True,False,Latn,Latn,True,False
+Walloon,wa,True,False,Latn,Latn,True,False
+Walser,wae,True,False,Latn,Latn,True,False
+Wolaytta,wal,True,False,Ethi,Ethi,True,False
+Waray,war,True,False,Latn,Latn,True,False
+Washo,was,True,False,Latn,Latn,True,False
+Warlpiri,wbp,True,False,Latn,Latn,True,False
+Waddar,wbq,True,False,Telu,Telu,True,False
+Wagdi,wbr,True,False,Deva,Deva,True,False
+Wallisian,wls,True,False,Latn,Latn,True,False
+Ndzwani Comorian,wni,True,True,Arab,Arab,True,True
+Wolof,wo,True,True,Latn,Latn,True,False
+Wolof,wo,True,True,Arab,Arab,False,True
+Mewati,wtm,True,False,Deva,Deva,True,False
+Wu Chinese,wuu,True,False,Hans,Hans,True,False
+Kalmyk,xal,True,False,Cyrl,Cyrl,True,False
+Xavánte,xav,True,False,Latn,Latn,True,False
+Carian,xcr,False,False,Cari,Cari,False,False
+Xhosa,xh,True,False,Latn,Latn,True,False
+Lycian,xlc,False,False,Lyci,Lyci,False,False
+Lydian,xld,False,False,Lydi,Lydi,False,True
+Mingrelian,xmf,True,False,Geor,Geor,True,False
+Manichaean Middle Persian,xmn,False,False,Mani,Mani,False,True
+Meroitic,xmr,False,False,Merc,Merc,False,True
+Ancient North Arabian,xna,False,False,Narb,Narb,False,True
+Kangri,xnr,True,False,Deva,Deva,True,False
+Soga,xog,True,False,Latn,Latn,True,False
+Parthian,xpr,False,False,Prti,Prti,False,True
+Sabaean,xsa,False,False,Sarb,Sarb,False,True
+Sherpa,xsr,True,False,Deva,Deva,True,False
+Umbrian,xum,True,False,Latn,Latn,False,False
+Umbrian,xum,True,False,Ital,Ital,False,True
+Yao,yao,True,False,Latn,Latn,True,False
+Yapese,yap,True,False,Latn,Latn,True,False
+Yangben,yav,True,False,Latn,Latn,True,False
+Yemba,ybb,True,False,Latn,Latn,True,False
+Yiddish,yi,True,False,Hebr,Hebr,True,True
+Yoruba,yo,True,True,Latn,Latn,True,False
+Nenets,yrk,True,False,Cyrl,Cyrl,True,False
+Nheengatu,yrl,True,False,Latn,Latn,True,False
+Yucateco,yua,True,False,Latn,Latn,True,False
+Cantonese,yue,True,True,Hant,Hant,True,False
+Cantonese,yue,True,True,Hans,Hans,False,False
+Zhuang,za,True,False,Latn,Latn,True,False
+Zhuang,za,True,False,Hans,Hans,False,False
+Zaghawa,zag,True,False,Latn,Latn,True,False
+Zapotec,zap,True,False,Latn,Latn,True,False
+Ngazidja Comorian,zdj,True,True,Arab,Arab,True,True
+Zeelandic,zea,True,False,Latn,Latn,True,False
+Zenaga,zen,True,False,Tfng,Tfng,True,True
+Standard Moroccan Tamazight,zgh,True,False,Tfng,Tfng,True,True
+Chinese,zh,True,True,Hans,Hans,True,False
+Chinese,zh,True,True,Hant,Hant,False,False
+Chinese,zh,True,True,Bopo,Bopo,False,False
+Chinese,zh,True,True,Latn,Latn,False,False
+Chinese,zh,True,True,Phag,Phag,False,False
+Negeri Sembilan Malay,zmi,True,False,Latn,Latn,True,False
+Zulu,zu,True,False,Latn,Latn,True,False
+Zuni,zun,True,False,Latn,Latn,True,False
+Zaza,zza,True,False,Latn,Latn,True,False

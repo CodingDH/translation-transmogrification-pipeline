@@ -1,4 +1,11 @@
 .DS_Store
+**/.DS_Store
 .ipynb_checkpoints/
 *.pyc
 __pycache__/
+notebooks/eda_cache/
+confidence_scores.csv
+notebooks/older_notebooks/
+!notebooks/older_notebooks/03_within_variant_confidence.ipynb
+temp/
+datasets/metadata_files/cldr-cache/

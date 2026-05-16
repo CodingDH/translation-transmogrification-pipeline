@@ -1,56 +1,85 @@
 """
-build_language_codes.py
-========================
+generate_language_codes.py
+===========================
 Builds a comprehensive, defensible language codes dataset by combining
-four sources in a single pipeline:
+five authoritative sources in a single pipeline:
 
-1. The Unicode Common Locale Data Repository (CLDR) — Languages and Scripts ~814 language codes; authoritative for scripts, modern-use flag, official-language status, and directionality. Source: https://www.unicode.org/cldr/charts/45/supplemental/languages_and_scripts.html
+1. Unicode CLDR (version 48.2, via npm cldr-core + cldr-localenames-full)
+   ~802 language codes. Authoritative for scripts, directionality,
+   modern-use status, and official-language status. Downloaded from the
+   npm registry and cached locally — no HTML scraping.
+   Cite: Unicode CLDR 48.2.0, https://github.com/unicode-org/cldr-json
 
-2. LOC ISO 639-2 — individual language codes only (no group codes) ~190 individual language codes; Set 1 (2-letter) to Set 2 (3-letter) mapping Source: https://www.loc.gov/standards/iso639-2/php/code_list.php
+2. LOC ISO 639-2 — individual language codes only (no group codes)
+   ~190 codes; provides the 2-letter ↔ 3-letter mapping.
+   Source: https://www.loc.gov/standards/iso639-2/php/code_list.php
 
-3. Wikimedia language codes — languages with active Wikipedia projects ~268 codes; flags community digital presence beyond ISO standards Source: https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code
+3. Wikimedia language codes — languages with active Wikipedia projects
+   ~268 codes; proxy for community digital presence beyond ISO standards.
+   Source: https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code
 
-4. ISO 639-5 — language family and group codes 115 codes with full hierarchy; used to assign every language to its genetic family for downstream grouping. Source: https://en.wikipedia.org/wiki/ISO_639-5
+4. CLDR v45 supplement — 23 ISO 639-3 languages present in CLDR 45 but
+   dropped in CLDR 48.2 because their communities stopped submitting locale
+   data (fonts, date formats, etc.) required for software internationalisation.
+   That criterion does not apply to this pipeline (scholarly translation).
+   All 23 are valid, living ISO 639-3 languages retained here to preserve
+   coverage. Marked sources='cldr_v45'. See CLDR_V45_SUPPLEMENT constant.
+
+5. SIL ISO 639-3 name table — English reference names for the ~190 CLDR
+   codes absent from CLDR's en/languages.json. CLDR's English locale-names
+   file covers ~693 of its ~802 codes; the rest fell through to code-as-name
+   via en_names.get(code, code). This step patches those rows using SIL's
+   ~7,900-code reference table. Two codes not in SIL (kro, tokipona) are
+   filled from the _SIL_NAME_OVERRIDES constant. The table is downloaded
+   once and cached alongside the CLDR npm packages.
+
+Family hierarchy (Step 4) also comes from CLDR's languageGroups.json,
+which lives in the same cldr-core npm package fetched in Step 1.
 
 Output files
 ------------
   language_codes_comprehensive.csv
-    One row per language code. Columns:
-      language_code       primary code (ISO 639-1 two-letter where available)
-      language_name       English name
-      iso639_1            two-letter code (if exists)
-      iso639_2_t          three-letter terminological code (if exists)
-      iso639_2_b          three-letter bibliographic code (if different)
-      scripts             pipe-separated list of scripts (e.g. "Arab|Cyrl")
-      primary_script      most common/modern script name
-      primary_script_code ISO 15924 four-letter script code
-      directionality           'rtl' or 'ltr' (authoritative; derived from CLDR primary script + FORCE_LTR overrides)
-      directionality_wikimedia 'rtl', 'ltr', or '' (Wikimedia community value; useful for spotting digraphia cases like Serbian or Uzbek)
+    One row per language code. Key columns:
+      language_code            primary code (ISO 639-1 two-letter where available)
+      language_name            English name (from CLDR)
+      iso639_1                 two-letter code (if exists)
+      iso639_2_t               three-letter terminological code (if exists)
+      iso639_2_b               three-letter bibliographic code (if different)
+      scripts                  pipe-separated script list (e.g. "Arab|Cyrl")
+      primary_script           most-used modern script name
+      primary_script_code      ISO 15924 four-letter script code
+      directionality           'rtl' or 'ltr' (derived from CLDR primary script)
+      directionality_wikimedia 'rtl', 'ltr', or '' (Wikimedia value; useful for digraphia cases)
       modern_language          True/False (False = ancient, extinct, constructed)
-      is_official              True if official in at least one country (CLDR)
-      in_iso639_1              True if has ISO 639-1 two-letter code
-      in_iso639_2              True if in ISO 639-2 individual language list
-      in_wikimedia             True if has active Wikipedia project
-      iso639_5_direct          direct ISO 639-5 group code (e.g. 'gem' for German)
-      iso639_5_family          top-level ISO 639-5 family code (e.g. 'ine')
+      is_official              True if official in at least one country (CLDR territoryInfo)
+      in_iso639_1              True if has an ISO 639-1 two-letter code
+      in_iso639_2              True if in LOC ISO 639-2 individual language list
+      in_wikimedia             True if has an active Wikipedia project
+      iso639_5_direct          direct CLDR/ISO 639-5 group code (e.g. 'gem' for German)
+      iso639_5_family          top-level family code (e.g. 'ine')
       family_name              English name of top-level family
       subfamily_name           English name of direct group
-      sources                  pipe-separated list of contributing sources
+      cldr_version             provenance tag for the CLDR source:
+                               '48.2.0' (or whichever --cldr-version was passed) for rows
+                               from the live CLDR JSON fetch; '45' for the 23 CLDR v45
+                               supplement codes; '' for Wikimedia-only and LOC-only rows
+                               that carry no CLDR data at all.
+      sources                  pipe-separated contributing sources
 
   language_scripts_long.csv
-    One row per (language x script) pair. Useful for script-switching analysis.
+    One row per (language × script) pair. Useful for script-switching analysis.
 
   iso_639_set5.csv
-    115 ISO 639-5 family/group codes with hierarchy and parent info.
+    CLDR language group codes with parent and depth info.
 
 Usage
 -----
-  python build_language_codes.py
-  python build_language_codes.py \\
-      --cldr-file      path/to/Languages_and_Scripts.html \\
-      --loc-file       path/to/loc_iso639_2.html \\
+  python generate_language_codes.py
+  python generate_language_codes.py \\
+      --cldr-version   48.2.0 \\
+      --cldr-cache-dir /path/to/cache \\
+      --loc-file       https://www.loc.gov/standards/iso639-2/php/code_list.php \\
       --wikimedia-file path/to/wikimedia_codes.csv \\
-      --set5-file      path/to/ISO_639-5_-_Wikipedia.html \\
       --output-dir     path/to/output/
 """
 
@@ -69,6 +98,10 @@ console = Console()
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from scripts.utils import get_data_directory_path
+from scripts.experiment.parse_cldr_json import (
+    parse_cldr_json as _parse_cldr_json,
+    parse_cldr_family_groups as _parse_cldr_family_groups,
+)
 
 # ── Shared user-agent (Wikimedia and Wikipedia require a real UA) ─────────────
 def _ua():
@@ -88,22 +121,6 @@ RTL_SCRIPT_CODES = {
     'Cprt', 'Linb', 'Sogd',
 }
 
-# Languages whose CLDR primary script is listed as Arabic for historical reasons but whose modern standard orthography is Latin or Cyrillic. CLDR lists multiple scripts per language sorted by prevalence across all varieties; for these languages the first script reflects historical usage, not current practice. Override to ltr after script-based assignment. Sources: Ethnologue, Wikipedia orthography articles, ISO 639-5 registry.
-FORCE_LTR = {
-    'tr',   # Turkish     — Arabic script until 1928, Latin since
-    'uz',   # Uzbek       — Arabic/Cyrillic historically, Latin in Uzbekistan since 1993
-    'az',   # Azerbaijani — Arabic/Cyrillic historically, Latin in Azerbaijan since 1991
-    'kk',   # Kazakh      — Arabic/Cyrillic historically, Latin transition ongoing
-    'ky',   # Kyrgyz      — Cyrillic primary in Kyrgyzstan; Arabic only in diaspora
-    'tk',   # Turkmen     — Latin since 1993
-    'id',   # Indonesian  — Arabic script (Jawi) historical, Latin overwhelmingly primary
-    'ms',   # Malay       — same as Indonesian (Jawi is secondary)
-    'ha',   # Hausa       — Arabic script (Ajami) historical, Latin primary
-    'so',   # Somali      — Arabic script historical, Latin official since 1972
-    'ku',   # Kurdish     — Kurmanji (dominant Wikimedia variety) uses Latin
-    'wo',   # Wolof       — Arabic script (Wolofal) minority, Latin primary
-}
-
 # ISO 639-2 B-code to T-code mapping (20 dual-code languages)
 BCODE_TO_TCODE = {
     'alb': 'sqi', 'arm': 'hye', 'baq': 'eus', 'bur': 'mya',
@@ -119,6 +136,18 @@ WIKIMEDIA_JUNK = {
     'closed-zh-tw', 'simple',
 }
 
+# A real language code starts with a letter and contains only letters, digits,
+# hyphens, and underscores (max 15 chars). This rejects Wikimedia section-header
+# strings like "see also: test languages at the Wikimedia Incubator" that slip
+# through the WIKIMEDIA_JUNK set-membership filter, and also rejects float NaN.
+_VALID_CODE_RE = re.compile(r'^[a-zA-Z][a-zA-Z0-9_-]{1,14}$')
+
+
+def _is_valid_language_code(code) -> bool:
+    if not isinstance(code, str):
+        return False
+    return bool(_VALID_CODE_RE.match(code))
+
 # ISO 639-2 special-purpose codes that are not real languages and should be
 # excluded from the translation target set entirely.
 NON_LANGUAGE_CODES = {
@@ -126,6 +155,18 @@ NON_LANGUAGE_CODES = {
     'zxx',  # No linguistic content (e.g. music, silence)
     'mis',  # Uncoded languages (catch-all)
     'mul',  # Multiple languages
+}
+
+# SIL ISO 639-3 reference name table — used by enrich_language_names_from_sil()
+# to fill in the ~190 CLDR codes that have no entry in CLDR's en/languages.json.
+_SIL_URL = 'https://iso639-3.sil.org/sites/iso639-3/files/downloads/iso-639-3.tab'
+
+# Hardcoded names for codes not covered by SIL's ISO 639-3 registry:
+#   kro      — CLDR group code for Kru languages (ISO 639-5); no SIL ISO 639-3 entry
+#   tokipona — constructed language (Toki Pona); never received an ISO 639-3 code
+_SIL_NAME_OVERRIDES = {
+    'kro':      'Kru languages',
+    'tokipona': 'Toki Pona',
 }
 
 # Heuristic keywords for LOC group/collective codes in ISO 639-2
@@ -168,7 +209,7 @@ MANUAL_LANG_TO_SET5 = {
     'sk': 'sla', 'slk': 'sla', 'sl': 'sla', 'slv': 'sla',
     'sr': 'sla', 'srp': 'sla', 'uk': 'sla', 'ukr': 'sla',
     # Wikimedia Slavic
-    'be-x-old': 'sla', 'csb': 'sla', 'cu': 'sla',
+    'be-x-old': 'sla', 'crn': 'sla', 'csb': 'sla', 'cu': 'sla',
     'dsb': 'sla', 'sh': 'sla',
     # Indo-European > Baltic
     'lt': 'bat', 'lit': 'bat', 'lv': 'bat', 'lav': 'bat',
@@ -304,103 +345,103 @@ MANUAL_LANG_TO_SET5 = {
     'pap': 'crp', 'pih': 'crp', 'tpi': 'crp',
     # Sign languages
     'sgn': 'sgn',
+    # CLDR-only codes not covered by ISO 639-1/2/Wikimedia lookups above
+    # Semitic (Afro-Asiatic)
+    'apd': 'sem',   # Sudanese Spoken Arabic
+    'mey': 'sem',   # Hassaniyya (Saharan Arabic variety)
+    # Berber (Afro-Asiatic)
+    'grr': 'ber',   # Taznatit (Algerian Berber)
+    'mzb': 'ber',   # Tumzabt (Mzab Berber, Algeria)
+    # Niger-Kordofanian
+    'bjt': 'nic',   # Balanta-Ganja (Atlantic-Congo, Senegal/Guinea-Bissau)
+    'bsc': 'nic',   # Bassari (Atlantic-Congo, Senegal/Guinea-Bissau)
+    'bsq': 'nic',   # Basa (Cameroon, Niger-Congo)
+    'knf': 'nic',   # Mankanya (Atlantic-Congo, Guinea-Bissau)
+    'mfv': 'nic',   # Mandjak (Atlantic-Congo, Guinea-Bissau)
+    'snf': 'nic',   # Noon (Senegambian, Senegal)
+    'tnr': 'bnt',   # Ménik/Tonga (Bantu, Zambia)
+    # Indo-European — Romance
+    'lld': 'roa',   # Ladin (Romance, spoken in South Tyrol)
+    # Indo-European — Germanic
+    'mhn': 'gem',   # Mòcheno (Germanic, spoken in Trentino)
+    # Indo-European — Indic
+    'knn': 'inc',   # Konkani (Indo-Aryan, India)
+    # Indo-European — Greek
+    'ecy': 'grk',   # Cypriot Greek (extinct variety)
+    'gmy': 'grk',   # Mycenaean Greek (ancient)
+    # Central American Indian
+    'ccr': 'cai',   # Cacaopera (Misumalpan, El Salvador)
+    'len': 'cai',   # Lenca (Honduras/El Salvador; sometimes treated as isolate)
+    # Uto-Aztecan (North American)
+    'ppl': 'azc',   # Pipil / Nawat (Uto-Aztecan, El Salvador)
+    # Hmong-Mien
+    'mww': 'hmx',   # Hmong Daw / White Hmong
+    # Sino-Tibetan
+    'nan': 'zhx',   # Min Nan Chinese / Taiwanese
+    'stu': 'tbq',   # Samtao (Tibeto-Burman, Myanmar)
+    'suz': 'tbq',   # Sunwar (Tibeto-Burman, Nepal)
+    # CLDR v45 supplement — dropped from CLDR 48.2 for administrative reasons only
+    'ase': 'sgn',   # American Sign Language
+    'cwd': 'nai',   # Woods Cree
+    'dzg': 'ssa',   # Dazaga (Nilo-Saharan)
+    'gom': 'inc',   # Goan Konkani (Indo-Aryan)
+    'hax': 'isolate',  # Southern Haida (language isolate)
+    'hdn': 'isolate',  # Northern Haida (language isolate)
+    'ike': 'esx',   # Eastern Canadian Inuktitut
+    'kbl': 'ssa',   # Kanembu (Nilo-Saharan)
+    'lou': 'crp',   # Louisiana Creole
+    'lsm': 'bnt',   # Saamia (Bantu, Uganda)
+    'mde': 'ssa',   # Maba (Nilo-Saharan)
+    'mye': 'bnt',   # Myene (Bantu, Gabon)
+    'ojb': 'nai',   # Northwestern Ojibwa
+    'ojc': 'nai',   # Central Ojibwa
+    'ojg': 'nai',   # Eastern Ojibwa
+    'sba': 'ssa',   # Ngambay (Nilo-Saharan)
+    'shu': 'sem',   # Chadian Arabic (Semitic, Arabic script)
+    'slh': 'nai',   # Southern Lushootseed
+    'str': 'nai',   # Straits Salish
+    'tce': 'nai',   # Southern Tutchone
+    'tgx': 'nai',   # Tagish
+    'tht': 'nai',   # Tahltan
+    'ttm': 'nai',   # Northern Tutchone
 }
 
-
-# ══════════════════════════════════════════════════════════════════════════════
-# PARSER 1 — Unicode CLDR: Languages and Scripts
-# ══════════════════════════════════════════════════════════════════════════════
-
-def parse_cldr_html(source: str) -> tuple:
-    """
-    Parses the CLDR Languages and Scripts HTML page. Returns (lang_df, long_df) where lang_df is one row per language and long_df is one row per (language x script) pair.
-    
-    CLDR is the primary source for language codes, and the other sources are merged in as supplements. CLDR is authoritative for script assignments, modern-use flag, official-language status, and directionality. The parser is designed to be robust to changes in the HTML structure; it identifies the relevant table by looking for the one with the most rows, and it handles both 7-column rows (new language) and 2- or 3-column rows (additional scripts for the same language).
-    
-    Parameters:
-    -----------
-    source: str
-		Local file path or live URL of the CLDR Languages and Scripts HTML page.
-    
-    Returns:
-    --------
-    Tuple of (lang_df, long_df):
-    - lang_df: DataFrame with one row per language code, containing aggregated information about scripts, modern-use status, official status, and directionality.
-    - long_df: DataFrame with one row per (language x script) pair, containing detailed information about each script used for each language.
-    """
-    is_file = os.path.exists(source)
-    if is_file:
-        with open(source, 'r', encoding='utf-8') as f:
-            content = f.read()
-        console.print(f"  Loaded CLDR file: {source}")
-    else:
-        resp = requests.get(source, headers=_ua(), timeout=20)
-        resp.raise_for_status()
-        content = resp.text
-        console.print(f"  Fetched CLDR URL: {source}")
-
-    soup = BeautifulSoup(content, 'html.parser')
-    table = max(soup.find_all('table'), key=lambda t: len(t.find_all('tr')))
-    rows  = table.find_all('tr')
-
-    long_records = []
-    current_lang = current_code = current_ml = current_p = None
-
-    for row in rows[1:]:
-        cells = [td.get_text(strip=True) for td in row.find_all(['td', 'th'])]
-        n = len(cells)
-        if n == 7:
-            current_lang, current_code = cells[0], cells[1]
-            current_ml,   current_p   = cells[2], cells[3]
-            script_name, script_code, script_modern = cells[4], cells[5], cells[6]
-        elif n == 3 and current_lang:
-            script_name, script_code, script_modern = cells[0], cells[1], cells[2]
-        elif n == 2 and current_lang:
-            script_name, script_code, script_modern = cells[0], cells[1], ''
-        else:
-            continue
-        if not current_code:
-            continue
-        long_records.append({
-            'language_name':  current_lang,
-            'language_code':  current_code,
-            'modern_language': current_ml != 'O',
-            'is_official':    current_p != 'N',
-            'script_name':    script_name,
-            'script_code':    script_code,
-            'script_modern':  script_modern != 'N',
-            'is_rtl':         script_code in RTL_SCRIPT_CODES,
-        })
-
-    long_df = pd.DataFrame(long_records)
-
-    def agg_language(grp):
-        modern_mask = grp['script_modern']
-        pidx = modern_mask.idxmax() if modern_mask.any() else grp.index[0]
-        return pd.Series({
-            'language_name':        grp['language_name'].iloc[0],
-            'modern_language':      grp['modern_language'].iloc[0],
-            'is_official':          grp['is_official'].iloc[0],
-            'scripts':              '|'.join(grp['script_name'].tolist()),
-            'script_codes':         '|'.join(grp['script_code'].tolist()),
-            'primary_script':       grp.loc[pidx, 'script_name'],
-            'primary_script_code':  grp.loc[pidx, 'script_code'],
-            'directionality':       'rtl' if grp['is_rtl'].any() else 'ltr',
-            'n_scripts':            len(grp),
-        })
-
-    lang_df = (long_df.groupby('language_code')
-               .apply(agg_language, include_groups=False)
-               .reset_index())
-
-    console.print(f"  CLDR: {len(lang_df)} codes | "
-        f"{lang_df['modern_language'].sum()} modern | "
-        f"{(lang_df['directionality']=='rtl').sum()} RTL")
-    return lang_df, long_df
+# 23 ISO 639-3 languages that were in CLDR 45 but dropped from CLDR 48.2 because their
+# communities stopped submitting Core locale data (font samples, date formats, etc.).
+# CLDR's removal criterion applies to software internationalisation, not scholarly
+# translation. All codes are valid living languages retained here for pipeline coverage.
+# Source: CLDR 45 language_codes_comprehensive.csv (git 7c9ad3c).
+# directionality is corrected where CLDR 45 had 'Zzzz' (Unknown Script): shu uses Arabic.
+CLDR_V45_SUPPLEMENT = [
+    # (code,  English name,                   directionality, modern, is_official)
+    ('ase', 'American Sign Language',           'ltr', True, True),
+    ('cwd', 'Woods Cree',                       'ltr', True, True),
+    ('dzg', 'Dazaga',                           'ltr', True, True),
+    ('gom', 'Goan Konkani',                     'ltr', True, False),
+    ('hax', 'Southern Haida',                   'ltr', True, True),
+    ('hdn', 'Northern Haida',                   'ltr', True, True),
+    ('ike', 'Eastern Canadian Inuktitut',       'ltr', True, True),
+    ('kbl', 'Kanembu',                          'ltr', True, True),
+    ('lou', 'Louisiana Creole',                 'ltr', True, True),
+    ('lsm', 'Saamia',                           'ltr', True, True),
+    ('mde', 'Maba',                             'ltr', True, True),
+    ('mye', 'Myene',                            'ltr', True, True),
+    ('ojb', 'Northwestern Ojibwa',              'ltr', True, True),
+    ('ojc', 'Central Ojibwa',                   'ltr', True, True),
+    ('ojg', 'Eastern Ojibwa',                   'ltr', True, True),
+    ('sba', 'Ngambay',                          'ltr', True, True),
+    ('shu', 'Chadian Arabic',                   'rtl', True, True),
+    ('slh', 'Southern Lushootseed',             'ltr', True, True),
+    ('str', 'Straits Salish',                   'ltr', True, True),
+    ('tce', 'Southern Tutchone',                'ltr', True, True),
+    ('tgx', 'Tagish',                           'ltr', True, True),
+    ('tht', 'Tahltan',                          'ltr', True, True),
+    ('ttm', 'Northern Tutchone',                'ltr', True, True),
+]
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PARSER 2 — LOC ISO 639-2
+# PARSER 1 — LOC ISO 639-2
 # ══════════════════════════════════════════════════════════════════════════════
 
 def parse_loc_html(source: str) -> pd.DataFrame:
@@ -496,10 +537,10 @@ def parse_wikimedia(source: str) -> pd.DataFrame:
     Returns:
     --------
     DataFrame with columns:
-        - language_code:            Wikimedia language code (usually ISO 639-1 or ISO 639-3)
-        - language_name:            English name of the language as listed by Wikimedia
+        - language_code: Wikimedia language code (usually ISO 639-1 or ISO 639-3)
+        - language_name: English name of the language as listed by Wikimedia
         - directionality_wikimedia: 'rtl' or 'ltr' normalised from Wikimedia's own value, or '' if unavailable
-        - local_name:               Local name of the language as listed by Wikimedia (if available)
+        - local_name: Local name of the language as listed by Wikimedia (if available)
     """
     is_file = os.path.exists(source) and source.endswith('.csv')
     if is_file:
@@ -519,7 +560,7 @@ def parse_wikimedia(source: str) -> pd.DataFrame:
 
     df['language_code'] = df['language_code'].astype(str).str.strip()
     df = df[~df['language_code'].str.lower().isin(WIKIMEDIA_JUNK)]
-    df = df[df['language_code'].str.len() >= 2]
+    df = df[df['language_code'].apply(_is_valid_language_code)]
     df = df.drop_duplicates(subset='language_code').reset_index(drop=True)
     # Normalise directionality to ltr/rtl lowercase if present
     if 'directionality' in df.columns:
@@ -538,79 +579,6 @@ def parse_wikimedia(source: str) -> pd.DataFrame:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# PARSER 4 — ISO 639-5 language families (Wikipedia)
-# ══════════════════════════════════════════════════════════════════════════════
-
-def parse_iso639_5(source: str) -> pd.DataFrame:
-    """
-    Parse ISO 639-5 Wikipedia table.
-    
-    ISO 639-5 is the primary source for language family/group codes, which are important for understanding the genealogical relationships between languages and for grouping languages that may not have individual codes. The parser is designed to be robust to changes in the HTML structure; it identifies the relevant table by looking for the one with the most rows, and it handles the hierarchical structure of the families based on the formatting of the first column. It also cleans up the codes and names by removing any footnote markers or extraneous whitespace.
-    
-    Parameters:
-	-----------
-	source: str
-		Local file path or live URL of the Wikipedia ISO 639-5 page.
-    
-    Returns:
-    --------
-    DataFrame with columns:
-	- iso639_5: ISO 639-5 three-letter code for the family/group
-	- iso639_2: ISO 639-2 code if the family has one (some families have a corresponding ISO 639-2 code, but many do not)
-	- family_name: English name of the family/group
-	- hierarchy: Original text from the first column showing the hierarchical structure (e.g. "Indo-European: Germanic: West Germanic")
-	- parent_code: ISO 639-5 code of the immediate parent family/group (empty for top-level families)
-	- depth: Integer representing the depth in the hierarchy (0 for top- level families, 1 for their immediate subgroups, etc.)
-	- notes: Any additional notes from the table (e.g. "language isolate" for families of one, or "contains only extinct languages" for defunct families)
-    """
-    is_file = os.path.exists(source)
-    if is_file:
-        with open(source, 'r', encoding='utf-8') as f:
-            content = f.read()
-        console.print(f"  Loaded ISO 639-5 file: {source}")
-    else:
-        resp = requests.get(source, headers=_ua(), timeout=20)
-        resp.raise_for_status()
-        content = resp.text
-        console.print(f"  Fetched ISO 639-5 URL: {source}")
-
-    soup  = BeautifulSoup(content, 'html.parser')
-    table = max(soup.find_all('table'), key=lambda t: len(t.find_all('tr')))
-    rows  = table.find_all('tr')
-
-    records = []
-    for row in rows[1:]:
-        cells = [td.get_text(strip=True) for td in row.find_all(['td', 'th'])]
-        if len(cells) < 4:
-            continue
-        code  = re.sub(r'\[.*?\]', '', cells[1].strip()).strip()
-        iso2  = re.sub(r'\[.*?\]', '', cells[2].strip()).strip()
-        if not re.match(r'^[a-z]{3}$', code):
-            continue
-        hier  = cells[0].strip()
-        parts = [p.strip() for p in hier.split(':') if p.strip()]
-        ancs  = [p for p in parts if p != code]
-        records.append({
-            'iso639_5':    code,
-            'iso639_2':    iso2 if re.match(r'^[a-z]{3}$', iso2) else '',
-            'family_name': cells[3].strip(),
-            'hierarchy':   hier,
-            'parent_code': ancs[-1] if ancs else '',
-            'depth':       len(ancs),
-            'notes':       cells[4].strip() if len(cells) > 4 else '',
-        })
-
-    df = (pd.DataFrame(records)
-          .drop_duplicates(subset='iso639_5')
-          .sort_values(['depth', 'iso639_5'])
-          .reset_index(drop=True))
-    console.print(f"  ISO 639-5: {len(df)} codes "
-        f"({(df['depth']==0).sum()} top-level, "
-        f"{(df['depth']>0).sum()} subgroups)")
-    return df
-
-
-# ══════════════════════════════════════════════════════════════════════════════
 # MERGE STEP 1 — Combine CLDR + LOC + Wikimedia into comprehensive language code DataFrame
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -618,19 +586,22 @@ def build_comprehensive(
     cldr_df: pd.DataFrame,
     loc_df:  pd.DataFrame,
     wiki_df: pd.DataFrame,
+    cldr_version: str = '',
 ) -> pd.DataFrame:
     """
-    Merge the three primary sources into one authoritative DataFrame.
-    
-    Parameters:
-    -----------
-    cldr_df: DataFrame from parse_cldr_html, with one row per language code and aggregated information about scripts, modern-use status, official status, and directionality.
-	loc_df: DataFrame from parse_loc_html, with ISO 639-1 and ISO 639-2 code mappings and language names.
-    wiki_df: DataFrame from parse_wikimedia, with Wikimedia language codes, names, and directionality_wikimedia.
+    Merge CLDR, LOC, and Wikimedia into one authoritative DataFrame.
 
-    Returns:
-    --------
-    Merged DataFrame with one row per language code, containing:
+    Parameters
+    ----------
+    cldr_df : DataFrame from _parse_cldr_json(), one row per language code with aggregated script, modern-use, official-status, and directionality data.
+    loc_df : DataFrame from parse_loc_html(), with ISO 639-1/2 code mappings.
+    wiki_df : DataFrame from parse_wikimedia(), with Wikimedia codes and directionality.
+    cldr_version : version string passed through to the output column (e.g. '48.2.0'). Used for provenance tracking; see cldr_version column notes below.
+
+    Returns
+    -------
+    Merged DataFrame with one row per language code. Key columns:
+
     - language_code:            primary code (CLDR, supplemented by LOC and Wikimedia)
     - language_name:            English name (CLDR preferred, then LOC, then Wikimedia)
     - modern_language:          True if marked modern in CLDR; True for LOC/Wikimedia-only codes
@@ -648,10 +619,14 @@ def build_comprehensive(
     - in_iso639_1:              True if the code has an ISO 639-1 two-letter form
     - in_iso639_2:              True if the code appears in the LOC ISO 639-2 individual language list
     - sources:                  pipe-separated contributing sources (e.g. 'cldr|wikimedia', 'wikimedia_only')
+    - cldr_version:             provenance tag — the cldr_version argument for CLDR rows; '' for
+                                Wikimedia-only and LOC-only rows (they carry no CLDR data).
+                                The CLDR v45 supplement added by add_cldr_v45_supplement() sets this to '45'.
     """
 
     merged = cldr_df.copy()
     merged['sources'] = 'cldr'
+    merged['cldr_version'] = cldr_version
 
     # Add Wikimedia-only codes (not in CLDR)
     wiki_only = wiki_df[~wiki_df['language_code'].isin(merged['language_code'])].copy()
@@ -764,8 +739,10 @@ def build_comprehensive(
     merged['directionality'] = merged['primary_script_code'].apply(
         lambda c: 'rtl' if str(c) in RTL_SCRIPT_CODES else 'ltr'
     )
-    # Override languages whose CLDR primary script is historical, not current
-    merged.loc[merged['language_code'].isin(FORCE_LTR), 'directionality'] = 'ltr'
+    # Wikimedia-only codes with no CLDR script data: trust Wikimedia's directionality
+    # (e.g. uz_AF — Afghan Uzbek uses Perso-Arabic script, correctly marked rtl by Wikimedia)
+    _no_script = merged['primary_script_code'].astype(str).isin({'', 'nan', 'None'})
+    merged.loc[_no_script & (merged['directionality_wikimedia'] == 'rtl'), 'directionality'] = 'rtl'
 
     final_cols = [
         'language_code', 'language_name', 'local_name',
@@ -775,7 +752,7 @@ def build_comprehensive(
         'directionality', 'directionality_wikimedia',
         'modern_language', 'is_official', 'n_scripts',
         'in_iso639_1', 'in_iso639_2', 'in_wikimedia',
-        'is_group_iso639_2', 'sources',
+        'is_group_iso639_2', 'sources', 'cldr_version',
     ]
     for col in final_cols:
         if col not in merged.columns:
@@ -783,8 +760,59 @@ def build_comprehensive(
     return (merged[final_cols]
             .drop_duplicates(subset='language_code')
             .loc[lambda d: ~d['language_code'].isin(NON_LANGUAGE_CODES)]
+            .loc[lambda d: d['language_code'].apply(_is_valid_language_code)]
             .sort_values('language_code')
             .reset_index(drop=True))
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# MERGE STEP 1b — Re-add CLDR v45 supplement codes
+# ══════════════════════════════════════════════════════════════════════════════
+
+def add_cldr_v45_supplement(comp_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Append the 23 ISO 639-3 languages from CLDR_V45_SUPPLEMENT that are not
+    already present in comp_df.
+
+    These codes were in CLDR 45 but removed from CLDR 48.2 when their locale
+    communities stopped submitting Core data. The removal reason is
+    administrative (no software localisation contributors), not linguistic.
+    They are retained here for scholarly translation coverage and marked
+    sources='cldr_v45' so downstream analysis can filter or annotate them.
+
+    If a future CLDR version re-adds a code, the CLDR 48.2 row takes
+    precedence — the supplement row is skipped for any code already present.
+    """
+    existing = set(comp_df['language_code'].astype(str))
+    new_rows = []
+    for code, name, direction, modern, official in CLDR_V45_SUPPLEMENT:
+        if code in existing:
+            continue
+        row = {c: '' for c in comp_df.columns}
+        row.update({
+            'language_code':   code,
+            'language_name':   name,
+            'directionality':  direction,
+            'modern_language': modern,
+            'is_official':     official,
+            'n_scripts':       0,
+            'in_iso639_1':     False,
+            'in_iso639_2':     False,
+            'in_wikimedia':    False,
+            'is_group_iso639_2': False,
+            'sources':         'cldr_v45',
+            'cldr_version':    '45',
+        })
+        new_rows.append(row)
+
+    if not new_rows:
+        return comp_df
+
+    result = (pd.concat([comp_df, pd.DataFrame(new_rows)], ignore_index=True)
+              .sort_values('language_code')
+              .reset_index(drop=True))
+    console.print(f"  Added {len(new_rows)} CLDR v45 supplement codes (sources='cldr_v45')")
+    return result
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -814,18 +842,18 @@ def add_family_info(comp_df: pd.DataFrame, set5_df: pd.DataFrame,
     and subfamily_name columns.
     """
     import json as _json
+    from scripts.experiment.parse_cldr_json import _ISO639_5_NAMES
 
     code_to_parent = dict(zip(set5_df['iso639_5'], set5_df['parent_code']))
     code_to_name   = dict(zip(set5_df['iso639_5'], set5_df['family_name']))
     code_to_depth  = dict(zip(set5_df['iso639_5'], set5_df['depth']))
 
-    # Correct known scraped-name quirks in the ISO 639-5 Wikipedia table
-    code_to_name.update({
-        'crp': 'Creoles and pidgins',   # scraped as "Creolesandpidgins" (missing spaces)
-        'sgn': 'Sign languages',         # scraped as lowercase "sign languages"
-        'jpx': 'Japanese languages',     # scraped as "Japanese (family)"
-        'euq': 'Basque languages',       # scraped as "Basque (family)"
-    })
+    # Supplement with names for ISO 639-5 codes used in MANUAL_LANG_TO_SET5 that
+    # are not in CLDR's languageGroups (e.g. hyx=Armenian, sqj=Albanian, grk=Greek).
+    # These appear as iso639_5_direct values but have no entry in set5_df, so
+    # top_family() returns the code itself and we need a name for it.
+    code_to_name.update({k: v for k, v in _ISO639_5_NAMES.items()
+                         if k not in code_to_name or not code_to_name[k]})
 
     # Load JSON fallback (codes not covered by MANUAL_LANG_TO_SET5)
     if fallback_json is None:
@@ -890,6 +918,63 @@ def add_family_info(comp_df: pd.DataFrame, set5_df: pd.DataFrame,
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# MERGE STEP 3 — Fill in missing English names from SIL ISO 639-3
+# ══════════════════════════════════════════════════════════════════════════════
+
+def _load_sil_names(cache_dir: str) -> dict:
+    """Download and cache the SIL ISO 639-3 name table. Returns {code: Ref_Name}."""
+    import io as _io
+    cache_path = os.path.join(cache_dir, 'iso-639-3.tab')
+    if not os.path.exists(cache_path):
+        os.makedirs(cache_dir, exist_ok=True)
+        console.print('  Fetching SIL ISO 639-3 name table...')
+        resp = requests.get(_SIL_URL, headers=_ua(), timeout=30)
+        resp.raise_for_status()
+        with open(cache_path, 'wb') as f:
+            f.write(resp.content)
+        console.print(f'  Cached to {cache_path}')
+    sil = pd.read_csv(cache_path, sep='\t', dtype=str, na_filter=False)
+    return dict(zip(sil['Id'].str.strip(), sil['Ref_Name'].str.strip()))
+
+
+def enrich_language_names_from_sil(comp_df: pd.DataFrame, cache_dir: str) -> pd.DataFrame:
+    """
+    Fill in English names for language codes that fell through CLDR's en/languages.json.
+
+    CLDR ships English names for ~693 of its ~802 language codes; the remaining
+    ~190 CLDR codes (plus a handful from other sources) fall through to the
+    ``en_names.get(code, code)`` default in parse_cldr_json.py, leaving the code
+    itself as the language_name. This function patches those rows using SIL's ISO
+    639-3 reference name table (~7,900 individual language codes), then applies
+    _SIL_NAME_OVERRIDES for the two codes not covered by SIL (kro, tokipona).
+    """
+    missing_mask = comp_df['language_name'] == comp_df['language_code']
+    n_missing = int(missing_mask.sum())
+    if n_missing == 0:
+        return comp_df
+
+    sil_names = _load_sil_names(cache_dir)
+    sil_names.update(_SIL_NAME_OVERRIDES)
+
+    comp_df = comp_df.copy()
+    filled = 0
+    for idx in comp_df[missing_mask].index:
+        code = comp_df.at[idx, 'language_code']
+        name = sil_names.get(code)
+        if name:
+            comp_df.at[idx, 'language_name'] = name
+            filled += 1
+
+    console.print(f'  SIL name enrichment: {filled}/{n_missing} missing names filled')
+    still_missing = comp_df.loc[
+        comp_df['language_name'] == comp_df['language_code'], 'language_code'
+    ].tolist()
+    if still_missing:
+        console.print(f'  Still unnamed: {still_missing}')
+    return comp_df
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # PUBLIC LOADER — used by the translation pipeline
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -914,15 +999,12 @@ def load_language_codes(output_dir: str = None) -> pd.DataFrame:
     csv_path = os.path.join(output_dir, 'language_codes_comprehensive.csv')
 
     if not os.path.exists(csv_path):
-        main(
-            cldr_source='https://www.unicode.org/cldr/charts/45/supplemental/languages_and_scripts.html',
-            loc_source='https://www.loc.gov/standards/iso639-2/php/code_list.php',
-            wikimedia_source='https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code',
-            set5_source='https://en.wikipedia.org/wiki/ISO_639-5',
-            output_dir=output_dir,
-        )
+        main(output_dir=output_dir)
 
-    df = pd.read_csv(csv_path)
+    # converters={'language_code': str} bypasses pandas' default NA detection for
+    # this column only, preserving 'nan' (Min Nan Chinese, ISO 639-3) as a string
+    # rather than converting it to float NaN.
+    df = pd.read_csv(csv_path, converters={'language_code': str})
 
     # Patch family_name gaps in existing CSVs without requiring a full regeneration.
     # add_family_info() handles this during generation; this covers pre-existing files.
@@ -973,6 +1055,23 @@ def load_language_codes(output_dir: str = None) -> pd.DataFrame:
             if fb.get('family_name'):
                 df.at[idx, 'family_name'] = fb['family_name']
 
+    # Patch language_name gaps in existing CSVs without requiring a full regeneration.
+    # enrich_language_names_from_sil() handles this during generation; this covers
+    # pre-existing files where CLDR's en/languages.json fallback left codes as names.
+    _name_missing = df['language_name'] == df['language_code']
+    if _name_missing.any():
+        try:
+            _sil_cache = os.path.join(output_dir, 'cldr-cache')
+            _sil = _load_sil_names(_sil_cache)
+            _sil.update(_SIL_NAME_OVERRIDES)
+            for _idx in df[_name_missing].index:
+                _code = df.at[_idx, 'language_code']
+                _name = _sil.get(_code)
+                if _name:
+                    df.at[_idx, 'language_name'] = _name
+        except Exception:
+            pass
+
     df = df.rename(columns={
         'language_name': 'English language name',
         'local_name': 'local language name',
@@ -980,20 +1079,33 @@ def load_language_codes(output_dir: str = None) -> pd.DataFrame:
     for col in ('local language name', 'comment', 'local or English Wikipedia article'):
         if col not in df.columns:
             df[col] = ''
-    return df.reset_index(drop=True)
+    # Drop null codes and junk strings that may have slipped into the CSV before
+    # this validation was added (e.g. "see also: test languages at the Wikimedia
+    # Incubator", or the string 'nan' read back as float NaN from Min Nan Chinese).
+    df = df[df['language_code'].apply(_is_valid_language_code)].reset_index(drop=True)
+    return df
 
 
 # ══════════════════════════════════════════════════════════════════════════════
 # MAIN
 # ══════════════════════════════════════════════════════════════════════════════
 
-def main(cldr_source, loc_source, wikimedia_source, set5_source, output_dir=None):
+def main(cldr_version='48.2.0', cldr_cache_dir=None,
+         loc_source=None, wikimedia_source=None,
+         output_dir=None):
     if output_dir is None:
         output_dir = os.path.join(get_data_directory_path(), 'metadata_files')
     os.makedirs(output_dir, exist_ok=True)
 
-    console.print("\n[bold cyan]Step 1/5 — Unicode CLDR: Languages and Scripts[/bold cyan]")
-    cldr_lang_df, cldr_long_df = parse_cldr_html(cldr_source)
+    if cldr_cache_dir is None:
+        cldr_cache_dir = os.path.join(output_dir, 'cldr-cache')
+    if loc_source is None:
+        loc_source = 'https://www.loc.gov/standards/iso639-2/php/code_list.php'
+    if wikimedia_source is None:
+        wikimedia_source = 'https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code'
+
+    console.print(f"\n[bold cyan]Step 1/5 — Unicode CLDR {cldr_version} (JSON)[/bold cyan]")
+    cldr_lang_df, cldr_long_df = _parse_cldr_json(cldr_version, cldr_cache_dir)
 
     console.print("\n[bold cyan]Step 2/5 — LOC ISO 639-2[/bold cyan]")
     loc_df = parse_loc_html(loc_source)
@@ -1001,12 +1113,34 @@ def main(cldr_source, loc_source, wikimedia_source, set5_source, output_dir=None
     console.print("\n[bold cyan]Step 3/5 — Wikimedia language codes[/bold cyan]")
     wiki_df = parse_wikimedia(wikimedia_source)
 
-    console.print("\n[bold cyan]Step 4/5 — ISO 639-5: Language families[/bold cyan]")
-    set5_df = parse_iso639_5(set5_source)
+    console.print(f"\n[bold cyan]Step 4/5 — CLDR language family groups {cldr_version}[/bold cyan]")
+    set5_df = _parse_cldr_family_groups(cldr_version, cldr_cache_dir)
 
-    console.print("\n[bold cyan]Step 5/5 — Merging and writing outputs[/bold cyan]")
-    comprehensive = build_comprehensive(cldr_lang_df, loc_df, wiki_df)
+    console.print("\n[bold cyan]Step 5/5 — SIL ISO 639-3 English name enrichment[/bold cyan]")
+
+    console.print("\n[bold cyan]Merging and writing outputs[/bold cyan]")
+    comprehensive = build_comprehensive(cldr_lang_df, loc_df, wiki_df, cldr_version=cldr_version)
+    comprehensive = add_cldr_v45_supplement(comprehensive)
     comprehensive = add_family_info(comprehensive, set5_df)
+    comprehensive = enrich_language_names_from_sil(comprehensive, cldr_cache_dir)
+
+    # Apply the same SIL name map to the long-form script table. parse_cldr_json()
+    # emits cldr_long_df before enrichment runs, so the same ~215 codes still have
+    # language_name=code there. Reuse the already-cached SIL table rather than
+    # re-downloading it.
+    _sil_map = _load_sil_names(cldr_cache_dir)
+    _sil_map.update(_SIL_NAME_OVERRIDES)
+    _long_missing = cldr_long_df['language_name'] == cldr_long_df['language_code']
+    if _long_missing.any():
+        cldr_long_df = cldr_long_df.copy()
+        cldr_long_df.loc[_long_missing, 'language_name'] = (
+            cldr_long_df.loc[_long_missing, 'language_code'].map(
+                lambda c: _sil_map.get(c, c)
+            )
+        )
+        console.print(f"  SIL name enrichment (long form): "
+                      f"{_long_missing.sum()} rows / "
+                      f"{cldr_long_df.loc[_long_missing, 'language_code'].nunique()} codes fixed")
 
     p_main = os.path.join(output_dir, 'language_codes_comprehensive.csv')
     comprehensive.to_csv(p_main, index=False)
@@ -1022,14 +1156,17 @@ def main(cldr_source, loc_source, wikimedia_source, set5_source, output_dir=None
 
     console.print("\n[bold]Summary[/bold]")
     c = comprehensive
+    name_col = 'language_name'
+    n_named = (c[name_col] != c['language_code']).sum()
     console.print(f"  Total language codes:         {len(c)}")
+    console.print(f"  With English name:            {n_named} / {len(c)}")
+    console.print(f"  With family assigned:         {(c['iso639_5_family']!='').sum()} / {len(c)}")
     console.print(f"  ISO 639-1 (2-letter):         {c['in_iso639_1'].sum()}")
     console.print(f"  ISO 639-2 (individual):       {c['in_iso639_2'].sum()}")
     console.print(f"  Wikimedia (active Wikipedia): {c['in_wikimedia'].sum()}")
     console.print(f"  Modern languages:             {c['modern_language'].sum()}")
     console.print(f"  Ancient/extinct/constructed:  {(~c['modern_language']).sum()}")
     console.print(f"  RTL languages:                {(c['directionality']=='rtl').sum()}")
-    console.print(f"  With family assigned:         {(c['iso639_5_family']!='').sum()}")
     console.print(f"\n  Top 10 families by code count:")
     top = (c[c['family_name'] != ''].groupby('family_name')
            .size().sort_values(ascending=False).head(10))
@@ -1037,29 +1174,38 @@ def main(cldr_source, loc_source, wikimedia_source, set5_source, output_dir=None
         console.print(f"    {name:<44} {n}")
 
     console.print("\n[bold green]Sources and rationale:[/bold green]")
-    console.print("  CLDR:      script data, modern-use flag, official status (widest coverage)")
-    console.print("  LOC:       ISO 639-1/2 code standardisation (Kamusella 2012 critique noted)")
-    console.print("  Wikimedia: proxy for digital community presence beyond ISO")
-    console.print("  ISO 639-5: linguistic family grouping for downstream analysis")
+    console.print("  CLDR 48.2 (JSON): script data, directionality, modern-use flag, official status, family hierarchy")
+    console.print("  LOC:              ISO 639-1/2 code standardisation (Kamusella 2012 critique noted)")
+    console.print("  Wikimedia:        proxy for digital community presence beyond ISO")
+    console.print("  CLDR v45 suppl.:  23 ISO 639-3 languages dropped from CLDR 48.2 for contributor reasons only")
+    console.print("  SIL ISO 639-3:    English reference names for ~190 CLDR codes absent from CLDR en/languages.json")
 
     return comprehensive, cldr_long_df, set5_df
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description="Build comprehensive language codes: CLDR + LOC + Wikimedia + ISO 639-5"
+        description="Build comprehensive language codes: CLDR (JSON) + LOC + Wikimedia"
     )
-    parser.add_argument('--cldr-file',
-        default='https://www.unicode.org/cldr/charts/45/supplemental/languages_and_scripts.html')
+    parser.add_argument('--cldr-version', default='48.2.0',
+        help='CLDR JSON version to fetch from npm (default: 48.2.0)')
+    parser.add_argument('--cldr-cache-dir', default=None,
+        help='Directory to cache downloaded CLDR npm packages '
+             '(default: <output-dir>/cldr-cache)')
     parser.add_argument('--loc-file',
-        default='https://www.loc.gov/standards/iso639-2/php/code_list.php')
+        default=None,
+        help='LOC ISO 639-2 URL or local HTML file '
+             '(default: https://www.loc.gov/standards/iso639-2/php/code_list.php)')
     parser.add_argument('--wikimedia-file',
-        default='https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code')
-    parser.add_argument('--set5-file',
-        default='https://en.wikipedia.org/wiki/ISO_639-5')
+        default=None,
+        help='Wikimedia language codes URL or local CSV '
+             '(default: https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code)')
     parser.add_argument('--output-dir',
         default=None,
         help='Output directory (default: metadata_files/ under DATA_DIR)')
     args = parser.parse_args()
-    main(args.cldr_file, args.loc_file, args.wikimedia_file,
-         args.set5_file, args.output_dir)
+    main(cldr_version=args.cldr_version,
+         cldr_cache_dir=args.cldr_cache_dir,
+         loc_source=args.loc_file,
+         wikimedia_source=args.wikimedia_file,
+         output_dir=args.output_dir)

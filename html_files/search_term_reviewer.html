@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Term Reviewer</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+  :root {
+    --bg:      #f8f5ff;
+    --surface: #ffffff;
+    --surface2:#f0ebff;
+    --border:  #d4c5f0;
+    --text:    #1a0f33;
+    --muted:   #7055a0;
+    --accent:  #e0006a;
+    --accent2: #8b00d4;
+    --accent3: #0099bb;
+    --TRANSMOGRIFICATION:      #e0006a;
+    --STRUCTURAL_ABSENCE:      #c07000;
+    --PRODUCTIVE_DISAGREEMENT: #007a50;
+    --MEASUREMENT_ARTEFACT:    #6b30cc;
+    --COMPLETE_CONSENSUS:      #007a9e;
+    --flag-color:  #c05000;
+    --flag-bg:     #fff4e0;
+    --flag-border: #f0a000;
+    --conf-color:  #006080;
+    --conf-bg:     #e0f4ff;
+    --conf-border: #0099bb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif; font-size: 14px; line-height: 1.5;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, #d4c5f018 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, #d4c5f010 40px);
+  }
+
+  /* ── Header ── */
+  header {
+    background: linear-gradient(135deg, #fff0f6 0%, #f5e8ff 100%);
+    border-bottom: 2px solid var(--accent);
+    box-shadow: 0 2px 12px #e0006a20;
+    padding: 14px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 100;
+  }
+  header h1 {
+    font-size: 18px; font-weight: 700; white-space: nowrap;
+    background: linear-gradient(90deg, #e0006a, #8b00d4, #0099bb);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .header-stats { display: flex; gap: 10px; flex-wrap: wrap; }
+  .stat-pill { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 3px 12px; font-size: 12px; color: var(--muted); }
+  .stat-pill span { color: var(--text); font-weight: 600; }
+  .stat-pill.flagged  { border-color: var(--flag-border); background: var(--flag-bg); color: var(--flag-color); }
+  .stat-pill.flagged span { color: var(--flag-color); }
+  .stat-pill.short    { border-color: #9b60ee; background: #f0ebff; color: #6b30cc; }
+  .stat-pill.short span { color: #6b30cc; }
+  .stat-pill.conflict { border-color: var(--conf-border); background: var(--conf-bg); color: var(--conf-color); }
+  .stat-pill.conflict span { color: var(--conf-color); }
+
+  /* ── Controls ── */
+  #controls {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 24px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+  }
+  .btn {
+    background: linear-gradient(135deg, #e0006a, #8b00d4);
+    color: #fff; border: none; border-radius: 6px; padding: 7px 14px;
+    font-size: 13px; cursor: pointer; font-weight: 600;
+    transition: opacity .15s; box-shadow: 0 2px 8px #e0006a30;
+  }
+  .btn:hover { opacity: .88; }
+  .btn-ghost {
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 6px;
+    padding: 7px 14px; font-size: 13px; cursor: pointer; font-weight: 600;
+  }
+  .btn-ghost:hover { border-color: var(--accent2); color: var(--accent2); }
+  .btn-warn {
+    background: linear-gradient(135deg, var(--flag-color), #a04000);
+    color: #fff; border: none; border-radius: 6px;
+    padding: 7px 14px; font-size: 13px; cursor: pointer; font-weight: 600;
+  }
+  .btn-warn:hover { opacity: .85; }
+  input[type=text], select {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--text); padding: 6px 10px; font-size: 13px;
+  }
+  input[type=text]:focus, select:focus { outline: none; border-color: var(--accent2); box-shadow: 0 0 0 3px #8b00d415; }
+  #search-input { width: 200px; }
+  .sep { width: 1px; height: 28px; background: var(--border); flex-shrink: 0; }
+
+  /* ── Upload area ── */
+  #upload-area {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; padding: 60px 24px; max-width: 520px; margin: 60px auto;
+    background: var(--surface); border: 2px dashed var(--border); border-radius: 16px;
+    text-align: center;
+  }
+  #upload-area h2 { font-size: 20px; font-weight: 700; }
+  #upload-area p  { font-size: 13px; color: var(--muted); }
+  #upload-area code { background: var(--surface2); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+
+  /* ── Table wrapper ── */
+  #table-wrap { overflow-x: auto; padding: 20px 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    background: var(--surface2); color: var(--muted); font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .06em;
+    padding: 9px 12px; text-align: left; border-bottom: 2px solid var(--border);
+    white-space: nowrap; cursor: pointer; user-select: none;
+  }
+  thead th:hover { color: var(--accent2); }
+  thead th[data-col].sorted-asc::after  { content: ' ▲'; font-size: 9px; }
+  thead th[data-col].sorted-desc::after { content: ' ▼'; font-size: 9px; }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
+  tbody tr:hover { background: var(--surface2); }
+  tbody tr.excluded { opacity: 0.4; }
+  tbody tr.flagged-row { background: var(--flag-bg); }
+  tbody tr.flagged-row:hover { background: #ffeac8; }
+  tbody tr.short-row { background: #f5f0ff; }
+  tbody tr.short-row:hover { background: #ede0ff; }
+  tbody tr.conflict-row { background: var(--conf-bg); }
+  tbody tr.conflict-row:hover { background: #c8eeff; }
+  td { padding: 9px 12px; vertical-align: middle; }
+
+  /* keep_term toggle */
+  .keep-toggle { appearance: none; width: 36px; height: 20px; border-radius: 10px; border: none; cursor: pointer; position: relative; background: #ccc; transition: background .2s; flex-shrink: 0; }
+  .keep-toggle:checked { background: #22bb66; }
+  .keep-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; background: white; border-radius: 50%; transition: left .2s; }
+  .keep-toggle:checked::after { left: 19px; }
+
+  /* term cell */
+  .term-cell { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .term-text { font-weight: 600; word-break: break-word; max-width: 260px; }
+  .flag-badge {
+    font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+    background: var(--flag-bg); color: var(--flag-color); border: 1px solid var(--flag-border);
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .short-badge {
+    font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+    background: #f0ebff; color: #6b30cc; border: 1px solid #9b60ee;
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* count bar */
+  .count-cell { display: flex; align-items: center; gap: 8px; }
+  .count-bar-wrap { width: 80px; height: 5px; background: var(--border); border-radius: 3px; flex-shrink: 0; }
+  .count-bar { height: 5px; border-radius: 3px; background: linear-gradient(90deg, var(--accent3), var(--accent2)); }
+  .count-num { font-family: monospace; font-size: 12px; color: var(--muted); }
+
+  /* category badges */
+  .cat-badge { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; display: inline-block; margin: 1px; }
+  .cat-TRANSMOGRIFICATION      { background: #fff0f5; color: var(--TRANSMOGRIFICATION); border: 1px solid #e0006a40; }
+  .cat-STRUCTURAL_ABSENCE      { background: #fff8ee; color: var(--STRUCTURAL_ABSENCE); border: 1px solid #c0700040; }
+  .cat-PRODUCTIVE_DISAGREEMENT { background: #edfaf4; color: var(--PRODUCTIVE_DISAGREEMENT); border: 1px solid #007a5040; }
+  .cat-MEASUREMENT_ARTEFACT    { background: #f5f0ff; color: var(--MEASUREMENT_ARTEFACT); border: 1px solid #6b30cc40; }
+  .cat-COMPLETE_CONSENSUS      { background: #e8f8fc; color: var(--COMPLETE_CONSENSUS); border: 1px solid #007a9e40; }
+
+  .dir-badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface2); color: var(--muted); font-family: monospace; }
+  .dir-rtl   { background: #f5f0ff; color: var(--accent2); border-color: #8b00d440; }
+
+  /* directionality conflict resolution cell */
+  .conflict-cell { display: flex; flex-direction: column; gap: 6px; }
+  .conflict-langs { font-size: 10px; color: var(--muted); font-family: monospace; }
+  .conflict-langs b { font-weight: 700; }
+  .conflict-langs .ltr-langs { color: var(--PRODUCTIVE_DISAGREEMENT); }
+  .conflict-langs .rtl-langs { color: var(--accent2); }
+  .conflict-btns { display: flex; gap: 5px; }
+  .conf-btn {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 5px; border: none; cursor: pointer;
+    transition: opacity .15s;
+  }
+  .conf-btn:hover { opacity: .8; }
+  .conf-btn-l { background: #edfaf4; color: var(--PRODUCTIVE_DISAGREEMENT); border: 1px solid #007a5060; }
+  .conf-btn-r { background: #f5f0ff; color: var(--accent2); border: 1px solid #8b00d460; }
+  .conf-btn-s { background: var(--conf-bg); color: var(--conf-color); border: 1px solid var(--conf-border); }
+
+  .langs-cell { font-size: 11px; color: var(--muted); font-family: monospace; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ── Pagination ── */
+  #pagination { display: flex; align-items: center; gap: 8px; padding: 12px 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+  .page-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 4px 10px; cursor: pointer; font-size: 12px; }
+  .page-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+  .page-btn.active { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+  .page-spacer { flex: 1; }
+
+  #empty-msg { text-align: center; padding: 60px 24px; color: var(--muted); font-size: 15px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Search Term Reviewer</h1>
+  <div class="header-stats" id="header-stats">
+    <div class="stat-pill">Load <strong>grouped_translated_terms.csv</strong> to begin</div>
+  </div>
+</header>
+
+<div id="controls" style="display:none">
+  <input type="text" id="search-input" placeholder="Filter terms…">
+  <select id="cat-filter">
+    <option value="">All categories</option>
+    <option value="COMPLETE_CONSENSUS">Complete Consensus</option>
+    <option value="MEASUREMENT_ARTEFACT">Measurement Artefact</option>
+    <option value="PRODUCTIVE_DISAGREEMENT">Productive Disagreement</option>
+    <option value="STRUCTURAL_ABSENCE">Structural Absence</option>
+    <option value="TRANSMOGRIFICATION">Transmogrification</option>
+  </select>
+  <select id="dir-filter">
+    <option value="">All directionalities</option>
+    <option value="ltr">LTR only</option>
+    <option value="rtl">RTL only</option>
+  </select>
+  <select id="keep-filter">
+    <option value="">All terms</option>
+    <option value="kept">Kept only</option>
+    <option value="excluded">Excluded only</option>
+    <option value="flagged">Suspicious only</option>
+    <option value="short">Short terms only</option>
+    <option value="conflict">Conflicts only</option>
+  </select>
+  <div class="sep"></div>
+  <button class="btn-warn"  id="btn-exclude-flagged">Exclude all suspicious</button>
+  <button class="btn-warn"  id="btn-exclude-short"   style="background:linear-gradient(135deg,#6b30cc,#9b60ee)">Exclude all short</button>
+  <button class="btn-ghost" id="btn-reset">Reset all to kept</button>
+  <div class="sep"></div>
+  <button class="btn" id="btn-download">⬇ Download CSV</button>
+</div>
+
+<div id="upload-area">
+  <h2>Search Term Reviewer</h2>
+  <p>Load <code>datasets/translated_terms/digital_humanities/search_terms/grouped_translated_terms.csv</code> from the translation pipeline to review search terms, resolve directionality conflicts, and set <code>keep_term</code> flags before running the search script.</p>
+  <button class="btn" onclick="document.getElementById('file-input').click()">Load CSV file</button>
+  <input type="file" id="file-input" accept=".csv" style="display:none">
+  <p style="font-size:11px; color:var(--muted)">File stays local — nothing is uploaded anywhere.</p>
+</div>
+
+<div id="table-wrap" style="display:none">
+  <table id="main-table">
+    <thead>
+      <tr>
+        <th style="cursor:default; width:50px">Keep</th>
+        <th data-col="search_term">Term</th>
+        <th data-col="counts">Count</th>
+        <th data-col="category">Category</th>
+        <th style="cursor:default">Direction</th>
+        <th style="cursor:default">Languages</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+  <div id="empty-msg" style="display:none">No terms match the current filters.</div>
+</div>
+
+<div id="pagination" style="display:none">
+  <span id="page-info"></span>
+  <div class="page-spacer"></div>
+  <button class="page-btn" id="btn-prev">‹ Prev</button>
+  <div id="page-numbers"></div>
+  <button class="page-btn" id="btn-next">Next ›</button>
+  <div class="sep"></div>
+  <label style="font-size:12px; color:var(--muted)">Rows</label>
+  <select id="per-page-select" style="width:72px">
+    <option value="50">50</option>
+    <option value="100" selected>100</option>
+    <option value="200">200</option>
+    <option value="500">500</option>
+  </select>
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+let allRows  = [];   // working copy of all rows (objects with JS booleans)
+let filtered = [];   // subset after filter + sort
+let sortCol  = 'counts';
+let sortDir  = -1;   // -1 = desc, 1 = asc
+let page     = 0;
+let perPage  = 100;
+let maxCount = 1;
+
+// ── Suspicious heuristic ──────────────────────────────────────────────────────
+// Flag terms that are pure ASCII (no non-Latin Unicode) and only map to a
+// single language. These are the most likely English placeholders or
+// bad translations slipping through (e.g. "To be determined").
+function isSuspicious(row) {
+  if (!row.search_term) return false;
+  const isAscii = [...row.search_term].every(ch => ch.charCodeAt(0) < 128);
+  return isAscii && Number(row.counts) === 1;
+}
+
+// ── Short-term heuristic ──────────────────────────────────────────────────────
+// Flag terms with fewer than SHORT_THRESHOLD Unicode codepoints. Single- or
+// two-codepoint terms produce too many false positives on GitHub regardless of
+// script. Uses spread to count codepoints (not UTF-16 code units), so
+// supplementary-plane scripts (Miao, Linear B, …) are counted correctly.
+const SHORT_THRESHOLD = 4;
+function isShortTerm(row) {
+  if (!row.search_term) return false;
+  return [...row.search_term].length < SHORT_THRESHOLD;
+}
+
+// ── File loading ──────────────────────────────────────────────────────────────
+document.getElementById('file-input').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  Papa.parse(f, {
+    header: true, skipEmptyLines: true,
+    complete: ({ data }) => {
+      allRows = data.map(r => ({
+        ...r,
+        counts: Number(r.counts) || 0,
+        keep_term: String(r.keep_term).toLowerCase() !== 'false',
+        directionality_conflict: String(r.directionality_conflict).toLowerCase() === 'true',
+        ltr_languages: r.ltr_languages || '',
+        rtl_languages: r.rtl_languages || '',
+        _suspicious: false,
+        _shortTerm: false,
+        _id: Math.random().toString(36).slice(2),
+      }));
+      allRows.forEach(r => {
+        r._suspicious = isSuspicious(r);
+        r._shortTerm  = isShortTerm(r);
+      });
+      maxCount = Math.max(...allRows.map(r => r.counts), 1);
+      document.getElementById('upload-area').style.display = 'none';
+      document.getElementById('controls').style.display   = 'flex';
+      document.getElementById('table-wrap').style.display = 'block';
+      document.getElementById('pagination').style.display = 'flex';
+      applyFilters();
+      updateHeaderStats();
+    },
+  });
+});
+
+// ── Filter + sort ─────────────────────────────────────────────────────────────
+function applyFilters() {
+  const q      = document.getElementById('search-input').value.trim().toLowerCase();
+  const cat    = document.getElementById('cat-filter').value;
+  const dir    = document.getElementById('dir-filter').value;
+  const keepF  = document.getElementById('keep-filter').value;
+
+  filtered = allRows.filter(r => {
+    if (q && !r.search_term.toLowerCase().includes(q)) return false;
+    if (cat && !(r.category || '').includes(cat)) return false;
+    if (dir && r.directionality !== dir) return false;
+    if (keepF === 'kept'     && !r.keep_term)             return false;
+    if (keepF === 'excluded' &&  r.keep_term)             return false;
+    if (keepF === 'flagged'  && !r._suspicious)             return false;
+    if (keepF === 'short'    && !r._shortTerm)              return false;
+    if (keepF === 'conflict' && !r.directionality_conflict) return false;
+    return true;
+  });
+
+  filtered.sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (sortCol === 'counts') { va = Number(va); vb = Number(vb); }
+    else { va = String(va || '').toLowerCase(); vb = String(vb || '').toLowerCase(); }
+    return va < vb ? sortDir : va > vb ? -sortDir : 0;
+  });
+
+  page = 0;
+  renderTable();
+  renderPagination();
+}
+
+// ── Render table ──────────────────────────────────────────────────────────────
+function renderTable() {
+  const tbody  = document.getElementById('table-body');
+  const start  = page * perPage;
+  const slice  = filtered.slice(start, start + perPage);
+
+  document.getElementById('empty-msg').style.display = slice.length ? 'none' : 'block';
+
+  tbody.innerHTML = slice.map(row => {
+    const barPct = Math.round((row.counts / maxCount) * 100);
+
+    const cats = (row.category || '').split(',').map(c => c.trim()).filter(Boolean);
+    const catBadges = cats.map(c => {
+      const key = c.replace(/ /g, '_');
+      return `<span class="cat-badge cat-${key}">${esc(c.replace(/_/g,' '))}</span>`;
+    }).join('');
+
+    const langs   = row.natural_language || '';
+    const codes   = langs.split(',').map(s => s.trim()).filter(Boolean);
+    const preview = codes.slice(0, 8).join(', ') + (codes.length > 8 ? ` +${codes.length - 8}` : '');
+
+    const rowClass = [
+      !row.keep_term              ? 'excluded'     : '',
+      row._suspicious             ? 'flagged-row'  : '',
+      row._shortTerm && !row._suspicious ? 'short-row' : '',
+      row.directionality_conflict ? 'conflict-row' : '',
+    ].filter(Boolean).join(' ');
+
+    const termDir  = row.directionality === 'rtl' ? ' dir="rtl"' : '';
+    const flagBadge  = row._suspicious
+      ? `<span class="flag-badge">⚠ suspicious</span>` : '';
+    const shortBadge = row._shortTerm
+      ? `<span class="short-badge">↔ short (${[...row.search_term].length})</span>` : '';
+
+    // Direction cell: conflict → resolution buttons; resolved → plain badge
+    let dirCell;
+    if (row.directionality_conflict) {
+      const ltrCodes = (row.ltr_languages || '').split(',').map(s => s.trim()).filter(Boolean);
+      const rtlCodes = (row.rtl_languages || '').split(',').map(s => s.trim()).filter(Boolean);
+      const ltrPreview = ltrCodes.slice(0, 4).join(', ') + (ltrCodes.length > 4 ? ` +${ltrCodes.length-4}` : '');
+      const rtlPreview = rtlCodes.slice(0, 4).join(', ') + (rtlCodes.length > 4 ? ` +${rtlCodes.length-4}` : '');
+      dirCell = `<div class="conflict-cell">
+  <div class="conflict-langs">
+    <b class="ltr-langs">LTR</b> <span class="ltr-langs">${esc(ltrPreview)}</span><br>
+    <b class="rtl-langs">RTL</b> <span class="rtl-langs">${esc(rtlPreview)}</span>
+  </div>
+  <div class="conflict-btns">
+    <button class="conf-btn conf-btn-l" data-id="${row._id}" data-action="l" title="Force all to LTR">→ ltr</button>
+    <button class="conf-btn conf-btn-r" data-id="${row._id}" data-action="r" title="Force all to RTL">← rtl</button>
+    <button class="conf-btn conf-btn-s" data-id="${row._id}" data-action="s" title="Split into two rows">⇄ split</button>
+  </div>
+</div>`;
+    } else {
+      const dirClass = row.directionality === 'rtl' ? 'dir-badge dir-rtl' : 'dir-badge';
+      dirCell = `<span class="${dirClass}">${esc(row.directionality || '')}</span>`;
+    }
+
+    return `<tr class="${rowClass}" data-id="${row._id}">
+  <td style="text-align:center">
+    <input type="checkbox" class="keep-toggle" data-id="${row._id}" ${row.keep_term ? 'checked' : ''}>
+  </td>
+  <td>
+    <div class="term-cell">
+      <span class="term-text"${termDir}>${esc(row.search_term)}</span>
+      ${flagBadge}${shortBadge}
+    </div>
+  </td>
+  <td>
+    <div class="count-cell">
+      <div class="count-bar-wrap"><div class="count-bar" style="width:${barPct}%"></div></div>
+      <span class="count-num">${row.counts}</span>
+    </div>
+  </td>
+  <td>${catBadges}</td>
+  <td>${dirCell}</td>
+  <td><span class="langs-cell" title="${esc(langs)}">${esc(preview)}</span></td>
+</tr>`;
+  }).join('');
+
+  // ── keep_term toggle listeners ────────────────────────────────────────────
+  tbody.querySelectorAll('.keep-toggle').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const row = rowById(cb.dataset.id);
+      if (!row) return;
+      row.keep_term = cb.checked;
+      cb.closest('tr').classList.toggle('excluded', !cb.checked);
+      updateHeaderStats();
+    });
+  });
+
+  // ── Conflict resolution button listeners ──────────────────────────────────
+  tbody.querySelectorAll('.conf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      resolveConflict(btn.dataset.id, btn.dataset.action);
+    });
+  });
+}
+
+// ── Directionality conflict resolution ────────────────────────────────────────
+function resolveConflict(id, action) {
+  const idx = allRows.findIndex(r => r._id === id);
+  if (idx === -1) return;
+  const row = allRows[idx];
+
+  if (action === 'l') {
+    row.directionality = 'ltr';
+    row.directionality_conflict = false;
+  } else if (action === 'r') {
+    row.directionality = 'rtl';
+    row.directionality_conflict = false;
+  } else if (action === 's') {
+    // Replace the original row with two rows: one ltr, one rtl
+    const ltrCodes = (row.ltr_languages || '').split(',').map(s => s.trim()).filter(Boolean);
+    const rtlCodes = (row.rtl_languages || '').split(',').map(s => s.trim()).filter(Boolean);
+    const ltrRow = {
+      ...row,
+      natural_language: ltrCodes.join(', '),
+      counts: ltrCodes.length,
+      directionality: 'ltr',
+      directionality_conflict: false,
+      ltr_languages: '', rtl_languages: '',
+      _id: Math.random().toString(36).slice(2),
+      _suspicious: isSuspicious({...row, counts: ltrCodes.length}),
+    };
+    const rtlRow = {
+      ...row,
+      natural_language: rtlCodes.join(', '),
+      counts: rtlCodes.length,
+      directionality: 'rtl',
+      directionality_conflict: false,
+      ltr_languages: '', rtl_languages: '',
+      _id: Math.random().toString(36).slice(2),
+      _suspicious: false,
+    };
+    allRows.splice(idx, 1, ltrRow, rtlRow);
+    maxCount = Math.max(...allRows.map(r => r.counts), 1);
+    applyFilters();
+    updateHeaderStats();
+    return;
+  }
+
+  updateHeaderStats();
+  applyFilters();
+}
+
+// ── Sorting ───────────────────────────────────────────────────────────────────
+document.querySelectorAll('thead th[data-col]').forEach(th => {
+  th.addEventListener('click', () => {
+    const col = th.dataset.col;
+    if (sortCol === col) sortDir *= -1;
+    else { sortCol = col; sortDir = col === 'counts' ? -1 : 1; }
+    document.querySelectorAll('thead th[data-col]').forEach(t =>
+      t.classList.remove('sorted-asc', 'sorted-desc'));
+    th.classList.add(sortDir === 1 ? 'sorted-asc' : 'sorted-desc');
+    applyFilters();
+  });
+});
+document.querySelector('thead th[data-col="counts"]').classList.add('sorted-desc');
+
+// ── Pagination ────────────────────────────────────────────────────────────────
+function renderPagination() {
+  const total = filtered.length;
+  const totalPages = Math.max(1, Math.ceil(total / perPage));
+  const start = page * perPage + 1;
+  const end   = Math.min((page + 1) * perPage, total);
+  document.getElementById('page-info').textContent = `${start}–${end} of ${total} terms`;
+
+  const nums = document.getElementById('page-numbers');
+  nums.innerHTML = '';
+  let pages = totalPages <= 7
+    ? Array.from({length: totalPages}, (_, i) => i)
+    : buildPageNums(page, totalPages);
+
+  pages.forEach(p => {
+    if (p === '…') {
+      const s = document.createElement('span'); s.textContent = '…'; s.style.padding = '0 4px'; nums.appendChild(s);
+    } else {
+      const btn = document.createElement('button');
+      btn.className = 'page-btn' + (p === page ? ' active' : '');
+      btn.textContent = p + 1;
+      btn.addEventListener('click', () => { page = p; renderTable(); renderPagination(); });
+      nums.appendChild(btn);
+    }
+  });
+
+  document.getElementById('btn-prev').disabled = page === 0;
+  document.getElementById('btn-next').disabled = page >= totalPages - 1;
+}
+
+function buildPageNums(cur, total) {
+  const p = [];
+  p.push(0);
+  const lo = Math.max(1, cur - 2), hi = Math.min(total - 2, cur + 2);
+  if (lo > 1) p.push('…');
+  for (let i = lo; i <= hi; i++) p.push(i);
+  if (hi < total - 2) p.push('…');
+  p.push(total - 1);
+  return p;
+}
+
+document.getElementById('btn-prev').addEventListener('click', () => {
+  if (page > 0) { page--; renderTable(); renderPagination(); }
+});
+document.getElementById('btn-next').addEventListener('click', () => {
+  if ((page + 1) * perPage < filtered.length) { page++; renderTable(); renderPagination(); }
+});
+document.getElementById('per-page-select').addEventListener('change', e => {
+  perPage = Number(e.target.value); page = 0; renderTable(); renderPagination();
+});
+
+// ── Live filter listeners ─────────────────────────────────────────────────────
+['search-input','cat-filter','dir-filter','keep-filter'].forEach(id =>
+  document.getElementById(id).addEventListener('input', applyFilters));
+
+// ── Bulk actions ──────────────────────────────────────────────────────────────
+document.getElementById('btn-exclude-flagged').addEventListener('click', () => {
+  allRows.forEach(r => { if (r._suspicious) r.keep_term = false; });
+  applyFilters(); updateHeaderStats();
+});
+document.getElementById('btn-exclude-short').addEventListener('click', () => {
+  allRows.forEach(r => { if (r._shortTerm) r.keep_term = false; });
+  applyFilters(); updateHeaderStats();
+});
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (!confirm('Reset ALL terms to keep_term = true?')) return;
+  allRows.forEach(r => { r.keep_term = true; });
+  applyFilters(); updateHeaderStats();
+});
+
+// ── Download ──────────────────────────────────────────────────────────────────
+// Exports the standard grouped_translated_terms.csv column set.
+// Internal fields (_id, _suspicious) are stripped.
+// Conflict metadata columns are stripped so the search script sees a clean file.
+document.getElementById('btn-download').addEventListener('click', () => {
+  const unresolvedCount = allRows.filter(r => r.directionality_conflict).length;
+  if (unresolvedCount > 0) {
+    if (!confirm(`${unresolvedCount} directionality conflict(s) are still unresolved.\nDownload anyway? Unresolved rows will use the majority direction.`)) return;
+  }
+  const out = allRows.map(r => ({
+    search_term:        r.search_term,
+    natural_language:   r.natural_language,
+    counts:             r.counts,
+    directionality:     r.directionality,
+    search_term_source: r.search_term_source,
+    category:           r.category,
+    keep_term:          r.keep_term,
+  }));
+  const csv  = Papa.unparse(out);
+  const blob = new Blob([csv], {type: 'text/csv'});
+  const a    = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = 'reviewed_grouped_translated_terms.csv';
+  a.click();
+});
+
+// ── Header stats ──────────────────────────────────────────────────────────────
+function updateHeaderStats() {
+  const total     = allRows.length;
+  const kept      = allRows.filter(r => r.keep_term).length;
+  const excluded  = total - kept;
+  const flagged   = allRows.filter(r => r._suspicious).length;
+  const shortCnt  = allRows.filter(r => r._shortTerm).length;
+  const conflicts = allRows.filter(r => r.directionality_conflict).length;
+  document.getElementById('header-stats').innerHTML = `
+    <div class="stat-pill">Total <span>${total.toLocaleString()}</span></div>
+    <div class="stat-pill">Kept <span>${kept.toLocaleString()}</span></div>
+    <div class="stat-pill">Excluded <span>${excluded.toLocaleString()}</span></div>
+    <div class="stat-pill flagged">⚠ Suspicious <span>${flagged.toLocaleString()}</span></div>
+    ${shortCnt ? `<div class="stat-pill short">↔ Short <span>${shortCnt.toLocaleString()}</span></div>` : ''}
+    ${conflicts ? `<div class="stat-pill conflict">⇄ Conflicts <span>${conflicts.toLocaleString()}</span></div>` : ''}
+  `;
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function rowById(id) { return allRows.find(r => r._id === id); }
+function esc(s) {
+  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

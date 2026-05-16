@@ -19,6 +19,12 @@ class TranslationResponse(BaseModel):
 	translated_term: str = Field(..., description="The translated term")
 	translation_rationale: str = Field(..., description="The rationale for the translation")
 
+class TranslationRefusedError(ValueError):
+	"""Raised when the model explicitly returns null for translated_term (e.g. undeciphered scripts)."""
+	def __init__(self, rationale: str):
+		super().__init__(rationale)
+		self.rationale = rationale
+
 def parse_translation_response(message_content: str) -> TranslationResponse:
 	"""
 	Robustly parse a translation response from an LLM into a TranslationResponse.
@@ -59,7 +65,12 @@ def parse_translation_response(message_content: str) -> TranslationResponse:
 	cleaned = re.sub(r'^```(?:json)?\s*', '', message_content.strip(), flags=re.IGNORECASE)
 	cleaned = re.sub(r'```\s*$', '', cleaned.strip())
 	try:
-		return TranslationResponse(**normalize_keys(json.loads(cleaned)))
+		normalized = normalize_keys(json.loads(cleaned))
+		if not normalized.get('translated_term'):  # catches None and ""
+			raise TranslationRefusedError(
+				normalized.get('translation_rationale', 'Model returned null or empty translated_term')
+			)
+		return TranslationResponse(**normalized)
 	except (json.JSONDecodeError, ValidationError):
 		pass
 
@@ -121,6 +132,8 @@ def parse_translation_response(message_content: str) -> TranslationResponse:
 	r_match = re.search(rf'"translation_rationale"\s*:\s*{_json_str}', message_content)
 	if t_match:
 		translated = t_match.group(1).replace("\\'", "'").replace('\\"', '"')
+		if not translated:
+			raise TranslationRefusedError('Model returned empty translated_term')
 		rationale = r_match.group(1).replace('\\"', '"') if r_match else 'No rationale provided'
 		return TranslationResponse(translated_term=translated, translation_rationale=rationale)
 
@@ -190,25 +203,24 @@ def extract_dictionaries_from_string(text: str) -> list:
 
 	return dictionaries
 
-def extract_ollama_translated_term(row: pd.Series) -> pd.Series:
+def extract_ollama_translated_term(row: pd.Series, col_prefix: str = 'ollama') -> pd.Series:
 	"""
-	Extract the translated term from the OLLAMA content.
+	Extract the translated term from the Ollama extracted dictionaries.
 
 	Parameters
 	----------
 	row : pd.Series
 		A row of the DataFrame.
-
-	Returns
-	-------
-	str
-		The translated term.
+	col_prefix : str
+		Column prefix for the model (e.g. 'llama', 'gemma', 'qwen', 'mistral').
 	"""
-	ollama_translation = None
-	for dictionary in row['ollama_extracted_dictionaries']:
+	extracted_col = f'{col_prefix}_extracted_dictionaries'
+	translation_col = f'{col_prefix}_translation'
+	translation = None
+	for dictionary in row[extracted_col]:
 		if 'translated_term' in dictionary:
-			ollama_translation = dictionary['translated_term']
-	row['ollama_translation'] = ollama_translation
+			translation = dictionary['translated_term']
+	row[translation_col] = translation
 	return row
 
 

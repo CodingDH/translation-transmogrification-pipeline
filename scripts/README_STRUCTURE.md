@@ -17,7 +17,7 @@ scripts/
 │   ├── explore_confidence_within_variant.py # Step 1: within-variant LLM agreement
 │   ├── explore_confidence_across_variants.py# Step 2: cross-variant prompt robustness
 │   ├── explore_disagreements.py             # Step 3: disagreement typology classification
-│   ├── build_disagreement_explorer_data.py  # Builds CSV for the HTML disagreement explorer
+│   ├── build_disagreement_explorer_data.py  # Builds disagreement_explorer_data.csv (consumed by notebook 07)
 │   └── README.md
 │
 ├── utils.py                                 # Shared utilities

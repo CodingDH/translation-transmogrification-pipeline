@@ -190,10 +190,10 @@
   },
   {
     "language_code": "crn",
-    "language_name": "Woods Cree",
-    "iso639_5": "alg",
-    "family_name": "North American Indian languages",
-    "rationale": "Woods Cree (nêhiyawêwin) is a dialect of Cree, an Algonquian language of the Algic family spoken across northern Canada. ISO 639-5: alg (Algonquian languages) under nai (North American Indian languages)."
+    "language_name": "Montenegrin",
+    "iso639_5": "sla",
+    "family_name": "Indo-European languages",
+    "rationale": "Wikimedia non-standard code for Montenegrin (South Slavic language, a standardized variety of Serbo-Croatian). The ISO 639-3 code crn is Woods Cree (Algonquian); Wikimedia repurposed this code for Montenegrin before cnr was assigned. ISO 639-5: sla (Slavic languages) under ine (Indo-European languages)."
   },
   {
     "language_code": "wal",
@@ -204,10 +204,10 @@
   },
   {
     "language_code": "zg",
-    "language_name": "Unknown",
-    "iso639_5": null,
-    "family_name": "Unclassified",
-    "rationale": "Wikimedia code 'zg' does not correspond to a recognised ISO 639 individual language code. Affiliation unclear; marked Unclassified pending identification."
+    "language_name": "Moroccan Amazigh",
+    "iso639_5": "ber",
+    "family_name": "Afro-Asiatic languages",
+    "rationale": "Moroccan Amazigh (Tamazight) is a Berber language of the Afro-Asiatic family. ISO 639-5: ber (Berber languages), parent afa (Afro-Asiatic). Previous assessment incorrectly flagged the Wikimedia code as unrecognised."
   },
   {
     "language_code": "abq",
@@ -3216,8 +3216,8 @@
     "language_code": "ryu",
     "language_name": "Central Okinawan",
     "iso639_5": "jpx",
-    "family_name": "Japanese languages",
-    "rationale": "Ryukyuan language closely related to Japanese. ISO 639-5: jpx."
+    "family_name": "Japonic languages",
+    "rationale": "Central Okinawan (Ryukyuan) is a Japonic language closely related to Japanese. ISO 639-5: jpx. Standardised to Japonic languages to match Japanese (ja)."
   },
   {
     "language_code": "sad",

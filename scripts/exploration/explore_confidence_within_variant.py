@@ -4,11 +4,16 @@ explore_confidence_within_variant.py
 ======================================
 Frequency-based agreement scoring across translation services WITHIN each prompt variant.
 
-For each prompt variant separately, measure how much primary translation services (Google Translate, EasyNMT, Lingvanex, Wikipedia) agree on the same translation.
+For each prompt variant separately, score agreement both among the eight LLM
+services (OpenAI, Claude, Gemini, DeepSeek, Llama, Gemma, Qwen, Mistral) and
+among the four prompt-invariant baseline services (Google Translate, EasyNMT,
+Lingvanex, Wikipedia). The baseline block is a sanity check and a reference
+anchor; the LLM block is the primary signal of interest.
 
 This explores:
-  - Within a single variant, which term/language combos have high service agreement?
-  - How consistent are independent translation engines for each prompt variant?
+  - Within a single variant, which term/language combos have high LLM agreement?
+  - Do API models (OpenAI, Claude, Gemini, DeepSeek) agree more than local
+    models (Llama, Gemma, Qwen, Mistral), or vice versa?
   - Which rows are strong auto-approve candidates vs. need human review?
 
 Compare with: explore_confidence_across_variants.py (which measures if different prompts produce the same translations).
@@ -22,7 +27,7 @@ Output files are written to data_directory/translated_terms/{term}/evaluation/:
 Usage:
     python explore_confidence_within_variant.py
     python explore_confidence_within_variant.py --term "Computational Humanities"
-    python explore_confidence_within_variant.py --variants comparative minimal
+    python explore_confidence_within_variant.py --variants expert_persona minimal
     python explore_confidence_within_variant.py --output-dir /path/to/out
 """
 
@@ -56,10 +61,14 @@ BASELINE_SERVICES = {
 # LLM services — these actually ran with different prompts per variant, so they
 # are the correct pool for measuring within-variant agreement.
 LLM_SERVICES = {
-    'openai':  'openai_translated_term',
-    'claude':  'claude_translated_term',
-    'gemini':  'gemini_translated_term',
-    'ollama':  'ollama_translated_term',
+    'openai':   'openai_translated_term',
+    'claude':   'claude_translated_term',
+    'gemini':   'gemini_translated_term',
+    'deepseek': 'deepseek_translated_term',
+    'llama':    'llama_translated_term',
+    'gemma':    'gemma_translated_term',
+    'qwen':     'qwen_translated_term',
+    'mistral':  'mistral_translated_term',
 }
 
 # Keep legacy alias so callers that reference PRIMARY_SERVICES still work
@@ -145,17 +154,31 @@ def load_variant_df(
     variant: str,
 ) -> Optional[pd.DataFrame]:
     """
-    Build the full per-variant DataFrame by merging per-service files. Loads all direct_services/ and prompt_services/ files whose names contain the variant name (for prompt services) or are variant-invariant (for direct services), then merges them on (language_code, term_source).
-    
+    Build the full per-variant DataFrame by merging per-service files.
+
+    Loads all direct_services/ and prompt_services/ files whose names contain
+    the variant name (for prompt services) or are variant-invariant (for direct
+    services), then merges them on (language_code, term_source).
+
+    Before returning, ``enforce_translation_rationale_pairing`` is applied so
+    that every LLM service column pair (``{svc}_translated_term`` /
+    ``{svc}_translation_rationale``) is internally consistent:
+    - A translation with no real rationale (absent or placeholder such as
+      "No rationale provided") has its translation cell set to NaN.
+    - A rationale with no translation has its rationale cell set to NaN.
+    This means all downstream callers — notebooks and scripts — receive clean
+    data without needing to handle these mismatches themselves.
+
     Parameters
     ----------
     data_directory_path : str
     term_slug : str
     variant : str
-    
+
     Returns
     -------
-    pd.DataFrame with all available services merged together for this term/variant, or None if no data found.
+    pd.DataFrame with all available services merged together for this
+    term/variant, or None if no data found.
     """
     term_dir = os.path.join(
         data_directory_path, 'translated_terms', term_slug
@@ -221,6 +244,8 @@ def load_variant_df(
         base = base.sort_values('coding_dh_date', ascending=False)
     base = base.drop_duplicates(subset=['language_code', 'term_source'], keep='first')
     base['prompt_variant'] = variant
+    from scripts.utils import enforce_translation_rationale_pairing
+    base = enforce_translation_rationale_pairing(base)
     return base.reset_index(drop=True)
 
 
@@ -229,7 +254,7 @@ def score_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     Add confidence scoring columns to a translations DataFrame.
 
     Scoring pools:
-    - ``llm_*``: LLM services only (OpenAI, Claude, Gemini, Ollama). These vary per prompt variant and are the main signal. first_ollama is included only for 'comparative' (the variant it actually ran on).
+    - ``llm_*``: LLM services only (OpenAI, Claude, Gemini, Ollama). These vary per prompt variant and are the main signal.
     - ``baseline_*``: Non-LLM services (GT, EasyNMT, Lingvanex, Wikipedia). Prompt-invariant — identical across all variant CSVs, kept as a fixed reference for comparison.
     - ``all_*`` : All services combined.
     
@@ -273,7 +298,7 @@ def compute_summary(scored_df: pd.DataFrame, variant: str, term: str) -> dict:
     scored_df : pd.DataFrame
     	DataFrame with confidence scores computed for a single term/variant.
 	variant : str
-		Prompt variant name (e.g. 'comparative', 'minimal', etc.) — used for labeling the summary row.
+		Prompt variant name (e.g. 'expert_persona', 'minimal', etc.) — used for labeling the summary row.
 	term : str
      	Term name (e.g. 'Digital Humanities') — used for labeling the summary row. 
 
@@ -334,7 +359,7 @@ def run_confidence_evaluation(
     target_terms : list of str
 		Terms to evaluate (e.g. ['Digital Humanities'])
     variants : list of str
-		Prompt variants to include (e.g. ['comparative', 'minimal', etc.])
+		Prompt variants to include (e.g. ['expert_persona', 'minimal', etc.])
 	output_dir : str, optional
 		Optional output directory. If not provided, defaults to data_directory_path/translated_terms/{term}/evaluation/
 

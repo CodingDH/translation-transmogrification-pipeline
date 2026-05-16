@@ -3,7 +3,11 @@ EasyNMT,100,1.0,0.0,True,0.0
 Google Translate,242,1.0,0.0,True,0.0
 Lingvanex,109,1.0,0.0,True,0.0
 Wikipedia,40,1.0,0.0,True,0.0
-Claude,857,0.5928,0.2678,False,0.4518
-Gemini,855,0.5864,0.2554,False,0.4355
-OpenAI,857,0.4657,0.2359,False,0.5065
-Ollama,804,0.3556,0.1887,False,0.5307
+OpenAI,880,0.5863,0.2583,False,0.4406
+Claude,880,0.5777,0.2655,False,0.4596
+DeepSeek,880,0.5005,0.2719,False,0.5433
+Gemini,880,0.4979,0.2602,False,0.5226
+Llama,880,0.3772,0.1944,False,0.5154
+Gemma,880,0.3511,0.1924,False,0.548
+Mistral,880,0.3442,0.1755,False,0.5099
+Qwen,880,0.3168,0.1488,False,0.4697

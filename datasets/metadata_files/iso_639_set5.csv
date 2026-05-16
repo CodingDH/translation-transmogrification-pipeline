@@ -1,116 +1,114 @@
-iso639_5,iso639_2,family_name,hierarchy,parent_code,depth,notes
-aav,,Austro-Asiatic languages,aav,,0,"South-Asiatic languages, not related to Australian languages"
-afa,afa,Afro-Asiatic languages,afa,,0,
-art,art,Artificial languages,art,,0,
-aus,aus,Australian languages,aus,,0,
-cai,cai,Central American Indian languages,cai,,0,
-cau,cau,Caucasian languages,cau,,0,
-crp,crp,Creolesandpidgins,crp,,0,
-dra,dra,Dravidian languages,dra,,0,
-esx,,Eskimo-Aleut languages,esx,,0,
-euq,,Basque (family),euq,,0,Basque (eu/eus/baq) is an individual language covered by this collection code
-hmx,,Hmong-Mien languages,hmx,,0,
-ine,ine,Indo-European languages,ine,,0,
-jpx,,Japanese (family),jpx,,0,Japanese (ja/jpn) is an individual language covered by this collection code
-khi,khi,Khoisan languages,khi,,0,
-map,map,Austronesian languages,map,,0,
-nai,nai,North American Indian languages,nai,,0,
-nic,nic,Niger-Kordofanian languages,nic,,0,
-paa,paa,Papuan languages,paa,,0,
-sai,sai,South American Indian languages,sai,,0,
-sgn,sgn,sign languages,sgn,,0,
-sit,sit,Sino-Tibetan languages,sit,,0,
-ssa,ssa,Nilo-Saharan languages,ssa,,0,
-tai,tai,Tai languages,tai,,0,Thai (th/tha) is an individual language covered by this collection code
-tut,tut,Altaic languages,tut,,0,
-urj,,Uralic languages,urj,,0,
-alv,,Atlantic-Congo languages,nic:alv,nic,1,
-aqa,,Alacalufan languages,sai:aqa,sai,1,
-aql,,Algic languages,nai:aql,nai,1,
-awd,,Arawakan languages,sai:awd,sai,1,
-azc,,Uto-Aztecan languages,nai:azc,nai,1,
-bat,bat,Baltic languages,ine:bat,ine,1,
-ber,ber,Berber languages,afa:ber,afa,1,
-cba,,Chibchan languages,sai:cba,sai,1,
-ccn,,North Caucasian languages,cau:ccn,cau,1,
-ccs,,South Caucasian languages,cau:ccs,cau,1,
-cdc,,Chadic languages,afa:cdc,afa,1,
-cdd,,Caddoan languages,nai:cdd,nai,1,
-cel,cel,Celtic languages,ine:cel,ine,1,
-cpe,cpe,"Creoles and pidgins, English-based",crp:cpe,crp,1,
-cpf,cpf,"Creoles and pidgins, French-based",crp:cpf,crp,1,
-cpp,cpp,"Creoles and pidgins, Portuguese-based",crp:cpp,crp,1,
-csu,,Central Sudanic languages,ssa:csu,ssa,1,
-cus,cus,Cushitic languages,afa:cus,afa,1,
-dmn,,Mande languages,nic:dmn,nic,1,
-egx,,Egyptian languages,afa:egx,afa,1,
-fiu,fiu,Finno-Ugrian languages,urj:fiu,urj,1,
-fox,,Formosan languages,map:fox,map,1,
-gem,gem,Germanic languages,ine:gem,ine,1,
-grk,,Greek languages,ine:grk,ine,1,
-hok,,Hokan languages,nai:hok,nai,1,
-hyx,,Armenian (family),ine:hyx,ine,1,Armenian (hy/hye/arm) is an individual language covered by this collection code
-iir,,Indo-Iranian languages,ine:iir,ine,1,
-ijo,ijo,Ijo languages,nic:ijo,nic,1,
-iro,iro,Iroquoian languages,nai:iro,nai,1,
-itc,,Italic languages,ine:itc,ine,1,
-kdo,,Kordofanian languages,nic:kdo,nic,1,
-mkh,mkh,Mon-Khmer languages,aav:mkh,aav,1,
-mun,mun,Munda languages,aav:mun,aav,1,
-myn,myn,Mayan languages,cai:myn,cai,1,
-ngf,,Trans-New Guinea languages,paa:ngf,paa,1,
-omq,,Oto-Manguean languages,cai:omq,cai,1,
-omv,,Omotic languages,afa:omv,afa,1,
-poz,,Malayo-Polynesian languages,map:poz,map,1,
-qwe,,Quechuan (family),sai:qwe,sai,1,Quechua (qu/que) is a macrolanguage covered by this collection code
-sal,sal,Salishan languages,nai:sal,nai,1,
-sdv,,Eastern Sudanic languages,ssa:sdv,ssa,1,
-sem,sem,Semitic languages,afa:sem,afa,1,
-sio,sio,Siouan languages,nai:sio,nai,1,
-sla,sla,Slavic languages,ine:sla,ine,1,
-son,son,Songhai languages,ssa:son,ssa,1,
-sqj,,Albanian languages,ine:sqj,ine,1,Albanian (sq/sqi/alb) is a macrolanguage covered by this collection code
-syd,,Samoyedic languages,urj:syd,urj,1,
-tbq,,Tibeto-Burman languages,sit:tbq,sit,1,
-trk,,Turkic languages,tut:trk,tut,1,Turkish (tr/tur) is an individual language covered by this collection code
-tup,tup,Tupi languages,sai:tup,sai,1,
-tuw,,Tungus languages,tut:tuw,tut,1,
-wak,wak,Wakashan languages,nai:wak,nai,1,
-xgn,,Mongolian languages,tut:xgn,tut,1,Mongolian (mn/mon) is a macrolanguage covered by this collection code
-xnd,,Na-Dene languages,nai:xnd,nai,1,
-ypk,ypk,Yupik languages,esx:ypk,esx,1,
-zhx,,Chinese (family),sit:zhx,sit,1,Chinese (zh/zho/chi) is a macrolanguage covered by this collection code
-alg,alg,Algonquian languages,nai:aql:alg,aql,2,
-ath,ath,Athapascan languages,nai:xnd:ath,xnd,2,
-auf,,Arauan languages,sai:awd:auf,awd,2,
-bad,bad,Banda languages,nic:alv:bad,alv,2,
-bai,bai,Bamileke languages,nic:alv:bai,alv,2,
-bnt,bnt,Bantu languages,nic:alv:bnt,alv,2,
-gme,,East Germanic languages,ine:gem:gme,gem,2,
-gmq,,North Germanic languages,ine:gem:gmq,gem,2,
-gmw,,West Germanic languages,ine:gem:gmw,gem,2,
-inc,inc,Indic languages,ine:iir:inc,iir,2,
-ira,ira,Iranian languages,ine:iir:ira,iir,2,
-kar,kar,Karen languages,sit:tbq:kar,tbq,2,
-kro,kro,Kru languages,nic:alv:kro,alv,2,
-nah,nah,Nahuatl languages,nai:azc:nah,azc,2,
-nub,nub,Nubian languages,ssa:sdv:nub,sdv,2,
-oto,oto,Otomian languages,cai:omq:oto,omq,2,
-plf,,Central Malayo-Polynesian languages,map:poz:plf,poz,2,
-pqe,,Eastern Malayo-Polynesian languages,map:poz:pqe,poz,2,
-pqw,,Western Malayo-Polynesian languages,map:poz:pqw,poz,2,
-roa,roa,Romance languages,ine:itc:roa,itc,2,
-smi,smi,Sami languages,urj:fiu:smi,fiu,2,
-zle,,East Slavic languages,ine:sla:zle,sla,2,
-zls,,South Slavic languages,ine:sla:zls,sla,2,
-zlw,,West Slavic languages,ine:sla:zlw,sla,2,
-znd,znd,Zande languages,nic:alv:znd,alv,2,Zande (individual language) (zne) is an individual language covered by this collection code
-apa,apa,Apache languages,nai:xnd:ath:apa,ath,3,
-bih,bih,Bihari languages,ine:iir:inc:bih,inc,3,
-btk,btk,Batak languages,map:poz:pqw:btk,pqw,3,
-cmc,cmc,Chamic languages,map:poz:pqw:cmc,pqw,3,
-day,day,Land Dayak languages,map:poz:pqw:day,pqw,3,"not to be confused withDayak languages, which is a larger group"
-phi,phi,Philippine languages,map:poz:pqw:phi,pqw,3,
-pra,pra,Prakrit languages,ine:iir:inc:pra,inc,3,
-wen,wen,Sorbian languages,ine:sla:zlw:wen,zlw,3,
-mno,mno,Manobo languages,map:poz:pqw:phi:mno,phi,4,
+iso639_5,parent_code,family_name,depth
+aav,mul,Austro-Asiatic languages,0
+afa,mul,Afro-Asiatic languages,0
+art,mul,Artificial languages,0
+aus,mul,Australian languages,0
+cai,mul,Central American Indian languages,0
+cau,mul,Caucasian languages,0
+cpe,mul,"Creoles and pidgins, English-based",0
+dra,mul,Dravidian languages,0
+esx,mul,Eskimo-Aleut languages,0
+euq,mul,Basque languages,0
+hmx,mul,Hmong-Mien languages,0
+ine,mul,Indo-European languages,0
+jpx,mul,Japonic languages,0
+khi,mul,Khoisan languages,0
+map,mul,Austronesian languages,0
+nai,mul,North American Indian languages,0
+nic,mul,Niger-Kordofanian languages,0
+paa,mul,Papuan languages,0
+sai,mul,South American Indian languages,0
+sgn,mul,Sign languages,0
+sit,mul,Sino-Tibetan languages,0
+ssa,mul,Nilo-Saharan languages,0
+tai,mul,Tai-Kadai languages,0
+tup,mul,Tupian languages,0
+tut,mul,Altaic languages,0
+urj,mul,Uralic languages,0
+ypk,mul,Yupik languages,0
+alv,nic,Atlantic-Volta languages,1
+aqa,sai,Alacalufan languages,1
+aql,nai,Algonquian-Mosan languages,1
+awd,sai,Arawakan languages,1
+azc,nai,Uto-Aztecan languages,1
+bat,ine,Baltic languages,1
+ber,afa,Berber languages,1
+cba,sai,Chibchan languages,1
+ccn,cau,North Caucasian languages,1
+ccs,cau,South Caucasian languages,1
+cdc,afa,Chadic languages,1
+cdd,nai,Caddoan languages,1
+cel,ine,Celtic languages,1
+csu,ssa,Central Sudanic languages,1
+cus,afa,Cushitic languages,1
+dmn,nic,Mande languages,1
+egx,afa,Egyptian languages,1
+fiu,urj,Finno-Ugrian languages,1
+fox,map,Formosan languages,1
+gem,ine,Germanic languages,1
+grk,ine,Greek languages,1
+hok,nai,Hokan languages,1
+iir,ine,Indo-Iranian languages,1
+iro,nai,Iroquoian languages,1
+itc,ine,Italic languages,1
+kar,sit,Karen languages,1
+kdo,nic,Kordofanian languages,1
+mkh,aav,Mon-Khmer languages,1
+mun,aav,Munda languages,1
+myn,cai,Mayan languages,1
+ngf,paa,Trans-New Guinea languages,1
+omq,cai,Oto-Manguean languages,1
+omv,afa,Omotic languages,1
+poz,map,Malayo-Polynesian languages,1
+qwe,sai,Quechuan languages,1
+sal,nai,Salishan languages,1
+sdv,ssa,Eastern Sudanic languages,1
+sem,afa,Semitic languages,1
+sio,nai,Siouan languages,1
+sla,ine,Slavic languages,1
+son,ssa,Songhai languages,1
+syd,urj,Samoyedic languages,1
+tbq,sit,Tibeto-Burman languages,1
+trk,tut,Turkic languages,1
+tuw,tut,Tungus languages,1
+wak,nai,Wakashan languages,1
+xgn,tut,Mongolian languages,1
+xnd,nai,Na-Dene languages,1
+zhx,sit,Chinese languages,1
+alg,aql,Algonquian languages,2
+ath,xnd,Athapascan languages,2
+auf,awd,Arauan languages,2
+bad,alv,Banda languages,2
+bai,alv,Bamileke languages,2
+bnt,alv,Bantu languages,2
+btk,poz,Batak languages,2
+day,poz,Land Dayak languages,2
+gme,gem,East Germanic languages,2
+gmq,gem,North Germanic languages,2
+gmw,gem,West Germanic languages,2
+ijo,alv,Ijo languages,2
+inc,iir,Indo-Aryan languages,2
+ira,iir,Iranian languages,2
+kro,alv,Kru languages,2
+nah,azc,Nahuatl languages,2
+ngb,alv,Gbaya languages,2
+nub,sdv,Nubian languages,2
+oto,omq,Otomian languages,2
+phi,poz,Philippine languages,2
+plf,poz,Central Malayo-Polynesian languages,2
+pqe,poz,Eastern Malayo-Polynesian languages,2
+pqw,poz,Western Malayo-Polynesian languages,2
+roa,itc,Romance languages,2
+smi,fiu,Sami languages,2
+zle,sla,East Slavic languages,2
+zls,sla,South Slavic languages,2
+zlw,sla,West Slavic languages,2
+znd,alv,Zande languages,2
+apa,ath,Apache languages,3
+cmc,pqw,Chamic languages,3
+cpf,roa,"Creoles and pidgins, French-based",3
+cpp,roa,"Creoles and pidgins, Portuguese-based",3
+cr,alg,Cree,3
+mno,phi,Manobo languages,3
+sw,bnt,Swahili,3
+wen,zlw,Sorbian languages,3

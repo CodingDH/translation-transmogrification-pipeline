@@ -5,6 +5,13 @@ build_disagreement_explorer_data.py
 Merge disagreement analysis, per-language confidence stats, rationale lengths,
 and parsed service translations into a single CSV for the HTML explorer.
 
+Before writing, ``enforce_translation_rationale_pairing`` (scripts/utils.py) is
+applied to each per-variant slice of confidence_scores.csv. This nulls out any
+LLM cell where the translation has no real rationale (absent or placeholder such
+as "No rationale provided") or vice versa, so the HTML explorer never receives
+unpaired cells regardless of whether the upstream CSVs were generated before or
+after this enforcement was introduced.
+
 Run after:
   1. notebooks/05_disagreement_exploration.ipynb  (produces confidence_scores.csv + disagreement_analysis.csv)
   2. scripts/exploration/explore_disagreements.py  (produces disagreement_analysis.csv)
@@ -28,28 +35,36 @@ RATIONALE_VARIANT = 'native_rationale'
 VARIANTS = ['minimal', 'expert_persona', 'native_rationale', 'judge']
 
 RATIONALE_SERVICE_COLS = {
-    'claude':  'claude_translation_rationale',
-    'openai':  'openai_translation_rationale',
-    'gemini':  'gemini_translation_rationale',
-    'ollama':  'ollama_translation_rationale',
+    'claude':   'claude_translation_rationale',
+    'openai':   'openai_translation_rationale',
+    'gemini':   'gemini_translation_rationale',
+    'deepseek': 'deepseek_translation_rationale',
+    'llama':    'llama_translation_rationale',
+    'gemma':    'gemma_translation_rationale',
+    'qwen':     'qwen_translation_rationale',
+    'mistral':  'mistral_translation_rationale',
 }
 
 TERM_SERVICE_COLS = {
-    'claude':  'claude_translated_term',
-    'openai':  'openai_translated_term',
-    'gemini':  'gemini_translated_term',
-    'ollama':  'ollama_translated_term',
+    'claude':   'claude_translated_term',
+    'openai':   'openai_translated_term',
+    'gemini':   'gemini_translated_term',
+    'deepseek': 'deepseek_translated_term',
+    'llama':    'llama_translated_term',
+    'gemma':    'gemma_translated_term',
+    'qwen':     'qwen_translated_term',
+    'mistral':  'mistral_translated_term',
 }
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from scripts.utils import get_data_directory_path
+from scripts.utils import get_data_directory_path, enforce_translation_rationale_pairing
 
 CAT_ORDER = {
     'TRANSMOGRIFICATION': 0,
     'STRUCTURAL_ABSENCE': 1,
     'PRODUCTIVE_DISAGREEMENT': 2,
     'MEASUREMENT_ARTEFACT': 3,
-    'NOT_APPLICABLE': 4,
+    'COMPLETE_CONSENSUS': 4,
     'CONSENSUS': 5,
 }
 
@@ -58,7 +73,11 @@ SERVICE_MAP = {
     'OpenAI':           'openai_term',
     'Claude':           'claude_term',
     'Gemini':           'gemini_term',
-    'Ollama':           'ollama_term',
+    'DeepSeek':         'deepseek_term',
+    'Llama':            'llama_term',
+    'Gemma':            'gemma_term',
+    'Qwen':             'qwen_term',
+    'Mistral':          'mistral_term',
 }
 
 
@@ -81,8 +100,9 @@ def build_explorer_data(
     if not os.path.exists(conf_path):
         sys.exit(f"Missing: {conf_path}\nRun the confidence scoring notebook first.")
 
-    base = pd.read_csv(disagr_path)
-    conf_df = pd.read_csv(conf_path)
+    _conv = {'language_code': str}
+    base = pd.read_csv(disagr_path, converters=_conv)
+    conf_df = pd.read_csv(conf_path, converters=_conv)
 
     # ── Confidence stats: aggregate across all prompt variants per language ──
     conf_agg = (
@@ -127,9 +147,13 @@ def build_explorer_data(
     # Produces columns like claude_term_comparative, claude_rationale_comparative, etc.
     matrix_frames = []
     for variant in VARIANTS:
-        variant_rows = conf_df[conf_df['prompt_variant'] == variant]
+        variant_rows = conf_df[conf_df['prompt_variant'] == variant].copy()
         if variant_rows.empty:
             continue
+        # Null out unpaired LLM translation/rationale cells before they reach the explorer.
+        # confidence_scores.csv may have been written before pairing enforcement was added
+        # to load_variant_df, so we re-apply it here to guarantee clean output.
+        variant_rows = enforce_translation_rationale_pairing(variant_rows)
         avail_rat = {svc: col for svc, col in RATIONALE_SERVICE_COLS.items() if col in conf_df.columns}
         avail_term = {svc: col for svc, col in TERM_SERVICE_COLS.items() if col in conf_df.columns}
         src_cols = list(set(avail_rat.values()) | set(avail_term.values()))
@@ -157,7 +181,7 @@ def build_explorer_data(
     wiki_df = (
         conf_df[['language_code'] + available_baseline]
         .drop_duplicates('language_code')
-        .dropna(subset=['language_code'])
+        .loc[lambda d: d['language_code'].str.strip() != '']
     )
 
     # ── Merge ────────────────────────────────────────────────────────────────

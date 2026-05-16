@@ -2,14 +2,14 @@
 """
 Translation generation with multiple prompt variants for comparative testing.
 
-Five variants, run in this fixed order:
-  1. minimal          - bare instruction, no context (baseline)
+Four variants, run in this fixed order:
+  1. minimal          - bare instruction, no system prompt (baseline)
   2. expert_persona   - domain expert + native speaker framing
   3. native_rationale - rationale written in the target language
-  4. judge            - runs LAST; receives all unique translations from variants 1-4 and all
+  4. judge            - runs LAST; receives all unique translations from variants 1-3 and all
                         direct services, deduplicated by value, and synthesises the best answer
 
-The judge variant depends on the other four having run first. It can be selected alone only if
+The judge variant depends on the other three having run first. It can be selected alone only if
 prior output files already exist on disk; the script warns otherwise.
 
 Direct services (GT, EasyNMT, Wikipedia, Lingvanex, Ollama) are prompt-invariant and loaded
@@ -147,6 +147,10 @@ def run_prompt_variant_pipeline(
 	exclude_previous_errors: bool = True,
 	gemini_translate: bool = True,
 	lingvanex_translate: bool = True,
+	deepseek_translate: bool = True,
+	gemma_translate: bool = True,
+	qwen_translate: bool = True,
+	mistral_translate: bool = True,
 	term_contexts: dict = None,
 ) -> Optional[pd.DataFrame]:
 	"""
@@ -178,6 +182,10 @@ def run_prompt_variant_pipeline(
 			prompt_variant=variant,
 			gemini_translate=gemini_translate,
 			lingvanex_translate=lingvanex_translate,
+			deepseek_translate=deepseek_translate,
+			gemma_translate=gemma_translate,
+			qwen_translate=qwen_translate,
+			mistral_translate=mistral_translate,
 			term_contexts=term_contexts or {},
 		)
 		console.print(f"\n✓ Completed {variant} variant", style="bold green")
@@ -194,10 +202,14 @@ def run_translation_prompt_variants(target_terms: List[str]):
 	"""Orchestrate all prompt variant runs, ensuring judge always runs last."""
 
 	local_data_directory_path = get_data_directory_path()
-	should_use_cached_translations = True
-	should_exclude_previous_errors = True
-	should_use_gemini_translate   = True
-	should_use_lingvanex_translate = True
+	should_use_cached_translations  = True
+	should_exclude_previous_errors  = True
+	should_use_gemini_translate     = True
+	should_use_lingvanex_translate  = True
+	should_use_deepseek_translate   = True
+	should_use_gemma_translate      = True
+	should_use_qwen_translate       = True
+	should_use_mistral_translate    = True
 
 	existing_directionality_df = load_language_codes()
 
@@ -254,6 +266,10 @@ def run_translation_prompt_variants(target_terms: List[str]):
 			exclude_previous_errors=should_exclude_previous_errors,
 			gemini_translate=should_use_gemini_translate,
 			lingvanex_translate=should_use_lingvanex_translate,
+			deepseek_translate=should_use_deepseek_translate,
+			gemma_translate=should_use_gemma_translate,
+			qwen_translate=should_use_qwen_translate,
+			mistral_translate=should_use_mistral_translate,
 		)
 
 	# Run judge last, after aggregating all prior outputs
@@ -275,6 +291,10 @@ def run_translation_prompt_variants(target_terms: List[str]):
 				exclude_previous_errors=should_exclude_previous_errors,
 				gemini_translate=should_use_gemini_translate,
 				lingvanex_translate=should_use_lingvanex_translate,
+				deepseek_translate=should_use_deepseek_translate,
+				gemma_translate=should_use_gemma_translate,
+				qwen_translate=should_use_qwen_translate,
+				mistral_translate=should_use_mistral_translate,
 				term_contexts=judge_contexts,
 			)
 

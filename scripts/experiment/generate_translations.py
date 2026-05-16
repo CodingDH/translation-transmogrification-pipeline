@@ -29,12 +29,15 @@ from generate_language_codes import load_language_codes
 from translation_services import (
     get_gt_translation, get_enmt_translation, get_openai_translation,
     get_claude_translation, get_gemini_translation, get_lingvanex_translation,
-    get_ollama_translation, check_if_wikipedia_page_exists,
+    get_ollama_translation, get_deepseek_translation,
+    check_if_wikipedia_page_exists,
+    OLLAMA_LLAMA_MODEL, OLLAMA_GEMMA_MODEL, OLLAMA_QWEN_MODEL, OLLAMA_MISTRAL_MODEL,
+    OllamaUnresponsiveError,
     console
 )
 
 
-def post_process_ollama(df: pd.DataFrame) -> pd.DataFrame:
+def post_process_ollama(df: pd.DataFrame, col_prefix: str = 'ollama') -> pd.DataFrame:
 	"""
 	Post-process Ollama translations to extract dictionaries and select best translations.
 
@@ -42,29 +45,33 @@ def post_process_ollama(df: pd.DataFrame) -> pd.DataFrame:
 	----------
 	df : pd.DataFrame
 		The DataFrame containing translated terms.
-
-	Returns
-	-------
-	pd.DataFrame
-		The updated DataFrame with extracted translations.
+	col_prefix : str
+		Column prefix for the model (e.g. 'llama', 'gemma', 'qwen', 'mistral').
 	"""
+	content_col = f'{col_prefix}_content'
+	extracted_col = f'{col_prefix}_extracted_dictionaries'
+	term_col = f'{col_prefix}_translated_term'
+	translation_col = f'{col_prefix}_translation'
+
+	if content_col not in df.columns:
+		df[content_col] = None
 	tqdm.pandas(desc="Extracting dictionaries")
-	df['ollama_extracted_dictionaries'] = df['ollama_content'].progress_apply(extract_dictionaries_from_string)
+	df[extracted_col] = df[content_col].progress_apply(extract_dictionaries_from_string)
 
 	tqdm.pandas(desc="Selecting translated terms")
-	df = df.progress_apply(extract_ollama_translated_term, axis=1)
+	df = df.progress_apply(lambda row: extract_ollama_translated_term(row, col_prefix), axis=1)
 
-	# Ensure we don't keep an empty value when a translation exists
-	df.loc[
-		(df.ollama_translated_term.isna()) & (df.ollama_translated_term != df.ollama_translation), 
-		'ollama_translated_term'
-	] = df['ollama_translation']
+	# Treat empty strings the same as NaN throughout
+	df[term_col] = df[term_col].replace('', None)
+	df[translation_col] = df[translation_col].replace('', None)
+	# Backfill: if the primary term is missing but the extraction column has a value, use it
+	df.loc[df[term_col].isna() & df[translation_col].notna(), term_col] = df[translation_col]
 
 	return df
 
 TRANSIENT_STATUS_CODES = {500, 408}
 
-def mark_errored_terms(df: pd.DataFrame, error_file: str, service: str) -> pd.DataFrame:
+def mark_errored_terms(df: pd.DataFrame, error_file: str, service: str, variant: str = None) -> pd.DataFrame:
 	"""
 	Mark terms and languages that have previously encountered errors when translating in the DataFrame.
 
@@ -76,20 +83,30 @@ def mark_errored_terms(df: pd.DataFrame, error_file: str, service: str) -> pd.Da
 		A path to the error file for logging errors.
 	service : str
 		A string indicating the translation service (e.g., 'gt', 'enmt', 'openai', 'ollama').
+	variant : str, optional
+		The current prompt variant (e.g. 'minimal', 'judge'). When provided and the error
+		log contains a 'variant' column, only errors for this specific variant are excluded.
+		If the error log has no 'variant' column (legacy logs), all errors apply regardless
+		of variant (backward-compatible behaviour).
 
 	Returns
 	--------
 	pd.DataFrame
 		A DataFrame with errored terms marked.
 	"""
+	df = df.copy()  # prevent in-place mutation of the caller's DataFrame
 	error_col = f'exclude_{service.replace(" ", "_").lower()}'
 	if os.path.exists(error_file):
-		error_df = read_csv_file(error_file)
+		error_df = read_csv_file(error_file, error_bad_lines=False)
 		# Skip transient errors (500 server errors, 408 timeouts) — these should be retried,
 		# not permanently excluded. Only exclude deterministic failures like 400 (unsupported
 		# language) and 404 (model/resource not found).
 		if 'status_code' in error_df.columns:
 			error_df = error_df[~error_df['status_code'].isin(TRANSIENT_STATUS_CODES)]
+		# When the error log records variants, restrict exclusions to the current variant.
+		# Legacy logs without a variant column exclude unconditionally (old behaviour).
+		if variant is not None and 'variant' in error_df.columns:
+			error_df = error_df[error_df['variant'].astype(str) == str(variant)]
 		# Normalize term_source column — entries may be stored as a plain string
 		# (e.g. "Digital Humanities") or as a Python list-string (e.g. "['Digital Humanities']").
 		expanded_rows = []
@@ -244,14 +261,16 @@ def load_existing_translations_by_term_sources(
 	for term in term_sources:
 		file_path = os.path.join(base_path, term.lower().replace(" ", "_"), subfolder, translate_file_name)
 		if os.path.exists(file_path) and use_cached_translations:
-			df = pd.read_csv(file_path, on_bad_lines='warn')
+			df = pd.read_csv(file_path, on_bad_lines='warn', converters={'language_code': str})
 			df["term_source"] = term
 			if timestamp_column in df.columns:
 				df[timestamp_column] = pd.to_datetime(df[timestamp_column], errors="coerce")
 				df = df.sort_values(timestamp_column, ascending=False).drop_duplicates(
 					subset=["language_code", "term_source"], keep="first"
 				)
-				console.print(f"Loaded {len(df)} translations for {term} from {file_path}", style="bold green")
+				translation_col = next((c for c in translation_columns if c.endswith('_translated_term')), None)
+				filled = df[translation_col].notna().sum() if translation_col and translation_col in df.columns else '?'
+				console.print(f"Loaded {len(df)} rows for {term} ({filled} with translations) from {file_path}", style="bold green")
 			all_dfs.append(df)
 
 	return pd.concat(all_dfs, ignore_index=True) if all_dfs else pd.DataFrame(columns=["language_code", "language_name", "term_source"] + translation_columns)
@@ -266,7 +285,8 @@ def process_individual_terms(
 	should_use_cached_translations: bool,
 	should_override_wikipedia: bool,
 	post_process_function: Optional[Callable[[pd.DataFrame], pd.DataFrame]] = None,
-	exclude_errors_file: Optional[str] = None
+	exclude_errors_file: Optional[str] = None,
+	variant: Optional[str] = None,
 ) -> pd.DataFrame:
 	"""
 	Translate terms using a service that operates row-by-row (one language per call).
@@ -326,7 +346,7 @@ def process_individual_terms(
 
 	# Mark errored terms (adds exclude_{service} flag)
 	if exclude_errors_file:
-		final_df = mark_errored_terms(final_df, exclude_errors_file, service=service_name.lower())
+		final_df = mark_errored_terms(final_df, exclude_errors_file, service=service_name.lower(), variant=variant)
 		if exclude_col in final_df.columns:
 			console.print(f"Excluded terms: {len(final_df[final_df[exclude_col]])}", style="bold red")
 			console.print(f"Working terms: {len(final_df[~final_df[exclude_col]])}", style="bold green")
@@ -345,11 +365,17 @@ def process_individual_terms(
 	)
 
 	if len(existing_translations) > 0:
-		console.print(f"Loaded {len(existing_translations)} existing translations", style="bold green")
+		_tcol = translation_column if translation_column in existing_translations.columns else None
+		_filled = existing_translations[_tcol].notna().sum() if _tcol else '?'
+		console.print(f"Loaded {len(existing_translations)} existing rows ({_filled} with translations)", style="bold green")
 		merge_cols = ['language_code', 'term_source']
-		extra = ['coding_dh_date'] if 'coding_dh_date' in existing_translations.columns else []
-		cols_to_merge = list(set(merge_cols + translation_columns + extra) & set(existing_translations.columns))
-		final_df = final_df.merge(existing_translations[cols_to_merge], on=merge_cols, how='left')
+		# Exclude coding_dh_date here — it lives on existing_translations for the final concat,
+		# not on the working final_df. Including it causes _x/_y suffix collisions when
+		# final_df already has a coding_dh_date column from earlier service merges.
+		cols_to_merge = list(set(merge_cols + translation_columns) & set(existing_translations.columns))
+		# _merge_translations drops any overlapping non-key columns from the incoming df,
+		# preventing _x/_y suffixes on columns that final_df already carries.
+		final_df = _merge_translations(final_df, existing_translations[cols_to_merge], merge_cols, how='left')
 
 	# Identify missing terms
 	if translation_column in final_df.columns:
@@ -394,7 +420,27 @@ def process_individual_terms(
 				term_slug = str(translated_row.get('term_source', '')).lower().replace(' ', '_')
 				save_path = os.path.join(translate_file_path, term_slug, 'prompt_services', translate_file_name)
 				os.makedirs(os.path.dirname(save_path), exist_ok=True)
-				pd.DataFrame([translated_row]).to_csv(
+				save_df = pd.DataFrame([translated_row])
+				# Strip pipeline-internal housekeeping columns before writing to disk:
+				# exclude_* from mark_errored_terms, merge artifacts.
+				_cols_to_drop = (
+					[c for c in save_df.columns if c.startswith('exclude_')] +
+					[c for c in save_df.columns if c in ('coding_dh_date_x', 'coding_dh_date_y')]
+				)
+				save_df = save_df.drop(columns=_cols_to_drop, errors='ignore')
+				# If the file already exists, align to its header column order so that
+				# rows from different runs never land in the wrong columns.
+				if os.path.exists(save_path):
+					existing_header = pd.read_csv(save_path, nrows=0).columns.tolist()
+					new_cols = [c for c in save_df.columns if c not in existing_header]
+					for c in new_cols:
+						# add any brand-new columns to the file before appending
+						existing_full = pd.read_csv(save_path, on_bad_lines='warn', converters={'language_code': str})
+						existing_full[c] = None
+						existing_full.to_csv(save_path, index=False, quoting=csv.QUOTE_ALL)
+						existing_header.append(c)
+					save_df = save_df.reindex(columns=existing_header)
+				save_df.to_csv(
 					save_path, mode='a', header=not os.path.exists(save_path), index=False,
 					quoting=csv.QUOTE_ALL,
 				)
@@ -478,9 +524,10 @@ def process_individual_terms(
 	else:
 		finalized_translations = existing_translations
 
-	# Drop exclude column
-	if exclude_col in finalized_translations.columns:
-		finalized_translations = finalized_translations.drop(columns=[exclude_col])
+	# Drop all exclude_* columns — only the current service's is added by mark_errored_terms,
+	# but earlier services may have left their own on final_df which flow into finalized_translations.
+	exclude_cols = [c for c in finalized_translations.columns if c.startswith('exclude_')]
+	finalized_translations = finalized_translations.drop(columns=exclude_cols, errors='ignore')
 
 	return finalized_translations
 
@@ -562,7 +609,9 @@ def process_grouped_terms(
 	)
 
 	if len(existing_translations) > 0:
-		console.print(f"Loaded {len(existing_translations)} existing translations", style="bold green")
+		_tcol = translation_column if translation_column in existing_translations.columns else None
+		_filled = existing_translations[_tcol].notna().sum() if _tcol else '?'
+		console.print(f"Loaded {len(existing_translations)} existing rows ({_filled} with translations)", style="bold green")
 		merge_cols = ['language_code', 'term_source']
 		cols_to_merge = list(set(merge_cols + translation_columns) & set(existing_translations.columns))
 		working_df = working_df.merge(existing_translations[cols_to_merge], on=merge_cols, how='left')
@@ -669,7 +718,7 @@ def get_variant_output_path(base_path: str, filename: str, variant: str = 'minim
 	os.makedirs(variant_dir, exist_ok=True)
 	return os.path.join(variant_dir, f"{variant}_{filename}")
 
-def generate_initial_terms(target_terms: list, data_directory_path: str, process_dh: bool, use_gt_translate: bool, use_enmt_translate: bool, use_openai_translate: bool, use_claude_translate: bool, use_ollama_translate: bool, use_wikipedia: bool, override_wikipedia: bool, use_cached_translations: bool, return_all_data: bool = False, exclude_previous_errors: bool = False, use_gemini_translate: bool = False, use_lingvanex_translate: bool = False, prompt_variant: str = 'minimal', term_contexts: dict = None) -> pd.DataFrame:
+def generate_initial_terms(target_terms: list, data_directory_path: str, process_dh: bool, use_gt_translate: bool, use_enmt_translate: bool, use_openai_translate: bool, use_claude_translate: bool, use_ollama_translate: bool, use_wikipedia: bool, override_wikipedia: bool, use_cached_translations: bool, return_all_data: bool = False, exclude_previous_errors: bool = False, use_gemini_translate: bool = False, use_lingvanex_translate: bool = False, use_deepseek_translate: bool = False, use_gemma_translate: bool = False, use_qwen_translate: bool = False, use_mistral_translate: bool = False, prompt_variant: str = 'minimal', term_contexts: dict = None) -> pd.DataFrame:
 	"""
 	Generate a dataframe with translated terms. This function assumes you want to at the very least translate Digital Humanities.
 
@@ -706,16 +755,21 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 	error_dir = os.path.join(data_directory_path, "error_logs")
 	os.makedirs(error_dir, exist_ok=True)
 
-	gt_error_file = os.path.join(error_dir, "gt_translation_errors.csv")
-	enmt_error_file = os.path.join(error_dir, "enmt_translation_errors.csv")
-	openai_error_file = os.path.join(error_dir, "openai_translation_errors.csv")
-	claude_error_file = os.path.join(error_dir, "claude_translation_errors.csv")
-	first_ollama_error_file = os.path.join(error_dir, "first_ollama_translation_errors.csv")
-	ollama_error_file = os.path.join(error_dir, "ollama_translation_errors.csv")
-	gemini_error_file = os.path.join(error_dir, "gemini_translation_errors.csv")
+	gt_error_file       = os.path.join(error_dir, "gt_translation_errors.csv")
+	enmt_error_file     = os.path.join(error_dir, "enmt_translation_errors.csv")
+	openai_error_file   = os.path.join(error_dir, "openai_translation_errors.csv")
+	claude_error_file   = os.path.join(error_dir, "claude_translation_errors.csv")
+	llama_error_file    = os.path.join(error_dir, "llama_translation_errors.csv")
+	gemini_error_file   = os.path.join(error_dir, "gemini_translation_errors.csv")
 	lingvanex_error_file = os.path.join(error_dir, "lingvanex_translation_errors.csv")
-	for error_file in [gt_error_file, enmt_error_file, openai_error_file, claude_error_file, first_ollama_error_file, ollama_error_file, gemini_error_file, lingvanex_error_file]:
-		clean_write_error_file(error_file, drop_fields=["term_source", "language_code", "error_url"])
+	deepseek_error_file = os.path.join(error_dir, "deepseek_translation_errors.csv")
+	gemma_error_file    = os.path.join(error_dir, "gemma_translation_errors.csv")
+	qwen_error_file     = os.path.join(error_dir, "qwen_translation_errors.csv")
+	mistral_error_file  = os.path.join(error_dir, "mistral_translation_errors.csv")
+	for error_file in [gt_error_file, enmt_error_file, openai_error_file, claude_error_file,
+	                   llama_error_file, gemini_error_file, lingvanex_error_file,
+	                   deepseek_error_file, gemma_error_file, qwen_error_file, mistral_error_file]:
+		clean_write_error_file(error_file, drop_fields=["term_source", "language_code", "error_url", "variant"])
 	# Make temp dir wherever running the code
 	if not os.path.exists("temp"):
 		os.makedirs("temp", exist_ok=True)
@@ -876,32 +930,64 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 		)
 		console.print(f"Size of dataset currently {len(final_df)}", style="bright_cyan")
 
-	# Translate the terms using Ollama
+	def _ollama_cols(prefix: str) -> list:
+		return [
+			f'{prefix}_translated_term', f'{prefix}_content', f'{prefix}_created_at',
+			f'{prefix}_done_reason', f'{prefix}_eval_count', f'{prefix}_eval_duration',
+			f'{prefix}_extracted_dictionaries', f'{prefix}_load_duration', f'{prefix}_model',
+			f'{prefix}_prompt_eval_count', f'{prefix}_prompt_eval_duration',
+			f'{prefix}_total_duration', f'{prefix}_translation', f'{prefix}_translation_rationale',
+			f'{prefix}_system_prompt', f'{prefix}_user_prompt',
+		]
+
+	def _run_ollama_model(model_tag: str, col_prefix: str, file_prefix: str, error_file: str) -> None:
+		"""Run one Ollama model and write col_prefix_* columns directly — no rename needed."""
+		nonlocal final_df
+		try:
+			raw = process_individual_terms(
+				translate_file_path=terms_file_path,
+				translate_file_name=f"{file_prefix}_{prompt_variant}_translations.csv",
+				translation_columns=_ollama_cols(col_prefix),
+				final_df=final_df,
+				translation_function=lambda row, ct=0, _p=col_prefix: get_ollama_translation(
+					row, error_file, console, prompt_variant, term_contexts,
+					ollama_model=model_tag, request_delay=2.0, request_timeout=240,
+					consecutive_timeouts=ct, col_prefix=_p,
+				),
+				service_name=file_prefix.capitalize(),
+				should_use_cached_translations=use_cached_translations,
+				should_override_wikipedia=override_wikipedia,
+				post_process_function=lambda df, _p=col_prefix: post_process_ollama(df, _p),
+				exclude_errors_file=error_file if exclude_previous_errors else None,
+				variant=prompt_variant,
+			)
+		except OllamaUnresponsiveError:
+			console.print(f"✗ {file_prefix} stopped early — Ollama unresponsive. Progress saved; rerun to continue.", style="bold red")
+			return
+		new_cols = [c for c in raw.columns if c.startswith(f'{col_prefix}_')]
+		final_df = _merge_translations(final_df, raw[['language_code', 'term_source'] + new_cols], ['language_code', 'term_source'])
+		term_col = f'{col_prefix}_translated_term'
+		if term_col in final_df.columns:
+			console.print(f"Languages with {file_prefix} translations: {final_df[term_col].notna().sum()}", style="bright_magenta")
+
+	# Translate using Llama (local Ollama)
 	if use_ollama_translate:
+		_run_ollama_model(OLLAMA_LLAMA_MODEL, 'llama', 'llama', llama_error_file)
+		console.print(f"Size of dataset currently {len(final_df)}", style="bright_cyan")
 
-		final_ollama_translations = process_individual_terms(
-			translate_file_path=terms_file_path,
-			translate_file_name=f"ollama_{prompt_variant}_translations.csv",
-			translation_columns=['ollama_translated_term', 'ollama_content', 'ollama_created_at', 'ollama_done_reason',
-			'ollama_eval_count', 'ollama_eval_duration',
-			'ollama_extracted_dictionaries', 'ollama_load_duration', 'ollama_model',
-			'ollama_prompt_eval_count', 'ollama_prompt_eval_duration',
-			'ollama_total_duration', 'ollama_translation'],
-			final_df=final_df,
-			translation_function=lambda row, ct=0: get_ollama_translation(row, first_ollama_error_file, console, prompt_variant, term_contexts, ollama_model='llama3.1', request_delay=2.0, request_timeout=120, consecutive_timeouts=ct),
-			service_name="Ollama",
-			should_use_cached_translations=use_cached_translations,
-			should_override_wikipedia=override_wikipedia,
-			post_process_function=post_process_ollama,
-			exclude_errors_file=first_ollama_error_file if exclude_previous_errors else None
-		)
+	# Translate using Gemma (local Ollama)
+	if use_gemma_translate:
+		_run_ollama_model(OLLAMA_GEMMA_MODEL, 'gemma', 'gemma', gemma_error_file)
+		console.print(f"Size of dataset currently {len(final_df)}", style="bright_cyan")
 
-		# Extract all columns that include 'ollama'
-		ollama_cols = [col for col in final_ollama_translations.columns if 'ollama' in col]
+	# Translate using Qwen (local Ollama)
+	if use_qwen_translate:
+		_run_ollama_model(OLLAMA_QWEN_MODEL, 'qwen', 'qwen', qwen_error_file)
+		console.print(f"Size of dataset currently {len(final_df)}", style="bright_cyan")
 
-		# Merge results back
-		final_df = _merge_translations(final_df, final_ollama_translations[['language_code', 'term_source'] + ollama_cols], ['language_code', 'term_source'])
-		console.print(f"Number of languages with Ollama translations: {len(final_df[final_df.ollama_translated_term.notna()])}", style="bright_magenta")
+	# Translate using Mistral (local Ollama)
+	if use_mistral_translate:
+		_run_ollama_model(OLLAMA_MISTRAL_MODEL, 'mistral', 'mistral', mistral_error_file)
 		console.print(f"Size of dataset currently {len(final_df)}", style="bright_cyan")
 
 	# Translate the terms using OpenAI
@@ -917,7 +1003,8 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			service_name="OpenAI",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,
-			exclude_errors_file=openai_error_file if exclude_previous_errors else None
+			exclude_errors_file=openai_error_file if exclude_previous_errors else None,
+			variant=prompt_variant,
 		)
 
 		# Extract all columns that include 'openai'
@@ -940,7 +1027,8 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			service_name="Claude",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,
-			exclude_errors_file=claude_error_file if exclude_previous_errors else None
+			exclude_errors_file=claude_error_file if exclude_previous_errors else None,
+			variant=prompt_variant,
 		)
 
 		# Extract all columns that include 'claude'
@@ -961,11 +1049,33 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 			service_name="Gemini",
 			should_use_cached_translations=use_cached_translations,
 			should_override_wikipedia=override_wikipedia,
-			exclude_errors_file=gemini_error_file if exclude_previous_errors else None
+			exclude_errors_file=gemini_error_file if exclude_previous_errors else None,
+			variant=prompt_variant,
 		)
 		gemini_cols = [col for col in final_gemini_translations.columns.tolist() if 'gemini' in col]
 		final_df = _merge_translations(final_df, final_gemini_translations[['language_code', 'term_source'] + gemini_cols], ['language_code', 'term_source'])
 		console.print(f"Number of languages with Gemini translations: {len(final_df[final_df.gemini_translated_term.notna()])}", style="bright_magenta")
+		console.print(f"Size of dataset currently {len(final_df)}", style="bright_cyan")
+
+	# Translate the terms using DeepSeek (deepseek-chat / DeepSeek-V3)
+	if use_deepseek_translate:
+		final_deepseek_translations = process_individual_terms(
+			translate_file_path=terms_file_path,
+			translate_file_name=f"deepseek_{prompt_variant}_translations.csv",
+			translation_columns=['deepseek_translated_term', 'deepseek_completion_tokens', 'deepseek_created',
+			'deepseek_finish_reason', 'deepseek_model', 'deepseek_prompt_tokens', 'deepseek_total_tokens',
+			'deepseek_translation_rationale', 'deepseek_translation'],
+			final_df=final_df,
+			translation_function=lambda row: get_deepseek_translation(row, deepseek_error_file, console, prompt_variant, term_contexts),
+			service_name="DeepSeek",
+			should_use_cached_translations=use_cached_translations,
+			should_override_wikipedia=override_wikipedia,
+			exclude_errors_file=deepseek_error_file if exclude_previous_errors else None,
+			variant=prompt_variant,
+		)
+		deepseek_cols = [col for col in final_deepseek_translations.columns.tolist() if 'deepseek' in col]
+		final_df = _merge_translations(final_df, final_deepseek_translations[['language_code', 'term_source'] + deepseek_cols], ['language_code', 'term_source'])
+		console.print(f"Number of languages with DeepSeek translations: {len(final_df[final_df.deepseek_translated_term.notna()])}", style="bright_magenta")
 		console.print(f"Size of dataset currently {len(final_df)}", style="bright_cyan")
 
 	console.print(f"Columns of final_df currently after getting all terms: {final_df.columns}", style="bright_cyan")
@@ -981,7 +1091,12 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 		cleaned_df['term'] = None
 
 	# Prioritize translations in order of preference
-	translation_sources = ['wikipedia_translated_term', 'gemini_translated_term', 'openai_translated_term', 'claude_translated_term', 'ollama_translated_term', 'lingvanex_translated_term', 'gt_translated_term', 'first_ollama_translated_term', 'enmt_translated_term']
+	translation_sources = [
+		'wikipedia_translated_term',
+		'gemini_translated_term', 'openai_translated_term', 'claude_translated_term', 'deepseek_translated_term',
+		'llama_translated_term', 'gemma_translated_term', 'qwen_translated_term', 'mistral_translated_term',
+		'lingvanex_translated_term', 'gt_translated_term', 'enmt_translated_term',
+	]
 
 	for source in translation_sources:
 		if source in cleaned_df.columns:
@@ -992,7 +1107,7 @@ def generate_initial_terms(target_terms: list, data_directory_path: str, process
 	# Ensure we only apply html.unescape to non-None values
 	for col in translation_sources + ['term']:
 		if col in cleaned_df.columns:
-			cleaned_df[col] = cleaned_df[col].apply(lambda x: html.unescape(x) if pd.notna(x) else None)
+			cleaned_df[col] = cleaned_df[col].apply(lambda x: html.unescape(x) if isinstance(x, str) else x)
 
 	# Keep temp folder (auto-no)
 	console.print("Do you want to delete the temp folder? (y/n): n [auto]", style="dim")
@@ -1084,7 +1199,7 @@ def load_existing_data(file_paths: List[str], skip_existing_files: bool) -> Tupl
 		return True, [read_csv_file(path) for path in file_paths]
 	return False, []
 
-def generate_translated_terms(data_directory_path: str, target_terms: List[str], directionality_df: pd.DataFrame, gt_translate: bool, enmt_translate: bool, openai_translate: bool, claude_translate: bool, ollama_translate: bool, wikipedia_translate: bool, override_wikipedia: bool, cached_translations: bool, return_full_terms_data: bool, excluding_previous_errors: bool, prompt_variant: str = 'minimal', gemini_translate: bool = False, lingvanex_translate: bool = False, term_contexts: dict = None) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def generate_translated_terms(data_directory_path: str, target_terms: List[str], directionality_df: pd.DataFrame, gt_translate: bool, enmt_translate: bool, openai_translate: bool, claude_translate: bool, ollama_translate: bool, wikipedia_translate: bool, override_wikipedia: bool, cached_translations: bool, return_full_terms_data: bool, excluding_previous_errors: bool, prompt_variant: str = 'minimal', gemini_translate: bool = False, lingvanex_translate: bool = False, deepseek_translate: bool = False, gemma_translate: bool = False, qwen_translate: bool = False, mistral_translate: bool = False, term_contexts: dict = None) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 	"""
 	Generate translated terms for a list of target terms across all configured services.
 
@@ -1144,7 +1259,9 @@ def generate_translated_terms(data_directory_path: str, target_terms: List[str],
 		gt_translate, enmt_translate, openai_translate, claude_translate, ollama_translate,
 		wikipedia_translate, override_wikipedia, cached_translations, return_full_terms_data, excluding_previous_errors,
 		use_gemini_translate=gemini_translate, use_lingvanex_translate=lingvanex_translate,
-		prompt_variant=prompt_variant, term_contexts=term_contexts
+		use_deepseek_translate=deepseek_translate, use_gemma_translate=gemma_translate,
+		use_qwen_translate=qwen_translate, use_mistral_translate=mistral_translate,
+		prompt_variant=prompt_variant, term_contexts=term_contexts,
 	)
 	if not translated_terms_df.empty:
 		combined_processed_df, combined_grouped_df = combine_language_data(directionality_df, translated_terms_df)
@@ -1158,44 +1275,96 @@ def generate_translated_terms(data_directory_path: str, target_terms: List[str],
 if __name__ == '__main__':
 	import argparse as _argparse
 
-	_parser = _argparse.ArgumentParser(description="Run the translation pipeline.")
-	_parser.add_argument('--variant', default='minimal',
-		choices=['minimal', 'expert_persona', 'native_rationale', 'judge'],
-		help='Prompt variant to use (default: minimal)')
+	_ALL_VARIANTS = ['minimal', 'expert_persona', 'native_rationale', 'judge']
+
+	_parser = _argparse.ArgumentParser(
+		description="Run the translation pipeline.",
+		formatter_class=_argparse.RawDescriptionHelpFormatter,
+		epilog=(
+			"Examples:\n"
+			"  # Run all four variants for local Ollama models overnight:\n"
+			"  python generate_translations.py --terms 'Digital Humanities' --ollama-only --variant minimal expert_persona native_rationale judge\n\n"
+			"  # Run all four variants for API models in a second terminal:\n"
+			"  python generate_translations.py --terms 'Digital Humanities' --api-only --variant minimal expert_persona native_rationale judge\n\n"
+			"  # Run a single variant with fine-grained control:\n"
+			"  python generate_translations.py --terms 'Digital Humanities' --variant expert_persona --no-gt --no-enmt --no-lingvanex --no-wikipedia --no-openai --no-claude --no-gemini --no-deepseek"
+		),
+	)
+	_parser.add_argument('--variant', nargs='+', default=['minimal'],
+		choices=_ALL_VARIANTS, metavar='VARIANT',
+		help=(
+			'One or more prompt variants to run in sequence '
+			'(choices: minimal, expert_persona, native_rationale, judge; default: minimal). '
+			'E.g. --variant minimal expert_persona native_rationale judge'
+		))
 	_parser.add_argument('--terms', nargs='+', default=['Computational Humanities'],
 		help='Target term(s) to translate (default: "Computational Humanities")')
+	# ── Convenience group flags (mutually exclusive) ──────────────────────────
+	_group = _parser.add_mutually_exclusive_group()
+	_group.add_argument('--ollama-only', action='store_true',
+		help='Run only local Ollama models (Llama, Gemma, Qwen, Mistral); skip all API LLMs and baseline services')
+	_group.add_argument('--api-only', action='store_true',
+		help='Run only API LLM models (OpenAI, Claude, Gemini, DeepSeek); skip all Ollama models and baseline services')
+	# ── Individual skip flags ─────────────────────────────────────────────────
 	_parser.add_argument('--no-gt',        action='store_true', help='Skip Google Translate')
 	_parser.add_argument('--no-enmt',      action='store_true', help='Skip EasyNMT')
 	_parser.add_argument('--no-openai',    action='store_true', help='Skip OpenAI')
 	_parser.add_argument('--no-claude',    action='store_true', help='Skip Claude')
-	_parser.add_argument('--no-ollama',    action='store_true', help='Skip Ollama')
+	_parser.add_argument('--no-ollama',    action='store_true', help='Skip Llama (local Ollama)')
 	_parser.add_argument('--no-gemini',    action='store_true', help='Skip Gemini')
 	_parser.add_argument('--no-lingvanex', action='store_true', help='Skip Lingvanex')
 	_parser.add_argument('--no-wikipedia', action='store_true', help='Skip Wikipedia')
+	_parser.add_argument('--no-deepseek',  action='store_true', help='Skip DeepSeek')
+	_parser.add_argument('--no-gemma',     action='store_true', help='Skip Gemma (local Ollama)')
+	_parser.add_argument('--no-qwen',      action='store_true', help='Skip Qwen (local Ollama)')
+	_parser.add_argument('--no-mistral',   action='store_true', help='Skip Mistral (local Ollama)')
 	_args = _parser.parse_args()
 
 	local_data_directory_path = get_data_directory_path()
 	local_target_terms: list = _args.terms
-
 	existing_directionality_df = load_language_codes()
-	should_use_gt_translate        = not _args.no_gt
-	should_use_enmt_translate      = not _args.no_enmt
-	should_use_openai_translate    = not _args.no_openai
-	should_use_claude_translate    = not _args.no_claude
-	should_use_ollama_translate    = not _args.no_ollama
-	should_use_wikipedia_translate = not _args.no_wikipedia
+
+	# --ollama-only / --api-only override individual service flags
+	_skip_baselines = _args.ollama_only or _args.api_only
+	_skip_api_llms  = _args.ollama_only
+	_skip_local_llms = _args.api_only
+
+	should_use_gt_translate        = not (_args.no_gt        or _skip_baselines)
+	should_use_enmt_translate      = not (_args.no_enmt      or _skip_baselines)
+	should_use_lingvanex_translate = not (_args.no_lingvanex or _skip_baselines)
+	should_use_wikipedia_translate = not (_args.no_wikipedia or _skip_baselines)
+	should_use_openai_translate    = not (_args.no_openai    or _skip_api_llms)
+	should_use_claude_translate    = not (_args.no_claude    or _skip_api_llms)
+	should_use_gemini_translate    = not (_args.no_gemini    or _skip_api_llms)
+	should_use_deepseek_translate  = not (_args.no_deepseek  or _skip_api_llms)
+	should_use_ollama_translate    = not (_args.no_ollama    or _skip_local_llms)
+	should_use_gemma_translate     = not (_args.no_gemma     or _skip_local_llms)
+	should_use_qwen_translate      = not (_args.no_qwen      or _skip_local_llms)
+	should_use_mistral_translate   = not (_args.no_mistral   or _skip_local_llms)
 	should_override_wikipedia      = True
 	should_use_cached_translations = True
 	should_return_all_terms        = False
 	should_exclude_previous_errors = True
-	should_use_gemini_translate    = not _args.no_gemini
-	should_use_lingvanex_translate = not _args.no_lingvanex
 
-	combined_translated_df, combined_processed_df, combined_grouped_df = generate_translated_terms(
-		local_data_directory_path, local_target_terms, existing_directionality_df,
-		should_use_gt_translate, should_use_enmt_translate, should_use_openai_translate,
-		should_use_claude_translate, should_use_ollama_translate, should_use_wikipedia_translate,
-		should_override_wikipedia, should_use_cached_translations, should_return_all_terms,
-		should_exclude_previous_errors, prompt_variant=_args.variant,
-		gemini_translate=should_use_gemini_translate, lingvanex_translate=should_use_lingvanex_translate,
-	)
+	_judge_contexts: dict = {}
+
+	for _variant in _args.variant:
+		if _variant == 'judge':
+			if not _judge_contexts:
+				print("Aggregating translations from all prior variants and services for judge...")
+				from generate_translation_prompts import aggregate_variant_translations
+				_judge_contexts = aggregate_variant_translations(local_data_directory_path, local_target_terms)
+			if not _judge_contexts:
+				print("⚠ No prior variant outputs found — run minimal/expert_persona/native_rationale first.")
+				continue
+		combined_translated_df, combined_processed_df, combined_grouped_df = generate_translated_terms(
+			local_data_directory_path, local_target_terms, existing_directionality_df,
+			should_use_gt_translate, should_use_enmt_translate, should_use_openai_translate,
+			should_use_claude_translate, should_use_ollama_translate, should_use_wikipedia_translate,
+			should_override_wikipedia, should_use_cached_translations, should_return_all_terms,
+			should_exclude_previous_errors, prompt_variant=_variant,
+			gemini_translate=should_use_gemini_translate, lingvanex_translate=should_use_lingvanex_translate,
+			deepseek_translate=should_use_deepseek_translate, gemma_translate=should_use_gemma_translate,
+			qwen_translate=should_use_qwen_translate, mistral_translate=should_use_mistral_translate,
+			term_contexts=_judge_contexts if _variant == 'judge' else {},
+		)

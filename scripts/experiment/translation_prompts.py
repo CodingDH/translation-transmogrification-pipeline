@@ -2,16 +2,28 @@
 Translation prompt variants for comparative testing.
 
 Four variants, run in this fixed order:
-  minimal          - bare instruction, no additional context (baseline)
-  expert_persona   - positions model as domain expert and native speaker
-  native_rationale - asks for rationale written in the target language
-  judge            - runs last; shows all unique translations from every prior variant
-                     and service, deduplicated by value, and asks for the best synthesis
+1. minimal: bare instruction, no system prompt, no scaffolding (baseline)
+2. expert_persona: positions model as domain expert and native speaker
+3. native_rationale: asks for rationale written in the target language
+4. judge: runs last; shows all unique translations from every prior variant and service, deduplicated by value, and asks for the best synthesis
+
+System prompts
+--------------
+Each variant exposes a paired (system, user) prompt via get_system_prompt() and get_user_prompt(). For the `minimal` baseline, get_system_prompt() returns None to signal that NO system prompt should be sent. This matters: the minimal
+variant is the comparison point against which expert_persona and native_rationale earn their keep, and adding any system prompt (even a generic 'helpful assistant' framing) would pre-load behavior that the other variants are supposed to be introducing.
+
+Per-provider handling for `minimal` (None system prompt):
+  - Anthropic API: omit the `system=...` argument entirely
+  - OpenAI / DeepSeek / Llama-style: omit the {'role': 'system', ...} message from the messages list — do NOT send an empty string, which some providers interpret as a real system prompt
+  - Google Gemini: omit `system_instruction` from the GenerateContentConfig
+  - Ollama-hosted local models: omit the system message in messages list
+
+The point is that 'no system prompt' should be an actual absence, not an empty string, since providers handle empty-string system prompts differently (some apply defaults, some treat as a real signal). Always omit the parameter.
 """
 
 # Brief descriptions shown inside the judge prompt so it understands each source.
 VARIANT_DESCRIPTIONS = {
-    'minimal':          'bare instruction to an LLM with no additional context',
+    'minimal':          'bare instruction to an LLM with no system prompt and no scaffolding',
     'expert_persona':   'LLM prompted as a domain expert and native speaker',
     'native_rationale': 'LLM asked to provide its reasoning in the target language',
     'Google Translate': 'automated machine translation (Google)',
@@ -22,10 +34,26 @@ VARIANT_DESCRIPTIONS = {
 
 # Human-readable labels for each LLM service (used when building judge context).
 LLM_SERVICE_LABELS = {
-    'openai':  'OpenAI',
-    'claude':  'Claude',
-    'gemini':  'Gemini',
-    'ollama':  'Ollama',
+    'openai':   'OpenAI (GPT-4o)',
+    'claude':   'Claude',
+    'gemini':   'Gemini',
+    'deepseek': 'DeepSeek (V3)',
+    'llama':    'Llama (local)',
+    'gemma':    'Gemma (local)',
+    'qwen':     'Qwen (local)',
+    'mistral':  'Mistral (local)',
+}
+
+# One-line descriptions of each service shown in the judge prompt.
+SERVICE_DESCRIPTIONS = {
+    'OpenAI (GPT-4o)':  'cloud LLM by OpenAI (GPT-4o)',
+    'Claude':           'cloud LLM by Anthropic (Claude Sonnet 4.5)',
+    'Gemini':           'cloud LLM by Google (Gemini 2.5 Flash)',
+    'DeepSeek (V3)':    'cloud LLM by DeepSeek (DeepSeek-V3 / deepseek-chat)',
+    'Llama (local)':    'open-weight LLM running locally via Ollama (Llama 3.1)',
+    'Gemma (local)':    'open-weight LLM running locally via Ollama (Gemma 3 12B)',
+    'Qwen (local)':     'open-weight LLM running locally via Ollama (Qwen 2.5 7B)',
+    'Mistral (local)':  'open-weight LLM running locally via Ollama (Mistral 7B)',
 }
 
 DIRECT_SERVICE_LABELS = {
@@ -36,23 +64,86 @@ DIRECT_SERVICE_LABELS = {
 }
 
 
+# ── System prompts (variant-specific) ────────────────────────────────────────
+
+# Default scholar system prompt used by non-minimal variants. The judge variant
+# carries its scholar framing inline because it also needs to inject the source
+# term and language into the system role for stronger grounding.
+_SCHOLAR_SYSTEM_PROMPT = (
+    "You are a {term_source} scholar who speaks many languages."
+)
+
+
+def get_system_prompt(variant: str, term_source: str) -> str | None:
+    """
+    Return the system prompt for a given variant, or None for `minimal`.
+
+    Returning None signals that NO system prompt should be sent — callers must omit the system argument entirely from the provider API call, not substitute an empty string. See the module docstring for per-provider
+    handling.
+
+    Parameters
+    ----------
+    variant : str
+        One of 'minimal', 'expert_persona', 'native_rationale', 'judge'.
+    term_source : str
+        The source term being translated. Used to interpolate scholar
+        framing for non-minimal variants.
+    """
+    if variant not in PROMPT_VARIANTS:
+        raise ValueError(
+            f"Unknown prompt variant: {variant!r}. "
+            f"Choose from {list(PROMPT_VARIANTS.keys())}"
+        )
+    if variant == 'minimal':
+        return None
+    return _SCHOLAR_SYSTEM_PROMPT.format(term_source=term_source)
+
+
+# ── User prompts (variant-specific) ──────────────────────────────────────────
+
 def get_minimal_prompt(term_source: str, language_name: str, language_code: str) -> str:
     """
-    Minimal/lean prompt — bare instruction with no frills.
-    Tests whether additional context actually improves translation or just adds noise.
+    Minimal/baseline user prompt — bare translation request plus a JSON schema for parseable output. No scholarly framing, no urgency markers, no role-play. Paired with NO system prompt (see get_system_prompt()).
+
+    The ISO code is a disambiguation control (not scaffolding) — it ensures all variants target the same language, which matters for codes like zh vs zh-tw or ambiguous language names. The JSON requirement is plumbing.
+    
+    Parameters
+    ----------
+    term_source : str
+		The term to translate (e.g. "Digital Humanities").
+    language_name : str
+		The target language name (e.g. "French").
+    language_code : str
+		The target language ISO code (e.g. "fr"). Used for disambiguation, not as scaffolding.
+        
+    Returns
+    -------
+    str		 The formatted user prompt for the minimal variant.
+    
     """
     return (
-        f"Translate '{term_source}' into {language_name} (ISO code: {language_code}). "
-        f"IMPORTANT: Return ONLY valid JSON with no other text. "
-        f"Use this exact format: "
-        f'{{\"translated_term\": \"your translation\", \"translation_rationale\": \"brief reason\"}}'
+        f"Translate '{term_source}' into {language_name} (ISO {language_code}). "
+        f"Reply in JSON: "
+        f'{{"translated_term": "...", "translation_rationale": "..."}}'
     )
 
 
 def get_expert_persona_prompt(term_source: str, language_name: str, language_code: str) -> str:
     """
-    Expert persona prompt — positions model as domain expert and native speaker.
-    Tests whether role-playing improves translation quality and confidence.
+    Expert persona prompt — positions model as domain expert and native speaker. Tests whether role-playing improves translation quality and confidence.
+    
+    Parameters
+    ----------
+    term_source : str
+		The term to translate (e.g. "Digital Humanities").
+    language_name : str
+		The target language name (e.g. "French").
+    language_code : str
+		The target language ISO code (e.g. "fr"). Used for disambiguation, not as scaffolding.
+        
+    Returns
+    -------
+    str		 The formatted user prompt for the expert_persona variant.
     """
     return (
         f"You are an expert {term_source} scholar and native {language_name} speaker "
@@ -119,10 +210,25 @@ def get_judge_prompt(
         missing = existing_translations.get('missing_sources', [])
 
         if unique:
-            prompt += "Approach descriptions:\n"
+            all_sources = {src for entry in unique for src in entry['sources']}
+            # Extract which LLM service labels appear in the sources
+            present_services = {
+                svc for svc in SERVICE_DESCRIPTIONS
+                if any(svc in src for src in all_sources)
+            }
+
+            prompt += "Approach descriptions (prompt strategies):\n"
             for key, desc in VARIANT_DESCRIPTIONS.items():
-                prompt += f"  - {key}: {desc}\n"
+                if any(key in src for src in all_sources):
+                    prompt += f"  - {key}: {desc}\n"
             prompt += "\n"
+
+            if present_services:
+                prompt += "LLM sources:\n"
+                for svc, desc in SERVICE_DESCRIPTIONS.items():
+                    if svc in present_services:
+                        prompt += f"  - {svc}: {desc}\n"
+                prompt += "\n"
 
             prompt += "Proposed translations:\n"
             for i, entry in enumerate(unique, 1):
@@ -159,7 +265,7 @@ PROMPT_VARIANTS = {
 }
 
 PROMPT_DESCRIPTIONS = {
-    'minimal':          'Bare instruction with no additional context (baseline)',
+    'minimal':          'Bare user instruction, no system prompt (baseline)',
     'expert_persona':   'Model positioned as domain expert and native speaker',
     'native_rationale': 'Rationale requested in the target language',
     'judge':            'Synthesis: all unique translations from prior variants, deduplicated by value',
@@ -176,7 +282,10 @@ def get_prompt(
     existing_translations: dict = None,
 ) -> str:
     """
-    Return the formatted prompt for the given variant.
+    Return the formatted USER prompt for the given variant.
+
+    For the paired SYSTEM prompt (which may be None for minimal), call
+    get_system_prompt(variant, term_source) separately.
 
     Parameters
     ----------
@@ -200,6 +309,11 @@ def get_prompt(
         )
 
     func = PROMPT_VARIANTS[variant]
+
+    # 'nan' is the ISO 639-3 code for Min Nan Chinese. LLMs misread it as null/NaN,
+    # so annotate it explicitly to prevent refusals across all variants.
+    if language_code == 'nan':
+        language_code = 'nan (ISO 639-3 code for Min Nan Chinese — this is a real language, not a null value)'
 
     if variant == 'judge':
         return func(term_source, language_name, language_code, existing_translations)
