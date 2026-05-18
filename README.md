@@ -1,4 +1,4 @@
-# Translation Transmogrification-Pipeline
+# Translation Transmogrification Pipeline
 
 A multilingual translation pipeline for scholarly terminology, built for the Coding DH project. Companion code for the DHQ article *"From Translation to Transmogrification: Exploring Multilingual Metadata and the Limits of AI-Augmented Translation in Digital Humanities"*.
 
