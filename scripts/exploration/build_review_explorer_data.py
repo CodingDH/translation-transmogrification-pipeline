@@ -34,7 +34,7 @@ from scripts.utils import get_data_directory_path, enforce_translation_rationale
 from scripts.exploration.explore_confidence_within_variant import load_variant_df
 from scripts.exploration.translation_classifier import curate_translation
 
-VARIANTS = ['minimal', 'expert_persona', 'native_rationale', 'judge']
+VARIANTS = ['minimal', 'fluent_speaker', 'github_searcher', 'judge']
 
 LLM_TERM_COLS = {
     'claude':   'claude_translated_term',

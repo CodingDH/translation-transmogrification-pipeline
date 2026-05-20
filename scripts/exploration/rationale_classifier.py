@@ -9,7 +9,7 @@ classifier can recover service identity or prompt variant from the prose alone.
 
 Two tasks:
   1. Variant classification — predict which prompt variant (minimal,
-     expert_persona, judge) produced a rationale. Top log-odds coefficients per
+     github_searcher, judge) produced a rationale. Top log-odds coefficients per
      class surface the rhetorical vocabulary that distinguishes each prompt
      style.
   2. Service classification — predict which LLM service (Claude, OpenAI, Gemini,
@@ -35,8 +35,8 @@ identity into the feature space without revealing real rhetorical genre:
 * Service names — the judge prompt labels each candidate as "(variant — Service)",
   so service tokens like "openai", "claude", "gemini", "ollama" appear inside
   rationales as meta-commentary, not as stylistic signature.
-* Variant names — same problem. "expert_persona", "minimal", "judge",
-  "native_rationale" are echoed by the judge in synthesis text.
+* Variant names — same problem. "github_searcher", "minimal", "judge",
+  "fluent_speaker" are echoed by the judge in synthesis text.
 * Source term — every rationale discusses "Digital Humanities", "digital",
   "humanities". These words alone aren't useful features but their CONTEXTS are
   (e.g., "borrowed from English" is a real Claude signal). Stripping the
@@ -100,19 +100,19 @@ from sklearn.model_selection import (
 
 # ── Constants ──────────────────────────────────────────────────────────────
 
-# English-language prompt variants. native_rationale is excluded from
+# English-language prompt variants. fluent_speaker is excluded from
 # rationale-based classification because its rationales are in the target
 # language; including them would teach the classifier script identity rather
 # than rhetorical style.
-ENGLISH_VARIANTS = ("minimal", "expert_persona", "judge")
+ENGLISH_VARIANTS = ("minimal", "github_searcher", "judge")
 SERVICES = ("claude", "openai", "gemini", "deepseek", "llama", "gemma", "qwen", "mistral")
 
 # All variant and service tokens that appear verbatim in judge-prompt context.
 # The judge prompt labels each candidate as "(variant — Service)", so models
 # echo these strings back in their evaluation rationales. Includes
-# native_rationale even though that variant itself is excluded from training,
+# fluent_speaker even though that variant itself is excluded from training,
 # because judge prompts reference it.
-_VARIANT_TOKENS = ("expert_persona", "native_rationale", "minimal", "judge")
+_VARIANT_TOKENS = ("fluent_speaker", "github_searcher", "minimal", "judge")
 _SERVICE_TOKENS = SERVICES
 
 # Source-term unigrams. Stripping these is defensible because every rationale

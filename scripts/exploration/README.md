@@ -131,7 +131,7 @@ Placeholder rationales — literal strings such as `"No rationale provided"`, `"
 
 ```bash
 python explore_confidence_within_variant.py --term "Digital Humanities"
-python explore_confidence_within_variant.py --variants minimal expert_persona
+python explore_confidence_within_variant.py --variants minimal github_searcher
 ```
 
 ---
@@ -140,7 +140,7 @@ python explore_confidence_within_variant.py --variants minimal expert_persona
 
 For each (language × service), compares translations across the four prompt variants. Measures whether a given LLM gives the same answer regardless of how it was asked.
 
-- **Question**: "Does the same LLM produce the same translation for 'expert_persona' and 'minimal'?"
+- **Question**: "Does the same LLM produce the same translation for 'github_searcher' and 'minimal'?"
 - **Input**: `translated_terms/{term}/prompt_services/` for each variant
 - **Output**: `translated_terms/{term}/evaluation/across_variant_detail.csv`, `across_variant_service_summary.csv`
 
@@ -148,7 +148,7 @@ Agreement rate = fraction of variants that produced the same translation for a g
 
 ```bash
 python explore_confidence_across_variants.py --term "Digital Humanities"
-python explore_confidence_across_variants.py --variants minimal expert_persona native_rationale
+python explore_confidence_across_variants.py --variants minimal fluent_speaker github_searcher
 ```
 
 ---

@@ -272,8 +272,8 @@ _SVC_TO_PREFIX = {
 
 _VARIANT_COL_TO_NAME = {
     "exclude_term_minimal":          "minimal",
-    "exclude_term_expert_persona":   "expert_persona",
-    "exclude_term_native_rationale": "native_rationale",
+    "exclude_term_fluent_speaker":   "fluent_speaker",
+    "exclude_term_github_searcher":  "github_searcher",
     "exclude_term_judge":            "judge",
 }
 

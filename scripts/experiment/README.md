@@ -80,10 +80,10 @@ Services run in this order (each optional):
 
 | # | Service | Type | Prompt-variant? |
 | --- | --- | --- | --- |
-| 1 | Wikipedia | Ground truth lookup | No |
-| 2 | Google Cloud Translate | Direct MT | No |
-| 3 | EasyNMT | Local neural MT | No |
-| 4 | Lingvanex | Direct MT (Kraus et al. 2025 top-ranked) | No |
+| 1 | Wikipedia | Community-curated reference (human editorial consensus, not MT) | No |
+| 2 | Google Cloud Translate | MT baseline | No |
+| 3 | EasyNMT | MT baseline (local neural, Helsinki-NLP) | No |
+| 4 | Lingvanex | MT baseline (Kraus et al. 2025 top-ranked) | No |
 | 5 | Llama (local Ollama) | Local LLM | Yes |
 | 6 | Gemma (local Ollama) | Local LLM | Yes |
 | 7 | Qwen (local Ollama) | Local LLM | Yes |
@@ -101,16 +101,16 @@ The default `prompt_variant` when running `generate_translations.py` standalone 
 
 ```bash
 # Run multiple variants in sequence
-python generate_translations.py --terms "Digital Humanities" --variant minimal expert_persona native_rationale judge
+python generate_translations.py --terms "Digital Humanities" --variant minimal fluent_speaker github_searcher judge
 
 # Run only local Ollama models (skips all API LLMs and baseline services)
-python generate_translations.py --terms "Digital Humanities" --ollama-only --variant minimal expert_persona native_rationale judge
+python generate_translations.py --terms "Digital Humanities" --ollama-only --variant minimal fluent_speaker github_searcher judge
 
 # Run only cloud API models (skips all Ollama models and baseline services)
-python generate_translations.py --terms "Digital Humanities" --api-only --variant minimal expert_persona native_rationale judge
+python generate_translations.py --terms "Digital Humanities" --api-only --variant minimal fluent_speaker github_searcher judge
 
 # Fine-grained per-service control
-python generate_translations.py --terms "Digital Humanities" --variant expert_persona --no-gt --no-enmt --no-lingvanex --no-wikipedia --no-openai --no-claude --no-gemini --no-deepseek
+python generate_translations.py --terms "Digital Humanities" --variant fluent_speaker --no-gt --no-enmt --no-lingvanex --no-wikipedia --no-openai --no-claude --no-gemini --no-deepseek
 ```
 
 `--ollama-only` and `--api-only` are mutually exclusive. Both implicitly skip the baseline services (Wikipedia, GT, EasyNMT, Lingvanex) since those are prompt-invariant and only need to run once.
@@ -126,7 +126,7 @@ Runner for prompt variant testing. Runs four strategies across all LLM services 
 Run order when "ALL" is selected:
 
 ```text
-1. minimal  →  2. expert_persona  →  3. native_rationale  →  [aggregate]  →  4. judge
+1. minimal  →  2. fluent_speaker  →  3. github_searcher  →  [aggregate]  →  4. judge
 ```
 
 The aggregation step (`aggregate_variant_translations()`) loads every output file from variants 1–3 plus all direct service files, deduplicates translations by value, groups agreeing sources, and builds a per-(language, term) context dict that is passed to the judge LLMs.
@@ -140,8 +140,8 @@ Prompt templates for LLM services. Four variants, always run in this order:
 | Variant | Strategy | What it tests |
 | --- | --- | --- |
 | `minimal` | Bare instruction with no additional context | Baseline — how well LLMs translate without guidance |
-| `expert_persona` | Model positioned as domain expert and native speaker | Whether role/identity framing improves accuracy |
-| `native_rationale` | Rationale requested in the target language | Whether metacognitive depth in the target language improves translation |
+| `github_searcher` | Researcher building a multilingual GitHub search corpus | Whether goal-orientation framing shapes translation choices  acy |
+| `fluent_speaker` | Rationale requested in the target language | Whether metacognitive depth in the target language improves translation |
 | `judge` | Synthesis of all prior outputs (runs last) | Best achievable translation given maximum available evidence |
 
 **Design rationale:** The first three variants are independent conditions testing distinct prompting dimensions. They are directly comparable to each other. The `judge` is a synthesis step, not a comparison condition — its outputs should not be compared against the other three statistically. It answers the question "what is the best translation we can produce?" by aggregating all available evidence.
@@ -210,7 +210,7 @@ All service errors are written to `{DATA_DIR}/error_logs/` with one CSV per serv
 
 **Ollama hallucination loops are deterministic (400).** When a local model returns `done=False`, it hit the `num_predict` token limit mid-generation, producing a character-repetition loop rather than a valid translation. These are logged as `ollama.chat - HallucinationLoop` with status 400. The timing metadata fields (`total_duration`, etc.) are `None` in this state; `getattr` with a `None` default is used for all Ollama metadata to avoid `KeyError` from the library's `__getitem__` implementation, which omits `None`-valued fields.
 
-**Errors are variant-scoped for LLM services.** A 400 failure on `minimal` does not exclude that language from `expert_persona`, `native_rationale`, or `judge`. Each prompt variant gets an independent exclusion check. This matters most for `judge`: low-resource languages that produced repetition loops or refusals on earlier variants still receive a judge attempt, since the judge prompt is structurally different and provides rich translation context from all prior outputs.
+**Errors are variant-scoped for LLM services.** A 400 failure on `minimal` does not exclude that language from `fluent_speakerersona`, `fluent_speaker`, or `judge`. Each prompt variant gets an independent exclusion check. This matters most for `judge`: low-resource languages that produced repetition loops or refusals on earlier variants still receive a judge attempt, since the judge prompt is structurally different and provides rich translation context from all prior outputs.
 
 **Baseline service logs (GT, EasyNMT, Lingvanex, Wikipedia) have no variant column.** Their exclusions are unconditional — these services run once and are not re-run per variant. `log_error_to_file` always reindexes the new row to match the existing file's column order before appending, preventing column misalignment that would silently break the dedup key across runs.
 
@@ -228,7 +228,7 @@ Per-term outputs under `{DATA_DIR}/translated_terms/{term_slug}/`:
     lingvanex_translations.csv               # Lingvanex (prompt-invariant)
     wikipedia_translations.csv               # Wikipedia (prompt-invariant)
   prompt_variants/
-    llama_{variant}_translations.csv         # variant ∈ {minimal, expert_persona, native_rationale, judge}
+    llama_{variant}_translations.csv         # variant ∈ {minimal, fluent_speaker, github_searcher, judge}
     gemma_{variant}_translations.csv
     qwen_{variant}_translations.csv
     mistral_{variant}_translations.csv

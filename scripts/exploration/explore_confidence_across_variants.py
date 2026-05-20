@@ -8,7 +8,7 @@ For each (language × service) combination, compare the translation produced by
 each prompt variant. This measures prompt robustness — does the same LLM give
 the same answer regardless of how it was prompted?
 
-  - Is Claude's German translation stable across minimal vs expert_persona?
+  - Is Claude's German translation stable across minimal vs github_searcher?
   - Are local models (Llama, Gemma, Qwen, Mistral) more prompt-sensitive than
     API models (OpenAI, Claude, Gemini, DeepSeek)?
   - Which services are most sensitive to prompt wording?
@@ -50,7 +50,7 @@ from scripts.exploration.explore_confidence_within_variant import load_variant_d
 console = Console()
 
 ALL_VARIANTS = [
-    'minimal', 'expert_persona', 'native_rationale', 'judge'
+    'minimal', 'fluent_speaker', 'github_searcher', 'judge'
 ]
 
 # Services whose translations vary by prompt variant (LLMs)

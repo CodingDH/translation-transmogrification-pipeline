@@ -3,14 +3,13 @@ Translation prompt variants for comparative testing.
 
 Four variants, run in this fixed order:
 1. minimal: bare instruction, no system prompt, no scaffolding (baseline)
-2. expert_persona: positions model as domain expert and native speaker
-3. native_rationale: asks for rationale written in the target language
+2. fluent_speaker: asks for rationale written in the target language
+3. github_searcher: frames translation as studying GitHub communities across many languages (goal-orientation framing)
 4. judge: runs last; shows all unique translations from every prior variant and service, deduplicated by value, and asks for the best synthesis
 
 System prompts
 --------------
-Each variant exposes a paired (system, user) prompt via get_system_prompt() and get_user_prompt(). For the `minimal` baseline, get_system_prompt() returns None to signal that NO system prompt should be sent. This matters: the minimal
-variant is the comparison point against which expert_persona and native_rationale earn their keep, and adding any system prompt (even a generic 'helpful assistant' framing) would pre-load behavior that the other variants are supposed to be introducing.
+Each variant exposes a paired (system, user) prompt via get_system_prompt() and get_user_prompt(). For the `minimal` baseline, get_system_prompt() returns None to signal that NO system prompt should be sent. This matters: the minimal variant is the comparison point against which fluent_speaker and github_searcher earn their keep, and adding any system prompt (even a generic 'helpful assistant' framing) would pre-load behavior that the other variants are supposed to be introducing.
 
 Per-provider handling for `minimal` (None system prompt):
   - Anthropic API: omit the `system=...` argument entirely
@@ -21,15 +20,38 @@ Per-provider handling for `minimal` (None system prompt):
 The point is that 'no system prompt' should be an actual absence, not an empty string, since providers handle empty-string system prompts differently (some apply defaults, some treat as a real signal). Always omit the parameter.
 """
 
-# Brief descriptions shown inside the judge prompt so it understands each source.
-VARIANT_DESCRIPTIONS = {
-    'minimal':          'bare instruction to an LLM with no system prompt and no scaffolding',
-    'expert_persona':   'LLM prompted as a domain expert and native speaker',
-    'native_rationale': 'LLM asked to provide its reasoning in the target language',
+# ── Source categorisation for the judge prompt ───────────────────────────────
+# Three epistemic stances on "what is a translation":
+#   1. LLM prompt variants — generative model output under different framings
+#   2. Machine translation services — algorithmic baselines (statistical/neural MT)
+#   3. Community resources — human-curated reference translations (extensible)
+
+# Descriptions for the LLM prompt variants only.
+PROMPT_VARIANT_DESCRIPTIONS = {
+    'minimal':         'bare instruction to an LLM with no system prompt and no scaffolding',
+    'fluent_speaker':  'LLM asked to provide its reasoning in the target language',
+    'github_searcher': 'LLM framed as a researcher studying communities on GitHub across many languages',
+}
+
+# Descriptions for the machine translation baseline services.
+MT_SERVICE_DESCRIPTIONS = {
     'Google Translate': 'automated machine translation (Google)',
     'EasyNMT':          'neural machine translation (Helsinki-NLP models)',
     'Lingvanex':        'automated machine translation (Lingvanex)',
-    'Wikipedia':        'existing Wikipedia article title for this concept',
+}
+
+# Descriptions for community-curated reference resources. Extensible: future
+# additions might include IATE, LCSH, DH journal subject headings, Wikidata, etc.
+COMMUNITY_RESOURCE_DESCRIPTIONS = {
+    'Wikipedia': 'community-curated translation from Wikipedia article interlanguage links (human editorial consensus, not machine translation)',
+}
+
+# Backward-compatible union for any code that still reads VARIANT_DESCRIPTIONS
+# as a single flat dict. New code should reference the three split dicts above.
+VARIANT_DESCRIPTIONS = {
+    **PROMPT_VARIANT_DESCRIPTIONS,
+    **MT_SERVICE_DESCRIPTIONS,
+    **COMMUNITY_RESOURCE_DESCRIPTIONS,
 }
 
 # Human-readable labels for each LLM service (used when building judge context).
@@ -56,21 +78,41 @@ SERVICE_DESCRIPTIONS = {
     'Mistral (local)':  'open-weight LLM running locally via Ollama (Mistral 7B)',
 }
 
-DIRECT_SERVICE_LABELS = {
+# Per-source filename → display-name maps. Split conceptually but they share
+# the direct_services/ directory on disk; the split lives at the methodology
+# layer, not the filesystem layer.
+MT_SERVICE_LABELS = {
     'gt':        'Google Translate',
     'enmt':      'EasyNMT',
     'lingvanex': 'Lingvanex',
+}
+
+COMMUNITY_RESOURCE_LABELS = {
     'wikipedia': 'Wikipedia',
 }
+
+# Backward-compatible union: all per-language files written to direct_services/.
+DIRECT_SERVICE_LABELS = {**MT_SERVICE_LABELS, **COMMUNITY_RESOURCE_LABELS}
 
 
 # ── System prompts (variant-specific) ────────────────────────────────────────
 
-# Default scholar system prompt used by non-minimal variants. The judge variant
-# carries its scholar framing inline because it also needs to inject the source
-# term and language into the system role for stronger grounding.
+# Default scholar system prompt used by fluent_speaker and judge. The judge
+# variant carries its scholar framing inline because it also needs to inject
+# the source term and language into the system role for stronger grounding.
 _SCHOLAR_SYSTEM_PROMPT = (
     "You are a {term_source} scholar who speaks many languages."
+)
+
+# Goal-oriented system prompt for github_searcher. Frames the model as a
+# corpus-builder rather than a scholar. The contrast with _SCHOLAR_SYSTEM_PROMPT
+# is the variant's core test: does goal-orientation (translate-to-find) shape
+# translation choices differently than scholarly framing (translate-for-accuracy)?
+_GITHUB_SEARCHER_SYSTEM_PROMPT = (
+    "You are a researcher studying {term_source} communities on GitHub. "
+    "Because GitHub spans many language communities, you need to translate "
+    "{term_source} into multiple languages to identify relevant activity "
+    "on the platform."
 )
 
 
@@ -84,10 +126,10 @@ def get_system_prompt(variant: str, term_source: str) -> str | None:
     Parameters
     ----------
     variant : str
-        One of 'minimal', 'expert_persona', 'native_rationale', 'judge'.
+        One of 'minimal', 'fluent_speaker', 'github_searcher', 'judge'.
     term_source : str
         The source term being translated. Used to interpolate scholar
-        framing for non-minimal variants.
+        or corpus-builder framing for non-minimal variants.
     """
     if variant not in PROMPT_VARIANTS:
         raise ValueError(
@@ -96,6 +138,8 @@ def get_system_prompt(variant: str, term_source: str) -> str | None:
         )
     if variant == 'minimal':
         return None
+    if variant == 'github_searcher':
+        return _GITHUB_SEARCHER_SYSTEM_PROMPT.format(term_source=term_source)
     return _SCHOLAR_SYSTEM_PROMPT.format(term_source=term_source)
 
 
@@ -128,53 +172,36 @@ def get_minimal_prompt(term_source: str, language_name: str, language_code: str)
     )
 
 
-def get_expert_persona_prompt(term_source: str, language_name: str, language_code: str) -> str:
+def get_fluent_speaker_prompt(term_source: str, language_name: str, language_code: str) -> str:
     """
-    Expert persona prompt — positions model as domain expert and native speaker. Tests whether role-playing improves translation quality and confidence.
-    
-    Parameters
-    ----------
-    term_source : str
-		The term to translate (e.g. "Digital Humanities").
-    language_name : str
-		The target language name (e.g. "French").
-    language_code : str
-		The target language ISO code (e.g. "fr"). Used for disambiguation, not as scaffolding.
-        
-    Returns
-    -------
-    str		 The formatted user prompt for the expert_persona variant.
-    """
-    return (
-        f"You are an expert {term_source} scholar and native {language_name} speaker "
-        f"with deep knowledge of academic terminology. Your task: Translate the term "
-        f"'{term_source}' into {language_name} (ISO code: {language_code}).\n\n"
-        f"Provide your translation with consideration for:\n"
-        f"1. Scholarly accuracy\n"
-        f"2. Cultural equivalence\n"
-        f"3. Academic conventions in {language_name}\n\n"
-        f"IMPORTANT: Return ONLY valid JSON with no other text. Use this exact format:\n"
-        f'{{\"translated_term\": \"your translation\", \"translation_rationale\": \"your detailed rationale\"}}'
-    )
-
-
-def get_native_rationale_prompt(term_source: str, language_name: str, language_code: str) -> str:
-    """
-    Native rationale prompt — asks for rationale written in the target language.
+    Fluent speaker prompt — asks for rationale written in the target language.
     Tests whether explaining in the target language forces deeper linguistic understanding.
     """
     return (
-        f"You are a native {language_name} speaker and translation expert. "
         f"Translate '{term_source}' into {language_name} (ISO code: {language_code}).\n\n"
-        f"Please provide your rationale in {language_name}, not English — unless {language_name} "
-        f"is English or you have a strong reason to use English. Writing in {language_name} "
+        f"Write your rationale in {language_name}, not English. (If the target "
+        f"language is English, write in English.) Writing in {language_name} "
         f"demonstrates deep understanding of both the language and the term.\n\n"
-        f"IMPORTANT: Return ONLY valid JSON with no other text. "
-        f"Use this exact format (with explanation in {language_name}):\n"
-        f'{{\"translated_term\": \"your translation in {language_name}\", '
-        f'\"translation_rationale\": \"your explanation in {language_name}\"}}'
+        f"IMPORTANT: Return ONLY valid JSON with no other text. Use this exact format:\n"
+        f'{{"translated_term": "...", "translation_rationale": "..."}}'
     )
 
+
+
+def get_github_searcher_prompt(term_source: str, language_name: str, language_code: str) -> str:
+    """
+    GitHub searcher prompt — frames translation as building a multilingual
+    GitHub search corpus. Tests whether explicit goal-orientation (the translation
+    will be used as a search query) shapes translation choices differently than
+    scholarly framing.
+    """
+    return (
+        f"Translate '{term_source}' into {language_name} (ISO code: {language_code}). "
+        f"This translation will be used as a search query to find '{term_source}' "
+        f"scholarship on GitHub — including repositories, users, issues, and topics.\n\n"
+        f"IMPORTANT: Return ONLY valid JSON with no other text. Use this exact format:\n"
+        f'{{"translated_term": "...", "translation_rationale": "..."}}'
+    )
 
 
 def get_judge_prompt(
@@ -199,10 +226,10 @@ def get_judge_prompt(
         }
     """
     prompt = (
-        f"You are a {term_source} scholar. "
         f"Your task is to judge the following proposed translations of the academic term "
         f"'{term_source}' into {language_name} (ISO code: {language_code}), "
-        f"then either select the best one or generate an improved translation.\n\n"
+        f"then either select the best one or generate an improved translation. "
+        f"Please explain your evaluation rationale.\n\n"
     )
 
     if existing_translations:
@@ -217,17 +244,44 @@ def get_judge_prompt(
                 if any(svc in src for src in all_sources)
             }
 
-            prompt += "Approach descriptions (prompt strategies):\n"
-            for key, desc in VARIANT_DESCRIPTIONS.items():
-                if any(key in src for src in all_sources):
+            # LLM prompt strategies
+            prompt_variants_present = [
+                (k, v) for k, v in PROMPT_VARIANT_DESCRIPTIONS.items()
+                if any(k in src for src in all_sources)
+            ]
+            if prompt_variants_present:
+                prompt += "Prompt strategies (LLM variants):\n"
+                for key, desc in prompt_variants_present:
                     prompt += f"  - {key}: {desc}\n"
-            prompt += "\n"
+                prompt += "\n"
 
             if present_services:
                 prompt += "LLM sources:\n"
                 for svc, desc in SERVICE_DESCRIPTIONS.items():
                     if svc in present_services:
                         prompt += f"  - {svc}: {desc}\n"
+                prompt += "\n"
+
+            # Machine translation baselines
+            mt_present = [
+                (k, v) for k, v in MT_SERVICE_DESCRIPTIONS.items()
+                if any(k in src for src in all_sources)
+            ]
+            if mt_present:
+                prompt += "Machine translation baselines:\n"
+                for key, desc in mt_present:
+                    prompt += f"  - {key}: {desc}\n"
+                prompt += "\n"
+
+            # Community-curated resources (human editorial consensus)
+            cr_present = [
+                (k, v) for k, v in COMMUNITY_RESOURCE_DESCRIPTIONS.items()
+                if any(k in src for src in all_sources)
+            ]
+            if cr_present:
+                prompt += "Community-curated references:\n"
+                for key, desc in cr_present:
+                    prompt += f"  - {key}: {desc}\n"
                 prompt += "\n"
 
             prompt += "Proposed translations:\n"
@@ -243,15 +297,15 @@ def get_judge_prompt(
 
         if unique:
             prompt += (
-                "\nJudge these translations, noting where sources agreed or diverged. "
-                "Select the best translation or generate a new one if none are satisfactory. "
-                "Provide your reasoning.\n\n"
+                "\nAs a reminder, your goal is to judge these translations, noting "
+                "where sources agreed or diverged. Then you should select the best "
+                "translation or generate a new one if none are satisfactory. Please "
+                "provide your reasoning for your evaluation.\n\n"
             )
 
     prompt += (
         "IMPORTANT: Return ONLY valid JSON with no other text. Use this exact format:\n"
-        "{\"translated_term\": \"your translation\", "
-        "\"translation_rationale\": \"your evaluation and reasoning\"}"
+        "{\"translated_term\": \"...\", \"translation_rationale\": \"...\"}"
     )
     return prompt
 
@@ -259,15 +313,15 @@ def get_judge_prompt(
 # Ordered dict — judge must always be last.
 PROMPT_VARIANTS = {
     'minimal':          get_minimal_prompt,
-    'expert_persona':   get_expert_persona_prompt,
-    'native_rationale': get_native_rationale_prompt,
+    'fluent_speaker':   get_fluent_speaker_prompt,
+    'github_searcher':  get_github_searcher_prompt,
     'judge':            get_judge_prompt,
 }
 
 PROMPT_DESCRIPTIONS = {
     'minimal':          'Bare user instruction, no system prompt (baseline)',
-    'expert_persona':   'Model positioned as domain expert and native speaker',
-    'native_rationale': 'Rationale requested in the target language',
+    'fluent_speaker':   'Rationale requested in the target language',
+    'github_searcher':  'Framing as researcher studying GitHub communities across many languages',
     'judge':            'Synthesis: all unique translations from prior variants, deduplicated by value',
 }
 
@@ -290,7 +344,7 @@ def get_prompt(
     Parameters
     ----------
     variant : str
-        One of: 'minimal', 'expert_persona', 'native_rationale', 'judge'
+        One of: 'minimal', 'fluent_speaker', 'github_searcher', 'judge'
     term_source : str
         The term to translate.
     language_name : str

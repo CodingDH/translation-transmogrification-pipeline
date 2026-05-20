@@ -1235,7 +1235,7 @@ def generate_translated_terms(data_directory_path: str, target_terms: List[str],
 	excluding_previous_errors : bool
 		If True, skip rows that previously errored (logged in service error files).
 	prompt_variant : str
-		LLM prompt strategy. Options: 'minimal', 'expert_persona', 'native_rationale', 'judge'. Defaults to 'minimal'.
+		LLM prompt strategy. Options: 'minimal', 'fluent_speaker', 'github_searcher', 'judge'. Defaults to 'minimal'.
 	gemini_translate : bool
 		Whether to run Gemini. Defaults to False.
 	lingvanex_translate : bool
@@ -1275,7 +1275,7 @@ def generate_translated_terms(data_directory_path: str, target_terms: List[str],
 if __name__ == '__main__':
 	import argparse as _argparse
 
-	_ALL_VARIANTS = ['minimal', 'expert_persona', 'native_rationale', 'judge']
+	_ALL_VARIANTS = ['minimal', 'fluent_speaker', 'github_searcher', 'judge']
 
 	_parser = _argparse.ArgumentParser(
 		description="Run the translation pipeline.",
@@ -1283,19 +1283,19 @@ if __name__ == '__main__':
 		epilog=(
 			"Examples:\n"
 			"  # Run all four variants for local Ollama models overnight:\n"
-			"  python generate_translations.py --terms 'Digital Humanities' --ollama-only --variant minimal expert_persona native_rationale judge\n\n"
+			"  python generate_translations.py --terms 'Digital Humanities' --ollama-only --variant minimal fluent_speaker github_searcher judge\n\n"
 			"  # Run all four variants for API models in a second terminal:\n"
-			"  python generate_translations.py --terms 'Digital Humanities' --api-only --variant minimal expert_persona native_rationale judge\n\n"
+			"  python generate_translations.py --terms 'Digital Humanities' --api-only --variant minimal fluent_speaker github_searcher judge\n\n"
 			"  # Run a single variant with fine-grained control:\n"
-			"  python generate_translations.py --terms 'Digital Humanities' --variant expert_persona --no-gt --no-enmt --no-lingvanex --no-wikipedia --no-openai --no-claude --no-gemini --no-deepseek"
+			"  python generate_translations.py --terms 'Digital Humanities' --variant fluent_speaker --no-gt --no-enmt --no-lingvanex --no-wikipedia --no-openai --no-claude --no-gemini --no-deepseek"
 		),
 	)
 	_parser.add_argument('--variant', nargs='+', default=['minimal'],
 		choices=_ALL_VARIANTS, metavar='VARIANT',
 		help=(
 			'One or more prompt variants to run in sequence '
-			'(choices: minimal, expert_persona, native_rationale, judge; default: minimal). '
-			'E.g. --variant minimal expert_persona native_rationale judge'
+			'(choices: minimal, fluent_speaker, github_searcher, judge; default: minimal). '
+			'E.g. --variant minimal fluent_speaker github_searcher judge'
 		))
 	_parser.add_argument('--terms', nargs='+', default=['Computational Humanities'],
 		help='Target term(s) to translate (default: "Computational Humanities")')
@@ -1355,7 +1355,7 @@ if __name__ == '__main__':
 				from generate_translation_prompts import aggregate_variant_translations
 				_judge_contexts = aggregate_variant_translations(local_data_directory_path, local_target_terms)
 			if not _judge_contexts:
-				print("⚠ No prior variant outputs found — run minimal/expert_persona/native_rationale first.")
+				print("⚠ No prior variant outputs found — run minimal/fluent_speaker/github_searcher first.")
 				continue
 		combined_translated_df, combined_processed_df, combined_grouped_df = generate_translated_terms(
 			local_data_directory_path, local_target_terms, existing_directionality_df,

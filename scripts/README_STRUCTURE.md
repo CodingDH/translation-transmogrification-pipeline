@@ -7,7 +7,7 @@ scripts/
 │   ├── generate_family_assignments.py       # Generated datasets/metadata_files/language_family_assignments.json (one-time)
 │   ├── generate_translations.py             # Main orchestrator
 │   ├── generate_translation_prompts.py      # Prompt variant testing runner
-│   ├── translation_prompts.py               # Prompt templates (4 variants: minimal, expert_persona, native_rationale, judge)
+│   ├── translation_prompts.py               # Prompt templates (4 variants: minimal, fluent_speaker, github_searcher, judge)
 │   ├── translation_services.py              # API wrappers for all services
 │   ├── data_processing.py                   # Parsing and extraction utilities
 │   ├── verification.py                      # Post-translation verification

@@ -452,7 +452,7 @@ def get_openai_translation(row: pd.Series, error_file_path: str, console: Consol
 	client : OpenAI
 		OpenAI client object
 	current_prompt_variant : str
-		The prompt variant to use ('minimal', 'expert_persona', 'native_rationale', 'judge')
+		The prompt variant to use ('minimal', 'fluent_speaker', 'github_searcher', 'judge')
 	current_term_contexts : dict
 		Dictionary mapping terms to their contexts
 
@@ -740,7 +740,7 @@ def get_claude_translation(row: pd.Series, error_file_path: str, console: Consol
 	claude_client : Anthropic
 		Claude client object
 	current_prompt_variant : str
-		The prompt variant to use ('minimal', 'expert_persona', 'native_rationale', 'judge')
+		The prompt variant to use ('minimal', 'fluent_speaker', 'github_searcher', 'judge')
 	current_term_contexts : dict
 		Dictionary mapping terms to their contexts
 
@@ -955,7 +955,7 @@ def get_gemini_translation(row: pd.Series, error_file_path: str, console: Consol
 	GEMINI_MODEL : str
 		The Gemini model name to use
 	current_prompt_variant : str
-		The prompt variant to use ('minimal', 'expert_persona', 'native_rationale', 'judge')
+		The prompt variant to use ('minimal', 'fluent_speaker', 'github_searcher', 'judge')
 	current_term_contexts : dict
 		Dictionary mapping terms to their contexts
 
@@ -1111,7 +1111,7 @@ def get_ollama_translation(row: pd.Series, error_file_path: str, console: Consol
 	console : Console
 		Rich console for printing output
 	current_prompt_variant : str
-		The prompt variant to use ('minimal', 'expert_persona', 'native_rationale', 'judge')
+		The prompt variant to use ('minimal', 'fluent_speaker', 'github_searcher', 'judge')
 	current_term_contexts : dict
 		Dictionary mapping terms to their contexts
 	ollama_model : str

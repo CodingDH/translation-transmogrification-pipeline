@@ -4,8 +4,8 @@ Translation generation with multiple prompt variants for comparative testing.
 
 Four variants, run in this fixed order:
   1. minimal          - bare instruction, no system prompt (baseline)
-  2. expert_persona   - domain expert + native speaker framing
-  3. native_rationale - rationale written in the target language
+  2. github_searcher  - frames translation as building a multilingual GitHub search corpus
+  3. fluent_speaker - rationale written in the target language
   4. judge            - runs LAST; receives all unique translations from variants 1-3 and all
                         direct services, deduplicated by value, and synthesises the best answer
 

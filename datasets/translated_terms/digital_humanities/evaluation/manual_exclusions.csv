@@ -1,4 +1,4 @@
-language_code,language_name,service,exclude_translation,exclude_term_minimal,exclude_term_expert_persona,exclude_term_native_rationale,exclude_term_judge,original_term,corrected_term,notes
+language_code,language_name,service,exclude_translation,exclude_term_minimal,exclude_term_expert_persona,exclude_term_fluent_speaker,exclude_term_judge,original_term,corrected_term,notes
 cad,Caddo,analysis_exclusion,true,false,false,false,false,Translation not available,,
 cad,Caddo,analysis_exclusion,true,false,false,false,false,...,,
 kho,Khotanese,analysis_exclusion,true,false,false,false,false,Translation not available,,

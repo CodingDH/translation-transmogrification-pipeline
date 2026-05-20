@@ -4,14 +4,18 @@ A multilingual translation pipeline for scholarly terminology, built for the Cod
 
 ## Overview
 
-This pipeline translates key domain terms (e.g. "Digital Humanities") into 880 language codes spanning ISO 639-1, ISO 639-2, and ISO 639-3, by triangulating across multiple translation services and LLMs with different prompting strategies, then surfaces and classifies disagreements for human verification.
+This pipeline translates key domain terms (e.g. "Digital Humanities") into 880 language codes spanning ISO 639-1, ISO 639-2, and ISO 639-3, by triangulating across three distinct epistemic sources, then surfaces and classifies disagreements for human verification.
 
-**Direct services** (prompt-invariant, queried once per language):
+**Machine translation baselines** (prompt-invariant, queried once per language):
 
 - Google Cloud Translate
 - EasyNMT (Helsinki-NLP opus-mt)
 - Lingvanex
-- Wikipedia title lookup
+
+**Community-curated references** (human editorial consensus, not machine translation):
+
+- Wikipedia interlanguage links — what scholars/editors in each language community have decided this concept is called
+- *(Extensible — future additions could include IATE, LCSH, DH journal subject headings, Wikidata, etc.)*
 
 **LLM services** (8 models × 3 prompt variants = 24 outputs per language):
 
@@ -21,8 +25,8 @@ This pipeline translates key domain terms (e.g. "Digital Humanities") into 880 l
 **Prompt variants:**
 
 - `minimal` — bare instruction, no system prompt (baseline)
-- `expert_persona` — positions model as domain expert and native speaker
-- `native_rationale` — asks for rationale written in the target language
+- `fluent_speaker` — asks for rationale written in the target language
+- `github_searcher` — frames translation as building a multilingual GitHub search corpus (goal-orientation)
 - `judge` — runs last; receives all unique translations from every prior service and variant, selects or improves the best one
 
 ## Documentation

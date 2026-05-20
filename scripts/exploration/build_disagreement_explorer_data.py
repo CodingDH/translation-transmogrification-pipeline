@@ -30,9 +30,9 @@ import sys
 
 import pandas as pd
 
-RATIONALE_VARIANT = 'native_rationale'
+RATIONALE_VARIANT = 'fluent_speaker'
 
-VARIANTS = ['minimal', 'expert_persona', 'native_rationale', 'judge']
+VARIANTS = ['minimal', 'fluent_speaker', 'github_searcher', 'judge']
 
 RATIONALE_SERVICE_COLS = {
     'claude':   'claude_translation_rationale',
@@ -224,7 +224,7 @@ def main():
     parser.add_argument('--output-dir', default=None, help='Override output directory')
     parser.add_argument(
         '--rationale-variant', default=RATIONALE_VARIANT,
-        choices=['minimal', 'expert_persona', 'native_rationale', 'judge'],
+        choices=['minimal', 'fluent_speaker', 'github_searcher', 'judge'],
         help=f'Prompt variant to pull full rationales from (default: {RATIONALE_VARIANT})'
     )
     args = parser.parse_args()

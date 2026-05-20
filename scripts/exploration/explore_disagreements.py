@@ -72,7 +72,7 @@ Usage
     python explore_disagreements.py
 
     # Single term, non-default variant
-    python explore_disagreements.py --term "Digital Humanities" --variant expert_persona
+    python explore_disagreements.py --term "Digital Humanities" --variant github_searcher
 
     # Ablation: keyword-rule contribution
     python explore_disagreements.py --no-keyword-rules
@@ -117,9 +117,9 @@ CATEGORIES = {
     'TRANSMOGRIFICATION':      'Confident fluent output untethered from community practice',
 }
 
-# Which prompt variants produce English-language rationales. Keyword matching assumes English; native_rationale produces rationales in the target language and keyword rules are skipped for it.
-ENGLISH_RATIONALE_VARIANTS = {'minimal', 'expert_persona', 'judge'}
-NATIVE_RATIONALE_VARIANTS = {'native_rationale'}
+# Which prompt variants produce English-language rationales. Keyword matching assumes English; fluent_speaker produces rationales in the target language and keyword rules are skipped for it.
+ENGLISH_RATIONALE_VARIANTS = {'minimal', 'github_searcher', 'judge'}
+NATIVE_RATIONALE_VARIANTS = {'fluent_speaker'}
 
 RATIONALE_COLS = {
     'Claude':   'claude_translation_rationale',
@@ -568,15 +568,15 @@ def classify(
 
 _RATIONALE_VARIANT_KEYS = [
     'rationale_minimal',
-    'rationale_expert_persona',
-    'rationale_native_rationale',
+    'rationale_fluent_speaker',
+    'rationale_github_searcher',
     'rationale_judge',
 ]
 
 _TERM_VARIANT_KEYS = [
     'term_minimal',
-    'term_expert_persona',
-    'term_native_rationale',
+    'term_fluent_speaker',
+    'term_github_searcher',
     'term_judge',
 ]
 
@@ -586,8 +586,8 @@ def load_exclusions(path: str) -> Dict[str, Dict[str, Dict[str, bool]]]:
 
     Returns ``{language_code: {service: {term: bool, rationale_minimal: bool, ...}}}``.
     The file is produced by html_files/disagreement_explorer.html.
-    Per-variant rationale keys: rationale_minimal, rationale_expert_persona,
-    rationale_native_rationale, rationale_judge.
+    Per-variant rationale keys: rationale_minimal, rationale_fluent_speaker,
+    rationale_github_searcher, rationale_judge.
     """
     df = pd.read_csv(path, converters={'language_code': str})
     result: Dict[str, Dict[str, Dict[str, bool]]] = {}
@@ -669,7 +669,7 @@ def run_disagreement_analysis(
         explore_confidence_across_variants.py.
     rationale_variant : str
         Which prompt variant to source rationales from. 'minimal' is the
-        canonical choice. 'native_rationale' silently disables keyword rules
+        canonical choice. 'fluent_speaker' silently disables keyword rules
         because its rationales are in the target language. 'judge' emits a
         warning — its rationales are synthesis text, not independent reasoning,
         so keyword signals mix object-level and meta-level evidence.
@@ -692,7 +692,7 @@ def run_disagreement_analysis(
 
     if rationale_variant in NATIVE_RATIONALE_VARIANTS:
         console.print(
-            "ℹ Running with native_rationale variant. Keyword-dependent "
+            "ℹ Running with fluent_speaker variant. Keyword-dependent "
             "rules will no-op; classification will use string/metadata features only.",
             style="dim cyan",
         )
@@ -963,7 +963,7 @@ def main():
         choices=sorted(ENGLISH_RATIONALE_VARIANTS | NATIVE_RATIONALE_VARIANTS),
         help=(
             "Prompt variant for rationale extraction. 'minimal' is canonical; "
-            "'native_rationale' disables keyword rules; 'judge' warns."
+            "'fluent_speaker' disables keyword rules; 'judge' warns."
         ),
     )
     parser.add_argument(

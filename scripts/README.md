@@ -42,8 +42,7 @@ LLM services are tested with four prompt strategies to evaluate the effect of di
 | Variant | What it tests |
 | --- | --- |
 | `minimal` | Baseline — bare instruction, no context |
-| `expert_persona` | Whether domain expert + native speaker framing improves accuracy |
-| `native_rationale` | Whether requesting rationale in the target language deepens translation quality |
+| `fluent_speaker` | Whether requesting rationale in the target language deepens translation quality |
 | `judge` | Synthesis — aggregates all unique translations from prior variants and direct services |
 
 The first three variants are independent, directly comparable conditions. The `judge` runs last and is a synthesis step rather than a comparison condition: it receives all unique translations produced by the other variants and services, deduplicated by value with agreeing sources grouped, and produces a best-answer translation. See `experiment/README.md` for full details.
@@ -71,4 +70,4 @@ cd scripts/experiment
 python generate_translation_prompts.py
 ```
 
-Select individual variants or "ALL" from the interactive menu. When "ALL" is chosen, variants run in order: `minimal` → `expert_persona` → `native_rationale` → `judge`. The judge requires the other three to have completed first.
+Select individual variants or "ALL" from the interactive menu. When "ALL" is chosen, variants run in order: `minimal` → `fluent_speaker` → `github_searcher` → `judge`. The judge requires the other three to have completed first.

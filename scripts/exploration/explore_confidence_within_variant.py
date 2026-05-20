@@ -27,7 +27,7 @@ Output files are written to data_directory/translated_terms/{term}/evaluation/:
 Usage:
     python explore_confidence_within_variant.py
     python explore_confidence_within_variant.py --term "Computational Humanities"
-    python explore_confidence_within_variant.py --variants expert_persona minimal
+    python explore_confidence_within_variant.py --variants github_searcher minimal
     python explore_confidence_within_variant.py --output-dir /path/to/out
 """
 
@@ -75,7 +75,7 @@ LLM_SERVICES = {
 PRIMARY_SERVICES = BASELINE_SERVICES
 
 ALL_VARIANTS = [
-    'minimal', 'expert_persona', 'native_rationale', 'judge'
+    'minimal', 'fluent_speaker', 'github_searcher', 'judge'
 ]
 
 
@@ -298,7 +298,7 @@ def compute_summary(scored_df: pd.DataFrame, variant: str, term: str) -> dict:
     scored_df : pd.DataFrame
     	DataFrame with confidence scores computed for a single term/variant.
 	variant : str
-		Prompt variant name (e.g. 'expert_persona', 'minimal', etc.) — used for labeling the summary row.
+		Prompt variant name (e.g. 'github_searcher', 'minimal', etc.) — used for labeling the summary row.
 	term : str
      	Term name (e.g. 'Digital Humanities') — used for labeling the summary row. 
 
@@ -359,7 +359,7 @@ def run_confidence_evaluation(
     target_terms : list of str
 		Terms to evaluate (e.g. ['Digital Humanities'])
     variants : list of str
-		Prompt variants to include (e.g. ['expert_persona', 'minimal', etc.])
+		Prompt variants to include (e.g. ['github_searcher', 'minimal', etc.])
 	output_dir : str, optional
 		Optional output directory. If not provided, defaults to data_directory_path/translated_terms/{term}/evaluation/
 
