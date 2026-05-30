@@ -203,8 +203,38 @@ These categories emerged from review and have no automated detector:
 | All manual `exclude_rationale_{variant}=true` | Apply for any rationale-dependent ranking | |
 | Search-unsafe characters (manual) | Exclude | ASL gloss notation, Linear A codepoints, Blissymbol codes will break regex search |
 | Constructed scripts (`zbl`, `lab`, `elx`, `xmr`) | Exclude entirely | No real-world corpus to search |
+| **Uncorroborated singleton** | Exclude | Term produced only once, in an LLM cell with missing/placeholder rationale, and no other source agrees. Treats unexplained singletons as low-confidence and likely junk. |
+| Analysis-excluded languages (manual `analysis_exclusion`) | Exclude entirely | Language-level decision applies at Tier 2 and beyond |
 
-**Implementing:** Build the search term list from the `judge` variant output (it aggregates across all variants and services). Apply all manual exclusions. Additionally filter: `len(term) > 100`, `has_repetition_loop`, `has_unicode_escape`, `has_source_term` (non-English), `has_mixed_script`, `has_placeholder_term`.
+**Implementing:** Build the search term list from `disagreement_analysis.csv`. Apply all manual exclusions (`analysis_exclusion`, `search_exclusion`, `term_correction` from `manual_exclusions.csv`). Apply the quality-flag based `(language, service)` exclusions (`has_repetition_loop`, `has_unicode_escape`, `has_source_term` non-English, `has_mixed_script`, `has_placeholder_term`, `has_extreme_term_length`). Apply `curate_translation()` to strip parenthetical romanizations. Drop terms with source-term leakage, control characters, or constructed-script languages. **Final pass: apply the corroboration check** — drop any term that lacks both rationale and cross-source agreement (see next subsection).
+
+### The corroboration rule — uncorroborated-singleton exclusion
+
+A search term is kept only if it satisfies **at least one** of two corroboration conditions, evaluated at the **term level** (not per language):
+
+1. **Rationale corroboration**: at least one cell anywhere in the pipeline produced this term with a valid rationale (non-empty, not a placeholder like `"No rationale provided"` / `"N/A"`). The model explained itself for this exact term, in any language.
+2. **Cross-source corroboration**: the term was produced by ≥2 distinct cells anywhere — counting any combination of LLM-variant cells across any languages and direct-service cells (Wikipedia, Google Translate, EasyNMT, Lingvanex). Multiple independent sources arrived at the same string, regardless of which language(s) they were translating into.
+
+A term that fails *both* conditions is an **uncorroborated singleton**: produced once anywhere in the pipeline, by a source that gave no explanation. These are auto-excluded from search.
+
+**Note on scope**: corroboration is at the *term level*, not per-(language, term). A term that appears in multiple languages or multiple services anywhere in the pipeline is considered corroborated, even if each individual (language, term) pair on its own is a singleton. This is the more expansive policy: the cost asymmetry of dropping a real translation (missing relevant content from a language community) is higher than including some questionable terms (whose search results can be filtered downstream).
+
+**Worked examples:**
+
+| Scenario | Outcome |
+|---|---|
+| Mistral/minimal produces `"Foo"` with no rationale (single language); nothing else produces `"Foo"` anywhere | **Drop** — singleton, no rationale, no corroboration anywhere |
+| Mistral/minimal (lang A) and Llama/judge (lang B) both produce `"Foo"`, neither with a rationale | **Keep** — two cells produced the term, even across different languages |
+| Gemma stamps the same chimera `"घरेलू मानवीयता"` across 4 Indo-Aryan dialects without rationale | **Keep** — 4 cells produced it (this is the trade-off — template-stamping failures get treated as cross-source convergence) |
+| Closely-related dialects (Inuktitut ike + ikt) both produce the same syllabics term, no rationale | **Keep** — 2 cells produced it; legitimate dialect convergence preserved |
+| Only Wikipedia produces `"Foo"` (no LLM or other source agrees) | **Drop** — single occurrence, no corroborating second source |
+| Claude/github_searcher produces `"Foo"` with a valid rationale | **Keep** — rationale alone is sufficient |
+
+**Trade-off**: this rule preserves cross-language dialect convergence at the cost of preserving cross-language template-stamping failures (the Gemma Himalayan-template pattern). The methodological argument: it's better to let questionable terms flow into search and be filtered downstream by hit-count or manual review than to drop legitimate dialect-cluster translations.
+
+**Normalisation**: terms are passed through `curate_translation()` (so parenthetical romanizations don't prevent corroboration: `"Foo (rendering)"` and `"Foo"` agree) and lowercased for the corroboration check (matching GitHub case-insensitive search semantics). Lowercasing was verified to only collapse already-qualifying duplicates — it does not promote any term from "drop" to "keep."
+
+**Implementation**: `_build_corroborated_terms()` in `scripts/generate_search_terms.py`.
 
 ---
 
@@ -226,6 +256,8 @@ These categories emerged from review and have no automated detector:
 | Manual `exclude_term_{variant}` | Do not apply | Apply | Apply |
 | Manual `exclude_rationale_{variant}` | Do not apply | Apply to rationale use | Apply |
 | Search-unsafe / constructed scripts | Annotate | Apply to rationale use | Exclude entirely |
+| Uncorroborated singleton (no rationale + no other cell agrees) | Not applicable | Not applicable | Exclude (auto) |
+| Manual `analysis_exclusion` (language-level) | Do not apply | Apply (drop language) | Apply (drop language) |
 
 ---
 
@@ -250,9 +282,10 @@ notebooks/07_rationale_analysis.ipynb       [Tier 2 — strict]
     exclude flagged term-error flags
     keep source_term and script_disagreement as categories
 
-scripts/experiment/generate_search_terms.py    [Tier 3 — strictest]
-    apply all exclusions
-    additional length / character safety filters
+scripts/generate_search_terms.py               [Tier 3 — strictest]
+    apply all exclusions (quality flags + manual_exclusions.csv)
+    apply length / character safety filters
+    apply uncorroborated-singleton check (rationale OR ≥2 cells)
 ```
 
 ---

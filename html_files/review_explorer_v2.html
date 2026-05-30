@@ -140,7 +140,12 @@
   .flag-pill.romanization      { background: #f5eeff; color: #6b30cc; border: 1px solid #6b30cc40; }
   .flag-pill.script_disagreement { background: #e8f8fc; color: #007a9e; border: 1px solid #007a9e40; }
   .flag-pill.source_term         { background: #f0fff4; color: #1a6b30; border: 1px solid #1a6b3040; }
+  .flag-pill.language_name_term  { background: #f0f8f4; color: #2a8050; border: 1px solid #2a805040; }
   .flag-pill.placeholder_term   { background: #fff8ee; color: #c07000; border: 1px solid #c0700040; }
+  .flag-pill.refusal_rationale  { background: #fff0f5; color: #b03060; border: 1px solid #b0306040; }
+  .flag-pill.transliteration_rationale { background: #eef3f8; color: #4a6c8c; border: 1px solid #4a6c8c40; }
+  .flag-pill.placeholder_rationale { background: #fbf4e4; color: #8b6a30; border: 1px solid #8b6a3040; }
+  .flag-pill.unexpected_rationale_language { background: #f3eef8; color: #5a2a8c; border: 1px solid #5a2a8c40; }
   .flag-pill.repetition_loop    { background: #fef4ff; color: #8b008b; border: 1px solid #8b008b40; }
   .flag-pill.extreme_term_length{ background: #fffbf0; color: #8b6000; border: 1px solid #8b600040; }
   .flag-pill.unicode_escape     { background: #f0f4ff; color: #2040a0; border: 1px solid #2040a040; }
@@ -183,7 +188,87 @@
   .cl-flag { font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 3px; white-space: nowrap; display: inline-flex; align-items: center; gap: 2px; }
   .cl-flag.mixed_script       { background: #fff0f5; color: #c0180c; border: 1px solid #c0180c40; }
   .cl-flag.placeholder_term   { background: #fff8ee; color: #c07000; border: 1px solid #c0700040; }
+  .cl-flag.refusal_rationale  { background: #fff0f5; color: #b03060; border: 1px solid #b0306040; }
+  .cl-flag.transliteration_rationale { background: #eef3f8; color: #4a6c8c; border: 1px solid #4a6c8c40; }
+  .cl-flag.placeholder_rationale { background: #fbf4e4; color: #8b6a30; border: 1px solid #8b6a3040; }
+  .cl-flag.unexpected_rationale_language { background: #f3eef8; color: #5a2a8c; border: 1px solid #5a2a8c40; }
+  /* Cluster row with at least one cell whose rationale matches a rationale-pattern flag */
+  .cluster-row.cluster-has-refusal { box-shadow: inset 3px 0 0 #b03060; }
+  .cluster-row.cluster-has-transliteration { box-shadow: inset 3px 0 0 #4a6c8c; }
+  .cluster-row.cluster-has-placeholder-rationale { box-shadow: inset 3px 0 0 #8b6a30; }
+  .cluster-row.cluster-has-language-name-term { box-shadow: inset 3px 0 0 #2a8050; }
+  .cluster-row.cluster-has-unexpected-rat-lang { box-shadow: inset 3px 0 0 #5a2a8c; }
+  .cluster-row.cluster-has-refusal.cluster-has-transliteration {
+    box-shadow: inset 3px 0 0 #b03060, inset 6px 0 0 #4a6c8c;
+  }
+  .cluster-row.cluster-has-refusal.cluster-has-placeholder-rationale {
+    box-shadow: inset 3px 0 0 #b03060, inset 6px 0 0 #8b6a30;
+  }
+  .cluster-row.cluster-has-transliteration.cluster-has-placeholder-rationale {
+    box-shadow: inset 3px 0 0 #4a6c8c, inset 6px 0 0 #8b6a30;
+  }
+  /* Rationale matrix cell whose rationale matches the refusal pattern */
+  .rat-cell-refusal {
+    border-left: 4px solid #b03060 !important;
+    background: linear-gradient(to right, #fff0f5 0%, transparent 25%) !important;
+    position: relative;
+  }
+  .rat-cell-refusal-badge {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    padding: 1px 6px; border-radius: 3px;
+    background: #fff0f5; color: #b03060; border: 1px solid #b0306040;
+    margin-bottom: 4px; white-space: nowrap;
+  }
+  /* Rationale matrix cell whose rationale matches the transliteration pattern */
+  .rat-cell-transliteration {
+    border-left: 4px solid #4a6c8c !important;
+    background: linear-gradient(to right, #eef3f8 0%, transparent 25%) !important;
+    position: relative;
+  }
+  .rat-cell-transliteration-badge {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    padding: 1px 6px; border-radius: 3px;
+    background: #eef3f8; color: #4a6c8c; border: 1px solid #4a6c8c40;
+    margin-bottom: 4px; margin-left: 4px; white-space: nowrap;
+  }
+  /* Rationale matrix cell whose rationale matches the placeholder pattern */
+  .rat-cell-placeholder-rationale {
+    border-left: 4px solid #8b6a30 !important;
+    background: linear-gradient(to right, #fbf4e4 0%, transparent 25%) !important;
+    position: relative;
+  }
+  .rat-cell-placeholder-rationale-badge {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    padding: 1px 6px; border-radius: 3px;
+    background: #fbf4e4; color: #8b6a30; border: 1px solid #8b6a3040;
+    margin-bottom: 4px; margin-left: 4px; white-space: nowrap;
+  }
+  .rat-cell-unexpected-rat-lang {
+    border-left: 4px solid #5a2a8c !important;
+    background: linear-gradient(to right, #f3eef8 0%, transparent 25%) !important;
+    position: relative;
+  }
+  .rat-cell-unexpected-rat-lang-badge {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    padding: 1px 6px; border-radius: 3px;
+    background: #f3eef8; color: #5a2a8c; border: 1px solid #5a2a8c40;
+    margin-bottom: 4px; margin-left: 4px; white-space: nowrap;
+  }
+  /* If multiple rationale flags fire, stack borders so each is visible */
+  .rat-cell-refusal.rat-cell-transliteration {
+    border-left: 4px solid #b03060 !important;
+    box-shadow: inset 4px 0 0 #4a6c8c;
+  }
+  .rat-cell-refusal.rat-cell-placeholder-rationale {
+    border-left: 4px solid #b03060 !important;
+    box-shadow: inset 4px 0 0 #8b6a30;
+  }
+  .rat-cell-transliteration.rat-cell-placeholder-rationale {
+    border-left: 4px solid #4a6c8c !important;
+    box-shadow: inset 4px 0 0 #8b6a30;
+  }
   .cl-flag.source_term        { background: #f0fff4; color: #1a6b30; border: 1px solid #1a6b3040; }
+  .cl-flag.language_name_term { background: #f0f8f4; color: #2a8050; border: 1px solid #2a805040; }
   .cl-flag.romanization       { background: #f5eeff; color: #6b30cc; border: 1px solid #6b30cc40; }
   .cl-flag.short_translation  { background: #f0ebff; color: #6b30cc; border: 1px solid #9b60ee40; }
   .cl-flag.script_disagreement{ background: #e8f8fc; color: #007a9e; border: 1px solid #007a9e40; }
@@ -235,6 +320,7 @@
   .clean-proposal.nulled       { background: #fff5f5; color: #c0180c; border: 1px solid #c0180c40; }
   .clean-proposal.placeholder  { background: #fffbf0; color: #9a6200; border: 1px solid #d4940040; }
   .source-term-badge { font-size: 10px; padding: 1px 5px; border-radius: 4px; background: #f0fff4; color: #1a6b30; border: 1px solid #1a6b3040; margin-left: 5px; vertical-align: middle; }
+  .language-name-badge { font-size: 10px; padding: 1px 5px; border-radius: 4px; background: #f0f8f4; color: #2a8050; border: 1px solid #2a805040; margin-left: 5px; vertical-align: middle; }
   .short-term-badge  { font-size: 10px; padding: 1px 5px; border-radius: 4px; background: #f0ebff; color: #6b30cc; border: 1px solid #9b60ee; margin-left: 5px; vertical-align: middle; }
   .rat-cell.pipeline-flagged { background: #fff8f8; }
   /* ── Cell-level cluster exclusion indicators in rationale table ── */
@@ -268,6 +354,14 @@
   }
   #rationale-search-input:focus { outline: none; border-color: var(--accent3); box-shadow: 0 0 0 3px #007a9e18; }
   #rationale-search-input::placeholder { color: var(--accent3); opacity: .7; }
+  /* ── Term search ── */
+  #term-search-input {
+    background: var(--surface); border: 1px solid var(--accent2);
+    border-radius: 6px; color: var(--text); padding: 6px 12px; font-size: 13px; width: 240px;
+  }
+  #term-search-input:focus { outline: none; border-color: var(--accent2); box-shadow: 0 0 0 3px #6b30cc18; }
+  #term-search-input::placeholder { color: var(--accent2); opacity: .7; }
+  .term-match-count { font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 8px; background: #f3eafe; color: var(--accent2); border: 1px solid #6b30cc44; margin-left: 4px; flex-shrink: 0; }
   mark { background: #ffe066; color: #2a1800; border-radius: 2px; padding: 0 1px; font-style: normal; }
   .rat-match-count { font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 8px; background: #e8f8fc; color: var(--accent3); border: 1px solid #007a9e44; margin-left: 4px; flex-shrink: 0; }
   .rat-cell.rat-has-match { border-left-color: var(--accent3); }
@@ -357,6 +451,7 @@
 
 <div id="controls">
   <input type="text" id="search-input" placeholder="Search language, code, family…" oninput="applyFilters()">
+  <input type="text" id="term-search-input" placeholder="🔎 Search translated terms…" oninput="applyFilters()" title="Filter to languages where any translation contains this text (case-insensitive, substring match). Useful for finding e.g. 'tidak tersedia' across languages.">
   <input type="text" id="rationale-search-input" placeholder="🔍 Search rationale text…" oninput="applyFilters()" title="Filter to languages where any rationale contains this text.">
   <select id="tier-filter" onchange="applyFilters()">
     <option value="">All review tiers</option>
@@ -370,8 +465,13 @@
     <option value="has_mixed_script">Mixed script</option>
     <option value="has_romanization">Romanization</option>
     <option value="has_script_disagreement">Script disagreement</option>
-    <option value="has_source_term">Source term</option>
-    <option value="has_placeholder_term">Placeholder/refusal</option>
+    <option value="has_source_term">Source term (English "Digital Humanities" leaked)</option>
+    <option value="has_language_name_term">Language-name pass-through (term contains language name)</option>
+    <option value="has_placeholder_term">Placeholder/refusal (term)</option>
+    <option value="has_refusal_rationale">Refusal rationale (model admits no translation)</option>
+    <option value="has_transliteration_rationale">Transliteration rationale (phonetic mapping)</option>
+    <option value="has_placeholder_rationale">Placeholder rationale (model admits stand-in)</option>
+    <option value="has_unexpected_rationale_language">Unexpected rationale language (non-Latin where English expected)</option>
     <option value="has_repetition_loop">Repetition loop</option>
     <option value="has_extreme_term_length">Extreme length</option>
     <option value="has_unicode_escape">Unicode escape</option>
@@ -436,6 +536,8 @@ let selections = {};   // { language_code: Set<term> }
 let notes = {};        // { language_code: string }
 let rationaleQuery = '';
 const rationaleMatchCounts = {};
+let termQuery = '';
+const termMatchCounts = {};
 let term_excludes   = {};  // { language_code: 'analysis' | 'search' }
 let corrected_terms = {};  // { language_code: { termKey: correctedText } }
 let _ctxMenu        = null;
@@ -455,7 +557,12 @@ const FLAG_META = [
   { key: 'has_romanization',        label: 'Romanization',        svcKey: 'romanization_services',         cls: 'romanization',        icon: '🔤' },
   { key: 'has_script_disagreement', label: 'Script Disagreement', svcKey: 'script_disagr_services',        cls: 'script_disagreement', icon: '📜' },
   { key: 'has_source_term',         label: 'Source Term',         svcKey: 'source_term_services',          cls: 'source_term',         icon: '🔡' },
+  { key: 'has_language_name_term',  label: 'Language Name',       svcKey: 'language_name_term_services',   cls: 'language_name_term',  icon: '🏷' },
   { key: 'has_placeholder_term',    label: 'Placeholder',         svcKey: 'placeholder_term_services',     cls: 'placeholder_term',    icon: '🚫' },
+  { key: 'has_refusal_rationale',   label: 'Refusal Rationale',   svcKey: 'refusal_rationale_services',    cls: 'refusal_rationale',   icon: '🙅' },
+  { key: 'has_transliteration_rationale', label: 'Transliteration',  svcKey: 'transliteration_rationale_services', cls: 'transliteration_rationale', icon: '🗣' },
+  { key: 'has_placeholder_rationale', label: 'Placeholder Rationale', svcKey: 'placeholder_rationale_services', cls: 'placeholder_rationale', icon: '🪧' },
+  { key: 'has_unexpected_rationale_language', label: 'Unexpected Rationale Lang', svcKey: 'unexpected_rationale_language_services', cls: 'unexpected_rationale_language', icon: '🌐' },
   { key: 'has_repetition_loop',     label: 'Repetition Loop',     svcKey: 'repetition_loop_services',      cls: 'repetition_loop',     icon: '🔁' },
   { key: 'has_extreme_term_length', label: 'Extreme Length',      svcKey: 'extreme_term_length_services',  cls: 'extreme_term_length', icon: '📏' },
   { key: 'has_unicode_escape',      label: 'Unicode Escape',      svcKey: 'unicode_escape_services',       cls: 'unicode_escape',      icon: '🔣' },
@@ -463,10 +570,66 @@ const FLAG_META = [
 ];
 
 const VARIANTS = [
-  { key: 'minimal',          label: 'Minimal' },
-  { key: 'fluent_speaker', label: 'Native Rationale' },
-  { key: 'judge',            label: 'Judge' },
+  { key: 'minimal',         label: 'Minimal' },
+  { key: 'fluent_speaker',  label: 'Fluent Speaker' },
+  { key: 'github_searcher', label: 'GitHub Searcher' },
+  { key: 'judge',           label: 'Judge' },
 ];
+
+// Client-side port of is_refusal_rationale() from scripts/exploration/translation_classifier.py.
+// Used to highlight specific (service × variant) cells whose rationale admits no real
+// translation exists, since quality_flags.csv stores only per-service aggregation
+// (not per-variant). English-only — fluent_speaker target-language rationales will
+// rarely match and that's fine.
+const REFUSAL_RATIONALE_RE = /\b(?:do(?:es)?\s+not\s+have\s+(?:a|an|any)\s+(?:\w+\s+){0,2}(?:translation|equivalent|term|word)|do(?:es)?n'?t\s+have\s+(?:a|an|any)\s+(?:\w+\s+){0,2}(?:translation|equivalent|term|word)|without\s+(?:a|an|any)\s+(?:\w+\s+){0,2}(?:translation|equivalent|term|word)|lacks?\s+(?:a|an|any)\s+(?:\w+\s+){0,2}(?:translation|equivalent|term|word)|no\s+(?:direct|standard|standardi[sz]ed|specific|exact|widely\s+\w+|commonly\s+\w+|established|known|formal|official|equivalent|precise)\s+(?:translation|equivalent|term|word)|there\s+is\s+no\s+(?:direct|specific|standard|standardi[sz]ed|widely\s+\w+|established|formal|official|known|exact)\s+(?:translation|equivalent|term|word)|i(?:'m|\s+am)?\s+not\s+aware\s+of|i\s+(?:do\s+not|don'?t)\s+know\s+of\s+(?:any|a)|(?:is|are)\s+not\s+(?:commonly|widely|typically|usually|directly)\s+(?:translated|used)|(?:typically|usually|often|generally)\s+(?:not\s+translated|left\s+untranslated|kept\s+in\s+english|borrowed\s+(?:from|directly)?|used\s+(?:in\s+english|as\s+is))|can(?:not|'?t)\s+(?:find|provide|offer)\s+(?:a|an|any)\s+(?:\w+\s+)?(?:translation|equivalent|term))\b/i;
+
+function isRefusalRationale(text) {
+  if (!text || typeof text !== 'string') return false;
+  return REFUSAL_RATIONALE_RE.test(text);
+}
+
+// Client-side port of is_transliteration_rationale() — flags rationales
+// describing a phonetic mapping rather than a real translation.
+const TRANSLITERATION_RATIONALE_RE = /\b(?:transliterat(?:e|ed|ion|ions|ing)|phonetic(?:al(?:ly)?)?\s+(?:transliteration|rendering|representation|approximation|spelling|adapt(?:ed|ation)?)|(?:rendered|spelled|written)\s+phonetic(?:al(?:ly)?)?)\b/i;
+
+function isTransliterationRationale(text) {
+  if (!text || typeof text !== 'string') return false;
+  return TRANSLITERATION_RATIONALE_RE.test(text);
+}
+
+// Client-side port of is_placeholder_rationale() — flags rationales where the
+// model admits using a placeholder/stand-in for the concept.
+const PLACEHOLDER_RATIONALE_RE = /\b(?:placeholder|stand[\-\s]?in\s+for|stands\s+in\s+for|stopgap|filler\s+(?:term|word|phrase)|serves?\s+as\s+(?:a\s+|an\s+)?(?:placeholder|stand[\-\s]?in|substitute|stopgap))\b/i;
+
+function isPlaceholderRationale(text) {
+  if (!text || typeof text !== 'string') return false;
+  return PLACEHOLDER_RATIONALE_RE.test(text);
+}
+
+// Client-side port of has_unexpected_rationale_language() — fires when a non-
+// fluent_speaker rationale is majority non-Latin (e.g. Qwen writing English-
+// register rationales in Chinese for non-Chinese-target translations).
+function hasUnexpectedRationaleLanguage(rationale, variantKey) {
+  if (variantKey === 'fluent_speaker') return false;  // target-language rationales expected here
+  if (!rationale || typeof rationale !== 'string') return false;
+  const letters = [...rationale].filter(c => /\p{L}/u.test(c));
+  if (letters.length < 20) return false;
+  const nLatin = letters.filter(c => /\p{Script=Latin}/u.test(c)).length;
+  return (nLatin / letters.length) < 0.50;
+}
+
+// Client-side port of is_language_name_term() — fires when the translated term
+// contains the target language's name as a whole-word component.
+function isLanguageNameTerm(term, langName) {
+  if (!term || !langName || typeof term !== 'string' || typeof langName !== 'string') return false;
+  const norm = s => s.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+  const nt = norm(term);
+  const nl = norm(langName);
+  if (!nt || !nl) return false;
+  if (nt === nl) return true;
+  const escaped = nl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp('\\b' + escaped + '\\b').test(nt);
+}
 
 const RAT_SERVICES = [
   { key: 'claude',   label: 'Claude'   },
@@ -749,15 +912,26 @@ function allRatCols() {
   return RAT_SERVICES.flatMap(s => VARIANTS.map(v => `${s.key}_rationale_${v.key}`));
 }
 
+// All translated-term columns across LLM variants + non-LLM reference sources.
+// Used by the term-search filter to find which languages contain a given string.
+function allTermCols() {
+  const llmCols = RAT_SERVICES.flatMap(s => VARIANTS.map(v => `${s.key}_term_${v.key}`));
+  const baselineCols = BASELINE_SERVICES_LIST.map(b => b.key);
+  return [...llmCols, ...baselineCols];
+}
+
 // ── Filter + sort ─────────────────────────────────────────────────────────────
 function applyFilters() {
   const q    = document.getElementById('search-input').value.toLowerCase().trim();
   rationaleQuery = document.getElementById('rationale-search-input').value.trim();
   const rq   = rationaleQuery.toLowerCase();
+  termQuery = document.getElementById('term-search-input').value.trim();
+  const tq   = termQuery.toLowerCase();
   const tier = document.getElementById('tier-filter').value;
   const flag = document.getElementById('flag-filter').value;
   const sort = document.getElementById('sort-select').value;
   const ratCols = allRatCols();
+  const termCols = allTermCols();
 
   let data = allData.filter(r => {
     if (tier && r.review_tier !== tier) return false;
@@ -773,6 +947,16 @@ function applyFilters() {
       rationaleMatchCounts[r.language_code] = matchCount;
     } else {
       delete rationaleMatchCounts[r.language_code];
+    }
+    if (tq) {
+      const matchCount = termCols.filter(col => {
+        const v = (r[col]||'').trim();
+        return v && !['nan','None'].includes(v) && v.toLowerCase().includes(tq);
+      }).length;
+      if (matchCount === 0) return false;
+      termMatchCounts[r.language_code] = matchCount;
+    } else {
+      delete termMatchCounts[r.language_code];
     }
     return true;
   });
@@ -819,7 +1003,9 @@ function buildNav() {
     const _navHasExcl = Object.values(_navExclRaw).some(v => v && v !== 'cleared' && !v.startsWith('auto:'));
     const exclBadge = _navHasExcl ? `<span class="nav-excl" title="Has term exclusions">✗</span>` : '';
     const matchN  = rationaleMatchCounts[row.language_code];
-    const matchBadge = matchN ? `<span class="rat-match-count">${matchN}</span>` : '';
+    const matchBadge = matchN ? `<span class="rat-match-count" title="${matchN} rationale match(es)">${matchN}</span>` : '';
+    const termMatchN  = termMatchCounts[row.language_code];
+    const termMatchBadge = termMatchN ? `<span class="term-match-count" title="${termMatchN} translated-term match(es)">${termMatchN}</span>` : '';
     const flagN = parseInt(row.flag_count)||0;
     const tierColor = `var(--${row.review_tier})`;
     const isNew = majorityDate && row.translation_date && row.translation_date > majorityDate;
@@ -828,7 +1014,7 @@ function buildNav() {
       <span class="nav-lang">${escHtml(row.language_name || row.language_code)}</span>
       ${row.language_name && row.language_name !== row.language_code ? `<span class="nav-code">${escHtml(row.language_code)}</span>` : ''}
       ${flagN > 0 ? `<span class="nav-badge" style="background:color-mix(in srgb,${tierColor} 15%,#fff);color:${tierColor};border:1px solid color-mix(in srgb,${tierColor} 40%,#fff);">${flagN}🚩</span>` : ''}
-      ${newBadge}${matchBadge}${exclBadge}${check}
+      ${newBadge}${termMatchBadge}${matchBadge}${exclBadge}${check}
     </div>`;
   });
   document.getElementById('nav-list').innerHTML = html;
@@ -918,10 +1104,30 @@ function showCard(idx) {
                     : _termExclRaw;
     const _exclClass = _termExcl ? `term-excl-${_termExcl}` : '';
     const _clFlagBadges = computeClusterFlags(cl, row);
-    const _metaHtml = (baselineBadgeHtml || _clFlagBadges)
-      ? `<div class="cluster-term-meta">${baselineBadgeHtml}${_clFlagBadges}</div>`
+    const _refusalBadge = cl.refusalCount > 0
+      ? `<span class="cl-flag refusal_rationale" title="${cl.refusalCount} cell(s) in this cluster had a refusal rationale">🙅 refusal × ${cl.refusalCount}</span>`
       : '';
-    clusterHtml += `<div class="cluster-row ${cl.selected?'selected':''} ${_exclClass}" id="clrow-${code}-${cl.id}"
+    const _transBadge = cl.transliterationCount > 0
+      ? `<span class="cl-flag transliteration_rationale" title="${cl.transliterationCount} cell(s) in this cluster described a transliteration">🗣 translit × ${cl.transliterationCount}</span>`
+      : '';
+    const _phRatBadge = cl.placeholderCount > 0
+      ? `<span class="cl-flag placeholder_rationale" title="${cl.placeholderCount} cell(s) in this cluster admitted using a placeholder">🪧 placeholder × ${cl.placeholderCount}</span>`
+      : '';
+    const _unexpLangBadge = cl.unexpectedRatLangCount > 0
+      ? `<span class="cl-flag unexpected_rationale_language" title="${cl.unexpectedRatLangCount} cell(s) in this cluster have rationale in unexpected language (non-Latin where English expected)">🌐 unexp-rat × ${cl.unexpectedRatLangCount}</span>`
+      : '';
+    const _langNameBadge = cl.langNameCount > 0
+      ? `<span class="cl-flag language_name_term" title="${cl.langNameCount} cell(s) in this cluster contain the target language name">🏷 lang-name × ${cl.langNameCount}</span>`
+      : '';
+    const _metaHtml = (baselineBadgeHtml || _clFlagBadges || _refusalBadge || _transBadge || _phRatBadge || _unexpLangBadge || _langNameBadge)
+      ? `<div class="cluster-term-meta">${baselineBadgeHtml}${_clFlagBadges}${_refusalBadge}${_transBadge}${_phRatBadge}${_unexpLangBadge}${_langNameBadge}</div>`
+      : '';
+    const _refusalClass = cl.refusalCount > 0 ? 'cluster-has-refusal' : '';
+    const _transClass = cl.transliterationCount > 0 ? 'cluster-has-transliteration' : '';
+    const _phRatClass = cl.placeholderCount > 0 ? 'cluster-has-placeholder-rationale' : '';
+    const _unexpLangClass = cl.unexpectedRatLangCount > 0 ? 'cluster-has-unexpected-rat-lang' : '';
+    const _langNameClass = cl.langNameCount > 0 ? 'cluster-has-language-name-term' : '';
+    clusterHtml += `<div class="cluster-row ${cl.selected?'selected':''} ${_exclClass} ${_refusalClass} ${_transClass} ${_phRatClass} ${_unexpLangClass} ${_langNameClass}" id="clrow-${code}-${cl.id}"
       onclick="toggleCluster('${code}',${cl.id})"
       style="--cl-color:${cl.color.border};--cl-bg:${cl.color.bg};">
       <div class="cluster-swatch" style="background:${cl.color.border};"></div>
@@ -992,6 +1198,11 @@ function showCard(idx) {
           const isSourceTerm = /digital humanities/i.test(term) || /\bDH\b/.test(term);
           const sourceBadge = isSourceTerm ? `<span class="source-term-badge" title="Contains untranslated source term (e.g. 'Digital Humanities' or 'DH')">🔡</span>` : '';
 
+          // Language-name badge — fires when the term contains the target language's own name
+          const _rowLangName = (row.language_name || '').trim();
+          const isLangNameTerm = _rowLangName && isLanguageNameTerm(term, _rowLangName);
+          const langNameBadge = isLangNameTerm ? `<span class="language-name-badge" title="Contains target language name (${escAttr(_rowLangName)}) — possible pass-through">🏷</span>` : '';
+
           // Short-term badge — fewer than SHORT_CP_THRESHOLD Unicode codepoints
           const cpCount = [...term.trim()].length;
           const shortBadge = isShortTerm(term) ? `<span class="short-term-badge" title="Very short translation (${cpCount} codepoint${cpCount===1?'':'s'}) — may cause false positives in search">↔ ${cpCount}cp</span>` : '';
@@ -1024,11 +1235,32 @@ function showCard(idx) {
           const _termInner = _cellCorr
             ? `<span class="corrected-original">${rationaleQuery ? highlightText(term, rationaleQuery) : escHtml(term)}</span><span class="corrected-badge" title="Manually edited \u2014 right-click to re-edit">\u270f</span> ${escHtml(_cellCorr)}`
             : (rationaleQuery ? highlightText(term, rationaleQuery) : escHtml(term));
-          const termDisplay = `<div class="rat-term" data-code="${escAttr(code)}" data-term-key="${escAttr(_cellKey)}" data-original-term="${escAttr(term)}">${_termInner}${sourceBadge}${shortBadge}${exclCellBadge}</div>${cleanProposal}`;
+          const termDisplay = `<div class="rat-term" data-code="${escAttr(code)}" data-term-key="${escAttr(_cellKey)}" data-original-term="${escAttr(term)}">${_termInner}${sourceBadge}${langNameBadge}${shortBadge}${exclCellBadge}</div>${cleanProposal}`;
           const ratDisplay = ratOk
             ? `<div class="rat-rationale rat-md">${rationaleQuery ? highlightInHtml(marked.parse(rat), rationaleQuery) : marked.parse(rat)}</div>`
             : '';
-          tbody += `<td><div class="rat-cell ${clSelected} ${nulledClass} ${exclCellClass} ${expandClass} ${matchClass}" id="${cellId}" style="${clStyle}" onclick="toggleRatCell('${cellId}')">
+          const cellIsRefusal = ratOk && isRefusalRationale(rat);
+          const cellIsTransliteration = ratOk && isTransliterationRationale(rat);
+          const cellIsPlaceholderRat = ratOk && isPlaceholderRationale(rat);
+          const cellIsUnexpectedRatLang = ratOk && hasUnexpectedRationaleLanguage(rat, v.key);
+          const refusalCellClass = cellIsRefusal ? 'rat-cell-refusal' : '';
+          const transCellClass = cellIsTransliteration ? 'rat-cell-transliteration' : '';
+          const phRatCellClass = cellIsPlaceholderRat ? 'rat-cell-placeholder-rationale' : '';
+          const unexpLangCellClass = cellIsUnexpectedRatLang ? 'rat-cell-unexpected-rat-lang' : '';
+          const refusalCellBadge = cellIsRefusal
+            ? '<span class="rat-cell-refusal-badge" title="Rationale matches refusal pattern (model admits no real translation)">🙅 refusal</span>'
+            : '';
+          const transCellBadge = cellIsTransliteration
+            ? '<span class="rat-cell-transliteration-badge" title="Rationale describes a transliteration (phonetic mapping of source characters)">🗣 translit</span>'
+            : '';
+          const phRatCellBadge = cellIsPlaceholderRat
+            ? '<span class="rat-cell-placeholder-rationale-badge" title="Rationale admits using a placeholder/stand-in for the concept">🪧 placeholder</span>'
+            : '';
+          const unexpLangCellBadge = cellIsUnexpectedRatLang
+            ? '<span class="rat-cell-unexpected-rat-lang-badge" title="Rationale is majority non-Latin script (unexpected for English-register variant)">🌐 unexp-lang</span>'
+            : '';
+          tbody += `<td><div class="rat-cell ${clSelected} ${nulledClass} ${exclCellClass} ${expandClass} ${matchClass} ${refusalCellClass} ${transCellClass} ${phRatCellClass} ${unexpLangCellClass}" id="${cellId}" style="${clStyle}" onclick="toggleRatCell('${cellId}')">
+            ${refusalCellBadge}${transCellBadge}${phRatCellBadge}${unexpLangCellBadge}
             ${termDisplay}
             ${ratDisplay}
             ${!hasMatch ? '<span class="rat-expand-hint">click to expand</span>' : ''}
@@ -1200,24 +1432,32 @@ function normalizeTerm(t) {
 
 function buildClusters(row, code, sel) {
   const clusterMap = new Map();
+  const langName = (row.language_name || '').trim();
   RAT_SERVICES.forEach(s => {
     VARIANTS.forEach(v => {
       const term = ((row[`${s.key}_term_${v.key}`]||'').trim());
       if (!term || term === 'nan' || term === 'None') return;
+      const rat = ((row[`${s.key}_rationale_${v.key}`]||'').trim());
+      const isRefusal = isRefusalRationale(rat);
+      const isTransliteration = isTransliterationRationale(rat);
+      const isPlaceholder = isPlaceholderRationale(rat);
+      const isUnexpectedRatLang = hasUnexpectedRationaleLanguage(rat, v.key);
+      const isLangName = langName && isLanguageNameTerm(term, langName);
       const nk = normalizeTerm(term);
       if (!clusterMap.has(nk)) clusterMap.set(nk, { cells: [], termFreq: {} });
       const c = clusterMap.get(nk);
-      c.cells.push({ svc: s.label, svcKey: s.key, variant: v.label, variantKey: v.key, term });
+      c.cells.push({ svc: s.label, svcKey: s.key, variant: v.label, variantKey: v.key, term, isRefusal, isTransliteration, isPlaceholder, isUnexpectedRatLang, isLangName });
       c.termFreq[term] = (c.termFreq[term] || 0) + 1;
     });
   });
   BASELINE_SERVICES_LIST.forEach(svc => {
     const term = ((row[svc.key]||'').trim());
     if (!term || term === 'nan' || term === 'None') return;
+    const isLangName = langName && isLanguageNameTerm(term, langName);
     const nk = normalizeTerm(term);
     if (!clusterMap.has(nk)) clusterMap.set(nk, { cells: [], termFreq: {} });
     const c = clusterMap.get(nk);
-    c.cells.push({ svc: svc.label, svcKey: svc.key, variant: 'Baseline', variantKey: 'baseline', term });
+    c.cells.push({ svc: svc.label, svcKey: svc.key, variant: 'Baseline', variantKey: 'baseline', term, isLangName });
     c.termFreq[term] = (c.termFreq[term] || 0) + 1;
   });
 
@@ -1225,8 +1465,14 @@ function buildClusters(row, code, sel) {
   const clusters = sorted.map(([normKey, data], i) => {
     const canonical = Object.entries(data.termFreq).sort((a,b) => b[1]-a[1])[0][0];
     const color = CLUSTER_COLORS[Math.min(i, CLUSTER_COLORS.length - 1)];
+    const refusalCount = data.cells.filter(c => c.isRefusal).length;
+    const transliterationCount = data.cells.filter(c => c.isTransliteration).length;
+    const placeholderCount = data.cells.filter(c => c.isPlaceholder).length;
+    const unexpectedRatLangCount = data.cells.filter(c => c.isUnexpectedRatLang).length;
+    const langNameCount = data.cells.filter(c => c.isLangName).length;
     return { id: i, normKey, canonical, color, count: data.cells.length,
-             cells: data.cells, selected: sel?.has(canonical) || false };
+             cells: data.cells, refusalCount, transliterationCount, placeholderCount, unexpectedRatLangCount, langNameCount,
+             selected: sel?.has(canonical) || false };
   });
 
   const cellCluster = {};

@@ -103,17 +103,17 @@ The default `prompt_variant` when running `generate_translations.py` standalone 
 # Run multiple variants in sequence
 python generate_translations.py --terms "Digital Humanities" --variant minimal fluent_speaker github_searcher judge
 
-# Run only local Ollama models (skips all API LLMs and baseline services)
+# Run only local Ollama models (skips all API LLMs and non-LLM reference sources)
 python generate_translations.py --terms "Digital Humanities" --ollama-only --variant minimal fluent_speaker github_searcher judge
 
-# Run only cloud API models (skips all Ollama models and baseline services)
+# Run only cloud API models (skips all Ollama models and non-LLM reference sources)
 python generate_translations.py --terms "Digital Humanities" --api-only --variant minimal fluent_speaker github_searcher judge
 
 # Fine-grained per-service control
 python generate_translations.py --terms "Digital Humanities" --variant fluent_speaker --no-gt --no-enmt --no-lingvanex --no-wikipedia --no-openai --no-claude --no-gemini --no-deepseek
 ```
 
-`--ollama-only` and `--api-only` are mutually exclusive. Both implicitly skip the baseline services (Wikipedia, GT, EasyNMT, Lingvanex) since those are prompt-invariant and only need to run once.
+`--ollama-only` and `--api-only` are mutually exclusive. Both implicitly skip the non-LLM sources — MT baselines (GT, EasyNMT, Lingvanex) and the Wikipedia community reference — since those are prompt-invariant and only need to run once.
 
 ---
 

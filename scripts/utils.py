@@ -666,8 +666,9 @@ def enforce_translation_rationale_pairing(df: pd.DataFrame) -> pd.DataFrame:
     - Translation present but rationale absent/placeholder → null the translation.
     - Rationale present but translation absent → null the rationale.
 
-    Direct services (Wikipedia, GT, EasyNMT, Lingvanex) are skipped because they
-    never produce rationales by design.
+    Non-LLM sources — MT baselines (GT, EasyNMT, Lingvanex) and community
+    references (Wikipedia) — are skipped because they never produce rationales
+    by design.
 
     Returns a copy with the offending cells set to NaN.
     """

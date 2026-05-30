@@ -6,9 +6,10 @@ Frequency-based agreement scoring across translation services WITHIN each prompt
 
 For each prompt variant separately, score agreement both among the eight LLM
 services (OpenAI, Claude, Gemini, DeepSeek, Llama, Gemma, Qwen, Mistral) and
-among the four prompt-invariant baseline services (Google Translate, EasyNMT,
-Lingvanex, Wikipedia). The baseline block is a sanity check and a reference
-anchor; the LLM block is the primary signal of interest.
+among the four prompt-invariant non-LLM sources — three MT baselines (Google
+Translate, EasyNMT, Lingvanex) plus the Wikipedia community reference. The
+non-LLM block is a sanity check and a reference anchor; the LLM block is the
+primary signal of interest.
 
 This explores:
   - Within a single variant, which term/language combos have high LLM agreement?

@@ -1302,9 +1302,9 @@ if __name__ == '__main__':
 	# ── Convenience group flags (mutually exclusive) ──────────────────────────
 	_group = _parser.add_mutually_exclusive_group()
 	_group.add_argument('--ollama-only', action='store_true',
-		help='Run only local Ollama models (Llama, Gemma, Qwen, Mistral); skip all API LLMs and baseline services')
+		help='Run only local Ollama models (Llama, Gemma, Qwen, Mistral); skip all API LLMs and non-LLM reference sources')
 	_group.add_argument('--api-only', action='store_true',
-		help='Run only API LLM models (OpenAI, Claude, Gemini, DeepSeek); skip all Ollama models and baseline services')
+		help='Run only API LLM models (OpenAI, Claude, Gemini, DeepSeek); skip all Ollama models and non-LLM reference sources')
 	# ── Individual skip flags ─────────────────────────────────────────────────
 	_parser.add_argument('--no-gt',        action='store_true', help='Skip Google Translate')
 	_parser.add_argument('--no-enmt',      action='store_true', help='Skip EasyNMT')

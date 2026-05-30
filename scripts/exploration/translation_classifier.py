@@ -128,6 +128,250 @@ _PLACEHOLDER_RE = re.compile(
 
 _UNICODE_ESCAPE_RE = re.compile(r'\\u[0-9a-fA-F]{4}')
 
+# Phrases inside rationales where the LLM explicitly admits no real translation
+# exists. The signal pattern (observed e.g. for Mistral/Sangir): the model
+# returns a placeholder in the `translated_term` column but tells us in the
+# `translation_rationale` column that it doesn't actually know the translation.
+# English-only — fluent_speaker rationales (in the target language) are out of
+# scope and should be skipped by the caller.
+_REFUSAL_RATIONALE_RE = re.compile(
+    r"\b(?:"
+    # "does/do (not) have a [adj] translation/equivalent/term/word"
+    r"do(?:es)?\s+not\s+have\s+(?:a|an|any)\s+(?:\w+\s+){0,2}(?:translation|equivalent|term|word)|"
+    r"do(?:es)?n'?t\s+have\s+(?:a|an|any)\s+(?:\w+\s+){0,2}(?:translation|equivalent|term|word)|"
+    # "without a/an [adj] (translation|equivalent|term|word)"
+    r"without\s+(?:a|an|any)\s+(?:\w+\s+){0,2}(?:translation|equivalent|term|word)|"
+    # "lacks a/an [adj] (translation|equivalent|term|word)"
+    r"lacks?\s+(?:a|an|any)\s+(?:\w+\s+){0,2}(?:translation|equivalent|term|word)|"
+    # "no [adj] translation/equivalent/term/word"
+    r"no\s+(?:direct|standard|standardi[sz]ed|specific|exact|widely\s+\w+|commonly\s+\w+|established|known|formal|official|equivalent|precise)\s+(?:translation|equivalent|term|word)|"
+    # "there is no [adj] (translation|equivalent|term|word)"
+    r"there\s+is\s+no\s+(?:direct|specific|standard|standardi[sz]ed|widely\s+\w+|established|formal|official|known|exact)\s+(?:translation|equivalent|term|word)|"
+    # "I/I am/I'm not aware of"
+    r"i(?:'m|\s+am)?\s+not\s+aware\s+of|"
+    # "I do/don't know of (any|a)"
+    r"i\s+(?:do\s+not|don'?t)\s+know\s+of\s+(?:any|a)|"
+    # "(is|are) not (commonly|widely|typically|usually|directly) (translated|used)"
+    r"(?:is|are)\s+not\s+(?:commonly|widely|typically|usually|directly)\s+(?:translated|used)|"
+    # "(typically|usually|often|generally) (not translated|left untranslated|kept in english|borrowed|used in english/as is)"
+    r"(?:typically|usually|often|generally)\s+(?:not\s+translated|left\s+untranslated|kept\s+in\s+english|borrowed\s+(?:from|directly)?|used\s+(?:in\s+english|as\s+is))|"
+    # "cannot/can't (find|provide|offer) a (translation|equivalent|term)"
+    r"can(?:not|'?t)\s+(?:find|provide|offer)\s+(?:a|an|any)\s+(?:\w+\s+)?(?:translation|equivalent|term)"
+    r")\b",
+    re.IGNORECASE,
+)
+
+
+# Phrases inside rationales where the LLM explicitly tells us it produced a
+# transliteration rather than a translation — phonetic mapping of the source
+# term's characters into the target script. Methodologically distinct from
+# refusal (model attempted a "translation" but it's just letters re-spelled)
+# and from legitimate loanwords (existing borrowed words used in the target).
+# English-only — fluent_speaker rationales (target language) are out of scope.
+_TRANSLITERATION_RATIONALE_RE = re.compile(
+    r"\b(?:"
+    # Core: transliterate / transliteration in any inflection
+    r"transliterat(?:e|ed|ion|ions|ing)|"
+    # "phonetic [transliteration|rendering|representation|approximation|adaptation|spelling]"
+    r"phonetic(?:al(?:ly)?)?\s+(?:transliteration|rendering|representation|approximation|spelling|adapt(?:ed|ation)?)|"
+    # "rendered/spelled/written phonetically"
+    r"(?:rendered|spelled|written)\s+phonetic(?:al(?:ly)?)?"
+    r")\b",
+    re.IGNORECASE,
+)
+
+
+# Phrases inside rationales where the LLM tells us it produced a deliberate
+# placeholder term rather than a translation — e.g. repeated words used as a
+# stand-in for a concept the model could not translate. This is distinct from
+# is_placeholder_term (which flags placeholder TERMS like "Translation not
+# available") and from is_refusal_rationale (which catches explicit "does not
+# have a translation" admissions); this flag fires specifically on the word
+# "placeholder" or near-synonyms appearing in the rationale text.
+# English-only — fluent_speaker rationales (target language) are out of scope.
+_PLACEHOLDER_RATIONALE_RE = re.compile(
+    r"\b(?:"
+    # Core: the word "placeholder" itself, in any context — highly specific
+    r"placeholder|"
+    # "stand-in for X" or "stands in for X"
+    r"stand[\-\s]?in\s+for|"
+    r"stands\s+in\s+for|"
+    # "stopgap" — uncommon, clearly signals placeholder behaviour
+    r"stopgap|"
+    # "filler term/word/phrase"
+    r"filler\s+(?:term|word|phrase)|"
+    # "serves as a (placeholder|stand-in|substitute|stopgap)"
+    r"serves?\s+as\s+(?:a\s+|an\s+)?(?:placeholder|stand[\-\s]?in|substitute|stopgap)"
+    r")\b",
+    re.IGNORECASE,
+)
+
+
+def has_unexpected_rationale_language(rationale: str, min_letters: int = 20,
+                                       latin_threshold: float = 0.50) -> bool:
+    """
+    Return True when a rationale that is *expected* to be in English contains
+    substantially more non-Latin letters than Latin ones — a signal that the
+    model is writing the rationale in a different language than its prompt
+    expected (e.g., Qwen generating a Tajik-target rationale entirely in
+    Chinese, or DeepSeek generating an Avar-target rationale in Russian).
+
+    Only meaningful for non-fluent_speaker variants (minimal, github_searcher,
+    judge), where the rationale convention is English. Callers should skip
+    fluent_speaker, which legitimately uses target-language rationales.
+
+    Note: this will also fire (correctly) when models write Chinese rationales
+    for Chinese-target translations in non-fluent_speaker variants — which is
+    a real code-switching signal worth surfacing, not a false positive.
+
+    Parameters
+    ----------
+    rationale : str
+        The rationale text to check.
+    min_letters : int
+        Minimum letter-character count required before assessing (rationales
+        shorter than this are not flagged — too little signal).
+    latin_threshold : float
+        Latin-letter fraction below which the rationale is flagged.
+
+    Returns
+    -------
+    bool
+        True if the rationale is majority non-Latin script.
+    """
+    if not isinstance(rationale, str) or not rationale.strip():
+        return False
+    letters = [c for c in rationale if c.isalpha()]
+    if len(letters) < min_letters:
+        return False
+    n_latin = 0
+    for c in letters:
+        try:
+            name = unicodedata.name(c)
+        except ValueError:
+            continue
+        if name.startswith('LATIN'):
+            n_latin += 1
+    return (n_latin / len(letters)) < latin_threshold
+
+
+def is_language_name_term(term: str, language_name: str) -> bool:
+    """
+    Return True when the translated term contains the target language's own
+    name as a substantive component — catching the pass-through failure mode
+    where the model returns the language name (e.g. 'Mbere', 'Tasawaq') or
+    embeds it in the output (e.g. 'Warlpiri-jarra Digital Humanities',
+    'Arawak Digital Humanities') instead of producing a translation.
+
+    Distinct from `has_source_term` (which detects English source-term leakage
+    like 'Digital Humanities' or 'DH'); this flag detects *target*-language-name
+    leakage.
+
+    Parameters
+    ----------
+    term : str
+        The translated term to check.
+    language_name : str
+        The English name of the target language (from metadata).
+
+    Returns
+    -------
+    bool
+        True if the language name appears as a whole-word component of the term.
+    """
+    if not isinstance(term, str) or not term.strip(): return False
+    if not isinstance(language_name, str) or not language_name.strip(): return False
+    # Normalize: lowercase, replace punctuation with space, collapse whitespace
+    def _norm(s):
+        s = re.sub(r'[^\w\s]', ' ', s, flags=re.UNICODE)
+        return re.sub(r'\s+', ' ', s).strip().lower()
+    nterm = _norm(term)
+    nlang = _norm(language_name)
+    if not nterm or not nlang: return False
+    if nterm == nlang: return True
+    # Whole-word substring match
+    return bool(re.search(r'\b' + re.escape(nlang) + r'\b', nterm))
+
+
+def is_placeholder_rationale(rationale: str) -> bool:
+    """
+    Return True when a rationale explicitly admits that the produced term is a
+    placeholder or stand-in rather than a translation. Methodologically distinct
+    from is_placeholder_term (which detects placeholder *terms* like "Translation
+    not available") and from is_refusal_rationale (which catches "does not have
+    a translation" admissions); this flag fires on the word "placeholder" itself
+    or near-synonyms appearing inside the rationale text.
+
+    English-only — fluent_speaker rationales are in the target language and
+    callers should skip that variant.
+
+    Parameters
+    ----------
+    rationale : str
+        The rationale text to check.
+
+    Returns
+    -------
+    bool
+        True if the rationale describes the term as a placeholder/stand-in.
+    """
+    if not isinstance(rationale, str) or not rationale.strip():
+        return False
+    return bool(_PLACEHOLDER_RATIONALE_RE.search(rationale))
+
+
+def is_transliteration_rationale(rationale: str) -> bool:
+    """
+    Return True when a rationale describes the produced term as a
+    transliteration (phonetic mapping of source-term characters into the target
+    script) rather than a real translation. Methodologically distinct from
+    `is_refusal_rationale` (the model explicitly admits no translation exists)
+    and from legitimate loanwords (existing borrowed words native to the
+    target language).
+
+    English-only — fluent_speaker rationales are in the target language and
+    callers should skip that variant.
+
+    Parameters
+    ----------
+    rationale : str
+        The rationale text to check.
+
+    Returns
+    -------
+    bool
+        True if the rationale describes a transliteration approach.
+    """
+    if not isinstance(rationale, str) or not rationale.strip():
+        return False
+    return bool(_TRANSLITERATION_RATIONALE_RE.search(rationale))
+
+
+def is_refusal_rationale(rationale: str) -> bool:
+    """
+    Return True when a rationale contains language explicitly admitting that no
+    real translation exists (e.g., "does not have a standardized translation",
+    "no direct equivalent", "I am not aware of"). Signals that the model is
+    telling us in the rationale column that the term it returned in the
+    translated_term column is a placeholder, not a real translation.
+
+    English-only — fluent_speaker rationales are in the target language and
+    callers should skip that variant.
+
+    Parameters
+    ----------
+    rationale : str
+        The rationale text to check.
+
+    Returns
+    -------
+    bool
+        True if the rationale contains an explicit refusal phrase.
+    """
+    if not isinstance(rationale, str) or not rationale.strip():
+        return False
+    return bool(_REFUSAL_RATIONALE_RE.search(rationale))
+
 
 def is_placeholder_term(text: str) -> bool:
     """

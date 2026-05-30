@@ -75,7 +75,7 @@ Each row is one language. Columns include:
 - Quality flag booleans and which services triggered them: `has_missing_rationale`, `has_mixed_script`, `has_romanization`, `has_script_disagreement`, `has_source_term`, `has_placeholder_term`, `has_repetition_loop`, `has_extreme_term_length`, `has_unicode_escape`
 - `review_tier`: `REVIEW_HIGH` (≥2 flags) / `REVIEW_MED` (1 flag) / `CLEAN` (0 flags)
 - Per-service × per-variant term and rationale columns: `{svc}_term_{variant}`, `{svc}_rationale_{variant}`
-- Baseline terms: `wikipedia_translated_term`, `gt_translated_term`, `enmt_translated_term`, `lingvanex_translated_term`
+- Non-LLM reference terms: `wikipedia_translated_term` (community reference), `gt_translated_term`, `enmt_translated_term`, `lingvanex_translated_term` (MT baselines)
 
 Rows are sorted flagged-first so the HTML explorer opens on the cases that need attention.
 
@@ -97,7 +97,7 @@ Single-file HTML explorer for the review stage. Load `review_explorer_data.csv` 
 - Quality flag pills showing which flags fired and which services triggered them
 - Term cluster panel — groups all 32 LLM cells (8 services × 4 variants) by normalized term; click to select
 - Rationale matrix — full variants × services grid, click to expand rationale text
-- Baseline terms (Wikipedia, Google Translate, Lingvanex, EasyNMT)
+- Non-LLM reference terms — Wikipedia (community reference) and Google Translate / Lingvanex / EasyNMT (MT baselines)
 - Service exclusions panel — toggle individual translations or per-variant rationales to exclude
 - Notes field
 
@@ -118,7 +118,7 @@ For each prompt variant separately, measures how much the eight LLM services (Op
 - **Input**: `translated_terms/{term}/direct_services/` and `translated_terms/{term}/prompt_services/`
 - **Output**: `translated_terms/{term}/evaluation/confidence_scores.csv`, `confidence_summary.csv`
 
-Confidence = fraction of services agreeing on the most common translation. Baseline services (GT, EasyNMT, Lingvanex, Wikipedia) are tracked separately as a prompt-invariant reference.
+Confidence = fraction of services agreeing on the most common translation. The four non-LLM sources — MT baselines (GT, EasyNMT, Lingvanex) and the Wikipedia community reference — are tracked separately as a prompt-invariant block.
 
 **Data quality — translation/rationale pairing.** The central function exposed by this file, `load_variant_df`, is used by every downstream notebook and script to load per-variant data. Before returning, it calls `enforce_translation_rationale_pairing` (`scripts/utils.py`), which nulls out mismatched LLM columns:
 

@@ -12,8 +12,9 @@ Four variants, run in this fixed order:
 The judge variant depends on the other three having run first. It can be selected alone only if
 prior output files already exist on disk; the script warns otherwise.
 
-Direct services (GT, EasyNMT, Wikipedia, Lingvanex, Ollama) are prompt-invariant and loaded
-from cache for every variant after the first run.
+Non-LLM sources — MT baselines (GT, EasyNMT, Lingvanex) and the Wikipedia community
+reference — are prompt-invariant and loaded from cache for every variant after the
+first run. (Ollama-first-pass outputs are also cached the same way.)
 """
 
 import os

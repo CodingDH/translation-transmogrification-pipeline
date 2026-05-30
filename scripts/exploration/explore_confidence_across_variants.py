@@ -17,8 +17,9 @@ the same answer regardless of how it was prompted?
 LLM services compared: OpenAI, Claude, Gemini, DeepSeek (API) and
 Llama, Gemma, Qwen, Mistral (local Ollama).
 
-Baseline services (Wikipedia, GT, EasyNMT, Lingvanex) are prompt-invariant by
-design and should always score 1.0 — they serve as a sanity check.
+Non-LLM sources — MT baselines (GT, EasyNMT, Lingvanex) and the Wikipedia
+community reference — are prompt-invariant by design and should always score
+1.0 — they serve as a sanity check.
 
 Compare with: explore_confidence_within_variant.py (which measures if different
 services agree *within* a single prompt variant).

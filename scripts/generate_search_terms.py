@@ -30,6 +30,11 @@ Tier 3 exclusions applied (strictest — search safety):
     reduced to None (placeholder/interleaved noise) are dropped.
   • Source-term leakage is checked and leaking terms are dropped.
   • Terms containing control characters or null bytes are dropped.
+  • Terms with no rationale anywhere in the pipeline AND only one cell producing
+    them anywhere (i.e., no other cell from any service, variant, or language
+    matches the term) are auto-dropped as uncorroborated singletons. Corroboration
+    is at the term level — a term that appears in multiple languages, multiple
+    services, or both, qualifies even without rationale.
 
 Usage
 -----
@@ -148,6 +153,119 @@ def _build_tier3_drops(data_dir: str, term_slug: str) -> set[tuple[str, str]]:
     return drops
 
 
+# LLM service / variant inventory for rationale-pairing checks
+_LLM_SERVICES_FOR_PAIRING = (
+    'claude', 'openai', 'gemini', 'deepseek',
+    'llama', 'gemma', 'qwen', 'mistral',
+)
+_VARIANTS_FOR_PAIRING = ('minimal', 'fluent_speaker', 'github_searcher', 'judge')
+_PLACEHOLDER_RATIONALES = frozenset({
+    'no rationale provided', 'no rationale', 'n/a', 'none',
+    'not applicable', 'no explanation provided', 'no reason provided',
+})
+
+
+def _is_valid_rationale(s) -> bool:
+    """A rationale is valid if it's a non-empty string that isn't a placeholder."""
+    if not isinstance(s, str) or not s.strip():
+        return False
+    return s.strip().rstrip('.').lower() not in _PLACEHOLDER_RATIONALES
+
+
+def _build_corroborated_terms(data_dir: str, term_slug: str) -> set[str]:
+    """Return a set of curated term strings (lowercased) that qualify for the
+    search corpus by the cross-source corroboration rule:
+
+    A term is kept if EITHER
+      (a) at least one cell anywhere in the pipeline produced this term with a
+          valid (non-placeholder) rationale — the model explained itself for
+          this exact string; OR
+      (b) the term was produced by ≥2 distinct cells anywhere (counting any
+          combination of LLM-variant cells across any languages and direct
+          service cells) — cross-source corroboration.
+
+    Note: corroboration is at the *term level*, not per-(language, term). A term
+    that appears in multiple languages or multiple services anywhere in the
+    pipeline is considered corroborated, even if each individual (language,
+    term) pair on its own is a singleton. This is the more expansive policy:
+    the cost asymmetry of dropping a real translation (missing relevant content
+    from a language community) is higher than including some questionable terms
+    (whose search results can be filtered downstream).
+
+    Terms that fail BOTH conditions are auto-excluded from search.
+
+    Terms are passed through curate_translation() to match what the main loop
+    checks after stripping parentheticals, and lowercased (GitHub search is
+    case-insensitive).
+    """
+    cell_count: dict[str, int] = {}
+    has_valid_rat: set[str] = set()
+
+    def _key(raw_term) -> str | None:
+        if not isinstance(raw_term, str):
+            return None
+        t = raw_term.strip()
+        if not t or t.lower() in ('nan', 'none'):
+            return None
+        if _CLASSIFIER_AVAILABLE:
+            curated, _ = curate_translation(t)
+            if curated is None:
+                return None
+            t = curated
+        return t.lower()
+
+    # LLM cells — count occurrences AND track rationale validity
+    prompt_dir = os.path.join(data_dir, "translated_terms", term_slug, "prompt_services")
+    for svc in _LLM_SERVICES_FOR_PAIRING:
+        for variant in _VARIANTS_FOR_PAIRING:
+            path = os.path.join(prompt_dir, f"{svc}_{variant}_translations.csv")
+            if not os.path.exists(path):
+                continue
+            term_col = f"{svc}_translated_term"
+            rat_col  = f"{svc}_translation_rationale"
+            try:
+                df = pd.read_csv(
+                    path, converters={'language_code': str},
+                    usecols=['language_code', term_col, rat_col],
+                )
+            except (ValueError, KeyError):
+                continue
+            for _, row in df.iterrows():
+                key = _key(row.get(term_col))
+                if key is None:
+                    continue
+                cell_count[key] = cell_count.get(key, 0) + 1
+                if _is_valid_rationale(row.get(rat_col)):
+                    has_valid_rat.add(key)
+
+    # Direct service cells — count occurrences; no rationales to track
+    direct_dir = os.path.join(data_dir, "translated_terms", term_slug, "direct_services")
+    for fname, col in [
+        ('gt_translations.csv',        'gt_translated_term'),
+        ('enmt_translations.csv',      'enmt_translated_term'),
+        ('lingvanex_translations.csv', 'lingvanex_translated_term'),
+        ('wikipedia_translations.csv', 'wikipedia_translated_term'),
+    ]:
+        path = os.path.join(direct_dir, fname)
+        if not os.path.exists(path):
+            continue
+        try:
+            df = pd.read_csv(
+                path, converters={'language_code': str},
+                usecols=['language_code', col],
+            )
+        except (ValueError, KeyError):
+            continue
+        for _, row in df.iterrows():
+            key = _key(row.get(col))
+            if key is None:
+                continue
+            cell_count[key] = cell_count.get(key, 0) + 1
+
+    # Corroborated if rationale-paired anywhere OR ≥2 cells anywhere
+    return {t for t, n in cell_count.items() if n >= 2 or t in has_valid_rat}
+
+
 def _build_search_term_drops(data_dir: str, term_slug: str) -> set[tuple[str, str]]:
     """Return a set of (language_code, term_lower) pairs to suppress from search output.
 
@@ -231,6 +349,7 @@ def build_search_terms(
     tier3_drops = _build_tier3_drops(root, term_slug)
     search_term_drops = _build_search_term_drops(root, term_slug)
     term_corrections = _load_term_corrections(root, term_slug)
+    corroborated_terms = _build_corroborated_terms(root, term_slug)
 
     eval_dir = os.path.join(root, "translated_terms", term_slug, "evaluation")
     if load_manual_exclusions is not None:
@@ -240,6 +359,7 @@ def build_search_terms(
 
     n_dropped_lang = 0
     n_dropped_analysis = 0
+    n_dropped_unpaired = 0
     n_dropped_service = 0
     n_dropped_curate = 0
     n_dropped_leakage = 0
@@ -311,6 +431,16 @@ def build_search_terms(
             # Tier 3: drop terms manually excluded via ✗srch in review_explorer
             if (lang_code, term_value.lower()) in search_term_drops:
                 n_dropped_search_excl += 1
+                continue
+
+            # Tier 3: drop terms that have neither a rationale nor cross-source
+            # corroboration anywhere in the pipeline. A term is kept if EITHER
+            # at least one cell anywhere produced it with a valid rationale, OR
+            # ≥2 distinct cells anywhere produced it (regardless of language or
+            # service). This is the cross-anything corroboration rule — the
+            # more expansive policy that preserves cross-language convergence.
+            if term_value.lower() not in corroborated_terms:
+                n_dropped_unpaired += 1
                 continue
 
             rows.append(
@@ -418,6 +548,7 @@ def build_search_terms(
     print(f"  Terms dropped for source leakage     : {n_dropped_leakage}")
     print(f"  Terms dropped for unsafe characters  : {n_dropped_unsafe}")
     print(f"  Terms dropped via ✗srch exclusion   : {n_dropped_search_excl}")
+    print(f"  Terms dropped as unpaired singletons : {n_dropped_unpaired}")
     if n_conflicts:
         print(f"\n[!] {n_conflicts} term(s) have directionality conflicts — open html_files/search_term_reviewer.html to resolve them.")
     cat_counts = result.groupby("category")["search_term"].count()
