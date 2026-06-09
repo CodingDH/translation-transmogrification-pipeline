@@ -47,7 +47,8 @@ translation_transmogrification_pipeline/
 │   ├── 05_disagreement_analysis.ipynb  # Cross-service disagreement classification
 │   ├── 06_translation_projection.ipynb # Embedding projections and family clustering
 │   ├── 07_rationale_classification.ipynb # LLM rationale quality analysis
-│   └── 08_search_results.ipynb         # GitHub search coverage and language distribution
+│   ├── 08_definitional_patterns.ipynb  # What LLMs encode about "Digital Humanities" (rationale-based)
+│   └── 09_search_results.ipynb         # GitHub search coverage and language distribution
 ├── scripts/
 │   ├── utils.py                        # Shared utilities (load_manual_exclusions, etc.)
 │   ├── generate_search_terms.py        # Build grouped_translated_terms.csv for search
@@ -78,11 +79,11 @@ translation_transmogrification_pipeline/
 
 1. **Build language set** — `scripts/experiment/generate_language_codes.py` merges CLDR 48.2, CLDR v45 supplement, LOC ISO 639-2, and Wikimedia into `language_codes_comprehensive.csv` (880 codes).
 2. **Run translations** — `scripts/experiment/generate_translations.py` queries all services and variants per term × language pair.
-3. **Analyse** — run notebooks 01–07 in order to generate quality flags, disagreement analysis, embeddings, and rationale classifications.
+3. **Analyse** — run notebooks 01–08 in order to generate quality flags, disagreement analysis, embeddings, rationale classifications, and definitional-pattern analysis.
 4. **Review** — open `html_files/review_explorer_v2.html` to apply manual exclusions and term corrections; results saved to `evaluation/manual_exclusions.csv`.
 5. **Generate search terms** — `scripts/generate_search_terms.py` applies all exclusions and produces `grouped_translated_terms.csv`; review in `html_files/search_term_reviewer.html`.
 6. **Search** — feed `reviewed_grouped_translated_terms.csv` to the companion [searching_for_DH](https://github.com/CodingDH/searching_for_DH) pipeline.
-7. **Search results** — run notebook 08 to analyse GitHub coverage and language distribution.
+7. **Search results** — run notebook 09 to analyse GitHub coverage and language distribution.
 
 ## Credentials
 

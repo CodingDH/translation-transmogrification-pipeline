@@ -270,22 +270,27 @@ notebooks/02_translation_overview.ipynb
 html_files/review_explorer.html
     → manual_exclusions.csv       (human review decisions)
 
-notebooks/03_baseline_services.ipynb   [Tier 1 — loose]
-notebooks/04_prompt_variants.ipynb     [Tier 1 — loose]
+notebooks/03_baseline_services.ipynb        [Tier 1 — loose]
+notebooks/04_prompt_services.ipynb          [Tier 1 — loose]
     load quality_flags as annotations
     apply only exclude_translation=True from manual_exclusions
 
-notebooks/05_translation_landscape.ipynb    [Tier 2 — strict]
-notebooks/06_disagreement_typology.ipynb    [Tier 2 — strict]
-notebooks/07_rationale_analysis.ipynb       [Tier 2 — strict]
+notebooks/05_disagreement_analysis.ipynb    [Tier 2 — strict]
+notebooks/06_translation_projection.ipynb   [Tier 2 — strict]
+notebooks/07_rationale_classification.ipynb [Tier 2 — strict]
+notebooks/08_definitional_patterns.ipynb    [Tier 2 — strict]
     apply full manual_exclusions
     exclude flagged term-error flags
     keep source_term and script_disagreement as categories
 
-scripts/generate_search_terms.py               [Tier 3 — strictest]
+scripts/generate_search_terms.py            [Tier 3 — strictest]
     apply all exclusions (quality flags + manual_exclusions.csv)
     apply length / character safety filters
     apply uncorroborated-singleton check (rationale OR ≥2 cells)
+
+notebooks/09_search_results.ipynb           [post-search analysis]
+    consume GitHub search results
+    measure coverage, language distribution, value of multilingual search
 ```
 
 ---

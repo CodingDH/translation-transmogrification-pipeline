@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Family Reconciliation Reviewer</title>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+  :root {
+    --bg: #fafafa; --surface: #ffffff; --surface2: #f0f2f5;
+    --text: #1a1a2e; --muted: #6b6b88; --border: #e0e0e8;
+    --accent: #6b30cc; --accent2: #2a8050; --accent3: #007a9e;
+    --warn: #c07000; --rose: #b03060; --slate: #4a6c8c;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'SF Pro Text', -apple-system, sans-serif;
+         background: var(--bg); color: var(--text); margin: 0;
+         font-size: 13px; line-height: 1.45; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border);
+           padding: 14px 24px; position: sticky; top: 0; z-index: 10;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  h1 { margin: 0 0 8px 0; font-size: 17px; font-weight: 700; }
+  .sub { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+  #controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .btn { background: var(--surface); border: 1px solid var(--border); padding: 5px 12px;
+         border-radius: 5px; cursor: pointer; font-size: 12px; }
+  .btn:hover { background: var(--surface2); }
+  .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+  .btn-primary:hover { background: #5a26b0; }
+  .btn-warn { background: var(--warn); color: white; border-color: var(--warn); }
+  input[type=file] { display: none; }
+  select, input[type=text] { padding: 5px 8px; border: 1px solid var(--border); border-radius: 5px;
+                              font-size: 12px; background: var(--surface); color: var(--text); }
+  .stat { font-size: 11px; color: var(--muted); margin-left: auto; }
+  .stat strong { color: var(--text); font-weight: 700; }
+
+  main { padding: 16px 24px; }
+  .row { background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+         padding: 12px 14px; margin-bottom: 8px; display: grid;
+         grid-template-columns: 1fr 250px; gap: 14px; }
+  .row.anomaly { border-left: 4px solid var(--rose); background: #fff8fa; }
+  .row.glottolog-chosen { border-left: 4px solid var(--accent2); }
+  .row.ours-chosen { border-left: 4px solid var(--slate); }
+
+  .pair { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+  .pair .iso { color: var(--accent3); }
+  .pair .arrow { color: var(--muted); margin: 0 6px; }
+  .pair .glot { color: var(--accent2); }
+  .badges { display: flex; gap: 5px; flex-wrap: wrap; margin: 4px 0 6px 0; }
+  .badge { font-size: 10px; padding: 1px 7px; border-radius: 9px; font-weight: 600; white-space: nowrap; }
+  .badge.n { background: var(--surface2); color: var(--text); }
+  .badge.anomaly { background: #ffe0ea; color: var(--rose); }
+  .badge.glottolog { background: #e8f6ee; color: var(--accent2); }
+  .badge.ours { background: #eef3f8; color: var(--slate); }
+  .badge.cat { background: #f0ebff; color: var(--accent); }
+  .badge.custom { background: var(--warn); color: white; }
+  .samples { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .rationale { font-size: 11.5px; color: var(--text); font-style: italic;
+               background: var(--surface2); padding: 6px 10px; border-radius: 4px;
+               border-left: 3px solid var(--border); }
+
+  .controls { display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+  .controls label { display: flex; align-items: center; gap: 5px; font-size: 11.5px; cursor: pointer; }
+  .controls input[type=radio] { margin: 0; }
+  .controls .custom-text { font-size: 11px; padding: 3px 6px; }
+  .chosen-label { font-size: 10.5px; font-weight: 700; color: var(--muted); margin-top: 4px; }
+  .chosen-value { font-size: 12px; font-weight: 600; color: var(--accent); padding: 4px 8px;
+                   background: #f5eeff; border-radius: 4px; word-break: break-word; }
+
+  #empty { padding: 50px; text-align: center; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Family Reconciliation Reviewer</h1>
+  <div class="sub">Load <code>family_reconciliation.csv</code> · override any decision · download the reviewed file back to <code>datasets/metadata_files/</code></div>
+  <div id="controls">
+    <label class="btn" for="file-input">Load CSV</label>
+    <input type="file" id="file-input" accept=".csv">
+    <select id="filter-choice" onchange="render()">
+      <option value="">All decisions</option>
+      <option value="anomaly">🚩 Anomalies only</option>
+      <option value="glottolog">Use Glottolog</option>
+      <option value="ours">Keep ours</option>
+      <option value="custom">My overrides</option>
+    </select>
+    <select id="filter-category" onchange="render()">
+      <option value="">All categories</option>
+    </select>
+    <select id="sort" onchange="render()">
+      <option value="impact">Sort: most languages first</option>
+      <option value="anomaly-first">Sort: anomalies first</option>
+      <option value="alpha">Sort: A–Z by our family</option>
+    </select>
+    <input type="text" id="search" placeholder="Search family name…" oninput="render()" style="flex: 1; max-width: 200px;">
+    <button class="btn btn-primary" onclick="downloadCSV()">Download CSV</button>
+    <div class="stat" id="stats"></div>
+  </div>
+</header>
+
+<main>
+  <div id="rows"></div>
+  <div id="empty">Load <code>family_reconciliation.csv</code> to begin.</div>
+</main>
+
+<script>
+let allRows = [];        // raw rows from CSV
+let overrides = {};      // index → { chosen_family_name, choice='custom' }
+
+document.getElementById('file-input').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  Papa.parse(file, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: false,
+    complete(results) {
+      allRows = results.data.map((r, i) => ({ ...r, _i: i, n_languages: parseInt(r.n_languages) || 0 }));
+      // Populate category filter
+      const cats = [...new Set(allRows.map(r => r.category).filter(Boolean))].sort();
+      const sel = document.getElementById('filter-category');
+      sel.innerHTML = '<option value="">All categories</option>' +
+                       cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+      document.getElementById('empty').style.display = 'none';
+      render();
+    },
+  });
+});
+
+function esc(s) {
+  return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function currentChoice(row) {
+  const ov = overrides[row._i];
+  return ov ? 'custom' : row.choice;
+}
+function currentChosen(row) {
+  const ov = overrides[row._i];
+  return ov ? ov.chosen_family_name : row.chosen_family_name;
+}
+
+function pickChoice(idx, value) {
+  const r = allRows[idx];
+  if (value === 'ours')        { delete overrides[idx]; r.choice = 'ours'; r.chosen_family_name = r.family_name_iso; }
+  else if (value === 'glottolog') { delete overrides[idx]; r.choice = 'glottolog'; r.chosen_family_name = r.family_name_glottolog; }
+  else if (value === 'custom')   { /* keep existing custom or initialize */
+    if (!overrides[idx]) overrides[idx] = { chosen_family_name: r.chosen_family_name || r.family_name_iso, choice: 'custom' };
+  }
+  render();
+}
+function setCustomText(idx, value) {
+  if (!overrides[idx]) overrides[idx] = { choice: 'custom' };
+  overrides[idx].chosen_family_name = value;
+  // Update stats only (no full re-render so cursor stays in input)
+  updateStats();
+  // Update chosen value display
+  const el = document.querySelector(`#row-${idx} .chosen-value`);
+  if (el) el.textContent = value || '(empty)';
+}
+
+function applyFilters() {
+  const fc = document.getElementById('filter-choice').value;
+  const fcat = document.getElementById('filter-category').value;
+  const sq = document.getElementById('search').value.toLowerCase().trim();
+  return allRows.filter(r => {
+    const ch = currentChoice(r);
+    if (fc && ch !== fc) return false;
+    if (fcat && r.category !== fcat) return false;
+    if (sq) {
+      const hay = `${r.family_name_iso} ${r.family_name_glottolog} ${r.sample_languages}`.toLowerCase();
+      if (!hay.includes(sq)) return false;
+    }
+    return true;
+  });
+}
+
+function sortRows(rows) {
+  const s = document.getElementById('sort').value;
+  if (s === 'impact') return rows.slice().sort((a,b) => b.n_languages - a.n_languages);
+  if (s === 'anomaly-first') return rows.slice().sort((a,b) => {
+    const ax = a.choice === 'anomaly' ? 0 : 1;
+    const bx = b.choice === 'anomaly' ? 0 : 1;
+    if (ax !== bx) return ax - bx;
+    return b.n_languages - a.n_languages;
+  });
+  if (s === 'alpha') return rows.slice().sort((a,b) =>
+    (a.family_name_iso || '').localeCompare(b.family_name_iso || ''));
+  return rows;
+}
+
+function render() {
+  if (!allRows.length) return;
+  const rows = sortRows(applyFilters());
+  let html = '';
+  for (const r of rows) {
+    const ch = currentChoice(r);
+    const chosen = currentChosen(r);
+    const rowCls = ch === 'anomaly' ? 'anomaly'
+                : ch === 'glottolog' ? 'glottolog-chosen'
+                : ch === 'custom' ? '' : 'ours-chosen';
+
+    html += `<div id="row-${r._i}" class="row ${rowCls}">
+      <div>
+        <div class="pair">
+          <span class="iso">${esc(r.family_name_iso)}</span>
+          <span class="arrow">↔</span>
+          <span class="glot">${esc(r.family_name_glottolog)}</span>
+        </div>
+        <div class="badges">
+          <span class="badge n">${r.n_languages} language${r.n_languages > 1 ? 's' : ''}</span>
+          ${ch === 'anomaly' ? `<span class="badge anomaly">🚩 Anomaly</span>` : ''}
+          ${ch === 'glottolog' ? `<span class="badge glottolog">Use Glottolog</span>` : ''}
+          ${ch === 'ours' ? `<span class="badge ours">Keep ours</span>` : ''}
+          ${ch === 'custom' ? `<span class="badge custom">Custom override</span>` : ''}
+          ${r.category ? `<span class="badge cat">${esc(r.category)}</span>` : ''}
+        </div>
+        <div class="samples"><strong>Languages:</strong> ${esc(r.sample_languages || '—')}</div>
+        <div class="rationale">${esc(r.rationale || '(no rationale)')}</div>
+      </div>
+      <div class="controls">
+        <label><input type="radio" name="c${r._i}" value="ours" ${ch === 'ours' ? 'checked' : ''} onchange="pickChoice(${r._i}, this.value)"> Keep ours (<span style="color:var(--accent3)">${esc(r.family_name_iso)}</span>)</label>
+        <label><input type="radio" name="c${r._i}" value="glottolog" ${ch === 'glottolog' ? 'checked' : ''} onchange="pickChoice(${r._i}, this.value)"> Use Glottolog (<span style="color:var(--accent2)">${esc(r.family_name_glottolog)}</span>)</label>
+        <label><input type="radio" name="c${r._i}" value="custom" ${ch === 'custom' ? 'checked' : ''} ${ch === 'anomaly' ? '' : ''} onchange="pickChoice(${r._i}, this.value)"> Custom</label>
+        ${ch === 'custom' ? `<input type="text" class="custom-text" value="${esc(chosen)}" placeholder="Custom family name" oninput="setCustomText(${r._i}, this.value)">` : ''}
+        ${ch === 'anomaly' ? `<label><input type="radio" name="c${r._i}" value="ours" onchange="pickChoice(${r._i}, this.value)"> 🚩 Resolve as ours</label><label><input type="radio" name="c${r._i}" value="glottolog" onchange="pickChoice(${r._i}, this.value)"> 🚩 Resolve as Glottolog</label>` : ''}
+        <div class="chosen-label">Will save:</div>
+        <div class="chosen-value">${esc(chosen || '(empty)')}</div>
+      </div>
+    </div>`;
+  }
+  document.getElementById('rows').innerHTML = html;
+  updateStats();
+}
+
+function updateStats() {
+  const total = allRows.length;
+  const anom = allRows.filter(r => currentChoice(r) === 'anomaly').length;
+  const ovrd = Object.keys(overrides).length;
+  const filt = applyFilters().length;
+  document.getElementById('stats').innerHTML =
+    `<strong>${filt}</strong> shown · <strong>${total}</strong> total · ` +
+    `<strong style="color:var(--rose)">${anom}</strong> unresolved anomalies · ` +
+    `<strong style="color:var(--warn)">${ovrd}</strong> overrides`;
+}
+
+function downloadCSV() {
+  if (!allRows.length) { alert('Load a file first.'); return; }
+  // Build output rows, applying any overrides
+  const out = allRows.map(r => {
+    const ch = currentChoice(r);
+    const chosen = currentChosen(r);
+    return {
+      family_name_iso: r.family_name_iso,
+      family_name_glottolog: r.family_name_glottolog,
+      n_languages: r.n_languages,
+      sample_languages: r.sample_languages,
+      choice: ch,
+      category: r.category,
+      chosen_family_name: chosen,
+      rationale: r.rationale,
+    };
+  });
+  const csv = Papa.unparse(out);
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'family_reconciliation.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
