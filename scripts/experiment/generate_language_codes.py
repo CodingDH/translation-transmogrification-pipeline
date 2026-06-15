@@ -84,11 +84,13 @@ Usage
 """
 
 import argparse
+import datetime
 import io
 import os
 import re
 import sys
 
+import langcodes
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -155,71 +157,81 @@ def _is_valid_language_code(code) -> bool:
 # changes row identity and intentionally does NOT expand the dataset into
 # locale variants (en-US, en-GB, es-MX, etc.). The unit of analysis for Coding
 # DH is language/community discovery, not locale-specific localization.
+#
+# Tag canonicalization delegates to ``langcodes.standardize_tag``, which
+# validates against the IANA Language Subtag Registry (shipped via the
+# ``language_data`` package). The earlier in-house casing logic and the
+# hardcoded DEPRECATED_LANGUAGE_SUBTAG_PREFERRED dict have been removed in
+# favour of that delegation — see the "late integration" note in nb01 §1.1
+# for the methodological rationale. BCP47_GRANDFATHERED_FALLBACKS handles
+# the small set of Wikimedia tags absent from the IANA snapshot the library
+# ships, and shrinks naturally when language_data updates.
 
 def _canonicalize_bcp47_like_tag(tag: str) -> str:
-    """Return a conventionally cased BCP 47-style tag, or ''.
+    """Return a canonical BCP 47 tag, or ''.
 
-    This is intentionally lightweight and dependency-free. It does not claim to
-    validate against the full IANA Language Subtag Registry; it applies common
-    BCP 47 casing (language lower, script title, region upper) and a few
-    deprecated-subtag preferences. For full validation, downstream users may
-    install the optional ``langcodes`` package.
+    Delegates to ``langcodes.standardize_tag`` (which validates against the
+    IANA Language Subtag Registry shipped via ``language_data``: case
+    normalization, hyphen/underscore, IANA Preferred-Value rewrites including
+    deprecated subtags like ``iw`` → ``he`` and Wikimedia-legacy mappings like
+    ``zh-min-nan`` → ``nan``).
+
+    Some grandfathered Wikimedia tags (``bat-smg``, ``be-x-old``, ``tokipona``,
+    etc.) are not in the 2021-08-06 IANA snapshot ``language_data`` ships, so
+    those fall through to ``BCP47_GRANDFATHERED_FALLBACKS`` below. The literal
+    string ``nan`` is the ISO 639-3 code for Min Nan Chinese and is preserved
+    here — never treated as a missing-value sentinel.
     """
     if tag is None:
         return ''
-    tag = str(tag).strip().replace('_', '-')
+    tag = str(tag).strip()
     if not tag or tag.lower() in {'none', 'null'}:
         return ''
-    parts = [p for p in tag.split('-') if p]
-    if not parts:
-        return ''
-    # Preserve the real language code 'nan' (Min Nan Chinese); never treat as missing.
-    primary = parts[0].lower()
-    primary = DEPRECATED_LANGUAGE_SUBTAG_PREFERRED.get(primary, primary)
-    canon = [primary]
-    for i, subtag in enumerate(parts[1:], start=1):
-        low = subtag.lower()
-        if len(low) == 1:
-            # Private use / extension singletons: lower-case from here on
-            canon.append(low)
-            canon.extend(p.lower() for p in parts[i+1:])
-            break
-        if len(subtag) == 4 and subtag.isalpha():
-            # Script subtag (Latn, Cyrl, Arab, Hant): title case
-            canon.append(subtag.title())
-        elif (len(subtag) == 2 and subtag.isalpha()) or (len(subtag) == 3 and subtag.isdigit()):
-            # Region subtag: upper case (US, GB) or UN M.49 numeric (419)
-            canon.append(subtag.upper())
-        else:
-            canon.append(low)
-    return '-'.join(canon)
+    # 'nan' (Min Nan Chinese) is a real language code; check before pandas-NaN handling
+    # might tempt anyone to drop it.
+    if tag in BCP47_GRANDFATHERED_FALLBACKS:
+        return BCP47_GRANDFATHERED_FALLBACKS[tag]
+    try:
+        return langcodes.standardize_tag(tag)
+    except langcodes.LanguageTagError:
+        # Tag isn't a well-formed BCP 47 subtag and isn't in our grandfathered
+        # fallback list — return the underscore-normalized form so downstream
+        # joins still work and the audit script can surface it.
+        return tag.replace('_', '-')
 
 
 def _preferred_bcp47_for_row(row):
-    """Choose a preferred BCP 47-style tag for a language row.
+    """Choose a preferred BCP 47 tag for a language row.
 
     Returns (tag, source, note). language_code remains canonical; this tag is
     an interoperability hint for web/HTML/XML/API contexts.
     """
     code = str(row.get('language_code', '')).strip()
-    if code in WIKIMEDIA_TO_BCP47_OVERRIDES:
-        return (_canonicalize_bcp47_like_tag(WIKIMEDIA_TO_BCP47_OVERRIDES[code]),
-                'manual_override',
-                f'project/Wikimedia code {code} mapped to preferred BCP 47-style tag')
-    # Prefer ISO 639-1 — IANA / BCP 47 uses the shortest primary subtag available
+    if code in BCP47_GRANDFATHERED_FALLBACKS:
+        return (BCP47_GRANDFATHERED_FALLBACKS[code],
+                'grandfathered_fallback',
+                f'Wikimedia/legacy code {code} not in language_data IANA snapshot; mapped manually')
+    # Prefer ISO 639-1 — IANA / BCP 47 uses the shortest primary subtag available.
+    # The literal 'nan' here is filtered as a pandas-NaN sentinel, NOT as the
+    # Min Nan Chinese code — iso639_1 is the 2-letter slot and Min Nan has no 2-letter code.
     iso1 = str(row.get('iso639_1', '')).strip()
     if iso1 and iso1.lower() not in {'nan', 'none'}:
         return (_canonicalize_bcp47_like_tag(iso1), 'iso639_1', '')
-    # Then ISO 639-2/T (terminological) — closer to modern ISO 639-3 practice
     iso2t = str(row.get('iso639_2_t', '')).strip()
     if iso2t and iso2t.lower() not in {'nan', 'none'}:
         return (_canonicalize_bcp47_like_tag(iso2t), 'iso639_2_t', '')
-    # Finally, normalize the project code itself
     return (_canonicalize_bcp47_like_tag(code), 'language_code', '')
 
 
 def _candidate_codes_for_services(row) -> list:
-    """Return likely codes/tags to test against service-specific support lists."""
+    """Return likely codes/tags to test against service-specific support lists.
+
+    Adds legacy IANA-deprecated aliases (e.g. ``iw`` for ``he``, ``jw`` for
+    ``jv``) so a match against a service that still accepts the deprecated form
+    counts as supported. The alias list is sourced from
+    ``langcodes.LANGUAGE_REPLACEMENTS`` — the full IANA Preferred-Value map,
+    not a hand-curated subset.
+    """
     values = [
         row.get('bcp47_tag', ''),
         row.get('language_code', ''),
@@ -233,10 +245,10 @@ def _candidate_codes_for_services(row) -> list:
         if v is None: continue
         v = str(v).strip()
         if not v or v.lower() in {'none', 'null'}: continue
-        variants = {v, v.replace('_', '-'), _canonicalize_bcp47_like_tag(v)}
-        # Add legacy aliases for API compatibility (iw for he, jw for jv, etc.)
-        for legacy, preferred in DEPRECATED_LANGUAGE_SUBTAG_PREFERRED.items():
-            if _canonicalize_bcp47_like_tag(v) == preferred:
+        canonical = _canonicalize_bcp47_like_tag(v)
+        variants = {v, v.replace('_', '-'), canonical}
+        for legacy, preferred in langcodes.LANGUAGE_REPLACEMENTS.items():
+            if canonical == preferred:
                 variants.add(legacy)
         for cand in variants:
             if cand and cand not in out:
@@ -244,35 +256,23 @@ def _candidate_codes_for_services(row) -> list:
     return out
 
 
-# Wikimedia legacy / community codes mapped to preferred IANA-registry BCP 47 tags.
-# These are pure interoperability hints — language_code itself is unchanged.
-WIKIMEDIA_TO_BCP47_OVERRIDES = {
-    # Chinese Wikimedia legacy/community codes with preferred modern subtags
-    'zh-min-nan':   'nan',      # Min Nan Chinese (also protects the literal code nan)
-    'zh-yue':       'yue',      # Cantonese
-    'zh-classical': 'lzh',      # Literary/Classical Chinese
-    'zh-tw':        'zh-TW',    # Taiwan/Traditional Chinese project code
-    # Wikimedia / CLDR locale-style codes
-    'uz_AF':        'uz-AF',    # Uzbek in Afghanistan (Perso-Arabic script)
-    'nds-nl':       'nds-NL',   # Low Saxon as used in the Netherlands
-    # Orthography / community variants
-    'be-x-old':     'be-tarask',  # Belarusian Taraškievica orthography
-    # Wikimedia historical / composite project codes with clearer IANA primary subtags
-    'bat-smg':      'sgs',      # Samogitian
-    'fiu-vro':      'vro',      # Võro
-    'map-bms':      'jv',       # Banyumasan (no stable ISO 639-3 code in common use)
-    'roa-rup':      'rup',      # Aromanian
-    # Constructed / community code used by some platforms
-    'tokipona':     'tok',      # Toki Pona (IANA / ISO 639-3 subtag)
-}
-
-# Deprecated language subtags still seen in some APIs, mapped to current preferred.
-DEPRECATED_LANGUAGE_SUBTAG_PREFERRED = {
-    'iw': 'he',  # Hebrew (Google still accepts iw)
-    'ji': 'yi',  # Yiddish
-    'in': 'id',  # Indonesian
-    'jw': 'jv',  # Javanese
-    'mo': 'ro',  # Moldovan → Romanian
+# Grandfathered Wikimedia / community tags NOT in the 2021-08-06 IANA snapshot
+# that ships with langcodes / language_data. Each of these has either no IANA
+# Preferred-Value entry in that snapshot (bat-smg, be-x-old, fiu-vro, map-bms,
+# roa-rup, zh-classical) or is unregistered entirely (tokipona — `tok` was
+# added to IANA in 2022, after the shipped snapshot). When language_data
+# ships a newer registry, several of these will become redundant and can be
+# removed. The five deprecated subtags that langcodes/IANA already handle
+# (iw→he, ji→yi, in→id, jw→jv, mo→ro) used to live in a separate dict here;
+# they have been removed because standardize_tag() now resolves them.
+BCP47_GRANDFATHERED_FALLBACKS = {
+    'zh-classical': 'lzh',       # Literary/Classical Chinese
+    'be-x-old':     'be-tarask', # Belarusian Taraškievica orthography
+    'bat-smg':      'sgs',       # Samogitian
+    'fiu-vro':      'vro',       # Võro
+    'map-bms':      'jv',        # Banyumasan (no stable ISO 639-3 code in common use)
+    'roa-rup':      'rup',       # Aromanian
+    'tokipona':     'tok',       # Toki Pona — IANA registered the `tok` subtag in 2022
 }
 
 # Default filename for the optional service-support CSV consumed by
@@ -1107,6 +1107,221 @@ def enrich_language_names_from_sil(comp_df: pd.DataFrame, cache_dir: str) -> pd.
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# MERGE STEP — Glottolog family reconciliation
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# Cross-validates the ISO 639-5 derived `family_name` column against Glottolog
+# 5.3 and produces `family_name_reconciled`, applying per-pair decisions from
+# `datasets/metadata_files/family_reconciliation.csv`. This used to live as
+# interactive cells in notebook 01 §1.3 — extracting it here ensures the
+# reconciled column survives every regeneration of the comprehensive CSV.
+# Falls back to copying `family_name` if the Glottolog cache or the
+# reconciliation CSV is missing, so the column always exists downstream.
+
+def _norm_family_name(s) -> str:
+    """Strip trailing 'languages'/'language' suffix and lowercase for comparison."""
+    if not isinstance(s, str): return ''
+    s = s.strip().lower()
+    for suffix in (' languages', ' language'):
+        if s.endswith(suffix):
+            s = s[:-len(suffix)]
+            break
+    return s
+
+
+def add_family_reconciliation(comp_df: pd.DataFrame, metadata_dir: str = None) -> pd.DataFrame:
+    """Add `family_name_reconciled` by cross-checking against Glottolog 5.3.
+
+    Glottolog wins where (a) ISO 639-5 uses geographic rather than genealogical
+    groupings ('Caucasian', 'North American Indian'), (b) macrofamilies are
+    abandoned ('Niger-Kordofanian') or contested ('Altaic'). ISO 639-5 wins
+    where Glottolog's category is a metadata tag ('Bookkeeping', 'Unclassifiable')
+    or where the disagreement is sociolinguistic ('Creoles and pidgins').
+    Per-pair decisions live in `family_reconciliation.csv`.
+    """
+    df = comp_df.copy()
+
+    if metadata_dir is None:
+        from pathlib import Path
+        here = Path(__file__).resolve()
+        metadata_dir = str(here.parent.parent.parent / 'datasets' / 'metadata_files')
+
+    glot_path  = os.path.join(metadata_dir, 'glottolog-cache', 'languoid.csv')
+    recon_path = os.path.join(metadata_dir, 'family_reconciliation.csv')
+
+    if not (os.path.exists(glot_path) and os.path.exists(recon_path)):
+        console.print(
+            f'  Glottolog cache or reconciliation CSV missing; family_name_reconciled = family_name'
+        )
+        df['family_name_reconciled'] = df['family_name']
+        return df
+
+    glot = pd.read_csv(glot_path, low_memory=False)
+    _id_to_name = glot.set_index('id')['name'].to_dict()
+    glot['glottolog_family'] = glot['family_id'].map(_id_to_name)
+    glot_lang = glot[(glot['level'] == 'language') & glot['iso639P3code'].notna()].copy()
+
+    def _iso639_3(row):
+        for col in ('language_code', 'iso639_2_t'):
+            v = row.get(col)
+            if isinstance(v, str) and len(v) == 3:
+                return v
+        return None
+
+    df['_iso639_3'] = df.apply(_iso639_3, axis=1)
+    df = df.merge(
+        glot_lang[['iso639P3code', 'glottolog_family']],
+        left_on='_iso639_3', right_on='iso639P3code', how='left',
+    )
+    df = df.drop(columns=['_iso639_3', 'iso639P3code'], errors='ignore')
+
+    recon = pd.read_csv(recon_path)
+    recon_lookup = {
+        (r['family_name_iso'], r['family_name_glottolog']): r['chosen_family_name']
+        for _, r in recon.iterrows()
+    }
+
+    def _reconcile(row):
+        our  = row.get('family_name')
+        glot = row.get('glottolog_family')
+        if not isinstance(our, str):  return our
+        if not isinstance(glot, str): return our  # no Glottolog match — keep ours
+        if _norm_family_name(our) == _norm_family_name(glot): return our  # agreement
+        return recon_lookup.get((our, glot), our)  # disagreement — apply or fall back
+
+    df['family_name_reconciled'] = df.apply(_reconcile, axis=1)
+
+    # Identify disagreement pairs the reconciliation CSV doesn't cover.
+    # These are pairs where ISO 639-5 and Glottolog disagree but no per-pair
+    # decision exists yet — so the row silently falls back to family_name and
+    # the methodological choice is implicit rather than recorded. Surface them
+    # so the author can open the reviewer and add explicit decisions.
+    has_both = df['family_name'].astype(str).str.len().gt(0) & df['glottolog_family'].notna()
+    valid = df[has_both]
+    pairs_seen = {
+        (our, glot)
+        for our, glot in zip(valid['family_name'], valid['glottolog_family'])
+        if _norm_family_name(our) != _norm_family_name(glot)
+    }
+    uncovered_pairs = pairs_seen - set(recon_lookup.keys())
+
+    df = df.drop(columns=['glottolog_family'], errors='ignore')
+
+    n_total      = len(df)
+    n_matched    = df['family_name_reconciled'].notna().sum()
+    n_changed    = (df['family_name_reconciled'] != df['family_name']).sum()
+    n_unchanged  = n_matched - n_changed
+    console.print(
+        f'  Family reconciliation: {n_changed} reclassified vs ISO 639-5 family_name, '
+        f'{n_unchanged} unchanged, {n_total - n_matched} with no Glottolog match'
+    )
+    if uncovered_pairs:
+        console.print(
+            f'\n  [yellow]⚠ {len(uncovered_pairs)} disagreement pair(s) NOT in family_reconciliation.csv '
+            f'(silently kept as ISO 639-5):[/yellow]'
+        )
+        for our, glot in sorted(uncovered_pairs)[:5]:
+            n_affected = sum(
+                1 for o, g in zip(valid['family_name'], valid['glottolog_family'])
+                if o == our and g == glot
+            )
+            console.print(f'      ISO: {our!r}  vs  Glottolog: {glot!r}   ({n_affected} languages)')
+        if len(uncovered_pairs) > 5:
+            console.print(f'      ... and {len(uncovered_pairs) - 5} more')
+        console.print(
+            '  [yellow]→ Open html_files/family_reconciliation_reviewer.html to add explicit decisions,[/yellow]\n'
+            '  [yellow]  then re-run generate_language_codes.py to apply.[/yellow]'
+        )
+    return df
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# MERGE STEP — Accumulating regeneration with date provenance
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# The pipeline regenerates from upstream sources (CLDR, LOC, Wikimedia, etc.),
+# which can shift between runs as the registries themselves change — Wikimedia
+# in particular is fetched live and adds/removes Wikipedia projects over time.
+# Rather than treating each regeneration as a clean overwrite, the pipeline
+# accumulates: every language code that has ever been attested by any
+# regeneration is preserved, with two date columns recording when it was first
+# added and when it was last seen in current sources. A code that has dropped
+# out of current Wikimedia is kept with its old `coding_dh_date_last_seen` so
+# the gap between added and last_seen records when the registries stopped
+# attesting the code. This mirrors how the CLDR v45 supplement already retains
+# codes that CLDR 48 dropped — generalised to all sources.
+
+def _merge_with_previous_csv(comprehensive: pd.DataFrame,
+                             output_dir: str,
+                             today: str) -> pd.DataFrame:
+    """Preserve coding_dh_date_added across regenerations; retain dropped rows.
+
+    On the first run (no existing CSV), every row is stamped with today's date
+    for both columns. On subsequent runs:
+      - Rows whose language_code is in BOTH the new generation and the previous
+        CSV preserve their original `coding_dh_date_added` and have
+        `coding_dh_date_last_seen` updated to today.
+      - Rows newly attested by the current sources get both dates set to today.
+      - Rows that were in the previous CSV but are NOT in the current sources
+        are retained with their previous metadata, their original
+        `coding_dh_date_added`, and their previous `coding_dh_date_last_seen`
+        (NOT updated to today) — that gap is the signal that the row's
+        registries stopped attesting the code as of that date.
+    """
+    csv_path = os.path.join(output_dir, 'language_codes_comprehensive.csv')
+    if not os.path.exists(csv_path):
+        comprehensive['coding_dh_date_added']     = today
+        comprehensive['coding_dh_date_last_seen'] = today
+        console.print(f"  Date tracking: first run, all {len(comprehensive)} rows stamped with {today}")
+        return comprehensive
+
+    previous = pd.read_csv(csv_path, dtype=str, na_filter=False)
+
+    added_map = {}
+    if 'coding_dh_date_added' in previous.columns:
+        added_map = dict(zip(previous['language_code'], previous['coding_dh_date_added']))
+
+    last_seen_map = {}
+    if 'coding_dh_date_last_seen' in previous.columns:
+        last_seen_map = dict(zip(previous['language_code'], previous['coding_dh_date_last_seen']))
+
+    comprehensive['coding_dh_date_added']     = comprehensive['language_code'].map(
+        lambda c: added_map.get(c, today)
+    )
+    comprehensive['coding_dh_date_last_seen'] = today
+
+    new_codes = set(comprehensive['language_code'])
+    retained  = previous[~previous['language_code'].isin(new_codes)].copy()
+
+    if not retained.empty:
+        for col in comprehensive.columns:
+            if col not in retained.columns:
+                retained[col] = ''
+        if 'coding_dh_date_last_seen' not in retained.columns or \
+                (retained['coding_dh_date_last_seen'] == '').all():
+            retained['coding_dh_date_last_seen'] = retained['language_code'].map(
+                lambda c: last_seen_map.get(c, '')
+            )
+        if 'coding_dh_date_added' not in retained.columns or \
+                (retained['coding_dh_date_added'] == '').all():
+            retained['coding_dh_date_added'] = retained['language_code'].map(
+                lambda c: added_map.get(c, '')
+            )
+        retained = retained[comprehensive.columns]
+        comprehensive = pd.concat([comprehensive, retained], ignore_index=True)
+
+    n_added_today = sum(1 for c in comprehensive['language_code'] if c not in added_map)
+    n_preserved   = len(comprehensive) - n_added_today - len(retained)
+    console.print(
+        f"  Date tracking: {n_added_today} newly added today; "
+        f"{n_preserved} preserved with prior coding_dh_date_added; "
+        f"{len(retained)} retained from previous CSV "
+        f"(no longer in current sources; last_seen preserved)"
+    )
+    return comprehensive
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # MERGE STEP — Identifier context (BCP 47 + service support)
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -1140,11 +1355,14 @@ def add_identifier_context(comp_df: pd.DataFrame) -> pd.DataFrame:
     df['bcp47_tag']    = [x[0] for x in chosen]
     df['bcp47_source'] = [x[1] for x in chosen]
     df['bcp47_note']   = [x[2] for x in chosen]
+    # True only when bcp47_tag is a mechanical rewrite of language_code
+    # (case/hyphen-normalization). False when IANA Preferred-Value or a
+    # grandfathered fallback actually changed the primary subtag — that's the
+    # signal downstream users care about: "is the BCP 47 column telling me
+    # something different than the project code already says?"
     df['bcp47_is_project_code'] = (
-        df['bcp47_tag'] ==
-        df['language_code'].astype(str)
-            .str.replace('_', '-', regex=False)
-            .map(_canonicalize_bcp47_like_tag)
+        df['bcp47_tag'].str.lower()
+        == df['language_code'].astype(str).str.replace('_', '-', regex=False).str.lower()
     )
     df['service_code_candidates'] = df.apply(
         lambda row: '|'.join(_candidate_codes_for_services(row)), axis=1
@@ -1366,6 +1584,9 @@ def main(cldr_version='48.2.0', cldr_cache_dir=None,
     comprehensive = add_cldr_v45_supplement(comprehensive)
     comprehensive = add_family_info(comprehensive, set5_df)
     comprehensive = enrich_language_names_from_sil(comprehensive, cldr_cache_dir)
+    comprehensive = add_family_reconciliation(comprehensive, output_dir)
+    today = datetime.date.today().isoformat()
+    comprehensive = _merge_with_previous_csv(comprehensive, output_dir, today)
     comprehensive = add_identifier_context(comprehensive)
     comprehensive = add_service_language_codes(comprehensive)
 
@@ -1424,6 +1645,18 @@ def main(cldr_version='48.2.0', cldr_cache_dir=None,
     console.print("  Wikimedia:        proxy for digital community presence beyond ISO")
     console.print("  CLDR v45 suppl.:  23 ISO 639-3 languages dropped from CLDR 48.2 for contributor reasons only")
     console.print("  SIL ISO 639-3:    English reference names for ~190 CLDR codes absent from CLDR en/languages.json")
+    console.print("  Glottolog 5.3:    family classification cross-check producing family_name_reconciled")
+
+    console.print("\n[bold cyan]Recommended next steps:[/bold cyan]")
+    console.print("  1. Verify family reconciliation — open html_files/family_reconciliation_reviewer.html")
+    console.print("     to review per-pair decisions in datasets/metadata_files/family_reconciliation.csv.")
+    console.print("     If any disagreement pairs above are 'NOT in family_reconciliation.csv', add")
+    console.print("     decisions and re-run this script to apply them.")
+    console.print("  2. Run notebook 01 (notebooks/01_language_exploration.ipynb) to inspect the")
+    console.print("     regenerated dataset, source coverage, family distribution, and BCP 47 layer.")
+    console.print("  3. Run the translation pipeline for any new rows:")
+    console.print("     python -m scripts.experiment.generate_translations --terms '<term>' \\")
+    console.print("       --variant minimal fluent_speaker github_searcher judge")
 
     return comprehensive, cldr_long_df, set5_df
 

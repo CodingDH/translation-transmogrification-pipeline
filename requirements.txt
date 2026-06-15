@@ -31,6 +31,10 @@ requests
 arabic-reshaper
 python-bidi
 
+# Language identifier handling (BCP 47 canonicalization, IANA Language Subtag Registry)
+langcodes
+language_data
+
 # Utilities
 Wikipedia-API
 ollama

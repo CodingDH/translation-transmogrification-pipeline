@@ -1,4 +1,23 @@
 "language_code","term","language_name","term_source","gemma_system_prompt","gemma_user_prompt","gemma_content","gemma_model","gemma_created_at","gemma_total_duration","gemma_load_duration","gemma_prompt_eval_count","gemma_prompt_eval_duration","gemma_eval_count","gemma_eval_duration","gemma_done_reason","gemma_translated_term","gemma_translation_rationale","gemma_extracted_dictionaries","gemma_translation","coding_dh_date","llama_translated_term","llama_content","llama_created_at","llama_done_reason","llama_eval_count","llama_eval_duration","llama_extracted_dictionaries","llama_load_duration","llama_model","llama_prompt_eval_count","llama_prompt_eval_duration","llama_total_duration","llama_translation","llama_translation_rationale","llama_system_prompt","llama_user_prompt","exclude_gemma","wikipedia_translated_term","family_name","gt_translated_term","enmt_translated_term","exclude_google_cloud_translate","lingvanex_translated_term","exclude_easynmt"
+"pnb","","Punjabi (Western)","Digital Humanities","You are a Digital Humanities scholar who speaks many languages.","Translate 'Digital Humanities' into Punjabi (Western) (ISO code: pnb).
+
+Write your rationale in Punjabi (Western), not English. (If the target language is English, write in English.) Writing in Punjabi (Western) demonstrates deep understanding of both the language and the term.
+
+IMPORTANT: Return ONLY valid JSON with no other text. Use this exact format:
+{""translated_term"": ""..."", ""translation_rationale"": ""...""}","```json
+{
+  ""translated_term"": ""ਡਿਜੀਟਲ ਮਨੁੱਖਤਾ ਵਿਗਿਆਨ"",
+  ""translation_rationale"": ""ਮੈਂ 'Digital Humanities' ਨੂੰ ਪੰਜਾਬੀ (ਪੱਛਮੀ) ਵਿੱਚ 'ਡਿਜੀਟਲ ਮਨੁੱਖਤਾ ਵਿਗਿਆਨ' ਵਜੋਂ ਅਨੁਵਾਦ ਕੀਤਾ ਹੈ। 'ਡਿਜੀਟਲ' ਨੂਂ ਅੰਗਰੇਜ਼ੀ ਸ਼ਬਦ 'digital' ਤੋ ਸਿੱਧਾ ਲਿਆਂਦਾ ਗਿਆ ਹੈ, ਕਿਉਂਕਿ ਇਹ ਇੱਕ ਆਪ੍ਰੈਤਮਿਕ (operational) ਪਦ ਹੈ ਜਿਸਦੀ ਪੰਜਾਬੀ ਵਿੱਚ ਬਰਾਬਰ ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ ਹੈ। 'ਮਨੁੱਖਤਾ ਵਿਗਿਆਨ' ਨੂੰ 'Humanities' ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ, ਜੋ ਕਿ ਮਨੁੱਖੀ ਸੰਸਕ੍ਰਤੀ, ਇਤਿਹਾਸ, ਸਾਹਿਤ ਅਤੇ ਫਲਸਫੇ ਨਾਲ ਸਬੰਧਤ ਵਿਸ਼ਿਆਂ ਨੂੰ ਸਮਝਾਉਂਦਾ ਹੈ। ਇਹ ਅਨੁਵਾਦ ਡਿਜੀਟਲ ਤਕਨੀਕਾਂ ਦੇ ਇਸਤੇਮਾਲ ਕਰਕੇ ਮਨੁੱਖਤਾ ਵਿਗਿਆਨ ਦੇ ਅਧਿਐਨ ਨੂੰ ਸਹੀ ਢੰਗ ਨਾਲ ਪੇਸ਼ ਕਰਦਾ ਹੈ।""
+}
+```","gemma3:12b","2026-06-15T09:53:33.274799Z","5964636292.0","240969667.0","119.0","311956000.0","279.0","5396256000.0","stop","ਡਿਜੀਟਲ ਮਨੁੱਖਤਾ ਵਿਗਿਆਨ","ਮੈਂ 'Digital Humanities' ਨੂੰ ਪੰਜਾਬੀ (ਪੱਛਮੀ) ਵਿੱਚ 'ਡਿਜੀਟਲ ਮਨੁੱਖਤਾ ਵਿਗਿਆਨ' ਵਜੋਂ ਅਨੁਵਾਦ ਕੀਤਾ ਹੈ। 'ਡਿਜੀਟਲ' ਨੂਂ ਅੰਗਰੇਜ਼ੀ ਸ਼ਬਦ 'digital' ਤੋ ਸਿੱਧਾ ਲਿਆਂਦਾ ਗਿਆ ਹੈ, ਕਿਉਂਕਿ ਇਹ ਇੱਕ ਆਪ੍ਰੈਤਮਿਕ (operational) ਪਦ ਹੈ ਜਿਸਦੀ ਪੰਜਾਬੀ ਵਿੱਚ ਬਰਾਬਰ ਕੋਈ ਸ਼ਬਦ ਨਹੀਂ ਹੈ। 'ਮਨੁੱਖਤਾ ਵਿਗਿਆਨ' ਨੂੰ 'Humanities' ਲਈ ਵਰਤਿਆ ਗਿਆ ਹੈ, ਜੋ ਕਿ ਮਨੁੱਖੀ ਸੰਸਕ੍ਰਤੀ, ਇਤਿਹਾਸ, ਸਾਹਿਤ ਅਤੇ ਫਲਸਫੇ ਨਾਲ ਸਬੰਧਤ ਵਿਸ਼ਿਆਂ ਨੂੰ ਸਮਝਾਉਂਦਾ ਹੈ। ਇਹ ਅਨੁਵਾਦ ਡਿਜੀਟਲ ਤਕਨੀਕਾਂ ਦੇ ਇਸਤੇਮਾਲ ਕਰਕੇ ਮਨੁੱਖਤਾ ਵਿਗਿਆਨ ਦੇ ਅਧਿਐਨ ਨੂੰ ਸਹੀ ਢੰਗ ਨਾਲ ਪੇਸ਼ ਕਰਦਾ ਹੈ।","[]","","2026-06-15 11:53:33","ਡਿਜੀਟਲ ਮਨੋਵਿਗਿਆਨ","{
+  ""translated_term"": ""ਡਿਜੀਟਲ ਮਨੋਵਿਗਿਆਨ"",
+  ""translation_rationale"": ""ਇਹ ਸ਼ਬਦ 'ਡਿਜੀਟਲ' ਅਤੇ 'ਮਨੋਵਿਗਿਆਨ' ਦੇ ਪੰਜਾਬੀ ਸ਼ਬਦਾਂ ਦਾ ਹੈ। 'ਡਿਜੀਟਲ' ਅਰਥ ਵਿੱਚ 'ਕੰਪਿਊਟਰ-ਆਧਾਰਿਤ' ਦਾ ਹੈ, ਜੋ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ ਮਨੁੱਖੀ ਪ੍ਰਣਾਲੀਆਂ ਅਤੇ ਟੈਕਨਾਲੋਜੀ ਦੀ ਸਹਿਯੋਗਤਾ ਦਾ ਪ੍ਰਤੀਬਿੰਬ ਹੈ। 'ਮਨੋਵਿਗਿਆਨ' ਅਰਥ ਵਿੱਚ 'ਸਾਹਿਤ, ਇਤਿਹਾਸ ਅਤੇ ਭਾਸ਼ਾ ਦੀ ਖੋਜ' ਦਾ ਹੈ।""
+}","2026-06-15T09:53:25.21297Z","stop","426.0","5072411000.0","[]","4503638209.0","llama3.1:latest","115.0","217832000.0","9797042625.0","","ਇਹ ਸ਼ਬਦ 'ਡਿਜੀਟਲ' ਅਤੇ 'ਮਨੋਵਿਗਿਆਨ' ਦੇ ਪੰਜਾਬੀ ਸ਼ਬਦਾਂ ਦਾ ਹੈ। 'ਡਿਜੀਟਲ' ਅਰਥ ਵਿੱਚ 'ਕੰਪਿਊਟਰ-ਆਧਾਰਿਤ' ਦਾ ਹੈ, ਜੋ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ ਮਨੁੱਖੀ ਪ੍ਰਣਾਲੀਆਂ ਅਤੇ ਟੈਕਨਾਲੋਜੀ ਦੀ ਸਹਿਯੋਗਤਾ ਦਾ ਪ੍ਰਤੀਬਿੰਬ ਹੈ। 'ਮਨੋਵਿਗਿਆਨ' ਅਰਥ ਵਿੱਚ 'ਸਾਹਿਤ, ਇਤਿਹਾਸ ਅਤੇ ਭਾਸ਼ਾ ਦੀ ਖੋਜ' ਦਾ ਹੈ।","You are a Digital Humanities scholar who speaks many languages.","Translate 'Digital Humanities' into Punjabi (Western) (ISO code: pnb).
+
+Write your rationale in Punjabi (Western), not English. (If the target language is English, write in English.) Writing in Punjabi (Western) demonstrates deep understanding of both the language and the term.
+
+IMPORTANT: Return ONLY valid JSON with no other text. Use this exact format:
+{""translated_term"": ""..."", ""translation_rationale"": ""...""}","False","","","","","","",""
 "za","","Zhuang","Digital Humanities","You are a Digital Humanities scholar who speaks many languages.","Translate 'Digital Humanities' into Zhuang (ISO code: za).
 
 Write your rationale in Zhuang, not English. (If the target language is English, write in English.) Writing in Zhuang demonstrates deep understanding of both the language and the term.

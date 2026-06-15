@@ -8,14 +8,9 @@ Script detection
 _char_script(cp) maps a Unicode code point to a script family name (e.g. 'Latin',
 'Cyrillic', 'Arabic', 'CJK', 'Japanese', 'New_Tai_Lue', …).
 
-When the `regex` package is available (recommended), a single compiled alternation
-of Unicode Script property patterns covers 55+ scripts and uses functools.lru_cache
-so each unique codepoint is matched at most once per process.  If `regex` is not
-installed the function falls back to a hand-coded range table covering the ~30 most
-common scripts.
+When the `regex` package is available (recommended), a single compiled alternation of Unicode Script property patterns covers 55+ scripts and uses functools.lru_cache so each unique codepoint is matched at most once per process.  If `regex` is not installed the function falls back to a hand-coded range table covering the ~30 most common scripts.
 
-detect_dominant_script(text) calls _char_script on every letter/mark character in a
-string and returns the plurality script, ignoring punctuation, digits, and spaces.
+detect_dominant_script(text) calls _char_script on every letter/mark character in a string and returns the plurality script, ignoring punctuation, digits, and spaces.
 """
 
 from __future__ import annotations
@@ -49,16 +44,14 @@ def read_csv_file(file_path: str, error_bad_lines: bool = True) -> pd.DataFrame:
 	pd.DataFrame
 	"""
 	bad_lines = 'skip' if not error_bad_lines else 'error'
-	# converters preserves 'nan' (Min Nan Chinese, ISO 639-3) as the string "nan"
-	# rather than letting pandas promote it to float NaN via its default NA list.
+	# converters preserves 'nan' (Min Nan Chinese, ISO 639-3) as the string "nan" rather than letting pandas promote it to float NaN via its default NA list.
 	_conv = {'language_code': str}
 	try:
 		return pd.read_csv(file_path, encoding='utf-8', on_bad_lines=bad_lines, converters=_conv)
 	except UnicodeDecodeError:
 		return pd.read_csv(file_path, encoding='latin-1', on_bad_lines=bad_lines, converters=_conv)
 	except pd.errors.ParserError:
-		# Fall back to the Python engine, which is more lenient with malformed rows
-		# (e.g. column-count mismatches from schema migrations).
+		# Fall back to the Python engine, which is more lenient with malformed rows (e.g. column-count mismatches from schema migrations).
 		return pd.read_csv(file_path, encoding='utf-8', on_bad_lines='skip', engine='python', converters=_conv)
 
 
@@ -102,8 +95,7 @@ def log_error_to_file(
 			existing_full.to_csv(error_file_path, index=False)
 			# Re-read header after migration so reindex below uses the updated schema.
 			existing = pd.read_csv(error_file_path, nrows=0)
-		# Reorder new row to match the file's column order exactly — mismatches cause
-		# values to land in the wrong columns when appending without a header.
+		# Reorder new row to match the file's column order exactly — mismatches cause values to land in the wrong columns when appending without a header.
 		file_cols = existing.columns.tolist()
 		for c in file_cols:
 			if c not in error_df.columns:
@@ -130,8 +122,7 @@ def clean_write_error_file(
 	"""
 	if os.path.exists(error_file_path):
 		error_df = read_csv_file(error_file_path, error_bad_lines=False)
-		# Filter drop_fields to columns that actually exist so callers can include
-		# "variant" in the list without KeyErrors on legacy CSVs that lack the column.
+		# Filter drop_fields to columns that actually exist so callers can include "variant" in the list without KeyErrors on legacy CSVs that lack the column.
 		_dedup_fields = [f for f in (drop_fields or []) if f in error_df.columns] or None
 		if 'error_date' in error_df.columns:
 			error_df['error_date'] = pd.to_datetime(error_df['error_date'])
@@ -140,9 +131,7 @@ def clean_write_error_file(
 			)
 		elif _dedup_fields:
 			error_df = error_df.drop_duplicates(subset=_dedup_fields, keep='last')
-		# Promote permanent failures: drop any transient (500/408) entry for a
-		# (term, language[, variant]) tuple that already has a deterministic (400/404) entry.
-		# This prevents a stale 500 from hiding a 400 in mark_errored_terms.
+		# Promote permanent failures: drop any transient (500/408) entry for a (term, language[, variant]) tuple that already has a deterministic (400/404) entry. This prevents a stale 500 from hiding a 400 in mark_errored_terms.
 		_TRANSIENT = {500, 408}
 		if 'status_code' in error_df.columns:
 			_has_variant = 'variant' in error_df.columns
@@ -208,14 +197,9 @@ _LANG_FAMILY_CACHE: Optional[Dict[str, str]] = None
 
 
 def get_language_family(code: str) -> str:
-	"""Return the top-level family name for a language code, reading from the
-	comprehensive language codes CSV. Falls back to 'Other' when unknown.
+	"""Return the top-level family name for a language code, reading from the comprehensive language codes CSV. Falls back to 'Other' when unknown.
 
-	Uses `family_name_reconciled` when present (the Glottolog-cross-validated
-	column produced by notebook 01's family reconciliation step), falling back
-	to `family_name` (ISO 639-5 based) when reconciled is unavailable. See
-	docs/exclusion_strategy.md and notebook 01 §1.3 for the reconciliation
-	methodology.
+	Uses `family_name_reconciled` when present (the Glottolog-cross-validated column produced by notebook 01's family reconciliation step), falling back to `family_name` (ISO 639-5 based) when reconciled is unavailable. See docs/exclusion_strategy.md and notebook 01 §1.3 for the reconciliation methodology.
 	"""
 	global _LANG_FAMILY_CACHE
 	if _LANG_FAMILY_CACHE is None:

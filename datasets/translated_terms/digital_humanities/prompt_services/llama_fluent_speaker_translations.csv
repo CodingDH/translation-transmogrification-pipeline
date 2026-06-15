@@ -1,4 +1,13 @@
 "language_code","language_name","term_source","llama_translated_term","llama_content","llama_created_at","llama_done_reason","llama_eval_count","llama_eval_duration","llama_extracted_dictionaries","llama_load_duration","llama_model","llama_prompt_eval_count","llama_prompt_eval_duration","llama_total_duration","llama_translation","llama_translation_rationale","term","llama_system_prompt","llama_user_prompt","coding_dh_date","exclude_llama","wikipedia_translated_term","family_name","gt_translated_term","enmt_translated_term","exclude_google_cloud_translate","lingvanex_translated_term","exclude_easynmt"
+"pnb","Punjabi (Western)","Digital Humanities","ਡਿਜੀਟਲ ਮਨੋਵਿਗਿਆਨ","{
+  ""translated_term"": ""ਡਿਜੀਟਲ ਮਨੋਵਿਗਿਆਨ"",
+  ""translation_rationale"": ""ਇਹ ਸ਼ਬਦ 'ਡਿਜੀਟਲ' ਅਤੇ 'ਮਨੋਵਿਗਿਆਨ' ਦੇ ਪੰਜਾਬੀ ਸ਼ਬਦਾਂ ਦਾ ਹੈ। 'ਡਿਜੀਟਲ' ਅਰਥ ਵਿੱਚ 'ਕੰਪਿਊਟਰ-ਆਧਾਰਿਤ' ਦਾ ਹੈ, ਜੋ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ ਮਨੁੱਖੀ ਪ੍ਰਣਾਲੀਆਂ ਅਤੇ ਟੈਕਨਾਲੋਜੀ ਦੀ ਸਹਿਯੋਗਤਾ ਦਾ ਪ੍ਰਤੀਬਿੰਬ ਹੈ। 'ਮਨੋਵਿਗਿਆਨ' ਅਰਥ ਵਿੱਚ 'ਸਾਹਿਤ, ਇਤਿਹਾਸ ਅਤੇ ਭਾਸ਼ਾ ਦੀ ਖੋਜ' ਦਾ ਹੈ।""
+}","2026-06-15T09:53:25.21297Z","stop","426.0","5072411000.0","[]","4503638209.0","llama3.1:latest","115.0","217832000.0","9797042625.0","","ਇਹ ਸ਼ਬਦ 'ਡਿਜੀਟਲ' ਅਤੇ 'ਮਨੋਵਿਗਿਆਨ' ਦੇ ਪੰਜਾਬੀ ਸ਼ਬਦਾਂ ਦਾ ਹੈ। 'ਡਿਜੀਟਲ' ਅਰਥ ਵਿੱਚ 'ਕੰਪਿਊਟਰ-ਆਧਾਰਿਤ' ਦਾ ਹੈ, ਜੋ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ ਮਨੁੱਖੀ ਪ੍ਰਣਾਲੀਆਂ ਅਤੇ ਟੈਕਨਾਲੋਜੀ ਦੀ ਸਹਿਯੋਗਤਾ ਦਾ ਪ੍ਰਤੀਬਿੰਬ ਹੈ। 'ਮਨੋਵਿਗਿਆਨ' ਅਰਥ ਵਿੱਚ 'ਸਾਹਿਤ, ਇਤਿਹਾਸ ਅਤੇ ਭਾਸ਼ਾ ਦੀ ਖੋਜ' ਦਾ ਹੈ।","","You are a Digital Humanities scholar who speaks many languages.","Translate 'Digital Humanities' into Punjabi (Western) (ISO code: pnb).
+
+Write your rationale in Punjabi (Western), not English. (If the target language is English, write in English.) Writing in Punjabi (Western) demonstrates deep understanding of both the language and the term.
+
+IMPORTANT: Return ONLY valid JSON with no other text. Use this exact format:
+{""translated_term"": ""..."", ""translation_rationale"": ""...""}","2026-06-15 11:53:25","False","","","","","","",""
 "zh-yue","Cantonese","Digital Humanities","數字人文學","{
   ""translated_term"": ""數字人文學"",
   ""translation_rationale"": ""\u5e73\u516d\u4f1a\u6c17\u6728\u7b14\u53f0\u5b89\u82f9\u6709\u56fd\u5bb6\u7684\u79cd\u5207\u5b66\u6821\u5b66\u671f\u5e38\u5b50\u5b66\u751f\u8d77\u5c01\u53f0\u5b89\u82f9\u6709\u56fd\u5bb6\u7684\u79cd\u5207\u5b66\u6821\u5b66\u671f\u5e38\u5b50\u5b66\u751f\u8d77\u5c01""
