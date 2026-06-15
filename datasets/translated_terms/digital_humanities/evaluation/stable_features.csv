@@ -3,9 +3,9 @@ variant,minimal,1,github,5
 variant,minimal,2,search,5
 variant,minimal,3,translation based,5
 variant,minimal,4,translated,5
-variant,minimal,5,translation combines,5
+variant,minimal,5,translation using,5
 variant,minimal,6,direct,5
-variant,minimal,7,translation using,5
+variant,minimal,7,translation combines,5
 variant,minimal,8,query,5
 variant,minimal,9,contexts,5
 variant,minimal,10,scholarship,5
@@ -13,7 +13,7 @@ variant,minimal,11,search query,5
 variant,minimal,12,standard translation,5
 variant,minimal,13,combination aims,5
 variant,minimal,14,iso code,5
-variant,minimal,15,content,5
+variant,minimal,15,translation captures,5
 variant,github_searcher,1,translations,5
 variant,github_searcher,2,proposed,5
 variant,github_searcher,3,choice,5
@@ -22,26 +22,26 @@ variant,github_searcher,5,proposed translations,5
 variant,github_searcher,6,accurate,5
 variant,github_searcher,7,aligns,5
 variant,github_searcher,8,consistent,5
-variant,github_searcher,9,agreed,5
-variant,github_searcher,10,best,5
+variant,github_searcher,9,best,5
+variant,github_searcher,10,agreed,5
 variant,github_searcher,11,options,5
-variant,github_searcher,12,v3,5
-variant,github_searcher,13,accurately,5
+variant,github_searcher,12,accurately,5
+variant,github_searcher,13,v3,5
 variant,github_searcher,14,appropriate,5
 variant,github_searcher,15,llms,5
 variant,judge,1,iso,5
 variant,judge,2,breakdown,5
 variant,judge,3,alternative,5
-variant,judge,4,literally,5
-variant,judge,5,term translated,5
+variant,judge,4,term translated,5
+variant,judge,5,literally,5
 variant,judge,6,translation aims,5
 variant,judge,7,modern,5
 variant,judge,8,其中,5
 variant,judge,9,translation breaks,5
 variant,judge,10,rendered,5
-variant,judge,11,term combination,5
-variant,judge,12,translated literally,5
-variant,judge,13,translated,5
+variant,judge,11,translated literally,5
+variant,judge,12,translated,5
+variant,judge,13,term combination,5
 variant,judge,14,word,5
 variant,judge,15,idea,5
 service,claude,1,follows,5
@@ -51,8 +51,8 @@ service,claude,4,academic,5
 service,claude,5,human,5
 service,claude,6,sciences,5
 service,claude,7,patterns,5
-service,claude,8,knowledge,5
-service,claude,9,academic terminology,5
+service,claude,8,academic terminology,5
+service,claude,9,knowledge,5
 service,claude,10,technical,5
 service,claude,11,github,5
 service,claude,12,established,5
@@ -61,18 +61,18 @@ service,claude,14,learning,5
 service,claude,15,typically,5
 service,openai,1,reflecting,5
 service,openai,2,standard,5
-service,openai,3,academic,5
-service,openai,4,field,5
+service,openai,3,field,5
+service,openai,4,academic,5
 service,openai,5,uses,5
 service,openai,6,interdisciplinary,5
 service,openai,7,nonsensical,5
 service,openai,8,non,5
 service,openai,9,evaluating proposed,5
-service,openai,10,adapted,5
-service,openai,11,unrelated,5
+service,openai,10,unrelated,5
+service,openai,11,adapted,5
 service,openai,12,best,5
-service,openai,13,contexts,5
-service,openai,14,tools,5
+service,openai,13,tools,5
+service,openai,14,contexts,5
 service,openai,15,evaluating,5
 service,gemini,1,direct,5
 service,gemini,2,direct accurate,5
@@ -84,8 +84,8 @@ service,gemini,7,plural,5
 service,gemini,8,languages,5
 service,gemini,9,academic,5
 service,gemini,10,adjective,5
-service,gemini,11,widely understood,5
-service,gemini,12,sense,5
+service,gemini,11,sense,5
+service,gemini,12,widely understood,5
 service,gemini,13,approach,5
 service,gemini,14,standard widely,5
 service,gemini,15,directly translates,5
@@ -93,8 +93,8 @@ service,deepseek,1,core,5
 service,deepseek,2,breakdown,5
 service,deepseek,3,options,5
 service,deepseek,4,aims,5
-service,deepseek,5,combining creates,5
-service,deepseek,6,core meaning,5
+service,deepseek,5,core meaning,5
+service,deepseek,6,combining creates,5
 service,deepseek,7,transliteration,5
 service,deepseek,8,understandable,5
 service,deepseek,9,signifies,5
@@ -106,19 +106,19 @@ service,deepseek,14,attempts,5
 service,deepseek,15,equivalent,5
 service,llama,1,best translation,5
 service,llama,2,word,5
-service,llama,3,translated literally,5
-service,llama,4,translated,5
+service,llama,3,translated,5
+service,llama,4,translated literally,5
 service,llama,5,arts,5
 service,llama,6,combining,5
 service,llama,7,translation english,5
 service,llama,8,idiomatic,5
-service,llama,9,means arts,5
-service,llama,10,translation using,5
-service,llama,11,words,5
-service,llama,12,based,5
-service,llama,13,translated combining,5
-service,llama,14,combines concepts,5
-service,llama,15,means,5
+service,llama,9,words,5
+service,llama,10,means arts,5
+service,llama,11,translation using,5
+service,llama,12,translated combining,5
+service,llama,13,based,5
+service,llama,14,means,5
+service,llama,15,combines concepts,5
 service,gemma,1,translates,5
 service,gemma,2,term translates,5
 service,gemma,3,agreed llms,5
@@ -131,13 +131,13 @@ service,gemma,9,v3,5
 service,gemma,10,approximated,5
 service,gemma,11,english,5
 service,gemma,12,term combination,5
-service,gemma,13,words,5
-service,gemma,14,strategy,5
-service,gemma,15,doesn direct,5
+service,gemma,13,strategy,5
+service,gemma,14,words,5
+service,gemma,15,direct translation,5
 service,qwen,1,technology study,5
 service,qwen,2,field combines,5
-service,qwen,3,term refers,5
-service,qwen,4,terms,5
+service,qwen,3,terms,5
+service,qwen,4,term refers,5
 service,qwen,5,term translated,5
 service,qwen,6,technology,5
 service,qwen,7,appropriate,5
@@ -148,7 +148,7 @@ service,qwen,11,specialized,5
 service,qwen,12,translation captures,5
 service,qwen,13,essence,5
 service,qwen,14,borrows terms,5
-service,qwen,15,convey concept,5
+service,qwen,15,combines technology,5
 service,mistral,1,closest,5
 service,mistral,2,essence,5
 service,mistral,3,maintains,5
