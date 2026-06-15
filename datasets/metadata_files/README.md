@@ -141,7 +141,7 @@ The middle tier of the three-tier family assignment used by `add_family_info()`:
 
 ### `service_language_code_support.csv` — Google Translate support manifest
 
-The current snapshot of which language codes Google's two Translation API endpoints accept. Columns: `service` (`google_nmt` or `google_translation_llm`), `service_code` (the exact identifier Google's API uses), `language_name`, `support_level` (`'official'` or `'experimental'`), `model` (`'nmt'` or `'translation_llm'`), `notes`, `snapshot_date` (ISO date of the API call), `snapshot_source` (`'translate_v3.get_supported_languages'` for refreshed rows, `'preserved_from_previous'` when the regional LLM endpoint refused and the previous LLM rows were kept). Refresh via `python -m scripts.experiment.refresh_service_support`. The script is dated-snapshot-aware: every refresh writes the date into the rows it touches, so old analyses can be checked against the snapshot they ran against.
+The current snapshot of which language codes Google's two Translation API endpoints accept. Columns: `service` (`google_nmt` or `google_translation_llm`), `service_code` (the exact identifier Google's API uses), `language_name`, `support_level` (`'official'` or `'experimental'`), `model` (`'nmt'` or `'translation_llm'`), `notes`, `snapshot_date` (ISO date of the API call), `snapshot_source` (`'translate_v3.get_supported_languages'` for refreshed rows, `'preserved_from_previous'` when the regional LLM endpoint refused and the previous LLM rows were kept). Refresh via `python -m scripts.experiment.curation.refresh_service_support`. The script is dated-snapshot-aware: every refresh writes the date into the rows it touches, so old analyses can be checked against the snapshot they ran against.
 
 ### `service_language_code_support.backup_<YYYY-MM-DD>.csv` — automatic backups
 
@@ -153,7 +153,7 @@ Created by `refresh_service_support.py` before it overwrites the live manifest, 
 
 ### `bcp47_spotcheck_results.csv` — does BCP 47 normalization change MT output?
 
-Per-row results from `scripts/experiment/spotcheck_bcp47_codes.py`. For each row in the primary CSV where `bcp47_tag` substantively differs from `language_code`, the script queries Google Translate's v2 API under *both* forms and reports whether the service returns identical, divergent, or asymmetric (one-form-fails) translations. Columns: `language_code`, `language_name`, `bcp47_tag`, `kind` (`'iana_preferred_value'` or `'grandfathered'`), `bcp47_source`, `project_translation`, `project_error`, `bcp47_translation`, `bcp47_error`, `agree` (bool), `outcome` (`'agree'` / `'diverge'` / `'project_only'` / `'bcp47_only'` / `'both_failed'`). The headline finding (zero divergences across the cases Google accepts both forms) validates the pipeline's choice to query under `language_code`. See nb01 §1.1's BCP 47 validation cell for the full discussion.
+Per-row results from `scripts/experiment/curation/spotcheck_bcp47_codes.py`. For each row in the primary CSV where `bcp47_tag` substantively differs from `language_code`, the script queries Google Translate's v2 API under *both* forms and reports whether the service returns identical, divergent, or asymmetric (one-form-fails) translations. Columns: `language_code`, `language_name`, `bcp47_tag`, `kind` (`'iana_preferred_value'` or `'grandfathered'`), `bcp47_source`, `project_translation`, `project_error`, `bcp47_translation`, `bcp47_error`, `agree` (bool), `outcome` (`'agree'` / `'diverge'` / `'project_only'` / `'bcp47_only'` / `'both_failed'`). The headline finding (zero divergences across the cases Google accepts both forms) validates the pipeline's choice to query under `language_code`. See nb01 §1.1's BCP 47 validation cell for the full discussion.
 
 ---
 
@@ -196,14 +196,14 @@ Older two-column files (`language`, `name`) used before the comprehensive build 
 python -m scripts.experiment.generate_language_codes
 
 # Refresh service support manifest from Google's API
-python -m scripts.experiment.refresh_service_support
+python -m scripts.experiment.curation.refresh_service_support
 
 # Validate the BCP 47 layer against Google Translate
-python -m scripts.experiment.spotcheck_bcp47_codes \
+python -m scripts.experiment.curation.spotcheck_bcp47_codes \
     --csv-out datasets/metadata_files/bcp47_spotcheck_results.csv
 
 # Quick diagnostic on identifier columns
-python scripts/experiment/audit_language_identifiers.py \
+python scripts/experiment/curation/audit_language_identifiers.py \
     datasets/metadata_files/language_codes_comprehensive.csv
 ```
 

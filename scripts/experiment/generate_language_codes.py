@@ -15,7 +15,7 @@ five authoritative sources in a single pipeline:
    Source: https://www.loc.gov/standards/iso639-2/php/code_list.php
 
 3. Wikimedia language codes — languages with active Wikipedia projects
-   ~268 codes; proxy for community digital presence beyond ISO standards.
+   ~270 codes; proxy for community digital presence beyond ISO standards.
    Source: https://meta.wikimedia.org/wiki/Template:List_of_language_names_ordered_by_code
 
 4. CLDR v45 supplement — 23 ISO 639-3 languages present in CLDR 45 but
@@ -1334,7 +1334,7 @@ def add_identifier_context(comp_df: pd.DataFrame) -> pd.DataFrame:
     - `project_language_code`: explicit duplicate of the project identifier
     - `wikimedia_code`: exact Wikimedia code where applicable
     - `bcp47_tag`: preferred BCP 47-style web / interchange tag
-    - `bcp47_source`: provenance ('iso639_1' / 'iso639_2_t' / 'manual_override' / 'language_code')
+    - `bcp47_source`: provenance ('iso639_1' / 'iso639_2_t' / 'grandfathered_fallback' / 'language_code')
     - `bcp47_note`: free-text note for overrides
     - `bcp47_is_project_code`: bool — true when bcp47_tag matches the normalized project code
     - `service_code_candidates`: pipe-separated candidate codes for service matching
@@ -1369,9 +1369,9 @@ def add_identifier_context(comp_df: pd.DataFrame) -> pd.DataFrame:
     )
 
     n_diff = int((df['bcp47_tag'] != df['language_code'].astype(str)).sum())
-    n_over = int((df['bcp47_source'] == 'manual_override').sum())
+    n_over = int((df['bcp47_source'] == 'grandfathered_fallback').sum())
     console.print(f'  Identifier context: {n_diff} rows have BCP47 tag different from project code; '
-                  f'{n_over} manual overrides')
+                  f'{n_over} grandfathered fallbacks')
     return df
 
 
@@ -1443,7 +1443,7 @@ def load_language_codes(output_dir: str = None) -> pd.DataFrame:
     """
     Load the comprehensive language codes CSV, generating it first if absent.
 
-    Returns all ~858 language codes from ``language_codes_comprehensive.csv``
+    Returns all rows from ``language_codes_comprehensive.csv``
     (special-purpose non-language codes like ``und`` and ``zxx`` are excluded
     during CSV generation). Column names are normalised for the translation
     pipeline:

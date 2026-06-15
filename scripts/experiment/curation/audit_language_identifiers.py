@@ -16,7 +16,7 @@ import sys
 import pandas as pd
 from rich.console import Console
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
 from scripts.utils import get_data_directory_path, read_csv_file
 
 console = Console()

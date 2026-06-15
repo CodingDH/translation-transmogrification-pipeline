@@ -1,11 +1,9 @@
 """
 generate_family_assignments.py
 
-Generates language_family_assignments.json for all 582 language codes that
-still have null family_name in language_codes_comprehensive.csv.
+Generates language_family_assignments.json for all 582 language codes that still have null family_name in language_codes_comprehensive.csv.
 
-Keeps the existing 30 entries intact and appends new entries, then patches
-the CSV using the same logic as load_language_codes().
+Keeps the existing 30 entries intact and appends new entries, then patches the CSV using the same logic as load_language_codes().
 """
 
 import json
@@ -15,7 +13,7 @@ import os
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 JSON_PATH = os.path.join(BASE_DIR, "datasets", "metadata_files", "language_family_assignments.json")
 CSV_PATH  = os.path.join(BASE_DIR, "datasets", "metadata_files", "language_codes_comprehensive.csv")
 

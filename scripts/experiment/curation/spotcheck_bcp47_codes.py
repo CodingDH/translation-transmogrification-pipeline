@@ -23,9 +23,9 @@ Three classes of rows get checked:
    canonical form may or may not be supported.
 
 Usage:
-    python -m scripts.experiment.spotcheck_bcp47_codes
-    python -m scripts.experiment.spotcheck_bcp47_codes --term "Digital Humanities"
-    python -m scripts.experiment.spotcheck_bcp47_codes \\
+    python -m scripts.experiment.curation.spotcheck_bcp47_codes
+    python -m scripts.experiment.curation.spotcheck_bcp47_codes --term "Digital Humanities"
+    python -m scripts.experiment.curation.spotcheck_bcp47_codes \\
         --csv-out datasets/metadata_files/bcp47_spotcheck_results.csv
 
 Committed results live at ``datasets/metadata_files/bcp47_spotcheck_results.csv``
@@ -45,7 +45,7 @@ from google.oauth2 import service_account
 
 
 CSV_PATH = (
-    Path(__file__).resolve().parent.parent.parent
+    Path(__file__).resolve().parent.parent.parent.parent
     / "datasets" / "metadata_files" / "language_codes_comprehensive.csv"
 )
 

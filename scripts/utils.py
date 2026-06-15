@@ -199,7 +199,7 @@ _LANG_FAMILY_CACHE: Optional[Dict[str, str]] = None
 def get_language_family(code: str) -> str:
 	"""Return the top-level family name for a language code, reading from the comprehensive language codes CSV. Falls back to 'Other' when unknown.
 
-	Uses `family_name_reconciled` when present (the Glottolog-cross-validated column produced by notebook 01's family reconciliation step), falling back to `family_name` (ISO 639-5 based) when reconciled is unavailable. See docs/exclusion_strategy.md and notebook 01 §1.3 for the reconciliation methodology.
+	Uses `family_name_reconciled` when present (the Glottolog-cross-validated column produced by generate_language_codes.py from the reconciliation table reviewed in notebook 01), falling back to `family_name` (ISO 639-5 based) when reconciled is unavailable. See docs/exclusion_strategy.md and notebook 01 §1.3 for the reconciliation methodology.
 	"""
 	global _LANG_FAMILY_CACHE
 	if _LANG_FAMILY_CACHE is None:

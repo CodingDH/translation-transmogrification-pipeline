@@ -15,9 +15,9 @@ LLM rows from the previous CSV are preserved with a ``snapshot_source`` of
 ``preserved_from_previous`` so coverage analyses do not silently lose data.
 
 Usage:
-    python -m scripts.experiment.refresh_service_support
-    python -m scripts.experiment.refresh_service_support --dry-run
-    python -m scripts.experiment.refresh_service_support --no-backup
+    python -m scripts.experiment.curation.refresh_service_support
+    python -m scripts.experiment.curation.refresh_service_support --dry-run
+    python -m scripts.experiment.curation.refresh_service_support --no-backup
 """
 
 from __future__ import annotations
@@ -35,7 +35,7 @@ from google.oauth2 import service_account
 
 
 CSV_PATH = (
-    Path(__file__).resolve().parent.parent.parent
+    Path(__file__).resolve().parent.parent.parent.parent
     / "datasets" / "metadata_files" / "service_language_code_support.csv"
 )
 
