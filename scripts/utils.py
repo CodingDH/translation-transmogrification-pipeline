@@ -209,7 +209,14 @@ _LANG_FAMILY_CACHE: Optional[Dict[str, str]] = None
 
 def get_language_family(code: str) -> str:
 	"""Return the top-level family name for a language code, reading from the
-	comprehensive language codes CSV. Falls back to 'Other' when unknown."""
+	comprehensive language codes CSV. Falls back to 'Other' when unknown.
+
+	Uses `family_name_reconciled` when present (the Glottolog-cross-validated
+	column produced by notebook 01's family reconciliation step), falling back
+	to `family_name` (ISO 639-5 based) when reconciled is unavailable. See
+	docs/exclusion_strategy.md and notebook 01 §1.3 for the reconciliation
+	methodology.
+	"""
 	global _LANG_FAMILY_CACHE
 	if _LANG_FAMILY_CACHE is None:
 		data_dir = get_data_directory_path()
@@ -217,9 +224,15 @@ def get_language_family(code: str) -> str:
 		if os.path.exists(csv_path):
 			# converters preserves 'nan' (Min Nan Chinese, ISO 639-3) as a string
 			df = pd.read_csv(csv_path, converters={'language_code': str})
+			# Prefer the reconciled column; fall back to family_name where reconciled is missing
+			fam_col = (
+				df['family_name_reconciled'].fillna(df['family_name'])
+				if 'family_name_reconciled' in df.columns
+				else df['family_name']
+			)
 			_LANG_FAMILY_CACHE = dict(
 				zip(df['language_code'],
-					df['family_name'].fillna('Other').astype(str))
+					fam_col.fillna('Other').astype(str))
 			)
 		else:
 			_LANG_FAMILY_CACHE = {}

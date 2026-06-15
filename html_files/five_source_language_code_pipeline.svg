@@ -1,6 +1,6 @@
-<svg width="100%" viewBox="0 0 860 724" role="img" xmlns="http://www.w3.org/2000/svg">
+<svg width="100%" viewBox="0 0 860 996" role="img" xmlns="http://www.w3.org/2000/svg">
 <title>Five-source language code pipeline</title>
-<desc>Diagram showing how five registries — CLDR 48.2, the CLDR v45 supplement, Library of Congress ISO 639-2, Wikimedia, and CLDR's languageGroups family hierarchy — merge into a single 880-language table, with four interpretive moves applied: directionality assignment, retention of non-modern languages, retention of v45-dropped codes, and three-tier family assignment.</desc>
+<desc>Diagram showing how five registries — CLDR 48.2, the CLDR v45 supplement, Library of Congress ISO 639-2, Wikimedia, and CLDR's languageGroups family hierarchy — merge into a single 880-language table, with four interpretive moves applied (directionality, retention of non-modern languages, retention of v45-dropped codes, three-tier family assignment), and three post-merge enrichment layers attached to the same rows (Glottolog 5.3 family reconciliation, BCP 47 identifier tags, and Google service support flags).</desc>
 <defs>
 <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
 </defs>
@@ -11,7 +11,7 @@
 
 <!-- ── Header ─────────────────────────────────────────────────────────── -->
 <text x="40" y="34" style="fill:rgb(20,20,19);font-size:14px;font-weight:500;">Five-source language code pipeline</text>
-<text x="40" y="54" style="fill:rgb(61,61,58);font-size:12px;">Each registry contributes a different metadata layer; the merged table preserves provenance.</text>
+<text x="40" y="54" style="fill:rgb(61,61,58);font-size:12px;">Five registries define the 880-language set; four interpretive moves shape the merge; three enrichment layers annotate the rows.</text>
 
 <!-- ── Source box 1 : CLDR 48.2 (cyan) ───────────────────────────────── -->
 <rect x="40" y="84" width="120" height="104" rx="8" style="fill:rgb(215,243,250);stroke:rgb(0,164,196);stroke-width:0.75px;"/>
@@ -41,11 +41,11 @@
 <text x="496" y="144" text-anchor="middle" dominant-baseline="central" style="fill:rgb(120,60,180);font-size:12px;">projects</text>
 <text x="496" y="168" text-anchor="middle" dominant-baseline="central" style="fill:rgb(65,28,110);font-size:14px;font-weight:500;">269 codes</text>
 
-<!-- ── Source box 5 : Family tree (coral) ────────────────────────────── -->
+<!-- ── Source box 5 : ISO 639-5 family tree (coral) ──────────────────── -->
 <rect x="568" y="84" width="108" height="104" rx="8" style="fill:rgb(254,236,224);stroke:rgb(196,72,40);stroke-width:0.75px;"/>
-<text x="622" y="104" text-anchor="middle" dominant-baseline="central" style="fill:rgb(120,40,16);font-size:14px;font-weight:500;">Family tree</text>
-<text x="622" y="124" text-anchor="middle" dominant-baseline="central" style="fill:rgb(196,72,40);font-size:12px;">CLDR language</text>
-<text x="622" y="144" text-anchor="middle" dominant-baseline="central" style="fill:rgb(196,72,40);font-size:12px;">groups</text>
+<text x="622" y="104" text-anchor="middle" dominant-baseline="central" style="fill:rgb(120,40,16);font-size:14px;font-weight:500;">ISO 639-5</text>
+<text x="622" y="124" text-anchor="middle" dominant-baseline="central" style="fill:rgb(196,72,40);font-size:12px;">via CLDR's</text>
+<text x="622" y="144" text-anchor="middle" dominant-baseline="central" style="fill:rgb(196,72,40);font-size:12px;">languageGroups</text>
 <text x="622" y="168" text-anchor="middle" dominant-baseline="central" style="fill:rgb(120,40,16);font-size:14px;font-weight:500;">113 groups</text>
 
 <!-- ── Arrows (source boxes → merger) ────────────────────────────────── -->
@@ -135,5 +135,51 @@
 <text x="650" y="652" dominant-baseline="central" style="fill:rgb(120,60,180);font-size:12px;">— so collisions surface</text>
 <text x="650" y="668" dominant-baseline="central" style="fill:rgb(120,60,180);font-size:12px;">as collisions, not as</text>
 <text x="650" y="684" dominant-baseline="central" style="fill:rgb(120,60,180);font-size:12px;">silent errors.</text>
+
+<!-- ── Section 3 : Post-merge enrichment ─────────────────────────────── -->
+<text x="40" y="744" style="fill:rgb(61,61,58);font-size:12px;">Three enrichment layers attached to the 880 rows (no rows added; columns only)</text>
+<line x1="40" y1="752" x2="820" y2="752" style="stroke:rgba(31,30,29,0.15);stroke-width:0.5px;"/>
+
+<!-- Enrichment box A : Glottolog reconciliation (teal) -->
+<rect x="40" y="768" width="250" height="212" rx="8" style="fill:rgb(220,240,236);stroke:rgb(20,128,116);stroke-width:0.75px;"/>
+<text x="165" y="788" text-anchor="middle" dominant-baseline="central" style="fill:rgb(8,72,64);font-size:14px;font-weight:500;">Glottolog 5.3 reconciliation</text>
+<text x="56" y="812" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">Cross-validates the ISO 639-5</text>
+<text x="56" y="828" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">family_name against Glottolog's</text>
+<text x="56" y="844" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">genealogical classification.</text>
+<text x="56" y="868" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">Glottolog wins where ISO 639-5</text>
+<text x="56" y="884" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">groupings are geographic (NAI,</text>
+<text x="56" y="900" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">Caucasian) or where macros are</text>
+<text x="56" y="916" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">contested (Niger-Kordofanian,</text>
+<text x="56" y="932" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">Altaic). Creoles/pidgins kept.</text>
+<text x="56" y="956" dominant-baseline="central" style="fill:rgb(8,72,64);font-size:12px;font-weight:500;">+ family_name_reconciled</text>
+<text x="56" y="972" dominant-baseline="central" style="fill:rgb(20,128,116);font-size:12px;">per-pair rationale CSV-logged</text>
+
+<!-- Enrichment box B : BCP 47 identifiers (indigo) -->
+<rect x="305" y="768" width="250" height="212" rx="8" style="fill:rgb(225,229,248);stroke:rgb(64,76,196);stroke-width:0.75px;"/>
+<text x="430" y="788" text-anchor="middle" dominant-baseline="central" style="fill:rgb(28,36,120);font-size:14px;font-weight:500;">BCP 47 identifiers</text>
+<text x="321" y="812" dominant-baseline="central" style="fill:rgb(64,76,196);font-size:12px;">IANA Language Subtag Registry</text>
+<text x="321" y="828" dominant-baseline="central" style="fill:rgb(64,76,196);font-size:12px;">tags attached alongside the</text>
+<text x="321" y="844" dominant-baseline="central" style="fill:rgb(64,76,196);font-size:12px;">stable project language_code.</text>
+<text x="321" y="868" dominant-baseline="central" style="fill:rgb(64,76,196);font-size:12px;">Wikimedia legacy codes rewritten</text>
+<text x="321" y="884" dominant-baseline="central" style="fill:rgb(64,76,196);font-size:12px;">(bat-smg → sgs, zh-min-nan → nan,</text>
+<text x="321" y="900" dominant-baseline="central" style="fill:rgb(64,76,196);font-size:12px;">be-x-old → be-tarask); deprecated</text>
+<text x="321" y="916" dominant-baseline="central" style="fill:rgb(64,76,196);font-size:12px;">subtags resolved (iw → he, jw → jv).</text>
+<text x="321" y="932" dominant-baseline="central" style="fill:rgb(64,76,196);font-size:12px;">No expansion to locale variants.</text>
+<text x="321" y="956" dominant-baseline="central" style="fill:rgb(28,36,120);font-size:12px;font-weight:500;">+ bcp47_tag, bcp47_source,</text>
+<text x="321" y="972" dominant-baseline="central" style="fill:rgb(28,36,120);font-size:12px;font-weight:500;">  bcp47_note, wikimedia_code</text>
+
+<!-- Enrichment box C : Service support (rose) -->
+<rect x="570" y="768" width="250" height="212" rx="8" style="fill:rgb(252,224,232);stroke:rgb(196,40,88);stroke-width:0.75px;"/>
+<text x="695" y="788" text-anchor="middle" dominant-baseline="central" style="fill:rgb(120,16,52);font-size:14px;font-weight:500;">Google service support</text>
+<text x="586" y="812" dominant-baseline="central" style="fill:rgb(196,40,88);font-size:12px;">Each row mapped to the exact code</text>
+<text x="586" y="828" dominant-baseline="central" style="fill:rgb(196,40,88);font-size:12px;">Google's NMT and Translation LLM</text>
+<text x="586" y="844" dominant-baseline="central" style="fill:rgb(196,40,88);font-size:12px;">endpoints accept (from a curated</text>
+<text x="586" y="860" dominant-baseline="central" style="fill:rgb(196,40,88);font-size:12px;">325-entry support manifest).</text>
+<text x="586" y="884" dominant-baseline="central" style="fill:rgb(196,40,88);font-size:12px;">NMT supports ~184/880;</text>
+<text x="586" y="900" dominant-baseline="central" style="fill:rgb(196,40,88);font-size:12px;">Translation LLM supports ~87/880.</text>
+<text x="586" y="916" dominant-baseline="central" style="fill:rgb(196,40,88);font-size:12px;">The gap is a finding — long tail</text>
+<text x="586" y="932" dominant-baseline="central" style="fill:rgb(196,40,88);font-size:12px;">of unsupported scholarly languages.</text>
+<text x="586" y="956" dominant-baseline="central" style="fill:rgb(120,16,52);font-size:12px;font-weight:500;">+ google_nmt_code/supported,</text>
+<text x="586" y="972" dominant-baseline="central" style="fill:rgb(120,16,52);font-size:12px;font-weight:500;">  google_translation_llm_*</text>
 
 </svg>

@@ -148,6 +148,138 @@ def _is_valid_language_code(code) -> bool:
         return False
     return bool(_VALID_CODE_RE.match(code))
 
+
+# ── BCP 47 identifier context ─────────────────────────────────────────────────
+# `language_code` remains this project's stable row identifier. The BCP 47 layer
+# below is a parallel interoperability hint for web/API contexts; it never
+# changes row identity and intentionally does NOT expand the dataset into
+# locale variants (en-US, en-GB, es-MX, etc.). The unit of analysis for Coding
+# DH is language/community discovery, not locale-specific localization.
+
+def _canonicalize_bcp47_like_tag(tag: str) -> str:
+    """Return a conventionally cased BCP 47-style tag, or ''.
+
+    This is intentionally lightweight and dependency-free. It does not claim to
+    validate against the full IANA Language Subtag Registry; it applies common
+    BCP 47 casing (language lower, script title, region upper) and a few
+    deprecated-subtag preferences. For full validation, downstream users may
+    install the optional ``langcodes`` package.
+    """
+    if tag is None:
+        return ''
+    tag = str(tag).strip().replace('_', '-')
+    if not tag or tag.lower() in {'none', 'null'}:
+        return ''
+    parts = [p for p in tag.split('-') if p]
+    if not parts:
+        return ''
+    # Preserve the real language code 'nan' (Min Nan Chinese); never treat as missing.
+    primary = parts[0].lower()
+    primary = DEPRECATED_LANGUAGE_SUBTAG_PREFERRED.get(primary, primary)
+    canon = [primary]
+    for i, subtag in enumerate(parts[1:], start=1):
+        low = subtag.lower()
+        if len(low) == 1:
+            # Private use / extension singletons: lower-case from here on
+            canon.append(low)
+            canon.extend(p.lower() for p in parts[i+1:])
+            break
+        if len(subtag) == 4 and subtag.isalpha():
+            # Script subtag (Latn, Cyrl, Arab, Hant): title case
+            canon.append(subtag.title())
+        elif (len(subtag) == 2 and subtag.isalpha()) or (len(subtag) == 3 and subtag.isdigit()):
+            # Region subtag: upper case (US, GB) or UN M.49 numeric (419)
+            canon.append(subtag.upper())
+        else:
+            canon.append(low)
+    return '-'.join(canon)
+
+
+def _preferred_bcp47_for_row(row):
+    """Choose a preferred BCP 47-style tag for a language row.
+
+    Returns (tag, source, note). language_code remains canonical; this tag is
+    an interoperability hint for web/HTML/XML/API contexts.
+    """
+    code = str(row.get('language_code', '')).strip()
+    if code in WIKIMEDIA_TO_BCP47_OVERRIDES:
+        return (_canonicalize_bcp47_like_tag(WIKIMEDIA_TO_BCP47_OVERRIDES[code]),
+                'manual_override',
+                f'project/Wikimedia code {code} mapped to preferred BCP 47-style tag')
+    # Prefer ISO 639-1 — IANA / BCP 47 uses the shortest primary subtag available
+    iso1 = str(row.get('iso639_1', '')).strip()
+    if iso1 and iso1.lower() not in {'nan', 'none'}:
+        return (_canonicalize_bcp47_like_tag(iso1), 'iso639_1', '')
+    # Then ISO 639-2/T (terminological) — closer to modern ISO 639-3 practice
+    iso2t = str(row.get('iso639_2_t', '')).strip()
+    if iso2t and iso2t.lower() not in {'nan', 'none'}:
+        return (_canonicalize_bcp47_like_tag(iso2t), 'iso639_2_t', '')
+    # Finally, normalize the project code itself
+    return (_canonicalize_bcp47_like_tag(code), 'language_code', '')
+
+
+def _candidate_codes_for_services(row) -> list:
+    """Return likely codes/tags to test against service-specific support lists."""
+    values = [
+        row.get('bcp47_tag', ''),
+        row.get('language_code', ''),
+        row.get('wikimedia_code', ''),
+        row.get('iso639_1', ''),
+        row.get('iso639_2_t', ''),
+        row.get('iso639_2_b', ''),
+    ]
+    out = []
+    for v in values:
+        if v is None: continue
+        v = str(v).strip()
+        if not v or v.lower() in {'none', 'null'}: continue
+        variants = {v, v.replace('_', '-'), _canonicalize_bcp47_like_tag(v)}
+        # Add legacy aliases for API compatibility (iw for he, jw for jv, etc.)
+        for legacy, preferred in DEPRECATED_LANGUAGE_SUBTAG_PREFERRED.items():
+            if _canonicalize_bcp47_like_tag(v) == preferred:
+                variants.add(legacy)
+        for cand in variants:
+            if cand and cand not in out:
+                out.append(cand)
+    return out
+
+
+# Wikimedia legacy / community codes mapped to preferred IANA-registry BCP 47 tags.
+# These are pure interoperability hints — language_code itself is unchanged.
+WIKIMEDIA_TO_BCP47_OVERRIDES = {
+    # Chinese Wikimedia legacy/community codes with preferred modern subtags
+    'zh-min-nan':   'nan',      # Min Nan Chinese (also protects the literal code nan)
+    'zh-yue':       'yue',      # Cantonese
+    'zh-classical': 'lzh',      # Literary/Classical Chinese
+    'zh-tw':        'zh-TW',    # Taiwan/Traditional Chinese project code
+    # Wikimedia / CLDR locale-style codes
+    'uz_AF':        'uz-AF',    # Uzbek in Afghanistan (Perso-Arabic script)
+    'nds-nl':       'nds-NL',   # Low Saxon as used in the Netherlands
+    # Orthography / community variants
+    'be-x-old':     'be-tarask',  # Belarusian Taraškievica orthography
+    # Wikimedia historical / composite project codes with clearer IANA primary subtags
+    'bat-smg':      'sgs',      # Samogitian
+    'fiu-vro':      'vro',      # Võro
+    'map-bms':      'jv',       # Banyumasan (no stable ISO 639-3 code in common use)
+    'roa-rup':      'rup',      # Aromanian
+    # Constructed / community code used by some platforms
+    'tokipona':     'tok',      # Toki Pona (IANA / ISO 639-3 subtag)
+}
+
+# Deprecated language subtags still seen in some APIs, mapped to current preferred.
+DEPRECATED_LANGUAGE_SUBTAG_PREFERRED = {
+    'iw': 'he',  # Hebrew (Google still accepts iw)
+    'ji': 'yi',  # Yiddish
+    'in': 'id',  # Indonesian
+    'jw': 'jv',  # Javanese
+    'mo': 'ro',  # Moldovan → Romanian
+}
+
+# Default filename for the optional service-support CSV consumed by
+# add_service_language_codes(). Lives in datasets/metadata_files/.
+SERVICE_LANGUAGE_CODE_SUPPORT_FILENAME = 'service_language_code_support.csv'
+
+
 # ISO 639-2 special-purpose codes that are not real languages and should be
 # excluded from the translation target set entirely.
 NON_LANGUAGE_CODES = {
@@ -975,6 +1107,117 @@ def enrich_language_names_from_sil(comp_df: pd.DataFrame, cache_dir: str) -> pd.
 
 
 # ══════════════════════════════════════════════════════════════════════════════
+# MERGE STEP — Identifier context (BCP 47 + service support)
+# ══════════════════════════════════════════════════════════════════════════════
+
+def add_identifier_context(comp_df: pd.DataFrame) -> pd.DataFrame:
+    """Add BCP 47 and platform-code context columns without changing row identity.
+
+    `language_code` remains the project-level stable identifier. This function
+    adds an interoperability layer alongside it:
+
+    - `project_language_code`: explicit duplicate of the project identifier
+    - `wikimedia_code`: exact Wikimedia code where applicable
+    - `bcp47_tag`: preferred BCP 47-style web / interchange tag
+    - `bcp47_source`: provenance ('iso639_1' / 'iso639_2_t' / 'manual_override' / 'language_code')
+    - `bcp47_note`: free-text note for overrides
+    - `bcp47_is_project_code`: bool — true when bcp47_tag matches the normalized project code
+    - `service_code_candidates`: pipe-separated candidate codes for service matching
+
+    Does NOT create new rows for regional/script variants. That expansion would
+    change the analytical unit from language/community to locale.
+    """
+    df = comp_df.copy()
+    df['project_language_code'] = df['language_code'].astype(str)
+
+    # Preserve exact Wikimedia project codes separately.
+    df['wikimedia_code'] = ''
+    if 'in_wikimedia' in df.columns:
+        mask = df['in_wikimedia'].astype(bool)
+        df.loc[mask, 'wikimedia_code'] = df.loc[mask, 'language_code'].astype(str)
+
+    chosen = df.apply(_preferred_bcp47_for_row, axis=1)
+    df['bcp47_tag']    = [x[0] for x in chosen]
+    df['bcp47_source'] = [x[1] for x in chosen]
+    df['bcp47_note']   = [x[2] for x in chosen]
+    df['bcp47_is_project_code'] = (
+        df['bcp47_tag'] ==
+        df['language_code'].astype(str)
+            .str.replace('_', '-', regex=False)
+            .map(_canonicalize_bcp47_like_tag)
+    )
+    df['service_code_candidates'] = df.apply(
+        lambda row: '|'.join(_candidate_codes_for_services(row)), axis=1
+    )
+
+    n_diff = int((df['bcp47_tag'] != df['language_code'].astype(str)).sum())
+    n_over = int((df['bcp47_source'] == 'manual_override').sum())
+    console.print(f'  Identifier context: {n_diff} rows have BCP47 tag different from project code; '
+                  f'{n_over} manual overrides')
+    return df
+
+
+def add_service_language_codes(comp_df: pd.DataFrame, support_csv: str = None) -> pd.DataFrame:
+    """Map rows to exact codes required by services/APIs when a support CSV exists.
+
+    The optional CSV must contain at least `service` and `service_code` columns.
+    Other columns (language_name, support_level, model, notes) are ignored by
+    the matcher but preserved in the source CSV for documentation.
+
+    For each distinct service, adds:
+        <service>_code       — exact supported code selected for this row (or '')
+        <service>_supported  — boolean
+
+    Matching uses bcp47_tag, language_code, wikimedia_code, ISO fields, and
+    legacy aliases. Never modifies language_code itself.
+    """
+    df = comp_df.copy()
+    if support_csv is None:
+        # default lookup: metadata_files/service_language_code_support.csv
+        from pathlib import Path
+        here = Path(__file__).resolve()
+        # generate_language_codes.py lives at scripts/experiment/; metadata is sibling-of-parent
+        candidate = here.parent.parent.parent / 'datasets' / 'metadata_files' / SERVICE_LANGUAGE_CODE_SUPPORT_FILENAME
+        support_csv = str(candidate) if candidate.exists() else None
+    if not support_csv or not os.path.exists(support_csv):
+        console.print(f'  Service support CSV not found; skipping service-code columns')
+        return df
+
+    support = pd.read_csv(support_csv, dtype=str, na_filter=False)
+    required = {'service', 'service_code'}
+    if not required.issubset(support.columns):
+        console.print(f'  Service support CSV missing required columns {required}: {support_csv}')
+        return df
+
+    support['service'] = support['service'].str.strip()
+    support['service_code'] = support['service_code'].str.strip()
+
+    for service, sdf in support.groupby('service'):
+        if not service: continue
+        # Lookup: exact code → exact code, plus underscore→hyphen and canonical variants
+        code_lookup = {c: c for c in sdf['service_code'] if c}
+        for c in list(code_lookup):
+            code_lookup.setdefault(c.replace('_', '-'), c)
+            code_lookup.setdefault(_canonicalize_bcp47_like_tag(c), c)
+        # Per-row match via candidate codes
+        selected = []
+        for _, row in df.iterrows():
+            match = ''
+            for cand in _candidate_codes_for_services(row):
+                if cand in code_lookup:
+                    match = code_lookup[cand]
+                    break
+            selected.append(match)
+
+        safe = re.sub(r'[^0-9A-Za-z_]+', '_', service).strip('_').lower()
+        df[f'{safe}_code']      = selected
+        df[f'{safe}_supported'] = [bool(x) for x in selected]
+        console.print(f'  Service codes: {service} matched {sum(bool(x) for x in selected)}/{len(df)} rows')
+
+    return df
+
+
+# ══════════════════════════════════════════════════════════════════════════════
 # PUBLIC LOADER — used by the translation pipeline
 # ══════════════════════════════════════════════════════════════════════════════
 
@@ -1123,6 +1366,8 @@ def main(cldr_version='48.2.0', cldr_cache_dir=None,
     comprehensive = add_cldr_v45_supplement(comprehensive)
     comprehensive = add_family_info(comprehensive, set5_df)
     comprehensive = enrich_language_names_from_sil(comprehensive, cldr_cache_dir)
+    comprehensive = add_identifier_context(comprehensive)
+    comprehensive = add_service_language_codes(comprehensive)
 
     # Apply the same SIL name map to the long-form script table. parse_cldr_json()
     # emits cldr_long_df before enrichment runs, so the same ~215 codes still have

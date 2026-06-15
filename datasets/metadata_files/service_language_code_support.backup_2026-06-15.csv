@@ -1,0 +1,326 @@
+service,service_code,language_name,support_level,model,notes,snapshot_date,snapshot_source
+google_translation_llm,af,Afrikaans,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,sq,Albanian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,am,Amharic,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ar-SA,Arabic (Saudi Arabia),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ar,Arabic,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,hy,Armenian,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,az,Azerbaijani,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,eu,Basque,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,be,Belarusian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,bn-IN,Bengali (India),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,bn,Bengali,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,bs-Cyrl,Bosnian (Cyrillic),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,bs,Bosnian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,bg,Bulgarian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,my,Burmese,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ca,Catalan,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,zh-CN,Chinese (China),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,zh-HK,Chinese (Hong Kong),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,zh-Hans,Chinese (Simplified),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,zh-TW,Chinese (Taiwan),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,zh-Hant,Chinese (Traditional),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,zh,Chinese,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,hr,Croatian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,cs,Czech,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,da,Danish,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,nl-BE,Dutch (Belgium),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,nl,Dutch,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,en-AU,English (Australia),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,en-CA,English (Canada),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,en-NZ,English (New Zealand),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,en-PH,English (Philippines),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,en-ZA,English (South Africa),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,en-GB,English (United Kingdom),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,en-US,English (United States),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,en,English,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,et,Estonian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,fil,Filipino,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,fi,Finnish,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,fr-CA,French (Canada),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,fr-CH,French (Switzerland),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,fr,French,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,fy,Frisian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,gl,Galician,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ka,Georgian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,de,German,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,el,Greek,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,gn,Guarani,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,gu,Gujarati,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ha,Hausa,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,he,Hebrew,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,iw,Hebrew,official,translation_llm,legacy alias,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,hi,Hindi,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,hu,Hungarian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,is,Icelandic,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ig,Igbo,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,id,Indonesian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ga,Irish,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,it,Italian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ja,Japanese,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,kn,Kannada,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,km,Khmer,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ko,Korean,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ky,Kyrgyz,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,lo,Lao,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,lv,Latvian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ln,Lingala,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,lt,Lithuanian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,lb,Luxembourgish,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,mk,Macedonian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ms,Malay,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ml,Malayalam,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,mt,Maltese,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,mr,Marathi,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,mn,Mongolian,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ne,Nepali,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,nb,Norwegian Bokmal,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,no,Norwegian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,or,Odia,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,fa,Persian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,pl,Polish,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,pt-BR,Portuguese (Brazil),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,pt-PT,Portuguese (Portugal),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,pt,Portuguese,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,pa-PK,Punjabi (Pakistan),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,pa,Punjabi,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ro,Romanian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ru,Russian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,gd,Scots Gaelic,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,sr,Serbian,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,sk,Slovak,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,sl,Slovenian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,so,Somali,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-AR,Spanish (Argentina),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-CL,Spanish (Chile),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-CO,Spanish (Colombia),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-CR,Spanish (Costa Rica),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-EC,Spanish (Ecuador),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-SV,Spanish (El Salvador),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-GT,Spanish (Guatemala),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-HT,Spanish (Haiti),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-HN,Spanish (Honduras),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-419,Spanish (Latin America),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-MX,Spanish (Mexico),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-NI,Spanish (Nicaragua),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-PA,Spanish (Panama),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-PY,Spanish (Paraguay),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-PE,Spanish (Peru),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-PR,Spanish (Puerto Rico),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-ES,Spanish (Spain),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-US,Spanish (United States),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-UY,Spanish (Uruguay),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es-VE,Spanish (Venezuela),official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,es,Spanish,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,sw,Swahili,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,sv,Swedish,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,tl,Tagalog,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,tg,Tajik,experimental,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ta,Tamil,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,te,Telugu,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,th,Thai,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,tr,Turkish,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,uk,Ukrainian,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,ur,Urdu,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,uz,Uzbek,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,vi,Vietnamese,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,cy,Welsh,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_translation_llm,zu,Zulu,official,translation_llm,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ab,Abkhaz,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ace,Acehnese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ach,Acholi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,af,Afrikaans,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sq,Albanian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,alz,Alur,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,am,Amharic,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ar,Arabic,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,hy,Armenian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,as,Assamese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,awa,Awadhi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ay,Aymara,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,az,Azerbaijani,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ban,Balinese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bm,Bambara,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ba,Bashkir,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,eu,Basque,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,btx,Batak Karo,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bts,Batak Simalungun,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bbc,Batak Toba,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,be,Belarusian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bem,Bemba,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bn,Bengali,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bew,Betawi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bho,Bhojpuri,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bik,Bikol,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bs,Bosnian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,br,Breton,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bg,Bulgarian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,bua,Buryat,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,yue,Cantonese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ca,Catalan,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ceb,Cebuano,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ny,Chichewa (Nyanja),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,zh-CN,Chinese (Simplified),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,zh,Chinese (Simplified),official,nmt,BCP-47 alias,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,zh-TW,Chinese (Traditional),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,cv,Chuvash,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,co,Corsican,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,crh,Crimean Tatar,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,hr,Croatian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,cs,Czech,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,da,Danish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,din,Dinka,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,dv,Divehi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,doi,Dogri,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,dov,Dombe,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,nl,Dutch,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,dz,Dzongkha,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,en,English,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,eo,Esperanto,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,et,Estonian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ee,Ewe,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,fj,Fijian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,fil,Filipino (Tagalog),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,tl,Filipino (Tagalog),official,nmt,alias,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,fi,Finnish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,fr,French,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,fr-FR,French (French),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,fr-CA,French (Canadian),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,fy,Frisian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ff,Fulfulde,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,gaa,Ga,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,gl,Galician,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,lg,Ganda (Luganda),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ka,Georgian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,de,German,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,el,Greek,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,gn,Guarani,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,gu,Gujarati,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ht,Haitian Creole,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,cnh,Hakha Chin,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ha,Hausa,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,haw,Hawaiian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,iw,Hebrew,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,he,Hebrew,official,nmt,alias,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,hil,Hiligaynon,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,hi,Hindi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,hmn,Hmong,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,hu,Hungarian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,hrx,Hunsrik,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,is,Icelandic,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ig,Igbo,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ilo,Iloko,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,id,Indonesian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ga,Irish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,it,Italian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ja,Japanese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,jw,Javanese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,jv,Javanese,official,nmt,alias,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,kn,Kannada,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pam,Kapampangan,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,kk,Kazakh,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,km,Khmer,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,cgg,Kiga,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,rw,Kinyarwanda,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ktu,Kituba,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,gom,Konkani,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ko,Korean,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,kri,Krio,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ku,Kurdish (Kurmanji),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ckb,Kurdish (Sorani),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ky,Kyrgyz,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,lo,Lao,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ltg,Latgalian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,la,Latin,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,lv,Latvian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,lij,Ligurian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,li,Limburgan,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ln,Lingala,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,lt,Lithuanian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,lmo,Lombard,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,luo,Luo,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,lb,Luxembourgish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mk,Macedonian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mai,Maithili,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mak,Makassar,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mg,Malagasy,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ms,Malay,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ms-Arab,Malay (Jawi),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ml,Malayalam,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mt,Maltese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mi,Maori,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mr,Marathi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,chm,Meadow Mari,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mni-Mtei,Meiteilon (Manipuri),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,min,Minang,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,lus,Mizo,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,mn,Mongolian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,my,Myanmar (Burmese),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,nr,Ndebele (South),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,new,Nepalbhasa (Newari),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ne,Nepali,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,nso,Northern Sotho (Sepedi),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,no,Norwegian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,nus,Nuer,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,oc,Occitan,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,or,Odia (Oriya),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,om,Oromo,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pag,Pangasinan,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pap,Papiamento,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ps,Pashto,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,fa,Persian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pl,Polish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pt,Portuguese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pt-PT,Portuguese (Portugal),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pt-BR,Portuguese (Brazil),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pa,Punjabi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,pa-Arab,Punjabi (Shahmukhi),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,qu,Quechua,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,rom,Romani,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ro,Romanian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,rn,Rundi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ru,Russian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sm,Samoan,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sg,Sango,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sa,Sanskrit,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,gd,Scots Gaelic,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sr,Serbian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,st,Sesotho,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,crs,Seychellois Creole,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,shn,Shan,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sn,Shona,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,scn,Sicilian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,szl,Silesian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sd,Sindhi,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,si,Sinhala (Sinhalese),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sk,Slovak,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sl,Slovenian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,so,Somali,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,es,Spanish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,su,Sundanese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sw,Swahili,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ss,Swati,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,sv,Swedish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,tg,Tajik,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ta,Tamil,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,tt,Tatar,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,te,Telugu,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,tet,Tetum,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,th,Thai,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ti,Tigrinya,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ts,Tsonga,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,tn,Tswana,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,tr,Turkish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,tk,Turkmen,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ak,Twi (Akan),official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,uk,Ukrainian,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ur,Urdu,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,ug,Uyghur,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,uz,Uzbek,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,vi,Vietnamese,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,cy,Welsh,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,xh,Xhosa,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,yi,Yiddish,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,yo,Yoruba,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,yua,Yucatec Maya,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
+google_nmt,zu,Zulu,official,nmt,,2026-06,manual_paste_from_cloud.google.com_docs
