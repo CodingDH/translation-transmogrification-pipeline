@@ -5,12 +5,12 @@ Some of these functions are extracted from the parent CodingDH utils.py, so this
 
 Script detection
 ----------------
-_char_script(cp) maps a Unicode code point to a script family name (e.g. 'Latin',
+char_script(cp) maps a Unicode code point to a script family name (e.g. 'Latin',
 'Cyrillic', 'Arabic', 'CJK', 'Japanese', 'New_Tai_Lue', …).
 
 When the `regex` package is available (recommended), a single compiled alternation of Unicode Script property patterns covers 55+ scripts and uses functools.lru_cache so each unique codepoint is matched at most once per process.  If `regex` is not installed the function falls back to a hand-coded range table covering the ~30 most common scripts.
 
-detect_dominant_script(text) calls _char_script on every letter/mark character in a string and returns the plurality script, ignoring punctuation, digits, and spaces.
+detect_dominant_script(text) calls char_script on every letter/mark character in a string and returns the plurality script, ignoring punctuation, digits, and spaces.
 """
 
 from __future__ import annotations
@@ -423,13 +423,13 @@ try:
     )
 
     @functools.lru_cache(maxsize=4096)
-    def _char_script(cp: int) -> str:
+    def char_script(cp: int) -> str:
         """Map a Unicode code point to a script family name."""
         m = _SCRIPT_RE.fullmatch(chr(cp))
         return m.lastgroup if m else 'Other'
 
 except ImportError:
-    def _char_script(cp: int) -> str:
+    def char_script(cp: int) -> str:
         """Map a Unicode code point to a script family name (range-based fallback)."""
         if (0x0041 <= cp <= 0x007A or 0x00C0 <= cp <= 0x024F
                 or 0x0250 <= cp <= 0x02AF or 0x1E00 <= cp <= 0x1EFF):
@@ -522,7 +522,7 @@ def detect_dominant_script(text: str) -> str:
 		# Skip spaces, punctuation, digits, control chars
 		if cat[0] in ('Z', 'P', 'S', 'C') or cat == 'Nd':
 			continue
-		counts[_char_script(cp)] += 1
+		counts[char_script(cp)] += 1
 	if not counts:
 		return 'Unknown'
 	return counts.most_common(1)[0][0]

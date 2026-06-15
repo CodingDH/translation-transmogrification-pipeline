@@ -95,7 +95,7 @@ import pandas as pd
 
 # ── script detection ──────────────────────────────────────────────────────────
 
-from scripts.utils import _char_script
+from scripts.utils import char_script
 
 
 MIXED_THRESHOLD = 0.10       # secondary script must be ≥10% of script chars (baseline gate)
@@ -520,7 +520,7 @@ def _script_profile(text: str) -> dict[str, int]:
         cat = unicodedata.category(ch)
         if cat[0] in ("Z", "P", "S", "C") or cat == "Nd":
             continue
-        s = _char_script(cp)
+        s = char_script(cp)
         if s == "Other":
             continue
         # CJK kanji + Japanese syllabaries co-occur normally — treat as one family
@@ -561,9 +561,9 @@ def _is_mixed(
             unique = {
                 ch for ch in text
                 if (
-                    _char_script(ord(ch)) in ("CJK", "Japanese")
+                    char_script(ord(ch)) in ("CJK", "Japanese")
                     if script == "CJK/Japanese"
-                    else _char_script(ord(ch)) == script
+                    else char_script(ord(ch)) == script
                 )
             }
             n = len(unique)
@@ -615,9 +615,9 @@ def script_mix_detail(text: str) -> dict:
         unique = {
             ch for ch in text
             if (
-                _char_script(ord(ch)) in ("CJK", "Japanese")
+                char_script(ord(ch)) in ("CJK", "Japanese")
                 if script == "CJK/Japanese"
-                else _char_script(ord(ch)) == script
+                else char_script(ord(ch)) == script
             )
         }
         secondary.append({
