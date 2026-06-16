@@ -4,11 +4,12 @@ build_review_explorer_data.py
 ==============================
 Build review_explorer_data.csv for the HTML review explorer.
 
-Reads raw translations (prompt_services + direct_services) and quality_flags.csv
-produced by notebook 02. No dependency on notebooks 03–07.
+Reads raw translations (prompt_services + direct_services) and
+automated_review_signals.csv produced by notebook 02. No dependency on
+notebooks 03–07.
 
 The output has one row per language and contains:
-  - quality flag columns (from quality_flags.csv)
+  - automated review signal columns (from automated_review_signals.csv)
   - review_tier: REVIEW_HIGH (≥2 flags) / REVIEW_MED (1 flag) / CLEAN (0 flags)
   - {svc}_term_{variant} / {svc}_rationale_{variant} for 8 LLMs × 4 variants
     API services: claude, openai, gemini, deepseek
@@ -81,12 +82,12 @@ def build_review_data(
 ) -> pd.DataFrame:
     term_slug = term.lower().replace(' ', '_')
     eval_dir = os.path.join(data_directory_path, 'translated_terms', term_slug, 'evaluation')
-    flags_path = os.path.join(eval_dir, 'quality_flags.csv')
+    flags_path = os.path.join(eval_dir, 'automated_review_signals.csv')
 
     if not os.path.exists(flags_path):
         sys.exit(
             f"Missing: {flags_path}\n"
-            "Run notebook 02 first (cell §1.11 Quality Flags Export)."
+            "Run notebook 02 first (Automated Review Signals section)."
         )
 
     flags_df = pd.read_csv(flags_path, converters={'language_code': str})
@@ -202,11 +203,21 @@ def build_review_data(
     export['review_tier'] = export['flag_count'].apply(_assign_tier)
 
     # ── Auto-exclusion hints for HTML review interface ────────────────────────
-    # xall  → likely transcription/rendering error (flag whole language entry)
-    # xsrch → likely search complication (flag for search use only)
-    _AUTO_XALL_FLAGS  = {'has_repetition_loop', 'has_placeholder_term',
-                         'has_unicode_escape', }
-    _AUTO_XSRCH_FLAGS = {'has_short_translation', 'has_extreme_term_length'}
+    # Keep this aligned with scripts.utils.filter_for_analysis():
+    # xall  → likely term error (excluded in quality and search_ready modes)
+    # xsrch → likely search complication (excluded in search_ready mode only)
+    _AUTO_XALL_FLAGS = {
+        'has_repetition_loop',
+        'has_mixed_script',
+        'has_placeholder_term',
+        'has_unicode_escape',
+        'has_extreme_term_length',
+    }
+    _AUTO_XSRCH_FLAGS = {
+        'has_romanization',
+        'has_source_term',
+        'has_short_translation',
+    }
 
     def _auto_exclusion_hint(row):
         def flag(col):

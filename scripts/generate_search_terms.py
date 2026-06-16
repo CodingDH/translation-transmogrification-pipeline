@@ -23,8 +23,8 @@ Term-selection logic (by disagreement category):
 Tier 3 exclusions applied (strictest — search safety):
   • Languages with constructed/undeciphered scripts (zbl, lab, elx, xmr) are dropped.
   • Languages in manual_exclusions.csv with service='analysis_exclusion' are dropped.
-  • Per-(language, service) pairs flagged by term-error quality flags are removed
-    from service_translations before term selection.
+  • Per-(language, service) pairs flagged by automated term-error review
+    signals are removed from service_translations before term selection.
   • Manual exclusions (exclude_translation or any exclude_term_*) are applied.
   • curate_translation() is applied to strip parenthetical romanizations; terms
     reduced to None (placeholder/interleaved noise) are dropped.
@@ -113,14 +113,15 @@ def _build_tier3_drops(data_dir: str, term_slug: str) -> set[tuple[str, str]]:
     """Return a set of (language_code, service_lower) pairs to exclude at Tier 3.
 
     Sources:
-      - quality_flags.csv: term-error flags (mixed script, placeholder, etc.)
+      - automated_review_signals.csv: term-error signals (mixed script,
+        placeholder, etc.)
       - manual_exclusions.csv: exclude_translation or any exclude_term_* column
         (rows with service='search_exclusion' are handled separately by
         _build_search_term_drops and are skipped here)
     """
     drops: set[tuple[str, str]] = set()
 
-    qf_path = os.path.join(data_dir, "translated_terms", term_slug, "evaluation", "quality_flags.csv")
+    qf_path = os.path.join(data_dir, "translated_terms", term_slug, "evaluation", "automated_review_signals.csv")
     me_path = os.path.join(data_dir, "translated_terms", term_slug, "evaluation", "manual_exclusions.csv")
 
     if os.path.exists(qf_path):

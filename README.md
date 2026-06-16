@@ -33,7 +33,7 @@ This pipeline translates key domain terms (e.g. "Digital Humanities") into 880 l
 
 - [datasets/metadata_files/README.md](datasets/metadata_files/README.md) — Column-level reference for `language_codes_comprehensive.csv` and every other file in the metadata layer (provenance, BCP 47, service support, family reconciliation, dated snapshots)
 - [scripts/experiment/README.md](scripts/experiment/README.md) — Per-script reference for the build, refresh, audit, and spot-check tools (`generate_language_codes`, `refresh_service_support`, `audit_language_identifiers`, `spotcheck_bcp47_codes`, etc.)
-- [docs/exclusion_strategy.md](docs/exclusion_strategy.md) — Data quality flags, manual exclusion taxonomy, and the three-tier exclusion policy (service exploration → translation analysis → search term generation)
+- [docs/exclusion_strategy.md](docs/exclusion_strategy.md) — Automated review signals, manual exclusion taxonomy, and the three-tier exclusion policy (service exploration → translation analysis → search term generation)
 - [html_files/five_source_language_code_pipeline.svg](html_files/five_source_language_code_pipeline.svg) — How the 880-language target set is constructed from five registries
 - [html_files/translation_pipeline_methods.svg](html_files/translation_pipeline_methods.svg) — Pipeline architecture diagram
 
@@ -43,7 +43,7 @@ This pipeline translates key domain terms (e.g. "Digital Humanities") into 880 l
 translation_transmogrification_pipeline/
 ├── notebooks/                          # Analysis notebooks (run in order)
 │   ├── 01_language_exploration.ipynb   # Language set construction and source coverage
-│   ├── 02_translation_overview.ipynb   # Quality flags, exclusions, correction patterns
+│   ├── 02_translation_overview.ipynb   # Automated review signals, exclusions, correction patterns
 │   ├── 03_baseline_services.ipynb      # Direct service analysis
 │   ├── 04_prompt_services.ipynb        # LLM service and prompt variant analysis
 │   ├── 05_disagreement_analysis.ipynb  # Cross-service disagreement classification
@@ -68,7 +68,7 @@ translation_transmogrification_pipeline/
 │   └── translated_terms/{term_slug}/
 │       ├── direct_services/            # GT, EasyNMT, Lingvanex, Wikipedia outputs
 │       ├── prompt_services/            # LLM × variant outputs
-│       ├── evaluation/                 # Quality flags, disagreement analysis, exclusions
+│       ├── evaluation/                 # Automated review signals, disagreement analysis, exclusions
 │       └── search_terms/               # reviewed_grouped_translated_terms.csv
 ├── html_files/                         # Interactive HTML review tools and figures
 │   ├── review_explorer_v2.html         # Manual exclusion and term correction interface
@@ -84,7 +84,7 @@ translation_transmogrification_pipeline/
    - **Service-support columns** (`google_nmt_code`, `google_nmt_supported`, `google_translation_llm_code`, `google_translation_llm_supported`) map each language to the exact code the named service accepts, drawing from `datasets/metadata_files/service_language_code_support.csv`. Of the 880 pipeline languages, ~184 are officially supported by Google NMT and ~87 by Google's Translation LLM endpoint; the gap is itself a finding documenting the long tail of unsupported scholarly language communities. Use `scripts/experiment/curation/audit_language_identifiers.py` to inspect the layer at any time. The support CSV is a dated snapshot — refresh it with `python -m scripts.experiment.curation.refresh_service_support`, which calls the Translation v3 `get_supported_languages` API and stamps `snapshot_date` / `snapshot_source` on every row (NMT on the `global` endpoint, Translation LLM on `us-central1`). Previous snapshots are backed up alongside the file so paper-time analyses stay reproducible against their original snapshot date.
 2. **Reconcile family classifications** — run notebook 01 §1.3 to cross-validate the ISO 639-5 based `family_name` column against Glottolog 5.3 ([CC-BY-4.0](https://glottolog.org/), cached at `datasets/metadata_files/glottolog-cache/`). The reconciliation logic produces `family_name_reconciled`, applying Glottolog's classification where ISO 639-5 groupings are geographic rather than genealogical (Caucasian, North American Indian, etc.) or where macrofamilies are abandoned/contested (Niger-Kordofanian, Altaic), while preserving ISO 639-5 categories that capture meaningful sociolinguistic distinctions (Creoles and pidgins). Per-pair decisions with rationale are stored at `datasets/metadata_files/family_reconciliation.csv` and can be reviewed via `html_files/family_reconciliation_reviewer.html`. The `get_language_family()` utility prefers `family_name_reconciled` so all downstream notebooks pick up the reconciled classification automatically.
 3. **Run translations** — `scripts/experiment/generate_translations.py` queries all services and variants per term × language pair.
-4. **Analyse** — run notebooks 02–08 in order to generate quality flags, disagreement analysis, embeddings, rationale classifications, and definitional-pattern analysis.
+4. **Analyse** — run notebooks 02–08 in order to generate automated review signals, disagreement analysis, embeddings, rationale classifications, and definitional-pattern analysis.
 5. **Review** — open `html_files/review_explorer_v2.html` to apply manual exclusions and term corrections; results saved to `evaluation/manual_exclusions.csv`.
 6. **Generate search terms** — `scripts/generate_search_terms.py` applies all exclusions and produces `grouped_translated_terms.csv`; review in `html_files/search_term_reviewer.html`.
 7. **Search** — feed `reviewed_grouped_translated_terms.csv` to the companion [searching_for_DH](https://github.com/CodingDH/searching_for_DH) pipeline.

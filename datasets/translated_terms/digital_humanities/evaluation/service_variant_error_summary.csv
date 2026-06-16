@@ -219,7 +219,7 @@ Llama,judge,repetition_loop,0,0,881,0.0,0.0
 Llama,judge,parse_format,1,1,881,0.0011350737797956867,0.0011350737797956867
 Llama,judge,other,0,0,881,0.0,0.0
 Llama,judge,unknown,2,2,881,0.0022701475595913734,0.0022701475595913734
-Gemma,minimal,max_tokens,0,0,881,0.0,0.0
+Gemma,minimal,max_tokens,2,2,881,0.0022701475595913734,0.0022701475595913734
 Gemma,minimal,api_error,0,0,881,0.0,0.0
 Gemma,minimal,empty_translation,0,0,881,0.0,0.0
 Gemma,minimal,ollama_timeout,0,0,881,0.0,0.0
@@ -228,9 +228,9 @@ Gemma,minimal,knowledge_gap,0,0,881,0.0,0.0
 Gemma,minimal,generic_refusal,0,0,881,0.0,0.0
 Gemma,minimal,repetition_loop,14,14,881,0.015891032917139614,0.015891032917139614
 Gemma,minimal,parse_format,0,0,881,0.0,0.0
-Gemma,minimal,other,2,2,881,0.0022701475595913734,0.0022701475595913734
+Gemma,minimal,other,0,0,881,0.0,0.0
 Gemma,minimal,unknown,0,0,881,0.0,0.0
-Gemma,fluent_speaker,max_tokens,0,0,881,0.0,0.0
+Gemma,fluent_speaker,max_tokens,1,1,881,0.0011350737797956867,0.0011350737797956867
 Gemma,fluent_speaker,api_error,0,0,881,0.0,0.0
 Gemma,fluent_speaker,empty_translation,0,0,881,0.0,0.0
 Gemma,fluent_speaker,ollama_timeout,0,0,881,0.0,0.0
@@ -239,9 +239,9 @@ Gemma,fluent_speaker,knowledge_gap,0,0,881,0.0,0.0
 Gemma,fluent_speaker,generic_refusal,0,0,881,0.0,0.0
 Gemma,fluent_speaker,repetition_loop,0,0,881,0.0,0.0
 Gemma,fluent_speaker,parse_format,0,0,881,0.0,0.0
-Gemma,fluent_speaker,other,1,1,881,0.0011350737797956867,0.0011350737797956867
+Gemma,fluent_speaker,other,0,0,881,0.0,0.0
 Gemma,fluent_speaker,unknown,0,0,881,0.0,0.0
-Gemma,github_searcher,max_tokens,0,0,881,0.0,0.0
+Gemma,github_searcher,max_tokens,1,1,881,0.0011350737797956867,0.0011350737797956867
 Gemma,github_searcher,api_error,0,0,881,0.0,0.0
 Gemma,github_searcher,empty_translation,0,0,881,0.0,0.0
 Gemma,github_searcher,ollama_timeout,0,0,881,0.0,0.0
@@ -250,7 +250,7 @@ Gemma,github_searcher,knowledge_gap,0,0,881,0.0,0.0
 Gemma,github_searcher,generic_refusal,0,0,881,0.0,0.0
 Gemma,github_searcher,repetition_loop,6,6,881,0.00681044267877412,0.00681044267877412
 Gemma,github_searcher,parse_format,0,0,881,0.0,0.0
-Gemma,github_searcher,other,1,1,881,0.0011350737797956867,0.0011350737797956867
+Gemma,github_searcher,other,0,0,881,0.0,0.0
 Gemma,github_searcher,unknown,0,0,881,0.0,0.0
 Gemma,judge,max_tokens,0,0,881,0.0,0.0
 Gemma,judge,api_error,0,0,881,0.0,0.0
@@ -285,7 +285,7 @@ Qwen,fluent_speaker,repetition_loop,0,0,881,0.0,0.0
 Qwen,fluent_speaker,parse_format,0,0,881,0.0,0.0
 Qwen,fluent_speaker,other,0,0,881,0.0,0.0
 Qwen,fluent_speaker,unknown,0,0,881,0.0,0.0
-Qwen,github_searcher,max_tokens,0,0,881,0.0,0.0
+Qwen,github_searcher,max_tokens,1,1,881,0.0011350737797956867,0.0011350737797956867
 Qwen,github_searcher,api_error,0,0,881,0.0,0.0
 Qwen,github_searcher,empty_translation,0,0,881,0.0,0.0
 Qwen,github_searcher,ollama_timeout,0,0,881,0.0,0.0
@@ -294,7 +294,7 @@ Qwen,github_searcher,knowledge_gap,0,0,881,0.0,0.0
 Qwen,github_searcher,generic_refusal,0,0,881,0.0,0.0
 Qwen,github_searcher,repetition_loop,0,0,881,0.0,0.0
 Qwen,github_searcher,parse_format,0,0,881,0.0,0.0
-Qwen,github_searcher,other,1,1,881,0.0011350737797956867,0.0011350737797956867
+Qwen,github_searcher,other,0,0,881,0.0,0.0
 Qwen,github_searcher,unknown,0,0,881,0.0,0.0
 Qwen,judge,max_tokens,0,0,881,0.0,0.0
 Qwen,judge,api_error,0,0,881,0.0,0.0

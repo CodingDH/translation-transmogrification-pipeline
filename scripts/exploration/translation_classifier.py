@@ -32,12 +32,12 @@ False-positive examples that are correctly exempted:
 CJK codepoints and Japanese syllabaries are treated as one script family because
 their co-occurrence is normal in Japanese text.
 
-Pattern → quality flag mapping
-------------------------------
+Pattern → automated review signal mapping
+-----------------------------------------
 curate_translation() returns one of four actions. Notebook 02 §1.9 routes
-these actions to columns in quality_flags.csv as follows:
+these actions to columns in automated_review_signals.csv as follows:
 
-    Action        | quality_flags.csv column | Triggered by
+    Action        | automated_review_signals.csv column | Triggered by
     'stripped'    | has_romanization         | Patterns A, C, D, E
     'nulled'      | has_mixed_script         | Pattern B
     'placeholder' | has_placeholder_term     | is_placeholder_term()

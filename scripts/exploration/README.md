@@ -2,7 +2,7 @@
 
 Scripts for exploring translation disagreements and measuring consistency across services and prompt variants. The goal is not to determine a "correct" translation but to understand *why* disagreements occur.
 
-> **Exclusion policy:** See [docs/exclusion_strategy.md](../../docs/exclusion_strategy.md) for the full taxonomy of quality flags and the three-tier exclusion policy (service exploration → translation analysis → search term generation). The flags produced by `quality_flags.csv` and the manual review decisions in `manual_exclusions.csv` are applied differently at each tier.
+> **Exclusion policy:** See [docs/exclusion_strategy.md](../../docs/exclusion_strategy.md) for the full taxonomy of automated review signals and the three-tier exclusion policy (service exploration → translation analysis → search term generation). The signals produced by `automated_review_signals.csv` and the manual review decisions in `manual_exclusions.csv` are applied differently at each tier.
 
 ## Workflow Overview
 
@@ -10,7 +10,7 @@ Scripts for exploring translation disagreements and measuring consistency across
 experiment/    → raw translations, fully automated, no human loop
                          ↓
 notebooks/02_translation_overview.ipynb
-               → quality_flags.csv   (per-language data-quality flags)
+               → automated_review_signals.csv   (per-language automated review signals)
                          ↓
   Review       build_review_explorer_data.py
                → review_explorer_data.csv
@@ -30,7 +30,7 @@ exploration/
                → disagreement_analysis.csv (typology classification)
 ```
 
-The **review stage** sits between raw translation (notebook 02) and the analytical pipeline (Steps 1–3). It surfaces four categories of data-quality issues — missing rationales, mixed-script output, placeholder/refusal terms, and script disagreements between services — before any downstream analysis runs. Human review decisions (service exclusions) are persisted as `manual_exclusions.csv` and passed to `explore_disagreements.py`.
+The **review stage** sits between raw translation (notebook 02) and the analytical pipeline (Steps 1–3). It surfaces automated review signals — missing rationales, mixed-script output, placeholder/refusal terms, script disagreements between services, source-term leakage, repetition loops, and search-safety issues — before any downstream analysis runs. Human review decisions (service exclusions) are persisted as `manual_exclusions.csv` and passed to `explore_disagreements.py`.
 
 ---
 
@@ -38,7 +38,7 @@ The **review stage** sits between raw translation (notebook 02) and the analytic
 
 ### `translation_classifier.py` — Mixed-script and placeholder translation classifier
 
-Classifies each translation string as `unchanged`, `stripped`, `nulled`, or `placeholder` based on script content and refusal detection. The four-action output propagates to `quality_flags.csv` (notebook 02), `review_explorer_data.csv`, and the HTML review explorer.
+Classifies each translation string as `unchanged`, `stripped`, `nulled`, or `placeholder` based on script content and refusal detection. The four-action output propagates to `automated_review_signals.csv` (notebook 02), `review_explorer_data.csv`, and the HTML review explorer.
 
 **Placeholder detection** runs first: if the text contains a refusal phrase (`"untranslatable"`, `"unable to translate"`, `"no direct translation"`, `"cannot be reliably translated"`, `"Note: ..."`, etc.) it is classified as `placeholder` and returned as `None` without entering the script-mixing logic. The regex also covers `"no confirmed/widely recognized/accepted translation"` and adverb-insertion variants like `"cannot be reliably translated"`.
 
@@ -65,14 +65,14 @@ Mixed-script detection uses a two-tier test designed to avoid false positives fr
 
 ### `build_review_explorer_data.py` — Review stage: build data for HTML explorer
 
-Merges raw translations (prompt_services + direct_services) with `quality_flags.csv` (produced by notebook 02 §1.11) into a single wide CSV for the review explorer. **No dependency on Steps 1–3** — this runs directly after notebook 02.
+Merges raw translations (prompt_services + direct_services) with `automated_review_signals.csv` (produced by notebook 02) into a single wide CSV for the review explorer. **No dependency on Steps 1–3** — this runs directly after notebook 02.
 
-- **Input**: `translated_terms/{term}/evaluation/quality_flags.csv` + raw per-variant CSV files
+- **Input**: `translated_terms/{term}/evaluation/automated_review_signals.csv` + raw per-variant CSV files
 - **Output**: `translated_terms/{term}/evaluation/review_explorer_data.csv`
 
 Each row is one language. Columns include:
 
-- Quality flag booleans and which services triggered them: `has_missing_rationale`, `has_mixed_script`, `has_romanization`, `has_script_disagreement`, `has_source_term`, `has_placeholder_term`, `has_repetition_loop`, `has_extreme_term_length`, `has_unicode_escape`
+- Automated review signal booleans and which services triggered them: `has_missing_rationale`, `has_mixed_script`, `has_romanization`, `has_script_disagreement`, `has_source_term`, `has_placeholder_term`, `has_repetition_loop`, `has_extreme_term_length`, `has_unicode_escape`
 - `review_tier`: `REVIEW_HIGH` (≥2 flags) / `REVIEW_MED` (1 flag) / `CLEAN` (0 flags)
 - Per-service × per-variant term and rationale columns: `{svc}_term_{variant}`, `{svc}_rationale_{variant}`
 - Non-LLM reference terms: `wikipedia_translated_term` (community reference), `gt_translated_term`, `enmt_translated_term`, `lingvanex_translated_term` (MT baselines)
@@ -94,7 +94,7 @@ Single-file HTML explorer for the review stage. Load `review_explorer_data.csv` 
 
 **Card contents per language:**
 
-- Quality flag pills showing which flags fired and which services triggered them
+- Automated review signal pills showing which flags fired and which services triggered them
 - Term cluster panel — groups all 32 LLM cells (8 services × 4 variants) by normalized term; click to select
 - Rationale matrix — full variants × services grid, click to expand rationale text
 - Non-LLM reference terms — Wikipedia (community reference) and Google Translate / Lingvanex / EasyNMT (MT baselines)
@@ -187,7 +187,7 @@ All outputs are written to `translated_terms/{term}/evaluation/`:
 
 ```text
 evaluation/
-  quality_flags.csv               # Review: per-language data-quality flags (notebook 02 §1.9); flags: missing_rationale, mixed_script, romanization, script_disagreement, source_term, placeholder_term, repetition_loop, extreme_term_length, unicode_escape
+  automated_review_signals.csv               # Review: per-language automated review signals (notebook 02); signals: missing_rationale, mixed_script, romanization, script_disagreement, source_term, placeholder_term, repetition_loop, extreme_term_length, unicode_escape
   review_explorer_data.csv        # Review: merged input for html_files/review_explorer.html
   manual_exclusions.csv           # Review: human decisions downloaded from review_explorer.html
   confidence_scores.csv           # Step 1: per-row LLM agreement scores per variant

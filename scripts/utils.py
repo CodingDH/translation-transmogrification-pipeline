@@ -227,8 +227,8 @@ def get_language_family(code: str) -> str:
 #
 # Two sources feed filter_for_analysis():
 #
-# 1. quality_flags.csv (automated)
-#    Produced by notebook 02.  Flags with an unambiguous interpretation are
+# 1. automated_review_signals.csv (automated)
+#    Produced by notebook 02.  Signals with an unambiguous interpretation are
 #    applied automatically — you don't need to Xall every repetition loop.
 #
 #    likely_error (nulled in 'quality' and 'search_ready'):

@@ -1,16 +1,16 @@
 # Data Quality & Exclusion Strategy
 
-This document describes the pipeline's quality flag system, the manual review process, and the three-tier exclusion policy that governs which translations enter each stage of downstream analysis.
+This document describes the pipeline's automated review signal system, the manual review process, and the three-tier exclusion policy that governs which translations enter each stage of downstream analysis.
 
 The core principle is that even the category of **error** is intrinsically difficult to define in this case. A model producing gibberish for a low-resource language tells us something meaningful about AI coverage gaps, even if that term should never end up as a search term. Different analysis questions therefore warrant different exclusion thresholds.
 
 ---
 
-## The Quality Flag System
+## The Automated Review Signal System
 
 Translation data passes through two quality-control stages before any analysis runs.
 
-### Stage 1 — Automated flags (`quality_flags.csv`)
+### Stage 1 — Automated review signals (`automated_review_signals.csv`)
 
 Notebook `02_translation_overview.ipynb` (§1.9) produces one row per language with ten binary flags. Counts below are from the Digital Humanities run (856 languages total).
 
@@ -150,7 +150,7 @@ These categories emerged from review and have no automated detector:
 | `exclude_term_{variant}=true` (manual) | Do not apply | Variant-level quality is exactly what this tier measures |
 | `exclude_rationale_{variant}=true` (manual) | Do not apply | Rationale quality is part of the service evaluation |
 
-**Implementing:** Load data with `load_variant_df` (pairing is automatic). Merge in `quality_flags.csv` as annotation columns. Apply only `exclude_translation=True` rows from `manual_exclusions.csv`.
+**Implementing:** Load data with `load_variant_df` (pairing is automatic). Merge in `automated_review_signals.csv` as annotation columns. Apply only `exclude_translation=True` rows from `manual_exclusions.csv`.
 
 ---
 
@@ -176,7 +176,7 @@ These categories emerged from review and have no automated detector:
 | All manual `exclude_term_{variant}=true` | Apply | Human-reviewed variant drops |
 | All manual `exclude_rationale_{variant}=true` | Apply for rationale analysis | Rationale excluded; corresponding term may still count if separately valid |
 
-**Implementing:** Pass `--exclusions datasets/.../evaluation/manual_exclusions.csv` to `explore_disagreements.py`. In notebooks, filter out rows where the relevant quality flag is `True` and the exclusion file confirms the drop. Maintain a parallel "pre-exclusion" table in figures to show the differential.
+**Implementing:** Pass `--exclusions datasets/.../evaluation/manual_exclusions.csv` to `explore_disagreements.py`. In notebooks, filter out rows where the relevant automated review signal is `True` and the exclusion file confirms the drop. Maintain a parallel "pre-exclusion" table in figures to show the differential.
 
 ---
 
@@ -206,7 +206,7 @@ These categories emerged from review and have no automated detector:
 | **Uncorroborated singleton** | Exclude | Term produced only once, in an LLM cell with missing/placeholder rationale, and no other source agrees. Treats unexplained singletons as low-confidence and likely junk. |
 | Analysis-excluded languages (manual `analysis_exclusion`) | Exclude entirely | Language-level decision applies at Tier 2 and beyond |
 
-**Implementing:** Build the search term list from `disagreement_analysis.csv`. Apply all manual exclusions (`analysis_exclusion`, `search_exclusion`, `term_correction` from `manual_exclusions.csv`). Apply the quality-flag based `(language, service)` exclusions (`has_repetition_loop`, `has_unicode_escape`, `has_source_term` non-English, `has_mixed_script`, `has_placeholder_term`, `has_extreme_term_length`). Apply `curate_translation()` to strip parenthetical romanizations. Drop terms with source-term leakage, control characters, or constructed-script languages. **Final pass: apply the corroboration check** — drop any term that lacks both rationale and cross-source agreement (see next subsection).
+**Implementing:** Build the search term list from `disagreement_analysis.csv`. Apply all manual exclusions (`analysis_exclusion`, `search_exclusion`, `term_correction` from `manual_exclusions.csv`). Apply the automated-review-signal based `(language, service)` exclusions (`has_repetition_loop`, `has_unicode_escape`, `has_source_term` non-English, `has_mixed_script`, `has_placeholder_term`, `has_extreme_term_length`). Apply `curate_translation()` to strip parenthetical romanizations. Drop terms with source-term leakage, control characters, or constructed-script languages. **Final pass: apply the corroboration check** — drop any term that lacks both rationale and cross-source agreement (see next subsection).
 
 ### The corroboration rule — uncorroborated-singleton exclusion
 
@@ -265,14 +265,14 @@ A term that fails *both* conditions is an **uncorroborated singleton**: produced
 
 ```text
 notebooks/02_translation_overview.ipynb
-    → quality_flags.csv           (all 10 automated flags)
+    → automated_review_signals.csv           (automated review signals)
 
 html_files/review_explorer.html
     → manual_exclusions.csv       (human review decisions)
 
 notebooks/03_baseline_services.ipynb        [Tier 1 — loose]
 notebooks/04_prompt_services.ipynb          [Tier 1 — loose]
-    load quality_flags as annotations
+    load automated review signals as annotations
     apply only exclude_translation=True from manual_exclusions
 
 notebooks/05_disagreement_analysis.ipynb    [Tier 2 — strict]
@@ -284,7 +284,7 @@ notebooks/08_definitional_patterns.ipynb    [Tier 2 — strict]
     keep source_term and script_disagreement as categories
 
 scripts/generate_search_terms.py            [Tier 3 — strictest]
-    apply all exclusions (quality flags + manual_exclusions.csv)
+    apply all exclusions (automated review signals + manual_exclusions.csv)
     apply length / character safety filters
     apply uncorroborated-singleton check (rationale OR ≥2 cells)
 
@@ -299,7 +299,7 @@ notebooks/09_search_results.ipynb           [post-search analysis]
 
 ### Automated flag implementations
 
-All ten flags are written to `quality_flags.csv` by notebook `02_translation_overview.ipynb` §1.9. The table below shows which function does the actual detection and where that function lives.
+All automated review signals are written to `automated_review_signals.csv` by notebook `02_translation_overview.ipynb` §1.9. The table below shows which function does the actual detection and where that function lives.
 
 | Flag | Detecting function | File |
 | --- | --- | --- |
@@ -314,7 +314,7 @@ All ten flags are written to `quality_flags.csv` by notebook `02_translation_ove
 | `has_missing_rationale` | inline `_has_rat()` check on raw prompt-service CSVs | `notebooks/02_translation_overview.ipynb` §1.9 |
 | `has_script_disagreement` | `detect_dominant_script()` / `detect_script_disagreement()` | `scripts/utils.py`, called in notebook 02 §1.8.1 |
 
-The `curate_translation()` action → flag routing lives in the quality-flags code cell (§1.9): `action='nulled'` → `mixed_by_lang`, `action='stripped'` → `roman_by_lang`, `action='placeholder'` → `placeholder_by_lang`. See `translation_classifier.py` module docstring for the full Pattern → action → flag chain.
+The `curate_translation()` action → flag routing lives in the automated-review-signals code cell (§1.9): `action='nulled'` → `mixed_by_lang`, `action='stripped'` → `roman_by_lang`, `action='placeholder'` → `placeholder_by_lang`. See `translation_classifier.py` module docstring for the full Pattern → action → flag chain.
 
 ### Pairing enforcement (handles `has_missing_rationale` at the data level)
 
@@ -333,6 +333,6 @@ The `curate_translation()` action → flag routing lives in the quality-flags co
 
 ## Re-running After New Flags
 
-Whenever new automated flags are added to `translation_classifier.py`, re-run notebook 02 §1.9 to regenerate `quality_flags.csv`, then re-run `build_review_explorer_data.py` to refresh `review_explorer_data.csv`. A second human review pass in the HTML explorer is recommended to check whether newly surfaced cases warrant additions to `manual_exclusions.csv`.
+Whenever new automated review signals are added to `translation_classifier.py`, re-run notebook 02 §1.9 to regenerate `automated_review_signals.csv`, then re-run `build_review_explorer_data.py` to refresh `review_explorer_data.csv`. A second human review pass in the HTML explorer is recommended to check whether newly surfaced cases warrant additions to `manual_exclusions.csv`.
 
 The three flags added after the initial manual review (`has_repetition_loop`, `has_extreme_term_length`, `has_unicode_escape`) caught cases that required manual exclusion in the first pass. Re-running notebook 02 will surface any additional languages those flags now auto-detect that were missed in the initial review.
