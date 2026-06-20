@@ -2,13 +2,25 @@
 """
 explore_disagreements.py
 ========================
-Classify translation disagreements into five uncertainty categories:
+Sort translation disagreements into five rule-based buckets using string-level
+features and a small amount of external metadata. The goal is not to impose a
+definitive taxonomy of translation behavior, but to provide a transparent
+triage layer for downstream analysis and case selection.
 
 1. COMPLETE_CONSENSUS: All services agree. No disagreement to classify.
-2. MEASUREMENT_ARTEFACT: Apparent disagreement dissolves under normalization or is entirely explained by writing-script variation (e.g. Serbian Cyrillic ↔ Latin, Esperanto Ciferecaj vs Cifereca).
-3. PRODUCTIVE_DISAGREEMENT: Multiple legitimate in-language alternatives. Wikipedia presence is the positive signal: community presence, proxied by Wikipedia, reframes multi-output disagreement as translation-strategy debate rather than structural absence.
-4. STRUCTURAL_ABSENCE: The concept has no community equivalent. Detected by loan-word borrowing (services use the source term unadapted), very sparse coverage, or convergent rationale signals admitting absence.
-5. TRANSMOGRIFICATION: Default confident fluent output with no community anchor. The model produced a word-like object with no community practice to verify against.
+2. MEASUREMENT_ARTEFACT: Apparent disagreement dissolves under normalization
+   or is entirely explained by writing-script variation (e.g. Serbian
+   Cyrillic ↔ Latin, Esperanto Ciferecaj vs Cifereca).
+3. PRODUCTIVE_DISAGREEMENT: Multiple in-language alternatives with a
+   Wikipedia anchor. Community presence, proxied by Wikipedia, reframes
+   multi-output disagreement as translation-strategy debate rather than
+   simple fallback.
+4. STRUCTURAL_ABSENCE: Evidence of source-term fallback or explicit absence
+   signaling. In practice this often means that some services visibly borrow
+   the source term, not that conceptual absence has been conclusively proven.
+5. TRANSMOGRIFICATION: Residual unanchored divergence. Multiple distinct
+   outputs remain after earlier rules have failed, with no Wikipedia anchor
+   and no detectable source-term borrowing.
 
 Classification hierarchy (applied in order, first rule whose predicate fires
 wins, see CLASSIFIER_RULES below for the canonical list):
@@ -23,10 +35,22 @@ wins, see CLASSIFIER_RULES below for the canonical list):
   8. Convergent absence keywords           → STRUCTURAL_ABSENCE  *(keyword)
   9. Default                               → TRANSMOGRIFICATION
 
-Rules marked *(keyword) read rationale text for English-language signal words. They are gated on `rationales_are_english` and no-op when the rationale variant is in the target language. They can additionally be disabled entirely with `--no-keyword-rules` for ablation experiments. When turned off, the classifier
-runs on string/metadata features only, and the `rule_fired` column records which rule produced the verdict for every language so you can audit the ablation's effect row-by-row.
+Rules marked *(keyword) read rationale text for English-language signal words.
+They are gated on `rationales_are_english` and no-op when the rationale
+variant is in the target language. They can additionally be disabled entirely
+with `--no-keyword-rules` for ablation experiments. When turned off, the
+classifier runs on string/metadata features only, and the `rule_fired` column
+records which rule produced the verdict for every language so you can audit
+the ablation's effect row-by-row.
 
-The load-bearing ordering decision is that PRODUCTIVE_DISAGREEMENT (Wikipedia presence) fires before STRUCTURAL_ABSENCE (loan-word presence). A language with an established scholarly community whose services sometimes borrow the source term is showing translation-strategy debate, not structural absence. Reversing the order would re-classify German, Swedish, and other high-resource European languages as STRUCTURAL_ABSENCE any time one service output "Digital Humanities" untranslated — contradicting direct evidence of active DH communities there.
+The load-bearing ordering decision is that PRODUCTIVE_DISAGREEMENT
+(Wikipedia presence) fires before STRUCTURAL_ABSENCE (loan-word presence).
+A language with an established scholarly community whose services sometimes
+borrow the source term is better read as showing translation-strategy debate
+than as a clean case of structural absence. Reversing the order would
+re-classify German, Swedish, and other high-resource European languages as
+STRUCTURAL_ABSENCE any time one service output "Digital Humanities"
+untranslated — contradicting direct evidence of active DH communities there.
 
 Data quality
 ------------
@@ -112,9 +136,9 @@ console = Console()
 CATEGORIES = {
     'COMPLETE_CONSENSUS':      'All services agree — no disagreement to classify',
     'MEASUREMENT_ARTEFACT':    'Disagreement dissolves after normalization',
-    'PRODUCTIVE_DISAGREEMENT': 'Multiple legitimate in-language alternatives',
-    'STRUCTURAL_ABSENCE':      'Concept absent from community; model borrows or signals absence',
-    'TRANSMOGRIFICATION':      'Confident fluent output untethered from community practice',
+    'PRODUCTIVE_DISAGREEMENT': 'Multiple in-language alternatives with community anchoring',
+    'STRUCTURAL_ABSENCE':      'Source-term fallback or explicit absence signaling',
+    'TRANSMOGRIFICATION':      'Unanchored divergence after earlier rules fail',
 }
 
 # Which prompt variants produce English-language rationales. Keyword matching assumes English; fluent_speaker produces rationales in the target language and keyword rules are skipped for it.
@@ -436,7 +460,7 @@ Rule = Callable[[Features, ClassifierConfig], Optional[Tuple[str, str]]]
 
 
 def rule_no_translations(f: Features, cfg: ClassifierConfig):
-    """Empty translation set → STRUCTURAL_ABSENCE."""
+    """No service produced output, so the language lands in the absence bucket."""
     if not f.translations:
         return ('STRUCTURAL_ABSENCE', 'No service produced a translation')
     return None
@@ -483,7 +507,9 @@ def rule_wikipedia_presence(f: Features, cfg: ClassifierConfig):
 def rule_loanword_absence(f: Features, cfg: ClassifierConfig):
     """At least one service borrowed the source term unadapted.
 
-    Reads translations only — works regardless of rationale language.
+    This is evidence of source-term fallback, not definitive proof that the
+    concept is absent from the language community. Reads translations only, so
+    it works regardless of rationale language.
     """
     if f.loan_words_found:
         return ('STRUCTURAL_ABSENCE',
@@ -494,7 +520,9 @@ def rule_loanword_absence(f: Features, cfg: ClassifierConfig):
 def rule_sparse_coverage_absence(f: Features, cfg: ClassifierConfig):
     """Very few services produced output AND rationales admit absence.
 
-    Keyword-dependent: requires English rationales. Disabled by --no-keyword-rules.
+    Keyword-dependent: requires English rationales. This strengthens the
+    absence/fallback reading beyond string evidence alone. Disabled by
+    --no-keyword-rules.
     """
     if not cfg.use_keyword_rules or not f.rationales_are_english:
         return None
@@ -509,7 +537,9 @@ def rule_sparse_coverage_absence(f: Features, cfg: ClassifierConfig):
 def rule_convergent_absence(f: Features, cfg: ClassifierConfig):
     """Services converge on few outputs AND rationales admit absence.
 
-    Keyword-dependent: requires English rationales. Disabled by --no-keyword-rules.
+    Keyword-dependent: requires English rationales. This is stronger than the
+    loanword rule because multiple services also verbalize absence. Disabled by
+    --no-keyword-rules.
     """
     if not cfg.use_keyword_rules or not f.rationales_are_english:
         return None
@@ -521,13 +551,21 @@ def rule_convergent_absence(f: Features, cfg: ClassifierConfig):
 
 
 def rule_default_transmogrification(f: Features, cfg: ClassifierConfig):
-    """Catch-all: no Wikipedia, no borrowing, no absence signal → TRANSMOGRIFICATION."""
+    """Residual bucket for unanchored divergence after earlier rules fail.
+
+    This category is intentionally broad. It includes clearly unstable naming,
+    but also plausible local coinages or partial clustering that cannot be
+    externally anchored with the available evidence.
+    """
     return ('TRANSMOGRIFICATION',
             f'No Wikipedia; {f.n_unique_raw} distinct outputs; '
             f'construction signals: {len(f.signals["construction"])}')
 
 
-# The canonical rule chain. The ORDER encodes the classifier's theory: measurement artefacts come out first, then Wikipedia-gated productive disagreement, then absence detection (loanword before keywords), then transmogrification as the default.
+# The canonical rule chain. The ORDER encodes a heuristic reading of the data:
+# strip out surface artefacts first, then anchored disagreement, then
+# absence/fallback signals, then leave the remaining cases in the residual
+# unanchored-divergence bucket.
 CLASSIFIER_RULES: Tuple[Rule, ...] = (
     rule_no_translations,
     rule_all_agree,
