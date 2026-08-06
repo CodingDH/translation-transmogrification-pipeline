@@ -1,0 +1,3 @@
+source,translation_column,languages_with_translation,total_languages,coverage_rate
+Wikipedia-derived historic term,term,19,185,0.10270270270270271
+Historic Google Translate output,translated_term,123,185,0.6648648648648648

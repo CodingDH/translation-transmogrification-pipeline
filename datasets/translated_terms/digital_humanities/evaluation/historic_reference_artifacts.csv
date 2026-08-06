@@ -1,0 +1,2 @@
+artifact,term_source,rows,languages,terms,nonblank_translations,role_in_this_section
+historic_materials/translated_dh_terms.csv,Digital Humanities,185,185,1,123,early flattened historic translation output; compares existing DH terms with historic Google Translate outputs

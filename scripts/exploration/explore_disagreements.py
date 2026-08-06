@@ -623,7 +623,7 @@ def load_exclusions(path: str) -> Dict[str, Dict[str, Dict[str, bool]]]:
     """Load manual_exclusions.csv into a nested dict.
 
     Returns ``{language_code: {service: {term: bool, rationale_minimal: bool, ...}}}``.
-    The file is produced by html_files/disagreement_explorer.html.
+    The file is produced by html_files/review_explorer.html.
     Per-variant rationale keys: rationale_minimal, rationale_fluent_speaker,
     rationale_github_searcher, rationale_judge.
     """
@@ -813,7 +813,7 @@ def run_disagreement_analysis(
                     str(candidate) if pd.notna(candidate) else None
                 )
 
-            # Apply manual exclusions from html_files/disagreement_explorer.html
+            # Apply manual exclusions from html_files/review_explorer.html
             if exclusions:
                 lang_excl = exclusions.get(lang_code, {})
                 translations = {
@@ -1037,7 +1037,7 @@ def main():
     parser.add_argument(
         '--exclusions', default=None, metavar='PATH',
         help=(
-            'Path to manual_exclusions.csv produced by html_files/disagreement_explorer.html. '
+            'Path to manual_exclusions.csv produced by html_files/review_explorer.html. '
             'Rows specify per-language, per-service translations and/or rationales to remove '
             'before the classifier runs — use this to fix bad translations (e.g. "To be '
             'determined") without editing source data.'

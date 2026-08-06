@@ -12,17 +12,17 @@ Translation data passes through two quality-control stages before any analysis r
 
 ### Stage 1 — Automated review signals (`automated_review_signals.csv`)
 
-Notebook `02_translation_overview.ipynb` (§1.9) produces one row per language with ten binary flags. Counts below are from the Digital Humanities run (856 languages total).
+Notebook `02_translation_overview.ipynb` (§1.9) produces one row per language with automated review flags. Counts below are from the committed Digital Humanities run (881 languages total) and cover the core flags used in the exclusion policy; the CSV also includes additional rationale-language and short-translation annotations used for review.
 
 #### Term content errors — the output is broken or absent
 
 | Flag | Languages | % | Top offending services | What it detects |
 |---|---|---|---|---|
-| `has_mixed_script` | 24 | 2.8% | Ollama (16), OpenAI (4) | Scripts interleaved mid-word with no structural delimiter (Pattern B in `translation_classifier.py`). The term is not salvageable. |
-| `has_placeholder_term` | 8 | 0.9% | OpenAI (7), Claude (3) | Model returned a refusal string instead of a translation: `"untranslatable"`, `"no direct translation"`, `"Note: ..."`, `"cannot be reliably translated"`, etc. |
-| `has_repetition_loop` | 3 | 0.4% | Gemini (2), EasyNMT (1) | A single whitespace token repeats ≥4 times and represents ≥30% of all tokens. Catches EasyNMT hallucination loops (`"bình bình bình..."` ×17 for Vietnamese) and Gemini loops (`"kàlā kàlā..."` ×5 for Ngambay). |
-| `has_extreme_term_length` | 5 | 0.6% | OpenAI (2), EasyNMT (2) | Term exceeds 100 characters. Catches two distinct failure modes: (a) hallucination loops long enough to escape word-count detection, and (b) LLM disclaimer text that slipped past placeholder detection (e.g. 312-char `"As of my knowledge cutoff in October 2023, there isn't a widely recognized translation..."`). |
-| `has_unicode_escape` | 8 | 0.9% | Ollama (8) | Term contains literal `\uXXXX` escape sequences instead of rendered Unicode characters. The model emitted raw JSON encoding rather than text. |
+| `has_mixed_script` | 94 | 10.7% | Qwen (40), Gemma (38), Llama (19) | Scripts interleaved mid-word with no structural delimiter (Pattern B in `translation_classifier.py`). The term is not salvageable. |
+| `has_placeholder_term` | 28 | 3.2% | OpenAI (12), Gemini (11), Claude/Mistral (5 each) | Model returned a refusal string instead of a translation: `"untranslatable"`, `"no direct translation"`, `"Note: ..."`, `"cannot be reliably translated"`, etc. |
+| `has_repetition_loop` | 14 | 1.6% | Gemma (7), DeepSeek (3), Mistral (2) | A single whitespace token repeats ≥4 times and represents ≥30% of all tokens. Catches hallucination loops and repeated-token failures. |
+| `has_extreme_term_length` | 21 | 2.4% | Mistral (9), Gemini (7), Gemma (5) | Term exceeds 100 characters. Catches two distinct failure modes: (a) hallucination loops long enough to escape word-count detection, and (b) LLM disclaimer text that slipped past placeholder detection. |
+| `has_unicode_escape` | 10 | 1.1% | Llama (9), Qwen (1) | Term contains literal `\uXXXX` escape sequences instead of rendered Unicode characters. The model emitted raw JSON encoding rather than text. |
 
 **These five flags represent unambiguous data errors.** The term is either unsalvageable noise, a literal refusal, or a malformed string. The only real decision is whether to drop the language entirely if *all* services trigger the flag, or to retain it with the flagged service excluded.
 
@@ -32,21 +32,21 @@ Notebook `02_translation_overview.ipynb` (§1.9) produces one row per language w
 
 | Flag | Languages | % | Top offending services | What it detects |
 |---|---|---|---|---|
-| `has_source_term` | 200 | 23.4% | OpenAI (122), Claude (42), Gemini (38) | Any non-English translation contains the untranslated English source term (`"Digital Humanities"`) or its abbreviation (`"DH"`) as a standalone token. **This is the most ambiguous flag**: borrowing is a genuine finding (e.g. `"Sahtu Digital Humanities"` is a legitimate Dene nativisation), but many cases are simply failures to translate. |
-| `has_romanization` | 29 | 3.4% | Gemini (17), Ollama (14) | Model appended an unrequested Latin romanization or source-term prefix alongside the native-script term. The classifier strips it and proposes the curated form in `{svc}_term_clean_{variant}` columns. Despite the name, this flag fires for all four stripping patterns (A, C, D, E) — not only romanization parentheticals (A) but also colon-separated (C), whitespace-separated (D), and equals-separated (E) source prefixes. |
-| `has_any_mixing` | 34 | 4.0% | Ollama (25), Claude (9), Gemini (3) | Any secondary-script characters are present in the translation, **regardless of whether they cross the exclusion threshold**. This is a strict superset of `has_mixed_script` + `has_romanization`: it additionally captures 17 sub-threshold languages where the minority script is too sparse to trigger exclusion (e.g. Chechen with 4 Latin palochka substitutes at 16%, Ossetian with a single æ). Never an exclusion flag — intended purely as a data signal for downstream mixing analysis. See `script_mix_detail()` in `translation_classifier.py` for the raw metrics. |
+| `has_source_term` | 420 | 47.7% | OpenAI (275), Claude (187), DeepSeek (144) | Any non-English translation contains the untranslated English source term (`"Digital Humanities"`) or its abbreviation (`"DH"`) as a standalone token. **This is the most ambiguous flag**: borrowing is a genuine finding (e.g. `"Sahtu Digital Humanities"` is a legitimate Dene nativisation), but many cases are simply failures to translate. |
+| `has_romanization` | 89 | 10.1% | Gemma (62), Mistral (24), Llama (17) | Model appended an unrequested Latin romanization or source-term prefix alongside the native-script term. The classifier strips it and proposes the curated form in `{svc}_term_clean_{variant}` columns. Despite the name, this flag fires for all four stripping patterns (A, C, D, E) — not only romanization parentheticals (A) but also colon-separated (C), whitespace-separated (D), and equals-separated (E) source prefixes. |
+| `has_any_mixing` | 236 | 26.8% | Gemma (123), Qwen (95), Llama (50) | Any secondary-script characters are present in the translation, **regardless of whether they cross the exclusion threshold**. This is a strict superset of `has_mixed_script` + `has_romanization`; it additionally captures sub-threshold cases where the minority script is too sparse to trigger exclusion. Never an exclusion flag — intended purely as a data signal for downstream mixing analysis. See `script_mix_detail()` in `translation_classifier.py` for the raw metrics. |
 
 #### Rationale quality issues
 
 | Flag | Languages | % | Top offending services | What it detects |
 |---|---|---|---|---|
-| `has_missing_rationale` | 97 | 11.3% | Gemini (45), Ollama (34), Claude (17) | Raw CSV had a translation with no rationale (or a rationale with no translation). **Already handled automatically**: `enforce_translation_rationale_pairing` nulls the unpaired side at load time, so mismatched cells never enter confidence or disagreement scoring. The flag documents that the original data had a mismatch; it does not mean the language is missing data in downstream analysis. |
+| `has_missing_rationale` | 407 | 46.2% | Gemma (221), OpenAI (134), DeepSeek (121) | Raw CSV had a translation with no rationale (or a rationale with no translation). **Already handled automatically**: `enforce_translation_rationale_pairing` nulls the unpaired side at load time, so mismatched cells never enter confidence or disagreement scoring. The flag documents that the original data had a mismatch; it does not mean the language is missing data in downstream analysis. |
 
 #### Cross-service structural disagreements
 
 | Flag | Languages | % | Top offending services | What it detects |
 |---|---|---|---|---|
-| `has_script_disagreement` | 284 | 33.2% | Ollama (246), Gemini (104), OpenAI (94) | Services used different writing scripts for the same language. **Not an error** — it is a signal. Services may be making legitimately different choices (academic reconstruction vs. modern adapted script) or one may be wrong (Ollama writing Coptic in Georgian script). This flag is the primary input to the disagreement typology analysis. |
+| `has_script_disagreement` | 376 | 42.7% | Llama (235), Qwen (209), Gemma (197) | Services used different writing scripts for the same language. **Not an error** — it is a signal. Services may be making legitimately different choices (academic reconstruction vs. modern adapted script) or one may be wrong. This flag is the primary input to the disagreement typology analysis. |
 
 ---
 

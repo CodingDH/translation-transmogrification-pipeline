@@ -16,9 +16,9 @@ Builds `language_codes_comprehensive.csv` by combining five sources:
 
 Family hierarchy (Step 4) also comes from CLDR's `languageGroups.json`, which is part of the same `cldr-core` package fetched in Step 1 — no additional download or Wikipedia scraping.
 
-`load_language_codes()` is the single entry point for the rest of the pipeline. It returns all languages in the merged CSV (~880 codes), excluding only the four non-language sentinel codes (`und`, `zxx`, `mis`, `mul`). This gives the broadest defensible translation target set: most ancient or low-resource languages will return no results from direct MT services, but LLMs produce translations for many of them.
+`load_language_codes()` is the single entry point for the rest of the pipeline. It returns all languages in the merged CSV (881 codes), excluding only the four non-language sentinel codes (`und`, `zxx`, `mis`, `mul`) before the comprehensive file is written. This gives the broadest defensible translation target set: most ancient or low-resource languages will return no results from direct MT services, but LLMs produce translations for many of them.
 
-All 880 codes in the output CSV have a non-empty value for every key column: `language_code`, `language_name` (English), `family_name`, `directionality`, and `sources`.
+All 881 codes in the output CSV have a non-empty value for every key column: `language_code`, `language_name` (English), `family_name`, `directionality`, and `sources`.
 
 Directionality is sourced from CLDR's primary script code (authoritative), with `FORCE_LTR` overrides for languages whose historical script was RTL but whose modern standard is Latin or Cyrillic (e.g. Uzbek, Turkish). A separate `directionality_wikimedia` column preserves the Wikimedia community value for spotting digraphia cases.
 
@@ -143,7 +143,7 @@ Prompt templates for LLM services. Four variants, always run in this order:
 | Variant | Strategy | What it tests |
 | --- | --- | --- |
 | `minimal` | Bare instruction with no additional context | Baseline — how well LLMs translate without guidance |
-| `github_searcher` | Researcher building a multilingual GitHub search corpus | Whether goal-orientation framing shapes translation choices  acy |
+| `github_searcher` | Researcher building a multilingual GitHub search corpus | Whether goal-orientation framing shapes translation choices |
 | `fluent_speaker` | Rationale requested in the target language | Whether metacognitive depth in the target language improves translation |
 | `judge` | Synthesis of all prior outputs (runs last) | Best achievable translation given maximum available evidence |
 
@@ -213,7 +213,7 @@ All service errors are written to `{DATA_DIR}/error_logs/` with one CSV per serv
 
 **Ollama hallucination loops are deterministic (400).** When a local model returns `done=False`, it hit the `num_predict` token limit mid-generation, producing a character-repetition loop rather than a valid translation. These are logged as `ollama.chat - HallucinationLoop` with status 400. The timing metadata fields (`total_duration`, etc.) are `None` in this state; `getattr` with a `None` default is used for all Ollama metadata to avoid `KeyError` from the library's `__getitem__` implementation, which omits `None`-valued fields.
 
-**Errors are variant-scoped for LLM services.** A 400 failure on `minimal` does not exclude that language from `fluent_speakerersona`, `fluent_speaker`, or `judge`. Each prompt variant gets an independent exclusion check. This matters most for `judge`: low-resource languages that produced repetition loops or refusals on earlier variants still receive a judge attempt, since the judge prompt is structurally different and provides rich translation context from all prior outputs.
+**Errors are variant-scoped for LLM services.** A 400 failure on `minimal` does not exclude that language from `fluent_speaker`, `github_searcher`, or `judge`. Each prompt variant gets an independent exclusion check. This matters most for `judge`: low-resource languages that produced repetition loops or refusals on earlier variants still receive a judge attempt, since the judge prompt is structurally different and provides rich translation context from all prior outputs.
 
 **Baseline service logs (GT, EasyNMT, Lingvanex, Wikipedia) have no variant column.** Their exclusions are unconditional — these services run once and are not re-run per variant. `log_error_to_file` always reindexes the new row to match the existing file's column order before appending, preventing column misalignment that would silently break the dedup key across runs.
 
@@ -230,7 +230,7 @@ Per-term outputs under `{DATA_DIR}/translated_terms/{term_slug}/`:
     enmt_translations.csv                    # EasyNMT (prompt-invariant)
     lingvanex_translations.csv               # Lingvanex (prompt-invariant)
     wikipedia_translations.csv               # Wikipedia (prompt-invariant)
-  prompt_variants/
+  prompt_services/
     llama_{variant}_translations.csv         # variant ∈ {minimal, fluent_speaker, github_searcher, judge}
     gemma_{variant}_translations.csv
     qwen_{variant}_translations.csv

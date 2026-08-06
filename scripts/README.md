@@ -1,6 +1,6 @@
 # Translation Pipeline Scripts
 
-Scripts for generating and evaluating translations of Digital Humanities terms across 858 languages.
+Scripts for generating and evaluating translations of Digital Humanities terms across 881 project language-code rows.
 
 ## Structure
 
@@ -24,14 +24,15 @@ scripts/
 
 ## Language Coverage
 
-Translations target all **858 languages** in `language_codes_comprehensive.csv`, built by combining four authoritative sources via `experiment/generate_language_codes.py`. The four non-language sentinel codes (`und`, `zxx`, `mis`, `mul`) are excluded; everything else is included for maximum coverage.
+Translations target all **881 language-code rows** in `language_codes_comprehensive.csv`, built by combining registry, community, and localization metadata via `experiment/generate_language_codes.py`. The four non-language sentinel codes (`und`, `zxx`, `mis`, `mul`) are excluded before the final CSV is written; everything in the committed comprehensive file is part of the translation target set.
 
 | Source | Coverage |
 | --- | --- |
-| Unicode CLDR | ~814 codes — scripts, directionality, official status |
-| LOC ISO 639-2 | ~418 individual language codes |
-| Wikimedia | ~270 active Wikipedia projects |
-| ISO 639-5 | 115 family/group codes (metadata only, not translated) |
+| Unicode CLDR 48.2 + v45 supplement | Core localization metadata, scripts, directionality, official status, and retained historical CLDR rows |
+| LOC ISO 639-2 | Bibliographic ISO language inventory |
+| Wikimedia | Active Wikipedia projects as community infrastructure evidence |
+| SIL ISO 639-3 | English names for codes CLDR does not name cleanly |
+| ISO 639-5 / Glottolog | Family metadata and reconciliation, not additional translation-target rows |
 
 Most ancient, extinct, or low-resource languages will produce no results from direct MT services, but LLMs return translations for many of them. The `in_wikimedia`, `in_iso639_2`, and `modern_language` columns let downstream analysis filter to any subset.
 
@@ -43,6 +44,7 @@ LLM services are tested with four prompt strategies to evaluate the effect of di
 | --- | --- |
 | `minimal` | Baseline — bare instruction, no context |
 | `fluent_speaker` | Whether requesting rationale in the target language deepens translation quality |
+| `github_searcher` | Whether search-corpus framing shapes translation choices |
 | `judge` | Synthesis — aggregates all unique translations from prior variants and direct services |
 
 The first three variants are independent, directly comparable conditions. The `judge` runs last and is a synthesis step rather than a comparison condition: it receives all unique translations produced by the other variants and services, deduplicated by value with agreeing sources grouped, and produces a best-answer translation. See `experiment/README.md` for full details.
@@ -71,3 +73,11 @@ python generate_translation_prompts.py
 ```
 
 Select individual variants or "ALL" from the interactive menu. When "ALL" is chosen, variants run in order: `minimal` → `fluent_speaker` → `github_searcher` → `judge`. The judge requires the other three to have completed first.
+
+**Refresh notebook 02 historic reference tables:**
+
+```bash
+python scripts/exploration/build_historic_reference_convergence.py --term "Digital Humanities"
+```
+
+This reads `historic_materials/translated_dh_terms.csv` and writes `historic_*.csv` outputs to `datasets/translated_terms/digital_humanities/evaluation/`. It supports the historic-reference section of notebook 02 and does not use `old_digital_humanities`.

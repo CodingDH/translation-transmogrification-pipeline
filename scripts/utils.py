@@ -197,23 +197,33 @@ _LANG_FAMILY_CACHE: Optional[Dict[str, str]] = None
 
 
 def get_language_family(code: str) -> str:
-	"""Return the top-level family name for a language code, reading from the comprehensive language codes CSV. Falls back to 'Other' when unknown.
+	"""Return the reviewed family/analysis label for a language code. Falls back to 'Other' when unknown.
 
-	Uses `family_name_reconciled` when present (the Glottolog-cross-validated column produced by generate_language_codes.py from the reconciliation table reviewed in notebook 01), falling back to `family_name` (ISO 639-5 based) when reconciled is unavailable. See docs/exclusion_strategy.md and notebook 01 §1.3 for the reconciliation methodology.
+	Prefers `language_codes_comprehensive_family_reviewed.csv` when present, using
+	`family_name_analysis` for chart/grouping work and falling back through the
+	reviewed and pre-review reconciled columns. If the reviewed metadata layer has
+	not been generated yet, falls back to `language_codes_comprehensive.csv` and
+	uses `family_name_reconciled` over raw `family_name`.
 	"""
 	global _LANG_FAMILY_CACHE
 	if _LANG_FAMILY_CACHE is None:
 		data_dir = get_data_directory_path()
-		csv_path = os.path.join(data_dir, 'metadata_files', 'language_codes_comprehensive.csv')
+		metadata_dir = os.path.join(data_dir, 'metadata_files')
+		reviewed_path = os.path.join(metadata_dir, 'language_codes_comprehensive_family_reviewed.csv')
+		base_path = os.path.join(metadata_dir, 'language_codes_comprehensive.csv')
+		csv_path = reviewed_path if os.path.exists(reviewed_path) else base_path
 		if os.path.exists(csv_path):
 			# converters preserves 'nan' (Min Nan Chinese, ISO 639-3) as a string
 			df = pd.read_csv(csv_path, converters={'language_code': str})
-			# Prefer the reconciled column; fall back to family_name where reconciled is missing
-			fam_col = (
-				df['family_name_reconciled'].fillna(df['family_name'])
-				if 'family_name_reconciled' in df.columns
-				else df['family_name']
-			)
+			family_candidates = [
+				'family_name_analysis',
+				'family_name_reconciled_reviewed',
+				'family_name_reconciled',
+				'family_name',
+			]
+			fam_col = pd.Series(['Other'] * len(df), index=df.index, dtype='object')
+			for col in reversed([c for c in family_candidates if c in df.columns]):
+				fam_col = df[col].where(df[col].notna() & df[col].astype(str).str.strip().ne(''), fam_col)
 			_LANG_FAMILY_CACHE = dict(
 				zip(df['language_code'],
 					fam_col.fillna('Other').astype(str))

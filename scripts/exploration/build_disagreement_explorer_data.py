@@ -3,18 +3,20 @@
 build_disagreement_explorer_data.py
 ====================================
 Merge disagreement analysis, per-language confidence stats, rationale lengths,
-and parsed service translations into a single CSV for the HTML explorer.
+and parsed service translations into one notebook-support CSV.
 
 Before writing, ``enforce_translation_rationale_pairing`` (scripts/utils.py) is
 applied to each per-variant slice of confidence_scores.csv. This nulls out any
 LLM cell where the translation has no real rationale (absent or placeholder such
-as "No rationale provided") or vice versa, so the HTML explorer never receives
+as "No rationale provided") or vice versa, so notebook 07 never receives
 unpaired cells regardless of whether the upstream CSVs were generated before or
 after this enforcement was introduced.
 
 Run after:
-  1. notebooks/05_disagreement_exploration.ipynb  (produces confidence_scores.csv + disagreement_analysis.csv)
-  2. scripts/exploration/explore_disagreements.py  (produces disagreement_analysis.csv)
+  1. scripts/exploration/explore_confidence_within_variant.py
+     (or notebook 04, which writes confidence_scores.csv)
+  2. scripts/exploration/explore_disagreements.py
+     (or notebook 05, which writes disagreement_analysis.csv)
 
 Usage
 -----
@@ -65,7 +67,6 @@ CAT_ORDER = {
     'PRODUCTIVE_DISAGREEMENT': 2,
     'MEASUREMENT_ARTEFACT': 3,
     'COMPLETE_CONSENSUS': 4,
-    'CONSENSUS': 5,
 }
 
 SERVICE_MAP = {
@@ -144,7 +145,7 @@ def build_explorer_data(
     parsed_df = pd.DataFrame(parsed_rows)
 
     # ── Terms + rationales for every variant × service combination ──────────
-    # Produces columns like claude_term_comparative, claude_rationale_comparative, etc.
+    # Produces columns like claude_term_minimal, claude_rationale_judge, etc.
     matrix_frames = []
     for variant in VARIANTS:
         variant_rows = conf_df[conf_df['prompt_variant'] == variant].copy()
@@ -218,7 +219,7 @@ def build_explorer_data(
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Build disagreement_explorer_data.csv for the HTML explorer.'
+        description='Build disagreement_explorer_data.csv for notebook support.'
     )
     parser.add_argument('--term', default='Digital Humanities', help='Target term (default: Digital Humanities)')
     parser.add_argument('--output-dir', default=None, help='Override output directory')

@@ -3,7 +3,7 @@ Audit mixed language identifiers in language_codes_comprehensive.csv.
 
 This is a lightweight diagnostic script. It does not rerun translations or alter existing results. It reports where project-level language_code differs from the preferred BCP 47-style tag added by add_identifier_context() in generate_language_codes.py, and counts per-service support coverage from any {service}_supported columns added by add_service_language_codes().
 
-By default, reads from <data_dir>/metadata_files language_codes_comprehensive.csv where <data_dir> comes from the apikey-stored CODING_DH_DATA_DIRECTORY_PATH. A positional `csv_path` argument can override that default for ad-hoc audits.
+By default, reads from <data_dir>/metadata_files/language_codes_comprehensive.csv where <data_dir> comes from the apikey-stored TRANSLATION_TRANSMOGRIFICATION_DATA_DIRECTORY key. A positional `csv_path` argument can override that default for ad-hoc audits.
 """
 
 from __future__ import annotations

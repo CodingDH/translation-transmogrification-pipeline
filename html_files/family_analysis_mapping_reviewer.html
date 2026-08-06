@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Family Analysis Mapping Reviewer</title>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+  :root {
+    --bg: #fafafa; --surface: #ffffff; --surface2: #f0f2f5;
+    --text: #1a1a2e; --muted: #6b6b88; --border: #e0e0e8;
+    --accent: #6b30cc; --accent2: #2a8050; --warn: #c07000;
+    --rose: #b03060; --slate: #4a6c8c;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+         background: var(--bg); color: var(--text); margin: 0;
+         font-size: 13px; line-height: 1.45; }
+  header { background: var(--surface); border-bottom: 1px solid var(--border);
+           padding: 14px 24px; position: sticky; top: 0; z-index: 10;
+           box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  h1 { margin: 0 0 8px 0; font-size: 17px; font-weight: 700; }
+  .sub { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+  #controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .btn { background: var(--surface); border: 1px solid var(--border); padding: 5px 12px;
+         border-radius: 5px; cursor: pointer; font-size: 12px; }
+  .btn:hover { background: var(--surface2); }
+  .btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+  .btn-primary:hover { background: #5a26b0; }
+  input[type=file] { display: none; }
+  select, input[type=text] { padding: 5px 8px; border: 1px solid var(--border); border-radius: 5px;
+                              font-size: 12px; background: var(--surface); color: var(--text); }
+  .stat { font-size: 11px; color: var(--muted); margin-left: auto; }
+  .stat strong { color: var(--text); font-weight: 700; }
+  main { padding: 16px 24px; }
+  .overview { background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+              padding: 12px 14px; margin-bottom: 14px; }
+  .overview h2 { font-size: 13px; margin: 0 0 8px 0; }
+  .overview-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .overview-card { background: #fbfbfd; border: 1px solid var(--border); border-radius: 5px; padding: 8px; }
+  .overview-card strong { display: block; font-size: 18px; }
+  .overview-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3px 14px;
+                   margin-top: 10px; font-size: 11px; color: var(--muted); }
+  .bucket { background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+            margin-bottom: 14px; overflow: hidden; }
+  .bucket-head { display: grid; grid-template-columns: 1fr auto; gap: 16px;
+                 padding: 12px 14px; background: #fbfbfd; border-bottom: 1px solid var(--border); }
+  .bucket-title { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .bucket-meta { font-size: 11px; color: var(--muted); }
+  .badge { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 9px;
+           font-weight: 600; white-space: nowrap; margin-left: 4px; }
+  .badge.one { background: #ffe0ea; color: var(--rose); }
+  .badge.pending { background: #fff0d6; color: var(--warn); }
+  .badge.accepted { background: #e8f6ee; color: var(--accent2); }
+  .badge.split { background: #eef3f8; color: var(--slate); }
+  .rows { padding: 6px 10px 10px 10px; }
+  .row { display: grid; grid-template-columns: minmax(140px, 1fr) 90px minmax(220px, 1.25fr) 270px;
+         gap: 10px; padding: 9px 4px; border-bottom: 1px solid var(--surface2); }
+  .row:last-child { border-bottom: none; }
+  .family { font-weight: 650; }
+  .count { color: var(--accent); font-weight: 700; }
+  .small { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .reason { font-size: 11.5px; color: var(--text); }
+  .editor { display: grid; gap: 6px; }
+  .editor input[type=text], .editor select, textarea {
+    width: 100%; padding: 5px 7px; border: 1px solid var(--border);
+    border-radius: 5px; font-size: 11.5px; background: var(--surface);
+  }
+  textarea { min-height: 52px; resize: vertical; font-family: inherit; }
+  #empty { padding: 50px; text-align: center; color: var(--muted); }
+  @media (max-width: 900px) {
+    .row { grid-template-columns: 1fr; }
+    .bucket-head { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Family Analysis Mapping Reviewer</h1>
+  <div class="sub">Review <code>family_analysis_mapping.csv</code>: preserve <code>family_name_reconciled</code> by default, then accept only the normalizations or analysis overrides you want for <code>family_name_analysis</code>.</div>
+  <div id="controls">
+    <label class="btn" for="file-input">Load Mapping CSV</label>
+    <input type="file" id="file-input" accept=".csv">
+    <select id="filter-status" onchange="render()">
+      <option value="">All review statuses</option>
+      <option value="pending" selected>Needs label decision</option>
+      <option value="accepted">Accepted</option>
+      <option value="reference_only">Handled in reconciliation</option>
+      <option value="rename">Rename label</option>
+      <option value="split">Split label</option>
+      <option value="defer">Defer</option>
+    </select>
+    <select id="filter-shape" onchange="render()">
+      <option value="">All mapping shapes</option>
+      <option value="needs-action">Needs action</option>
+      <option value="one-row-family">One-language reconciled families</option>
+      <option value="multi-family-bucket">Labels with multiple reconciled families</option>
+      <option value="exclude">Exclude label</option>
+    </select>
+    <select id="sort" onchange="render()">
+      <option value="languages">Sort: most languages first</option>
+      <option value="families">Sort: most families first</option>
+      <option value="alpha">Sort: label A-Z</option>
+    </select>
+    <input type="text" id="search" placeholder="Search family, label, examples..." oninput="render()" style="flex: 1; max-width: 260px;">
+    <button class="btn btn-primary" onclick="downloadCSV()">Download Reviewed CSV</button>
+    <div class="stat" id="stats"></div>
+  </div>
+</header>
+
+<main>
+  <div id="overview"></div>
+  <div id="buckets"></div>
+  <div id="empty">Load <code>datasets/metadata_files/family_analysis_mapping.csv</code> to begin.</div>
+</main>
+
+<script>
+let allRows = [];
+
+document.getElementById('file-input').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  Papa.parse(file, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: false,
+    complete(results) {
+      allRows = results.data.map((r, i) => ({
+        ...r,
+        _i: i,
+        n_languages: parseInt(r.n_languages, 10) || 0,
+        review_status: r.review_status || 'pending',
+      }));
+      document.getElementById('empty').style.display = 'none';
+      renderOverview();
+      render();
+    },
+  });
+});
+
+function esc(s) {
+  return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                       .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function norm(s) {
+  return String(s ?? '').trim();
+}
+
+function bucketGroups(rows) {
+  const groups = new Map();
+  for (const r of rows) {
+    const key = norm(r.family_name_analysis) || '(blank)';
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(r);
+  }
+  return [...groups.entries()].map(([bucket, items]) => ({
+    bucket,
+    items,
+    languages: items.reduce((sum, r) => sum + (parseInt(r.n_languages, 10) || 0), 0),
+    families: items.length,
+  }));
+}
+
+function applyFilters() {
+  const status = document.getElementById('filter-status').value;
+  const shape = document.getElementById('filter-shape').value;
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const groupedCounts = bucketGroups(allRows).reduce((acc, g) => {
+    acc[g.bucket] = g.families;
+    return acc;
+  }, {});
+  return allRows.filter(r => {
+    if (status && r.review_status !== status) return false;
+    const oneRow = (parseInt(r.n_languages, 10) || 0) === 1;
+    const multiFamilyBucket = groupedCounts[norm(r.family_name_analysis)] > 1;
+    const needsAction = r.review_status === 'pending';
+    if (shape === 'needs-action' && !needsAction) return false;
+    if (shape === 'one-row-family' && !oneRow) return false;
+    if (shape === 'multi-family-bucket' && !multiFamilyBucket) return false;
+    if (shape === 'exclude' && r.family_name_analysis !== 'Exclude from family aggregation') return false;
+    if (q) {
+      const hay = `${r.family_name_reconciled} ${r.family_name_analysis} ${r.mapping_action} ${r.mapping_reason} ${r.sample_languages} ${r.raw_family_names} ${r.reviewer_notes}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function sortedGroups(rows) {
+  const sort = document.getElementById('sort').value;
+  const groups = bucketGroups(rows);
+  if (sort === 'families') {
+    return groups.sort((a, b) => b.families - a.families || b.languages - a.languages || a.bucket.localeCompare(b.bucket));
+  }
+  if (sort === 'alpha') {
+    return groups.sort((a, b) => a.bucket.localeCompare(b.bucket));
+  }
+  return groups.sort((a, b) => b.languages - a.languages || b.families - a.families || a.bucket.localeCompare(b.bucket));
+}
+
+function setBucket(idx, value) {
+  allRows[idx].family_name_analysis = value;
+  updateStats();
+}
+
+function setStatus(idx, value) {
+  allRows[idx].review_status = value;
+  updateStats();
+}
+
+function setNotes(idx, value) {
+  allRows[idx].reviewer_notes = value;
+}
+
+function render() {
+  if (!allRows.length) return;
+  const groups = sortedGroups(applyFilters());
+  let html = '';
+  for (const group of groups) {
+    const oneRows = group.items.filter(r => (parseInt(r.n_languages, 10) || 0) === 1).length;
+    const pending = group.items.filter(r => r.review_status === 'pending').length;
+    html += `<section class="bucket">
+      <div class="bucket-head">
+        <div>
+          <div class="bucket-title">${esc(group.bucket)}
+            ${oneRows ? `<span class="badge one">${oneRows} one-row</span>` : ''}
+            ${pending ? `<span class="badge pending">${pending} pending</span>` : `<span class="badge accepted">reviewed</span>`}
+            ${group.families > 1 ? `<span class="badge split">${group.families} families</span>` : ''}
+          </div>
+          <div class="bucket-meta">${group.languages} languages · ${group.families} reconciled family labels</div>
+        </div>
+      </div>
+      <div class="rows">`;
+
+    for (const r of group.items.sort((a, b) => b.n_languages - a.n_languages || a.family_name_reconciled.localeCompare(b.family_name_reconciled))) {
+      html += `<div class="row">
+        <div>
+          <div class="family">${esc(r.family_name_reconciled)}</div>
+          <div class="small">${esc(r.raw_family_names || '')}</div>
+        </div>
+        <div>
+          <div class="count">${esc(r.n_languages)}</div>
+          <div class="small">languages</div>
+        </div>
+        <div>
+          <div class="reason">${esc(r.mapping_reason || '')}</div>
+          <div class="small">${esc(r.mapping_action || '')}</div>
+          <div class="small">${esc(r.sample_languages || '')}</div>
+        </div>
+        <div class="editor">
+          <input type="text" value="${esc(r.family_name_analysis || '')}" oninput="setBucket(${r._i}, this.value)" placeholder="Analysis label">
+          <select onchange="setStatus(${r._i}, this.value)">
+            <option value="pending" ${r.review_status === 'pending' ? 'selected' : ''}>Pending</option>
+            <option value="accepted" ${r.review_status === 'accepted' ? 'selected' : ''}>Accepted</option>
+            <option value="reference_only" ${r.review_status === 'reference_only' ? 'selected' : ''}>Handled in reconciliation</option>
+            <option value="rename" ${r.review_status === 'rename' ? 'selected' : ''}>Rename label</option>
+            <option value="split" ${r.review_status === 'split' ? 'selected' : ''}>Split label</option>
+            <option value="defer" ${r.review_status === 'defer' ? 'selected' : ''}>Defer</option>
+          </select>
+          <textarea placeholder="Reviewer notes" oninput="setNotes(${r._i}, this.value)">${esc(r.reviewer_notes || '')}</textarea>
+        </div>
+      </div>`;
+    }
+    html += `</div></section>`;
+  }
+  document.getElementById('buckets').innerHTML = html;
+  updateStats();
+}
+
+function countBy(rows, field) {
+  const counts = {};
+  for (const r of rows) {
+    const key = norm(r[field]) || '(blank)';
+    counts[key] = (counts[key] || 0) + 1;
+  }
+  return Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+}
+
+function renderOverview() {
+  if (!allRows.length) return;
+  const languages = allRows.reduce((sum, r) => sum + (parseInt(r.n_languages, 10) || 0), 0);
+  const pending = allRows.filter(r => r.review_status === 'pending').length;
+  const rowLevel = allRows.filter(r => r.mapping_action === 'row_level_reconciliation').length;
+  const actionList = countBy(allRows, 'mapping_action')
+    .map(([k, v]) => `<div><strong>${esc(v)}</strong> ${esc(k)}</div>`)
+    .join('');
+  const topFamilies = allRows.slice()
+    .sort((a, b) => b.n_languages - a.n_languages || a.family_name_reconciled.localeCompare(b.family_name_reconciled))
+    .slice(0, 12)
+    .map(r => `<div><strong>${esc(r.n_languages)}</strong> ${esc(r.family_name_reconciled)}</div>`)
+    .join('');
+  document.getElementById('overview').innerHTML = `<section class="overview">
+    <h2>Current Family Labels Overview</h2>
+    <div class="overview-grid">
+      <div class="overview-card"><strong>${allRows.length}</strong> reconciled family labels</div>
+      <div class="overview-card"><strong>${languages}</strong> language rows represented</div>
+      <div class="overview-card"><strong>${pending}</strong> label-level decisions · ${rowLevel} row-level signals</div>
+    </div>
+    <div class="overview-list">${actionList}</div>
+    <h2 style="margin-top:12px">Largest Current Groups</h2>
+    <div class="overview-list">${topFamilies}</div>
+  </section>`;
+}
+
+function updateStats() {
+  const filtered = applyFilters();
+  const groups = bucketGroups(filtered);
+  const pending = allRows.filter(r => r.review_status === 'pending').length;
+  const oneRow = allRows.filter(r => (parseInt(r.n_languages, 10) || 0) === 1).length;
+  document.getElementById('stats').innerHTML =
+    `<strong>${filtered.length}</strong> rows shown · ` +
+    `<strong>${groups.length}</strong> labels shown · ` +
+    `<strong>${allRows.length}</strong> total rows · ` +
+    `<strong>${pending}</strong> pending · ` +
+    `<strong>${oneRow}</strong> one-language families`;
+}
+
+function downloadCSV() {
+  if (!allRows.length) { alert('Load a mapping CSV first.'); return; }
+  const out = allRows.map(r => ({
+    family_name_reconciled: r.family_name_reconciled,
+    family_name_analysis: r.family_name_analysis,
+    n_languages: r.n_languages,
+    sample_languages: r.sample_languages,
+    raw_family_names: r.raw_family_names,
+    mapping_action: r.mapping_action || '',
+    mapping_reason: r.mapping_reason,
+    review_status: r.review_status || 'pending',
+    reviewer_notes: r.reviewer_notes || '',
+  }));
+  const blob = new Blob([Papa.unparse(out)], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'family_analysis_mapping_reviewed.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>

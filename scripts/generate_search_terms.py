@@ -271,7 +271,7 @@ def _build_search_term_drops(data_dir: str, term_slug: str) -> set[tuple[str, st
     """Return a set of (language_code, term_lower) pairs to suppress from search output.
 
     Reads rows where service == 'search_exclusion' in manual_exclusions.csv.
-    These are written by the ✗srch button in review_explorer_v2.html and exclude
+    These are written by the ✗srch button in review_explorer.html and exclude
     a specific translated term string from grouped_translated_terms.csv without
     removing the (language, service) pair from disagreement analysis.
     """

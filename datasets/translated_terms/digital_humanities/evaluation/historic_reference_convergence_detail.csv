@@ -1,0 +1,186 @@
+language_code,language_name,term_source,directionality,wikipedia_historic_term,google_translate_historic_output,all_available_sources,n_sources_present,n_distinct_translations,sources_agree,all_source_convergence,difference_summary,difference_details
+ru,Russian,Digital Humanities,ltr,Цифровые гуманитарные науки,Цифровые гуманитарные науки,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+fr,French,Digital Humanities,ltr,Humanités numériques,Humanités numériques,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+la,Latin,Digital Humanities,ltr,Humanitates digitales,Digital Humanities,Wikipedia-derived historic term; Historic Google Translate output,2,2,False,outputs diverge,content,"{'Wikipedia-derived historic term_vs_Historic Google Translate output': 'content', 'summary': 'content'}"
+ta,Tamil,Digital Humanities,ltr,எண்ணிம மனிதவியல்,டிஜிட்டல் மனிதநேயம்,Wikipedia-derived historic term; Historic Google Translate output,2,2,False,outputs diverge,content,"{'Wikipedia-derived historic term_vs_Historic Google Translate output': 'content', 'summary': 'content'}"
+ca,Catalan; Valencian,Digital Humanities,ltr,Humanitats digitals,Humanitats digitals,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+en,English,Digital Humanities,ltr,Digital Humanities,Digital Humanities,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+de,German,Digital Humanities,ltr,Digital Humanities,Digitale Geisteswissenschaften,Wikipedia-derived historic term; Historic Google Translate output,2,2,False,outputs diverge,content,"{'Wikipedia-derived historic term_vs_Historic Google Translate output': 'content', 'summary': 'content'}"
+ko,Korean,Digital Humanities,ltr,디지털 인문학,디지털 인문학,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+it,Italian,Digital Humanities,ltr,Informatica umanistica,Scienze umanistiche digitali,Wikipedia-derived historic term; Historic Google Translate output,2,2,False,outputs diverge,content,"{'Wikipedia-derived historic term_vs_Historic Google Translate output': 'content', 'summary': 'content'}"
+sh,Serbo-Crotian,Digital Humanities,ltr,Дигиталне хуманистичке науке,Дигиталне хуманистичке науке,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+cy,Welsh,Digital Humanities,ltr,Dyniaethau digidol,Dyniaethau Digidol,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,capitalization,"{'Wikipedia-derived historic term_vs_Historic Google Translate output': 'capitalization', 'summary': 'capitalization'}"
+ar,Arabic,Digital Humanities,rtl,إنسانيات رقمية,العلوم الإنسانية الرقمية,Wikipedia-derived historic term; Historic Google Translate output,2,2,False,outputs diverge,content,"{'Wikipedia-derived historic term_vs_Historic Google Translate output': 'content', 'summary': 'content'}"
+th,Thai,Digital Humanities,ltr,มนุษยศาสตร์ดิจิทัล,มนุษยศาสตร์ดิจิทัล,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+sl,Slovene,Digital Humanities,ltr,Digitalna humanistika,Digitalna humanistika,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+fi,Finnish,Digital Humanities,ltr,Digitaaliset ihmistieteet,Digitaaliset humanistiset tieteet,Wikipedia-derived historic term; Historic Google Translate output,2,2,False,outputs diverge,content,"{'Wikipedia-derived historic term_vs_Historic Google Translate output': 'content', 'summary': 'content'}"
+sv,Swedish,Digital Humanities,ltr,Digital humaniora,Digital humaniora,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+ja,Japanese,Digital Humanities,ltr,デジタル・ヒューマニティーズ,デジタル・ヒューマニティーズ,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+es,Spanish; Castilian,Digital Humanities,ltr,Humanidades digitales,Humanidades digitales,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+he,Hebrew (modern),Digital Humanities,rtl,מדעי הרוח הדיגיטליים,מדעי הרוח הדיגיטליים,Wikipedia-derived historic term; Historic Google Translate output,2,1,True,all available outputs agree,all_identical,{'summary': 'all_identical'}
+ab,Abkhaz,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+aa,Afar,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+af,Afrikaans,Digital Humanities,ltr,,Digitale Geesteswetenskappe,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ak,Akan,Digital Humanities,ltr,,Digitals Nnipa Ho Adesua,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+sq,Albanian,Digital Humanities,ltr,,Shkenca Dixhitale Humane,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+am,Amharic,Digital Humanities,ltr,,ዲጂታል ሰብአዊነት,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+an,Aragonese,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+hy,Armenian,Digital Humanities,ltr,,Թվային հումանիտար գիտություններ,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+as,Assamese,Digital Humanities,ltr,,ডিজিটেল মানৱীয় বিজ্ঞান,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+av,Avaric,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ae,Avestan,Digital Humanities,rtl,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ay,Aymara,Digital Humanities,ltr,,Humanidades Digitales uka tuqit yatxataña,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+az,Azerbaijani,Digital Humanities,ltr,,Rəqəmsal humanitar elmlər,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+bm,Bambara,Digital Humanities,ltr,,Hadamadenw ka dɔnniya nimɔrɔma,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ba,Bashkir,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+eu,Basque,Digital Humanities,ltr,,Humanitate Digitalak,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+be,Belarusian,Digital Humanities,ltr,,Лічбавая гуманітарная навука,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+bn,Bengali,Digital Humanities,ltr,,ডিজিটাল মানবিক,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+bh,Bihari,Digital Humanities,ltr,,डिजिटल मानविकी के बारे में बतावल गइल बा,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+bi,Bislama,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+bs,Bosnian,Digital Humanities,ltr,,Digitalne humanističke nauke,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+br,Breton,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+bg,Bulgarian,Digital Humanities,ltr,,Дигитални хуманитарни науки,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+my,Burmese,Digital Humanities,ltr,,ဒစ်ဂျစ်တယ်လူ့ပညာ,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ch,Chamorro,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ce,Chechen,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ny,Chichewa; Chewa; Nyanja,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+zh,Chinese,Digital Humanities,ltr,,数字人文,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+cv,Chuvash,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+kw,Cornish,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+co,Corsican,Digital Humanities,ltr,,Umanità digitale,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+cr,Cree,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+hr,Croatian,Digital Humanities,ltr,,Digitalne humanističke znanosti,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+cs,Czech,Digital Humanities,ltr,,Digitální humanitní vědy,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+da,Danish,Digital Humanities,ltr,,Digital Humaniora,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+dv,Divehi; Maldivian;,Digital Humanities,rtl,,ދިރާގު ހިއުމަނިޓީސް އެވެ,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+nl,Dutch,Digital Humanities,ltr,,Digitale geesteswetenschappen,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+dz,Dzongkha,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+eo,Esperanto,Digital Humanities,ltr,,Ciferecaj Homaroj,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+et,Estonian,Digital Humanities,ltr,,Digitaalhumanitaaria,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ee,Ewe,Digital Humanities,ltr,,Digitál Amegbetɔŋutinunya,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+fo,Faroese,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+fj,Fijian,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ff,Fula,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+gl,Galician,Digital Humanities,ltr,,Humanidades Dixitais,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ka,Georgian,Digital Humanities,ltr,,ციფრული ჰუმანიტარული მეცნიერებები,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+el,"Greek, Modern",Digital Humanities,ltr,,Ψηφιακές Ανθρωπιστικές Επιστήμες,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+gn,Guaraní,Digital Humanities,ltr,,Humanidades Digitales rehegua,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+gu,Gujarati,Digital Humanities,ltr,,ડિજિટલ માનવતા,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ht,Haitian,Digital Humanities,ltr,,Syans imanitè dijital,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ha,Hausa,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+hz,Herero,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+hi,Hindi,Digital Humanities,ltr,,डिजिटल मानविकी,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ho,Hiri Motu,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+hu,Hungarian,Digital Humanities,ltr,,Digitális humán tudományok,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ia,Interlingua,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+id,Indonesian,Digital Humanities,ltr,,Humaniora Digital,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ie,Interlingue,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ga,Irish,Digital Humanities,ltr,,Daonnachtaí Digiteacha,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ig,Igbo,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ik,Inupiaq,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+io,Ido,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+is,Icelandic,Digital Humanities,ltr,,Stafræn hugvísindi,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+iu,Inuktitut,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+jv,Javanese,Digital Humanities,ltr,,Kamanungsan Digital,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+kl,Kalaallisut,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+kn,Kannada,Digital Humanities,ltr,,ಡಿಜಿಟಲ್ ಹ್ಯುಮಾನಿಟೀಸ್,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+kr,Kanuri,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ks,Kashmiri,Digital Humanities,rtl,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+kk,Kazakh,Digital Humanities,ltr,,Сандық гуманитарлық ғылымдар,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+km,Khmer,Digital Humanities,ltr,,មនុស្សធម៌ឌីជីថល,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ki,"Kikuyu, Gikuyu",Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+rw,Kinyarwanda,Digital Humanities,ltr,,Ubumenyamuntu,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ky,"Kirghiz, Kyrgyz",Digital Humanities,ltr,,Санариптик гуманитардык илимдер,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+kv,Komi,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+kg,Kongo,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ku,Kurdish,Digital Humanities,ltr,,Dijîtal Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+kj,"Kwanyama, Kuanyama",Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+lb,Luxembourgish,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+lg,Luganda,Digital Humanities,ltr,,Eby’obuntubulamu ebya Digital,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+li,Limburgish,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ln,Lingala,Digital Humanities,ltr,,Humanités numériques,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+lo,Lao,Digital Humanities,ltr,,ມະນຸດສາດດິຈິຕອນ,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+lt,Lithuanian,Digital Humanities,ltr,,Skaitmeniniai humanitariniai mokslai,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+lu,Luba-Katanga,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+lv,Latvian,Digital Humanities,ltr,,Digitālās humanitārās zinātnes,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+gv,Manx,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+mk,Macedonian,Digital Humanities,ltr,,Дигитални хуманистички науки,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+mg,Malagasy,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ms,Malay,Digital Humanities,ltr,,Kemanusiaan Digital,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ml,Malayalam,Digital Humanities,ltr,,ഡിജിറ്റൽ ഹ്യുമാനിറ്റീസ്,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+mt,Maltese,Digital Humanities,ltr,,Umanistika Diġitali,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+mi,Māori,Digital Humanities,ltr,,Mamati Tangata,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+mr,Marathi (Marāṭhī),Digital Humanities,ltr,,डिजिटल मानवता,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+mh,Marshallese,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+mn,Mongolian,Digital Humanities,ltr,,Дижитал хүмүүнлэг,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+na,Nauru,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+nv,"Navajo, Navaho",Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+nb,Norwegian Bokmål,Digital Humanities,ltr,,Digital humaniora,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+nd,North Ndebele,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ne,Nepali,Digital Humanities,ltr,,डिजिटल मानविकी,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ng,Ndonga,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+nn,Norwegian Nynorsk,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+no,Norwegian,Digital Humanities,ltr,,Digital humaniora,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ii,Nuosu,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+nr,South Ndebele,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+oc,Occitan,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+oj,"Ojibwe, Ojibwa",Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+cu,Old Church Slavonic,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+om,Oromo,Digital Humanities,ltr,,Saayinsii Namoomaa Dijitaalaa,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+or,Oriya,Digital Humanities,ltr,,ଡିଜିଟାଲ୍ ମାନବିକତା |,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+os,"Ossetian, Ossetic",Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+pa,"Panjabi, Punjabi",Digital Humanities,ltr,,ਡਿਜੀਟਲ ਮਨੁੱਖਤਾ,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+pi,Pāli,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+fa,Persian,Digital Humanities,rtl,,علوم انسانی دیجیتال,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+pl,Polish,Digital Humanities,ltr,,Humanistyka cyfrowa,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ps,"Pashto, Pushto",Digital Humanities,rtl,,ډیجیټل انسانیتونه,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+pt,Portuguese,Digital Humanities,ltr,,Humanidades Digitais,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+qu,Quechua,Digital Humanities,ltr,,Humanidades Digitales nisqa,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+rm,Romansh,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+rn,Kirundi,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ro,"Romanian, Moldavan",Digital Humanities,ltr,,Științe umaniste digitale,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+sa,Sanskrit (Saṁskṛta),Digital Humanities,ltr,,डिजिटल मानविकी,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+sc,Sardinian,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+sd,Sindhi,Digital Humanities,rtl,,ڊجيٽل انسانيت,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+se,Northern Sami,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+sm,Samoan,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+sg,Sango,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+sr,Serbian,Digital Humanities,ltr,,Дигиталне хуманистичке науке,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+gd,Scottish Gaelic,Digital Humanities,ltr,,Daonnachdan didseatach,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+sn,Shona,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+si,"Sinhala, Sinhalese",Digital Humanities,ltr,,ඩිජිටල් මානව ශාස්ත්‍ර,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+sk,Slovak,Digital Humanities,ltr,,Digitálne humanitné vedy,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+so,Somali,Digital Humanities,ltr,,Aadamaha Dijital ah,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+st,Southern Sotho,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+su,Sundanese,Digital Humanities,ltr,,Kamanusaan Digital,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+sw,Swahili,Digital Humanities,ltr,,Binadamu wa Kidijitali,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ss,Swati,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+te,Telugu,Digital Humanities,ltr,,డిజిటల్ హ్యుమానిటీస్,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+tg,Tajik,Digital Humanities,ltr,,Илмҳои гуманитарии рақамӣ,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ti,Tigrinya,Digital Humanities,ltr,,ዲጂታል ሰብኣዊ ስነፍልጠት,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+bo,Tibetan,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+tk,Turkmen,Digital Humanities,ltr,,Sanly gumanitar ylymlar,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+tl,Tagalog,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+tn,Tswana,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+to,Tonga,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+tr,Turkish,Digital Humanities,ltr,,Dijital Beşeri Bilimler,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ts,Tsonga,Digital Humanities,ltr,,Vutivi bya Vanhu bya Dijitali,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+tt,Tatar,Digital Humanities,ltr,,Санлы гуманитар фәннәр,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+tw,Twi,Digital Humanities,ltr,,Digitals Nnipa Ho Adesua,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ty,Tahitian,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+ug,"Uighur, Uyghur",Digital Humanities,rtl,,رەقەملىك ئادىمىيلىك,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+uk,Ukrainian,Digital Humanities,ltr,,Цифрові гуманітарні науки,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ur,Urdu,Digital Humanities,rtl,,ڈیجیٹل ہیومینٹیز,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+uz,Uzbek,Digital Humanities,ltr,,Raqamli gumanitar fanlar,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+ve,Venda,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+vi,Vietnamese,Digital Humanities,ltr,,Nhân văn kỹ thuật số,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+vo,Volapük,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+wa,Walloon,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+wo,Wolof,Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+fy,Western Frisian,Digital Humanities,ltr,,Digitale Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+xh,Xhosa,Digital Humanities,ltr,,I-Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+yi,Yiddish,Digital Humanities,rtl,,דיגיטאַל הומאַניטיעס,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+yo,Yoruba,Digital Humanities,ltr,,Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}
+za,"Zhuang, Chuang",Digital Humanities,ltr,,,,0,0,False,no outputs,no_differences,{'summary': 'no_differences'}
+zu,Zulu,Digital Humanities,ltr,,I-Digital Humanities,Historic Google Translate output,1,1,False,one output only,no_differences,{'summary': 'no_differences'}

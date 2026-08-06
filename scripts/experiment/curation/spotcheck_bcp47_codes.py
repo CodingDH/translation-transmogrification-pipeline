@@ -5,7 +5,7 @@ differs from ``language_code`` (i.e. excluding pure hyphen/case normalization), 
 script queries Google Translate under BOTH forms and reports whether the service
 returns identical, divergent, or asymmetric (one-form-fails) translations.
 
-This is an *additive* experiment, not a rerun. The pipeline's 880 translations remain
+This is an *additive* experiment, not a rerun. The pipeline's 881 language-code rows remain
 keyed off ``language_code`` — the community/registry identifier. ``bcp47_tag`` records
 IANA's preferred form. If both forms produce the same translation, the normalization
 question is moot. If they diverge, that's a paper-grade finding about the semantic

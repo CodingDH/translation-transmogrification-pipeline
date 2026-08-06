@@ -695,9 +695,9 @@ def _merge_translations(base_df: pd.DataFrame, new_df: pd.DataFrame, join_cols: 
 
 def get_variant_output_path(base_path: str, filename: str, variant: str = 'minimal') -> str:
 	"""
-	Get the output path for a file under the prompt_variants subdirectory.
+	Get the output path for a file under the prompt_services subdirectory.
 
-	All variants write to the same prompt_variants/
+	All variants write to the same prompt_services/
 	subfolder so no variant is treated as a baseline or given special status.
 
 	Parameters
@@ -712,9 +712,9 @@ def get_variant_output_path(base_path: str, filename: str, variant: str = 'minim
 	Returns
 	-------
 	str
-		{base_path}/prompt_variants/{variant}_{filename}
+		{base_path}/prompt_services/{variant}_{filename}
 	"""
-	variant_dir = os.path.join(base_path, 'prompt_variants')
+	variant_dir = os.path.join(base_path, 'prompt_services')
 	os.makedirs(variant_dir, exist_ok=True)
 	return os.path.join(variant_dir, f"{variant}_{filename}")
 

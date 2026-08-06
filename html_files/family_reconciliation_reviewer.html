@@ -53,10 +53,16 @@
   .badge.ours { background: #eef3f8; color: var(--slate); }
   .badge.cat { background: #f0ebff; color: var(--accent); }
   .badge.custom { background: var(--warn); color: white; }
+  .badge.high { background: #ffe0ea; color: var(--rose); }
+  .badge.med { background: #fff0d6; color: var(--warn); }
+  .badge.ref { background: #e8f6ee; color: var(--accent2); }
   .samples { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
   .rationale { font-size: 11.5px; color: var(--text); font-style: italic;
                background: var(--surface2); padding: 6px 10px; border-radius: 4px;
                border-left: 3px solid var(--border); }
+  .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px 10px;
+                font-size: 11px; color: var(--muted); margin: 6px 0; }
+  .field-grid strong { color: var(--text); }
 
   .controls { display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
   .controls label { display: flex; align-items: center; gap: 5px; font-size: 11.5px; cursor: pointer; }
@@ -73,9 +79,11 @@
 
 <header>
   <h1>Family Reconciliation Reviewer</h1>
-  <div class="sub">Load <code>family_reconciliation.csv</code> · override any decision · download the reviewed file back to <code>datasets/metadata_files/</code></div>
+  <div class="sub">Review unified <code>family_reconciliation_review.csv</code> cases, including ISO/Glottolog disagreement pairs and JSON fallback family assignments.</div>
   <div id="controls">
-    <label class="btn" for="file-input">Load CSV</label>
+    <label class="btn" for="json-file-input">Load Unified Review CSV</label>
+    <input type="file" id="json-file-input" accept=".csv">
+    <label class="btn" for="file-input">Load Pair CSV</label>
     <input type="file" id="file-input" accept=".csv">
     <select id="filter-choice" onchange="render()">
       <option value="">All decisions</option>
@@ -86,6 +94,28 @@
     </select>
     <select id="filter-category" onchange="render()">
       <option value="">All categories</option>
+    </select>
+    <select id="filter-json-status" onchange="render()" style="display:none">
+      <option value="">All validation statuses</option>
+    </select>
+    <select id="filter-review-kind" onchange="render()" style="display:none">
+      <option value="">All review kinds</option>
+      <option value="iso_glottolog_pair">ISO/Glottolog pairs</option>
+      <option value="json_fallback_language">JSON fallback languages</option>
+    </select>
+    <select id="filter-json-tier" onchange="render()" style="display:none">
+      <option value="">All review tiers</option>
+      <option value="REVIEW_HIGH">Review high</option>
+      <option value="REVIEW_MED">Review medium</option>
+      <option value="REFERENCE_ONLY">Reference only</option>
+    </select>
+    <select id="filter-json-issue" onchange="render()" style="display:none">
+      <option value="">All coherence issues</option>
+    </select>
+    <select id="filter-json-action" onchange="render()" style="display:none">
+      <option value="">All JSON review rows</option>
+      <option value="action-needed">Action needed: reviewed family differs</option>
+      <option value="unchanged">No downstream change</option>
     </select>
     <select id="sort" onchange="render()">
       <option value="impact">Sort: most languages first</option>
@@ -100,12 +130,14 @@
 
 <main>
   <div id="rows"></div>
-  <div id="empty">Load <code>family_reconciliation.csv</code> to begin.</div>
+  <div id="empty">Load <code>family_reconciliation_review.csv</code> to begin.</div>
 </main>
 
 <script>
 let allRows = [];        // raw rows from CSV
-let overrides = {};      // index → { chosen_family_name, choice='custom' }
+let overrides = {};      // reconciliation: index -> custom chosen family
+let jsonEdits = {};      // json review: index -> { reviewer_decision, reviewer_notes }
+let mode = 'reconciliation';
 
 document.getElementById('file-input').addEventListener('change', e => {
   const file = e.target.files[0];
@@ -115,21 +147,96 @@ document.getElementById('file-input').addEventListener('change', e => {
     skipEmptyLines: true,
     dynamicTyping: false,
     complete(results) {
+      mode = 'reconciliation';
+      overrides = {};
+      jsonEdits = {};
       allRows = results.data.map((r, i) => ({ ...r, _i: i, n_languages: parseInt(r.n_languages) || 0 }));
-      // Populate category filter
       const cats = [...new Set(allRows.map(r => r.category).filter(Boolean))].sort();
       const sel = document.getElementById('filter-category');
       sel.innerHTML = '<option value="">All categories</option>' +
                        cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+      setModeControls();
       document.getElementById('empty').style.display = 'none';
       render();
     },
   });
 });
 
+document.getElementById('json-file-input').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  Papa.parse(file, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: false,
+    complete(results) {
+      if (!results.data.some(r => r.review_kind)) {
+        alert('This reviewer now expects family_reconciliation_review.csv with a review_kind column.');
+        return;
+      }
+      mode = 'unified';
+      overrides = {};
+      jsonEdits = {};
+      allRows = results.data.map((r, i) => ({ ...r, _i: i, n_languages: parseInt(r.n_languages) || 0 }));
+      const statuses = [...new Set(allRows.map(r => r.glottolog_validation_status).filter(Boolean))].sort();
+      const sel = document.getElementById('filter-json-status');
+      sel.innerHTML = '<option value="">All validation statuses</option>' +
+                       statuses.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
+      const issues = [...new Set(allRows.map(r => r.coherence_issue).filter(Boolean))].sort();
+      const issueSel = document.getElementById('filter-json-issue');
+      issueSel.innerHTML = '<option value="">All coherence issues</option>' +
+                           issues.map(s => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
+      setModeControls();
+      document.getElementById('empty').style.display = 'none';
+      render();
+    },
+  });
+});
+
+function setModeControls() {
+  const isJson = mode === 'unified';
+  document.getElementById('filter-choice').style.display = isJson ? 'none' : '';
+  document.getElementById('filter-category').style.display = isJson ? 'none' : '';
+  document.getElementById('filter-json-status').style.display = isJson ? '' : 'none';
+  document.getElementById('filter-review-kind').style.display = mode === 'unified' ? '' : 'none';
+  document.getElementById('filter-json-tier').style.display = isJson ? '' : 'none';
+  document.getElementById('filter-json-issue').style.display = isJson ? '' : 'none';
+  document.getElementById('filter-json-action').style.display = isJson ? '' : 'none';
+  const sort = document.getElementById('sort');
+  if (isJson) {
+    sort.innerHTML = `
+      <option value="tier">Sort: review priority</option>
+      <option value="status">Sort: validation status</option>
+      <option value="alpha">Sort: A-Z by language</option>
+      <option value="family">Sort: family</option>`;
+    document.getElementById('search').placeholder = 'Search language, family, rationale...';
+  } else {
+    sort.innerHTML = `
+      <option value="impact">Sort: most languages first</option>
+      <option value="anomaly-first">Sort: anomalies first</option>
+      <option value="alpha">Sort: A-Z by our family</option>`;
+    document.getElementById('search').placeholder = 'Search family name...';
+  }
+}
+
 function esc(s) {
   return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
                        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function normFamily(s) {
+  return String(s ?? '').trim().toLowerCase();
+}
+
+function reviewedFamily(row) {
+  const edit = jsonEdits[row._i] || {};
+  return edit.reviewer_family_name ?? row.reviewer_family_name ?? row.suggested_family_name ?? '';
+}
+
+function jsonActionNeeded(row) {
+  const reviewed = normFamily(reviewedFamily(row));
+  const current = normFamily(row.family_name_reconciled);
+  return reviewed && reviewed !== current;
 }
 
 function currentChoice(row) {
@@ -143,24 +250,54 @@ function currentChosen(row) {
 
 function pickChoice(idx, value) {
   const r = allRows[idx];
-  if (value === 'ours')        { delete overrides[idx]; r.choice = 'ours'; r.chosen_family_name = r.family_name_iso; }
-  else if (value === 'glottolog') { delete overrides[idx]; r.choice = 'glottolog'; r.chosen_family_name = r.family_name_glottolog; }
-  else if (value === 'custom')   { /* keep existing custom or initialize */
+  if (value === 'ours')        { delete overrides[idx]; r.choice = 'ours'; r.chosen_family_name = r.family_name_iso; r.reviewer_decision = 'ours'; r.reviewer_family_name = r.family_name_iso; }
+  else if (value === 'glottolog') { delete overrides[idx]; r.choice = 'glottolog'; r.chosen_family_name = r.family_name_glottolog; r.reviewer_decision = 'glottolog'; r.reviewer_family_name = r.family_name_glottolog; }
+  else if (value === 'custom')   {
     if (!overrides[idx]) overrides[idx] = { chosen_family_name: r.chosen_family_name || r.family_name_iso, choice: 'custom' };
+    r.reviewer_decision = 'custom';
+    r.reviewer_family_name = overrides[idx].chosen_family_name;
   }
   render();
 }
 function setCustomText(idx, value) {
   if (!overrides[idx]) overrides[idx] = { choice: 'custom' };
   overrides[idx].chosen_family_name = value;
-  // Update stats only (no full re-render so cursor stays in input)
+  allRows[idx].reviewer_family_name = value;
   updateStats();
-  // Update chosen value display
   const el = document.querySelector(`#row-${idx} .chosen-value`);
   if (el) el.textContent = value || '(empty)';
 }
 
+function setJsonDecision(idx, value) {
+  if (!jsonEdits[idx]) jsonEdits[idx] = {};
+  jsonEdits[idx].reviewer_decision = value;
+  allRows[idx].reviewer_decision = value;
+  updateStats();
+}
+function setJsonNotes(idx, value) {
+  if (!jsonEdits[idx]) jsonEdits[idx] = {};
+  jsonEdits[idx].reviewer_notes = value;
+  allRows[idx].reviewer_notes = value;
+  updateStats();
+}
+function setJsonFamily(idx, value) {
+  if (!jsonEdits[idx]) jsonEdits[idx] = {};
+  jsonEdits[idx].reviewer_family_name = value;
+  allRows[idx].reviewer_family_name = value;
+  const el = document.querySelector(`#row-${idx} .reviewer-family-value`);
+  if (el) el.textContent = value || '(empty)';
+}
+function setJsonIso(idx, value) {
+  if (!jsonEdits[idx]) jsonEdits[idx] = {};
+  jsonEdits[idx].reviewer_iso639_5 = value;
+  allRows[idx].reviewer_iso639_5 = value;
+}
+
 function applyFilters() {
+  return mode === 'unified' ? applyJsonFilters() : applyReconciliationFilters();
+}
+
+function applyReconciliationFilters() {
   const fc = document.getElementById('filter-choice').value;
   const fcat = document.getElementById('filter-category').value;
   const sq = document.getElementById('search').value.toLowerCase().trim();
@@ -176,7 +313,33 @@ function applyFilters() {
   });
 }
 
+function applyJsonFilters() {
+  const kind = document.getElementById('filter-review-kind').value;
+  const status = document.getElementById('filter-json-status').value;
+  const tier = document.getElementById('filter-json-tier').value;
+  const issue = document.getElementById('filter-json-issue').value;
+  const action = document.getElementById('filter-json-action').value;
+  const sq = document.getElementById('search').value.toLowerCase().trim();
+  return allRows.filter(r => {
+    if (kind && r.review_kind !== kind) return false;
+    if (status && r.glottolog_validation_status !== status) return false;
+    if (tier && r.review_tier !== tier) return false;
+    if (issue && r.coherence_issue !== issue) return false;
+    if (action === 'action-needed' && !jsonActionNeeded(r)) return false;
+    if (action === 'unchanged' && jsonActionNeeded(r)) return false;
+    if (sq) {
+      const hay = `${r.review_kind} ${r.language_code} ${r.language_name} ${r.sources} ${r.family_name_iso} ${r.family_name_glottolog} ${r.sample_languages} ${r.category} ${r.rationale} ${r.json_family_name} ${r.raw_family_name} ${r.family_name_reconciled} ${r.glottolog_family} ${r.coherence_issue} ${r.suggested_family_name} ${r.reviewer_family_name} ${r.suggestion_reason} ${r.json_rationale} ${r.analysis_mapping_action} ${r.analysis_mapping_reason}`.toLowerCase();
+      if (!hay.includes(sq)) return false;
+    }
+    return true;
+  });
+}
+
 function sortRows(rows) {
+  return mode === 'unified' ? sortJsonRows(rows) : sortReconciliationRows(rows);
+}
+
+function sortReconciliationRows(rows) {
   const s = document.getElementById('sort').value;
   if (s === 'impact') return rows.slice().sort((a,b) => b.n_languages - a.n_languages);
   if (s === 'anomaly-first') return rows.slice().sort((a,b) => {
@@ -190,8 +353,30 @@ function sortRows(rows) {
   return rows;
 }
 
+function sortJsonRows(rows) {
+  const s = document.getElementById('sort').value;
+  const tierOrder = { REVIEW_HIGH: 0, REVIEW_MED: 1, REFERENCE_ONLY: 2 };
+  if (s === 'tier') return rows.slice().sort((a,b) =>
+    (tierOrder[a.review_tier] ?? 9) - (tierOrder[b.review_tier] ?? 9) ||
+    (a.language_name || '').localeCompare(b.language_name || ''));
+  if (s === 'status') return rows.slice().sort((a,b) =>
+    (a.glottolog_validation_status || '').localeCompare(b.glottolog_validation_status || '') ||
+    (a.language_name || '').localeCompare(b.language_name || ''));
+  if (s === 'family') return rows.slice().sort((a,b) =>
+    (a.family_name_reconciled || '').localeCompare(b.family_name_reconciled || '') ||
+    (a.language_name || '').localeCompare(b.language_name || ''));
+  if (s === 'alpha') return rows.slice().sort((a,b) =>
+    (a.language_name || '').localeCompare(b.language_name || ''));
+  return rows;
+}
+
 function render() {
   if (!allRows.length) return;
+  if (mode === 'unified') renderJsonReview();
+  else renderReconciliation();
+}
+
+function renderReconciliation() {
   const rows = sortRows(applyFilters());
   let html = '';
   for (const r of rows) {
@@ -210,7 +395,7 @@ function render() {
         </div>
         <div class="badges">
           <span class="badge n">${r.n_languages} language${r.n_languages > 1 ? 's' : ''}</span>
-          ${ch === 'anomaly' ? `<span class="badge anomaly">🚩 Anomaly</span>` : ''}
+          ${ch === 'anomaly' ? `<span class="badge anomaly">Anomaly</span>` : ''}
           ${ch === 'glottolog' ? `<span class="badge glottolog">Use Glottolog</span>` : ''}
           ${ch === 'ours' ? `<span class="badge ours">Keep ours</span>` : ''}
           ${ch === 'custom' ? `<span class="badge custom">Custom override</span>` : ''}
@@ -222,9 +407,9 @@ function render() {
       <div class="controls">
         <label><input type="radio" name="c${r._i}" value="ours" ${ch === 'ours' ? 'checked' : ''} onchange="pickChoice(${r._i}, this.value)"> Keep ours (<span style="color:var(--accent3)">${esc(r.family_name_iso)}</span>)</label>
         <label><input type="radio" name="c${r._i}" value="glottolog" ${ch === 'glottolog' ? 'checked' : ''} onchange="pickChoice(${r._i}, this.value)"> Use Glottolog (<span style="color:var(--accent2)">${esc(r.family_name_glottolog)}</span>)</label>
-        <label><input type="radio" name="c${r._i}" value="custom" ${ch === 'custom' ? 'checked' : ''} ${ch === 'anomaly' ? '' : ''} onchange="pickChoice(${r._i}, this.value)"> Custom</label>
+        <label><input type="radio" name="c${r._i}" value="custom" ${ch === 'custom' ? 'checked' : ''} onchange="pickChoice(${r._i}, this.value)"> Custom</label>
         ${ch === 'custom' ? `<input type="text" class="custom-text" value="${esc(chosen)}" placeholder="Custom family name" oninput="setCustomText(${r._i}, this.value)">` : ''}
-        ${ch === 'anomaly' ? `<label><input type="radio" name="c${r._i}" value="ours" onchange="pickChoice(${r._i}, this.value)"> 🚩 Resolve as ours</label><label><input type="radio" name="c${r._i}" value="glottolog" onchange="pickChoice(${r._i}, this.value)"> 🚩 Resolve as Glottolog</label>` : ''}
+        ${ch === 'anomaly' ? `<label><input type="radio" name="c${r._i}" value="ours" onchange="pickChoice(${r._i}, this.value)"> Resolve as ours</label><label><input type="radio" name="c${r._i}" value="glottolog" onchange="pickChoice(${r._i}, this.value)"> Resolve as Glottolog</label>` : ''}
         <div class="chosen-label">Will save:</div>
         <div class="chosen-value">${esc(chosen || '(empty)')}</div>
       </div>
@@ -234,11 +419,135 @@ function render() {
   updateStats();
 }
 
+function tierBadge(tier) {
+  if (tier === 'REVIEW_HIGH') return '<span class="badge high">Review high</span>';
+  if (tier === 'REVIEW_MED') return '<span class="badge med">Review medium</span>';
+  return '<span class="badge ref">Reference only</span>';
+}
+
+function renderJsonReview() {
+  const rows = sortRows(applyFilters());
+  let html = '';
+  for (const r of rows) {
+    if (r.review_kind === 'iso_glottolog_pair') {
+      html += renderPairReviewRow(r);
+      continue;
+    }
+    const edit = jsonEdits[r._i] || {};
+    const decision = edit.reviewer_decision ?? r.reviewer_decision ?? '';
+    const reviewerFamily = reviewedFamily(r);
+    const reviewerIso = edit.reviewer_iso639_5 ?? r.reviewer_iso639_5 ?? r.suggested_iso639_5 ?? '';
+    const notes = edit.reviewer_notes ?? r.reviewer_notes ?? '';
+    const cls = r.review_tier === 'REVIEW_HIGH' ? 'anomaly'
+              : r.review_tier === 'REVIEW_MED' ? 'ours-chosen' : 'glottolog-chosen';
+    html += `<div id="row-${r._i}" class="row ${cls}">
+      <div>
+        <div class="pair">
+          <span class="iso">${esc(r.language_code)}</span>
+          <span class="arrow">·</span>
+          <span class="glot">${esc(r.language_name)}</span>
+        </div>
+        <div class="badges">
+          ${tierBadge(r.review_tier)}
+          ${r.review_kind ? `<span class="badge n">${esc(r.review_kind)}</span>` : ''}
+          <span class="badge cat">${esc(r.glottolog_validation_status || 'unknown')}</span>
+          ${r.coherence_issue ? `<span class="badge custom">${esc(r.coherence_issue)}</span>` : ''}
+          ${String(r.glottolog_changed_family).toLowerCase() === 'true' ? `<span class="badge glottolog">Reclassified</span>` : ''}
+          ${String(r.has_cldr_iso6395_hierarchy).toLowerCase() !== 'true' ? `<span class="badge med">No CLDR hierarchy</span>` : ''}
+        </div>
+        <div class="field-grid">
+          <div><strong>Sources:</strong> ${esc(r.sources)}</div>
+          <div><strong>JSON ISO 639-5:</strong> ${esc(r.json_iso639_5 || '—')}</div>
+          <div><strong>JSON family:</strong> ${esc(r.json_family_name || '—')}</div>
+          <div><strong>Raw family:</strong> ${esc(r.raw_family_name || '—')}</div>
+          <div><strong>Reconciled family:</strong> ${esc(r.family_name_reconciled || '—')}</div>
+          <div><strong>Glottolog family:</strong> ${esc(r.glottolog_family || '—')}</div>
+          <div><strong>Suggested ISO 639-5:</strong> ${esc(r.suggested_iso639_5 || '—')}</div>
+          <div><strong>Suggested family:</strong> ${esc(r.suggested_family_name || '—')}</div>
+          <div><strong>Suggestion confidence:</strong> ${esc(r.suggestion_confidence || '—')}</div>
+          ${r.analysis_mapping_action ? `<div><strong>Analysis policy:</strong> ${esc(r.analysis_mapping_action)}</div>` : ''}
+          ${r.analysis_family_name ? `<div><strong>Analysis label:</strong> ${esc(r.analysis_family_name)}</div>` : ''}
+        </div>
+        ${r.analysis_mapping_reason ? `<div class="rationale"><strong>Analysis policy:</strong> ${esc(r.analysis_mapping_reason)}</div>` : ''}
+        ${r.suggestion_reason ? `<div class="rationale"><strong>Suggestion:</strong> ${esc(r.suggestion_reason)}</div>` : ''}
+        <div class="rationale">${esc(r.json_rationale || '(no rationale)')}</div>
+      </div>
+      <div class="controls">
+        <label><input type="radio" name="j${r._i}" value="accept" ${decision === 'accept' ? 'checked' : ''} onchange="setJsonDecision(${r._i}, this.value)"> Accept current family</label>
+        <label><input type="radio" name="j${r._i}" value="revise" ${decision === 'revise' ? 'checked' : ''} onchange="setJsonDecision(${r._i}, this.value)"> Accept proposed revision</label>
+        <label><input type="radio" name="j${r._i}" value="defer" ${decision === 'defer' ? 'checked' : ''} onchange="setJsonDecision(${r._i}, this.value)"> Defer / research later</label>
+        <div class="chosen-label">Revised family name:</div>
+        <input type="text" class="custom-text" value="${esc(reviewerFamily)}" placeholder="Final family name if revised" oninput="setJsonFamily(${r._i}, this.value)">
+        <div class="chosen-label">Revised ISO 639-5 code:</div>
+        <input type="text" class="custom-text" value="${esc(reviewerIso)}" placeholder="Optional ISO 639-5 code" oninput="setJsonIso(${r._i}, this.value)">
+        <textarea class="custom-text" rows="5" placeholder="Review notes" oninput="setJsonNotes(${r._i}, this.value)">${esc(notes)}</textarea>
+        <div class="chosen-label">Current downstream family:</div>
+        <div class="chosen-value">${esc(r.family_name_reconciled || '(empty)')}</div>
+        <div class="chosen-label">Will apply if revised:</div>
+        <div class="chosen-value reviewer-family-value">${esc(reviewerFamily || '(empty)')}</div>
+      </div>
+    </div>`;
+  }
+  document.getElementById('rows').innerHTML = html;
+  updateStats();
+}
+
+function renderPairReviewRow(r) {
+  const ch = currentChoice(r);
+  const chosen = currentChosen(r) || r.reviewer_family_name;
+  const rowCls = ch === 'anomaly' ? 'anomaly'
+              : ch === 'glottolog' ? 'glottolog-chosen'
+              : ch === 'custom' ? '' : 'ours-chosen';
+  return `<div id="row-${r._i}" class="row ${rowCls}">
+    <div>
+      <div class="pair">
+        <span class="iso">${esc(r.family_name_iso)}</span>
+        <span class="arrow">↔</span>
+        <span class="glot">${esc(r.family_name_glottolog)}</span>
+      </div>
+      <div class="badges">
+        ${tierBadge(r.review_tier)}
+        <span class="badge n">iso_glottolog_pair</span>
+        <span class="badge n">${r.n_languages} language${r.n_languages > 1 ? 's' : ''}</span>
+        ${ch === 'anomaly' ? `<span class="badge anomaly">Anomaly</span>` : ''}
+        ${ch === 'glottolog' ? `<span class="badge glottolog">Use Glottolog</span>` : ''}
+        ${ch === 'ours' ? `<span class="badge ours">Keep ours</span>` : ''}
+        ${ch === 'custom' ? `<span class="badge custom">Custom override</span>` : ''}
+        ${r.category ? `<span class="badge cat">${esc(r.category)}</span>` : ''}
+      </div>
+      <div class="samples"><strong>Languages:</strong> ${esc(r.sample_languages || '—')}</div>
+      <div class="rationale">${esc(r.rationale || '(no rationale)')}</div>
+    </div>
+    <div class="controls">
+      <label><input type="radio" name="u${r._i}" value="ours" ${ch === 'ours' ? 'checked' : ''} onchange="pickChoice(${r._i}, this.value)"> Keep ours (<span style="color:var(--accent3)">${esc(r.family_name_iso)}</span>)</label>
+      <label><input type="radio" name="u${r._i}" value="glottolog" ${ch === 'glottolog' ? 'checked' : ''} onchange="pickChoice(${r._i}, this.value)"> Use Glottolog (<span style="color:var(--accent2)">${esc(r.family_name_glottolog)}</span>)</label>
+      <label><input type="radio" name="u${r._i}" value="custom" ${ch === 'custom' ? 'checked' : ''} onchange="pickChoice(${r._i}, this.value)"> Custom</label>
+      ${ch === 'custom' ? `<input type="text" class="custom-text" value="${esc(chosen)}" placeholder="Custom family name" oninput="setCustomText(${r._i}, this.value)">` : ''}
+      ${ch === 'anomaly' ? `<label><input type="radio" name="u${r._i}" value="ours" onchange="pickChoice(${r._i}, this.value)"> Resolve as ours</label><label><input type="radio" name="u${r._i}" value="glottolog" onchange="pickChoice(${r._i}, this.value)"> Resolve as Glottolog</label>` : ''}
+      <div class="chosen-label">Will save:</div>
+      <div class="chosen-value">${esc(chosen || '(empty)')}</div>
+    </div>
+  </div>`;
+}
+
 function updateStats() {
   const total = allRows.length;
+  const filt = applyFilters().length;
+  if (mode === 'unified') {
+    const high = allRows.filter(r => r.review_tier === 'REVIEW_HIGH').length;
+    const med = allRows.filter(r => r.review_tier === 'REVIEW_MED').length;
+    const action = allRows.filter(r => r.review_kind !== 'iso_glottolog_pair' && jsonActionNeeded(r)).length;
+    const reviewed = allRows.filter(r => (r.reviewer_decision || '').trim()).length;
+    document.getElementById('stats').innerHTML =
+      `<strong>${filt}</strong> shown · <strong>${total}</strong> review rows · ` +
+      `<strong style="color:var(--rose)">${high}</strong> high · ` +
+      `<strong style="color:var(--warn)">${med}</strong> medium · ` +
+      `<strong>${action}</strong> action needed · ` +
+      `<strong>${reviewed}</strong> reviewed`;
+    return;
+  }
   const anom = allRows.filter(r => currentChoice(r) === 'anomaly').length;
   const ovrd = Object.keys(overrides).length;
-  const filt = applyFilters().length;
   document.getElementById('stats').innerHTML =
     `<strong>${filt}</strong> shown · <strong>${total}</strong> total · ` +
     `<strong style="color:var(--rose)">${anom}</strong> unresolved anomalies · ` +
@@ -247,7 +556,11 @@ function updateStats() {
 
 function downloadCSV() {
   if (!allRows.length) { alert('Load a file first.'); return; }
-  // Build output rows, applying any overrides
+  if (mode === 'unified') downloadUnifiedReviewCSV();
+  else downloadReconciliationCSV();
+}
+
+function downloadReconciliationCSV() {
   const out = allRows.map(r => {
     const ch = currentChoice(r);
     const chosen = currentChosen(r);
@@ -262,12 +575,59 @@ function downloadCSV() {
       rationale: r.rationale,
     };
   });
-  const csv = Papa.unparse(out);
+  triggerDownload(Papa.unparse(out), 'family_reconciliation.csv');
+}
+
+function downloadUnifiedReviewCSV() {
+  const out = allRows.map(r => ({
+    review_kind: r.review_kind || '',
+    case_id: r.case_id || '',
+    review_tier: r.review_tier || '',
+    reviewer_decision: r.reviewer_decision || '',
+    reviewer_family_name: r.reviewer_family_name || r.chosen_family_name || '',
+    reviewer_iso639_5: r.reviewer_iso639_5 || '',
+    reviewer_notes: r.reviewer_notes || '',
+    language_code: r.language_code || '',
+    language_name: r.language_name || '',
+    sources: r.sources || '',
+    iso639_2_t: r.iso639_2_t || '',
+    n_languages: r.n_languages || '',
+    sample_languages: r.sample_languages || '',
+    family_name_iso: r.family_name_iso || '',
+    family_name_glottolog: r.family_name_glottolog || '',
+    choice: r.choice || '',
+    category: r.category || '',
+    chosen_family_name: r.chosen_family_name || '',
+    rationale: r.rationale || '',
+    json_iso639_5: r.json_iso639_5 || '',
+    json_family_name: r.json_family_name || '',
+    raw_family_name: r.raw_family_name || '',
+    family_name_reconciled: r.family_name_reconciled || '',
+    glottolog_family: r.glottolog_family || '',
+    glottolog_validation_status: r.glottolog_validation_status || '',
+    glottolog_changed_family: r.glottolog_changed_family || '',
+    has_cldr_iso6395_hierarchy: r.has_cldr_iso6395_hierarchy || '',
+    coherence_issue: r.coherence_issue || '',
+    suggested_iso639_5: r.suggested_iso639_5 || '',
+    suggested_family_name: r.suggested_family_name || '',
+    suggestion_confidence: r.suggestion_confidence || '',
+    suggestion_reason: r.suggestion_reason || '',
+    json_rationale: r.json_rationale || '',
+    analysis_family_name: r.analysis_family_name || '',
+    analysis_mapping_action: r.analysis_mapping_action || '',
+    analysis_review_status: r.analysis_review_status || '',
+    analysis_mapping_reason: r.analysis_mapping_reason || '',
+    analysis_policy_source: r.analysis_policy_source || '',
+  }));
+  triggerDownload(Papa.unparse(out), 'family_reconciliation_reviewed.csv');
+}
+
+function triggerDownload(csv, filename) {
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'family_reconciliation.csv';
+  a.download = filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
